@@ -6,16 +6,14 @@ import 'package:flutter/cupertino.dart';
 
 class SigninScreen extends StatefulWidget {
   @override
-  SigninScreenState createState() => SigninScreenState();
+  _SigninScreenState createState() => _SigninScreenState();
 }
 
-class SigninScreenState extends State<SigninScreen> {
-  var _formKey = GlobalKey<FormState>();
-  TextEditingController numberController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  var isLoading = false;
-
-  SigninScreenState();
+class _SigninScreenState extends State<SigninScreen> {
+  var _signinFormKey = GlobalKey<FormState>();
+  TextEditingController _numberController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  var _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class SigninScreenState extends State<SigninScreen> {
     return Scaffold(
       body: Builder(
         builder: (context) => Form(
-          key: _formKey,
+          key: _signinFormKey,
           child: Padding(
             padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
             child: ListView(
@@ -55,7 +53,7 @@ class SigninScreenState extends State<SigninScreen> {
                   margin: EdgeInsets.symmetric(
                       horizontal: screenWidth * 0.05, vertical: 8.0),
                   child: TextFormField(
-                    controller: numberController,
+                    controller: _numberController,
                     validator: (String value) {
                       if (value.isEmpty) {
                         return "Phone number is required";
@@ -83,7 +81,7 @@ class SigninScreenState extends State<SigninScreen> {
                       horizontal: screenWidth * 0.05, vertical: 8.0),
                   child: TextFormField(
                     obscureText: true,
-                    controller: passwordController,
+                    controller: _passwordController,
                     validator: (String value) {
                       if (value.isEmpty) {
                         return "Password is required";
@@ -106,7 +104,7 @@ class SigninScreenState extends State<SigninScreen> {
                 ),
 
                 //Login button
-                if (isLoading)
+                if (_isLoading)
                   Center(
                       child: CircularProgressIndicator(
                         backgroundColor: Theme.of(context).primaryColor,
@@ -129,7 +127,7 @@ class SigninScreenState extends State<SigninScreen> {
                         ),
                         onPressed: () {
                           setState(() {
-                            if (_formKey.currentState.validate()) {
+                            if (_signinFormKey.currentState.validate()) {
                               // call sign in function
                             }
                           });
@@ -167,8 +165,6 @@ class SigninScreenState extends State<SigninScreen> {
         ),
       ),
     );
-
-    throw UnimplementedError();
   }
   void _signup() {
     Application.router.navigateTo(context, Routes.signup);
