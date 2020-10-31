@@ -12,8 +12,8 @@ class SplashScreen extends StatelessWidget {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
-    AssetImage assetImage = AssetImage('images/splash.jpg');
-    AssetImage assetImage2 = AssetImage('images/slflag.png');
+    AssetImage assetImage = AssetImage('asset/images/splash.jpg');
+    AssetImage assetImage2 = AssetImage('asset/images/slflag.png');
     Image image1 = Image(
       image: assetImage,
       width: screenWidth,
