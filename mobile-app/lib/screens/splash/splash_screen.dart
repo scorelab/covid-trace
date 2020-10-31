@@ -8,6 +8,23 @@ import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //T
+    var _mediaQueryData = MediaQuery.of(context);
+    var screenWidth = _mediaQueryData.size.width;
+    var screenHeight = _mediaQueryData.size.height;
+    AssetImage assetImage = AssetImage('images/splash.jpg');
+    AssetImage assetImage2 = AssetImage('images/slflag.png');
+    Image image1 = Image(
+      image: assetImage,
+      width: screenWidth,
+      height: screenHeight * 0.3,
+    );
+
+    Image image2 = Image(
+      image: assetImage2,
+      width: screenWidth * 0.2,
+      height: screenHeight * 0.07,
+    );
     return BlocListener<AuthBloc, AuthState>(
       cubit: Provider.of<AuthBloc>(context),
       listener: (BuildContext context, AuthState state) async {
@@ -22,8 +39,46 @@ class SplashScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
-        body: Center(
-          child: Text("splash"),
+        body: Padding(
+          padding: EdgeInsets.only(
+            top: screenHeight * 0.2,
+          ),
+          child: Center(
+            child: Column(
+              children: [
+                image1,
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20, right: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      image2,
+                      Text(
+                        "COVID-19 TRACKER",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff1DE9B6),
+                            fontSize: 25),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Stay home! Stay safe!",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff626262),
+                      fontSize: 25),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
