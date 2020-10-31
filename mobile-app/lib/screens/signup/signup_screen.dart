@@ -36,56 +36,60 @@ class _SignupScreenState extends State<SignupScreen> {
       },
       cubit: Provider.of<AuthBloc>(context),
       child: Scaffold(
-        body: Column(
-          children: [
-            Form(
-              key: _signupFormKey,
-              child: Column(
-                children: [
-                  Spacer(),
-                  Visibility(
-                    child: CircularProgressIndicator(
-                      value: null,
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          title: Text("Signup"),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Form(
+                key: _signupFormKey,
+                child: Column(
+                  children: [
+                    Visibility(
+                      child: CircularProgressIndicator(
+                        value: null,
+                      ),
+                      visible: _signingin,
+                      maintainSize: true,
+                      maintainAnimation: true,
+                      maintainState: true,
                     ),
-                    visible: _signingin,
-                    maintainSize: true,
-                    maintainAnimation: true,
-                    maintainState: true,
-                  ),
-                  TextFormField(
-                    controller: _nameTEController,
-                    decoration: InputDecoration(labelText: "Name"),
-                    validator: _nameValidator,
-                  ),
-                  TextFormField(
-                    controller: _phoneNumberTEController,
-                    decoration: InputDecoration(labelText: "Phone number"),
-                    validator: _phoneNumberValidator,
-                  ),
-                  TextFormField(
-                    controller: _nicTEController,
-                    decoration: InputDecoration(labelText: "NIC"),
-                    validator: _nicValidator,
-                  ),
-                  TextFormField(
-                    controller: _passwordTEController,
-                    decoration: InputDecoration(labelText: "Password"),
-                    validator: _passwordValidator,
-                  ),
-                ],
+                    TextFormField(
+                      controller: _nameTEController,
+                      decoration: InputDecoration(labelText: "Name"),
+                      validator: _nameValidator,
+                    ),
+                    TextFormField(
+                      controller: _phoneNumberTEController,
+                      decoration: InputDecoration(labelText: "Phone number"),
+                      validator: _phoneNumberValidator,
+                    ),
+                    TextFormField(
+                      controller: _nicTEController,
+                      decoration: InputDecoration(labelText: "NIC"),
+                      validator: _nicValidator,
+                    ),
+                    TextFormField(
+                      controller: _passwordTEController,
+                      decoration: InputDecoration(labelText: "Password"),
+                      validator: _passwordValidator,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            RaisedButton(
-              onPressed: _onSignUp,
-              child: Text("sign up"),
-            ),
-            Spacer(),
-            RaisedButton(
-              onPressed: _signin,
-              child: Text("sign in"),
-            ),
-            SizedBox(height: 30),
-          ],
+              RaisedButton(
+                onPressed: _onSignUp,
+                child: Text("sign up"),
+              ),
+              RaisedButton(
+                onPressed: _signin,
+                child: Text("sign in"),
+              ),
+              SizedBox(height: 30),
+            ],
+          ),
         ),
       ),
     );
@@ -147,8 +151,12 @@ class _SignupScreenState extends State<SignupScreen> {
       final phoneNumber = _phoneNumberTEController.text.toString();
       final password = _passwordTEController.text.toString();
 
-      Provider.of<AuthBloc>(context)
+      Provider.of<AuthBloc>(context, listen: false)
           .signUp(UserRegisterRequest(name, nic, phoneNumber, password));
+    } else {
+      setState(() {
+        _signingin = false;
+      });
     }
   }
 
