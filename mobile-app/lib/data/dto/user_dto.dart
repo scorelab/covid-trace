@@ -1,22 +1,20 @@
-import 'package:flutter/foundation.dart';
-
-class UserDto {
-  final String id;
+class UserRegisterRequest {
   final String name;
+  final String nic;
   final String phoneNumber;
   final String password;
 
-  UserDto({
-    @required this.id,
-    @required this.name,
-    @required this.phoneNumber,
-    @required this.password,
-  });
+  UserRegisterRequest(
+    this.name,
+    this.nic,
+    this.phoneNumber,
+    this.password,
+  );
 
   Map<String, dynamic> toMap() {
     return {
-      "id": id,
       "name": name,
+      "nic": nic,
       "phoneNumber": phoneNumber,
       "password": password,
     };
