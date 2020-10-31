@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:slcovid_tracker/core/failures/auth_failures.dart';
 import 'package:slcovid_tracker/data/auth/auth_repository.dart';
+import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/data/repository.dart';
 import 'package:slcovid_tracker/models/user.dart';
 
@@ -19,4 +20,8 @@ class RepositoryImpl extends Repository {
 
   @override
   Future<Either<AuthFailure, Unit>> signIn() => _authRepository.signIn();
+
+  @override
+  Future<Either<AuthFailure, Unit>> signUp(UserRegisterRequest request) =>
+      _authRepository.signUp(request);
 }
