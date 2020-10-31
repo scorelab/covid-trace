@@ -67,31 +67,31 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
 
                   //Name Field
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.05, vertical: 8.0),
-                    child: TextFormField(
-                      controller: _nameTEController,
-                      validator: (String value) {
-                        if (value.isEmpty) {
-                          return "Name is required";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          labelText: 'Name',
-                          prefixIcon: Padding(
-                            padding: EdgeInsets.only(top: 0),
-                            // add padding to adjust icon
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 0.4),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   margin: EdgeInsets.symmetric(
+                  //       horizontal: screenWidth * 0.05, vertical: 8.0),
+                  //   child: TextFormField(
+                  //     controller: _nameTEController,
+                  //     validator: (String value) {
+                  //       if (value.isEmpty) {
+                  //         return "Name is required";
+                  //       }
+                  //       return null;
+                  //     },
+                  //     decoration: InputDecoration(
+                  //         labelText: 'Name',
+                  //         prefixIcon: Padding(
+                  //           padding: EdgeInsets.only(top: 0),
+                  //           // add padding to adjust icon
+                  //         ),
+                  //         enabledBorder: OutlineInputBorder(
+                  //           borderSide: BorderSide(width: 0.4),
+                  //           borderRadius: BorderRadius.circular(10.0),
+                  //         ),
+                  //         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
+                  //     ),
+                  //   ),
+                  // ),
 
                   //Phone Number Field
                   Container(
