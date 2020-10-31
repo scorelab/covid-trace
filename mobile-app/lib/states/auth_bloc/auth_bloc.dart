@@ -19,5 +19,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   @override
   Stream<AuthState> mapEventToState(
     AuthEvent event,
-  ) async* {}
+  ) async* {
+    yield SigningIn();
+    if (event is GetCurrentUserEvent) {
+      yield (await _repository.getSignedInUser()).fold<AuthState>(
+        () => Unauthenticated(),
+        (_) => Authenticated(),
+      );
+    }
+    if (event is SignInEvent) {
+      yield (await _repository.signIn()).fold<AuthState>(
+        (l) => Unauthenticated(),
+        (r) => Authenticated(),
+      );
+    }
+
+    if (event is SignOutEvent) {
+      await _repository.signOut();
+      yield Unauthenticated();
+    }
+  }
+
+  void signIn() {
+    add(SignInEvent());
+  }
+
+  void signOut() {
+    add(SignOutEvent());
+  }
 }
