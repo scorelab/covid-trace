@@ -11,7 +11,9 @@ class AuthRepositoryImpl extends AuthRepository {
   //need to implement
 
   @override
-  Future<Either<AuthFailure, Unit>> signIn() async {}
+  Future<Either<AuthFailure, Unit>> signIn() async {
+    return left(LoginFailure());
+  }
 
   @override
   Future<void> signOut() => Future.wait([]);
