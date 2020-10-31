@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/data/repository.dart';
 
 part 'auth_event.dart';
@@ -27,6 +29,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         (_) => Authenticated(),
       );
     }
+    if (event is SignUpEvent) {
+      yield (await _repository.signUp(event.request)).fold<AuthState>(
+        (l) => Unauthenticated(),
+        (r) => Authenticated(),
+      );
+    }
+
     if (event is SignInEvent) {
       yield (await _repository.signIn()).fold<AuthState>(
         (l) => Unauthenticated(),
@@ -40,8 +49,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  void signIn() {
-    add(SignInEvent());
+  void signUp(UserRegisterRequest request) {
+    add(SignUpEvent(request: request));
   }
 
   void signOut() {
