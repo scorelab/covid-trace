@@ -7,7 +7,12 @@ var mainHandler = Handler(
   return SplashScreen();
 });
 
-var loginHandler = Handler(
+var signupHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  return Container();
+});
+
+var signinHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return Container();
 });
