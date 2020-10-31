@@ -16,10 +16,20 @@ class _SignupScreenState extends State<SignupScreen> {
   final _phoneNumberTEController = TextEditingController();
   final _nicTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
+  var isLoading = false;
   bool _signingin = false;
 
   @override
   Widget build(BuildContext context) {
+    var _mediaQueryData = MediaQuery.of(context);
+    var screenWidth = _mediaQueryData.size.width;
+    var screenHeight = _mediaQueryData.size.height;
+    AssetImage assetImage = AssetImage('images/signup.png');
+    Image image = Image(
+      image: assetImage,
+      width: screenWidth*0.8,
+      height: screenHeight*0.3,
+    );
     return BlocListener<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
         if (state is Unauthenticated) {
@@ -36,59 +46,186 @@ class _SignupScreenState extends State<SignupScreen> {
       },
       cubit: Provider.of<AuthBloc>(context),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: Text("Signup"),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Form(
-                key: _signupFormKey,
-                child: Column(
-                  children: [
-                    Visibility(
-                      child: CircularProgressIndicator(
-                        value: null,
-                      ),
-                      visible: _signingin,
-                      maintainSize: true,
-                      maintainAnimation: true,
-                      maintainState: true,
+        body: Builder(
+          builder: (context) => Form(
+            key: _signupFormKey,
+            child: Padding(
+              padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
+              child: ListView(
+                children: <Widget>[
+                  Container(height: 50),
+                  Center(
+                    child: Text(
+                      "To get started we need following",
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 20),
                     ),
-                    TextFormField(
+                  ),
+                  Center(
+                    child: Container(
+                      child: image,
+                    ),
+                  ),
+
+                  //Name Field
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05, vertical: 8.0),
+                    child: TextFormField(
                       controller: _nameTEController,
-                      decoration: InputDecoration(labelText: "Name"),
-                      validator: _nameValidator,
+                      validator: (String value) {
+                        if (value.isEmpty) {
+                          return "Name is required";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          labelText: 'Name',
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(top: 0),
+                            // add padding to adjust icon
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 0.4),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
+                      ),
                     ),
-                    TextFormField(
+                  ),
+
+                  //Phone Number Field
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05, vertical: 8.0),
+                    child: TextFormField(
                       controller: _phoneNumberTEController,
-                      decoration: InputDecoration(labelText: "Phone number"),
-                      validator: _phoneNumberValidator,
+                      validator: (String value) {
+                        if (value.isEmpty) {
+                          return "Phone number is required";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          labelText: 'Phone Number',
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(top: 0),
+                            // add padding to adjust icon
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 0.4),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
+                      ),
                     ),
-                    TextFormField(
+                  ),
+
+                  //NIC Field
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05, vertical: 8.0),
+                    child: TextFormField(
                       controller: _nicTEController,
-                      decoration: InputDecoration(labelText: "NIC"),
-                      validator: _nicValidator,
+                      validator: (String value) {
+                        if (value.isEmpty) {
+                          return "NIC is required";
+                        }
+                        return null;
+                      },
+                      // keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          labelText: 'NIC',
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(top: 0),
+                            // add padding to adjust icon
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 0.4),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
+                      ),
                     ),
-                    TextFormField(
+                  ),
+
+                  //Password Field
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05, vertical: 8.0),
+                    child: TextFormField(
+                      obscureText: true,
                       controller: _passwordTEController,
-                      decoration: InputDecoration(labelText: "Password"),
-                      validator: _passwordValidator,
+                      validator: (String value) {
+                        if (value.isEmpty) {
+                          return "Password is required";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          labelText: 'Password',
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(top: 0),
+                            // add padding to adjust icon
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 0.4),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+
+                  //Login button
+                  if (isLoading)
+                    Center(
+                        child: CircularProgressIndicator(
+                          backgroundColor: Theme.of(context).primaryColor,
+                        ))
+                  else
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 0.18, vertical: 30.0),
+                      child : ButtonTheme(
+                        height: 50,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)
+                          ),
+                          color: Theme.of(context).primaryColor,
+                          textColor: Colors.white,
+                          child: Text(
+                            'Sign Up',
+                            textScaleFactor: 1.5,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (_signupFormKey.currentState.validate()) {
+                                _onSignUp();
+                              }
+                            });
+                          },
+                        ),
+                      ),
+
+                    ),
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.1, vertical: 8.0),
+                    child: GestureDetector(
+                      onTap: _signin,
+                      child: Center(
+                        child: Text(
+                          "Go back to Log In Screen",
+                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(height: 50),
+                ],
               ),
-              RaisedButton(
-                onPressed: _onSignUp,
-                child: Text("sign up"),
-              ),
-              RaisedButton(
-                onPressed: _signin,
-                child: Text("sign in"),
-              ),
-              SizedBox(height: 30),
-            ],
+            ),
           ),
         ),
       ),
