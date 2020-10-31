@@ -2,7 +2,7 @@ import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 
 class SigninScreen extends StatefulWidget {
   @override
@@ -48,59 +48,18 @@ class _SigninScreenState extends State<SigninScreen> {
                   ),
                 ),
 
-                //Phone Number Field
-                Container(
-                  margin: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.05, vertical: 8.0),
-                  child: TextFormField(
-                    controller: _numberController,
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return "Phone number is required";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(top: 0),
-                          // add padding to adjust icon
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 0.4),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
-                    ),
-                  ),
+                //Phone Number
+                LabelTextFormField(
+                  labelText: "Phone Number",
+                  controller: _numberController,
+                  keyboardType: TextInputType.number,
                 ),
 
-                //Password Field
-                Container(
-                  margin: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.05, vertical: 8.0),
-                  child: TextFormField(
-                    obscureText: true,
-                    controller: _passwordController,
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return "Password is required";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                        labelText: 'Password',
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(top: 0),
-                          // add padding to adjust icon
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 0.4),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
-                    ),
-                  ),
+                //Password
+                LabelTextFormField(
+                  labelText: "Password",
+                  controller: _passwordController,
+                  isObscure: true,
                 ),
 
                 //Login button

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
+import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -16,7 +17,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final _phoneNumberTEController = TextEditingController();
   final _nicTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
-  var isLoading = false;
   bool _signingin = false;
 
   @override
@@ -66,101 +66,27 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
 
-                  //Name Field
-                  // Container(
-                  //   margin: EdgeInsets.symmetric(
-                  //       horizontal: screenWidth * 0.05, vertical: 8.0),
-                  //   child: TextFormField(
-                  //     controller: _nameTEController,
-                  //     validator: (String value) {
-                  //       if (value.isEmpty) {
-                  //         return "Name is required";
-                  //       }
-                  //       return null;
-                  //     },
-                  //     decoration: InputDecoration(
-                  //         labelText: 'Name',
-                  //         prefixIcon: Padding(
-                  //           padding: EdgeInsets.only(top: 0),
-                  //           // add padding to adjust icon
-                  //         ),
-                  //         enabledBorder: OutlineInputBorder(
-                  //           borderSide: BorderSide(width: 0.4),
-                  //           borderRadius: BorderRadius.circular(10.0),
-                  //         ),
-                  //         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
-                  //     ),
-                  //   ),
-                  // ),
-
-                  //Phone Number Field
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.05, vertical: 8.0),
-                    child: TextFormField(
-                      controller: _phoneNumberTEController,
-                      validator: (String value) {
-                        if (value.isEmpty) {
-                          return "Phone number is required";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          labelText: 'Phone Number',
-                          prefixIcon: Padding(
-                            padding: EdgeInsets.only(top: 0),
-                            // add padding to adjust icon
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 0.4),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
-                      ),
-                    ),
+                  //Phone Number
+                  LabelTextFormField(
+                    labelText: "Phone Number",
+                    controller: _phoneNumberTEController,
+                    keyboardType: TextInputType.number,
                   ),
 
-                  //NIC Field
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.05, vertical: 8.0),
-                    child: TextFormField(
-                      controller: _nicTEController,
-                      validator: (String value) {
-                        if (value.isEmpty) {
-                          return "NIC is required";
-                        }
-                        return null;
-                      },
-                      // keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                          labelText: 'NIC',
-                          prefixIcon: Padding(
-                            padding: EdgeInsets.only(top: 0),
-                            // add padding to adjust icon
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 0.4),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
-                      ),
-                    ),
+                  //NIC
+                  LabelTextFormField(
+                    labelText: "NIC",
+                    controller: _nicTEController,
                   ),
 
-                  //Password Field
+                  //Password
                   Container(
                     margin: EdgeInsets.symmetric(
                         horizontal: screenWidth * 0.05, vertical: 8.0),
                     child: TextFormField(
                       obscureText: true,
                       controller: _passwordTEController,
-                      validator: (String value) {
-                        if (value.isEmpty) {
-                          return "Password is required";
-                        }
-                        return null;
-                      },
+                      validator: _passwordValidator,
                       decoration: InputDecoration(
                           labelText: 'Password',
                           prefixIcon: Padding(
@@ -177,7 +103,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
 
                   //Login button
-                  if (isLoading)
+                  if (_signingin)
                     Center(
                         child: CircularProgressIndicator(
                           backgroundColor: Theme.of(context).primaryColor,
@@ -236,32 +162,6 @@ class _SignupScreenState extends State<SignupScreen> {
     if (name.isEmpty) {
       return 'Please enter your name';
     }
-
-    return null;
-  }
-
-  String _phoneNumberValidator(String phoneNumber) {
-    if (phoneNumber.isEmpty) {
-      return 'Please enter the phone number';
-    }
-
-    // TODO: phone number regex match
-    // if (phoneNumber.isEmpty) {
-    //   return 'Please enter a valid phone number';
-    // }
-
-    return null;
-  }
-
-  String _nicValidator(String nic) {
-    if (nic.isEmpty) {
-      return 'Please enter the nic';
-    }
-
-    // TODO: nic regex match
-    // if (phoneNumber.isEmpty) {
-    //   return 'Please enter a valid phone number';
-    // }
 
     return null;
   }
