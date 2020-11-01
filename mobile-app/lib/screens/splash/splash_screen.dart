@@ -75,6 +75,17 @@ class SplashScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Color(0xff626262),
                       fontSize: 25),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Voluntary Drive to Expose Potential Covid - 19 \nSpread",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xff626262),
+                      fontSize: 15),
                 )
               ],
             ),
