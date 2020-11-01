@@ -29,9 +29,9 @@ var homeHandler = Handler(
 
 var verificationHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-      return VerificationScreen();
+  return VerificationScreen();
 });
-   
+
 var permissionHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return PermissionScreen();

@@ -60,7 +60,7 @@ class SplashScreen extends StatelessWidget {
                         "COVID-19 TRACKER",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff1DE9B6),
+                            color: Theme.of(context).primaryColor,
                             fontSize: 25),
                       )
                     ],
