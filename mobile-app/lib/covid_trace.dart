@@ -25,7 +25,7 @@ class CovidTrace extends StatelessWidget {
         theme: ThemeData(
           iconTheme: IconThemeData(color: Colors.tealAccent[400]),
           brightness: Brightness.light,
-          primaryColor: Colors.tealAccent[400],
+          primaryColor: Color(0xff1DE9B6),
           accentColor: Colors.white,
         ),
       ),

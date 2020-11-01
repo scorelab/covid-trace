@@ -54,6 +54,13 @@ class PermissionScreen extends StatelessWidget {
                       height: 8,
                     ),
                     _Permissiondetails(
+                      caption: "Notification Permission",
+                      icon: Icons.notifications,
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    _Permissiondetails(
                       caption: "Let app run in the background",
                       icon: Icons.play_circle_fill,
                     ),
@@ -61,7 +68,7 @@ class PermissionScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 8,
+                height: 15,
               ),
               Center(
                 child: Text(
@@ -73,7 +80,7 @@ class PermissionScreen extends StatelessWidget {
                 height: 15,
               ),
               SizedBox(
-                width: screenWidth * 0.5, // specific value
+                width: screenWidth * 0.7, // specific value
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
@@ -81,7 +88,7 @@ class PermissionScreen extends StatelessWidget {
                   onPressed: () {},
                   color: Color(0xff1DE9B6),
                   textColor: Colors.white,
-                  child: Text("Allow", style: TextStyle(fontSize: 14)),
+                  child: Text("Allow", style: TextStyle(fontSize: 25)),
                 ),
               )
             ],

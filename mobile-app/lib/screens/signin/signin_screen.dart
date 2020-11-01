@@ -20,11 +20,11 @@ class _SigninScreenState extends State<SigninScreen> {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
-    AssetImage assetImage = AssetImage('images/signup.png');
+    AssetImage assetImage = AssetImage('asset/images/signin.png');
     Image image = Image(
       image: assetImage,
-      width: screenWidth*0.8,
-      height: screenHeight*0.3,
+      width: screenWidth * 0.8,
+      height: screenHeight * 0.4,
     );
 
     return Scaffold(
@@ -39,7 +39,10 @@ class _SigninScreenState extends State<SigninScreen> {
                 Center(
                   child: Text(
                     "Welcome Back",
-                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 20),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                        fontSize: 20),
                   ),
                 ),
                 Center(
@@ -66,18 +69,17 @@ class _SigninScreenState extends State<SigninScreen> {
                 if (_isLoading)
                   Center(
                       child: CircularProgressIndicator(
-                        backgroundColor: Theme.of(context).primaryColor,
-                      ))
+                    backgroundColor: Theme.of(context).primaryColor,
+                  ))
                 else
                   Container(
                     margin: EdgeInsets.symmetric(
                         horizontal: screenWidth * 0.18, vertical: 30.0),
-                    child : ButtonTheme(
+                    child: ButtonTheme(
                       height: 50,
                       child: RaisedButton(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0)
-                        ),
+                            borderRadius: BorderRadius.circular(30.0)),
                         color: Theme.of(context).primaryColor,
                         textColor: Colors.white,
                         child: Text(
@@ -93,7 +95,6 @@ class _SigninScreenState extends State<SigninScreen> {
                         },
                       ),
                     ),
-
                   ),
                 Container(
                   margin: EdgeInsets.symmetric(
@@ -113,7 +114,9 @@ class _SigninScreenState extends State<SigninScreen> {
                     child: Center(
                       child: Text(
                         "Sign Up",
-                        style: TextStyle(fontSize: 20, color: Theme.of(context).primaryColor),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Theme.of(context).primaryColor),
                       ),
                     ),
                   ),
@@ -125,6 +128,7 @@ class _SigninScreenState extends State<SigninScreen> {
       ),
     );
   }
+
   void _signup() {
     Application.router.navigateTo(context, Routes.signup);
   }
