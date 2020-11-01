@@ -9,7 +9,11 @@ abstract class AuthEvent extends Equatable {
 
 class GetCurrentUserEvent extends AuthEvent {}
 
-class SignInEvent extends AuthEvent {}
+class SignInEvent extends AuthEvent {
+  final UserSignInRequest request;
+
+  SignInEvent({@required this.request});
+}
 
 class SignUpEvent extends AuthEvent {
   final UserRegisterRequest request;

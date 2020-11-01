@@ -17,3 +17,20 @@ class UserRegisterRequest {
     };
   }
 }
+
+class UserSignInRequest {
+  final String phoneNumber;
+  final String password;
+
+  UserSignInRequest(
+    this.phoneNumber,
+    this.password,
+  );
+
+  Map<String, dynamic> toMap() {
+    return {
+      "phoneNumber": phoneNumber,
+      "password": password,
+    };
+  }
+}
