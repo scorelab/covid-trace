@@ -119,7 +119,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)
                     ),
-                    color: Colors.green,
+                    color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
                     child: Text(
                       'Verify',
