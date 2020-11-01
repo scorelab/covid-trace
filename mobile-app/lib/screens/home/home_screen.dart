@@ -14,7 +14,12 @@ class _HomeScreenState extends State<HomeScreen> {
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
     AssetImage assetImage = AssetImage('asset/images/home.png');
-    Image image = Image(image: assetImage, width: screenWidth);
+    AssetImage assetImage2 = AssetImage('asset/images/slflag.png');
+    Image image = Image(image: assetImage, width: screenWidth * 0.8);
+    Image image2 = Image(
+      image: assetImage2,
+      width: screenWidth * 0.25,
+    );
 
     return Scaffold(
       bottomNavigationBar: AppBottomNavbar(),
@@ -44,25 +49,71 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: image,
                 ),
               ),
-              Center(
-                child: Text(
-                  "Verification",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                      fontSize: 30),
+
+              //This container is only visible when patient is safe
+              Container(
+                margin: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.1, vertical: 20.0),
+                child: ListTile(
+                  tileColor: Colors.grey[200],
+                  leading: Icon(
+                    Icons.beenhere_outlined,
+                    color: Theme.of(context).primaryColor,
+                    size: 50.0,
+                  ),
+                  title: Text(
+                    'You are okay',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                      'Based on all your Trace Together and SafeEntry records from the last 14 days.See Details->'),
+                  enabled: false,
                 ),
               ),
+
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: screenWidth * 0.09,
+                  ),
+                  Expanded(
+                    child: Container(
+                      width: screenWidth * 0.7,
+                      child: Center(
+                        child: Text(
+                          "Let's stand together",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                              fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Container(
+                        child: image2,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
               Container(height: 20),
+
               Center(
                 child: Text(
                   "Enter the verification code we just sent you",
                   style: TextStyle(color: Colors.grey, fontSize: 15),
                 ),
               ),
+
               Container(
                 margin: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.18, vertical: 30.0),
+                    horizontal: screenWidth * 0.2, vertical: 30.0),
                 child: ButtonTheme(
                   height: 50,
                   child: RaisedButton(
