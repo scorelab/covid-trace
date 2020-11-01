@@ -5,6 +5,7 @@ import 'package:slcovid_tracker/screens/permisson/permission_screen.dart';
 import 'package:slcovid_tracker/screens/signin/signin_screen.dart';
 import 'package:slcovid_tracker/screens/signup/signup_screen.dart';
 import 'package:slcovid_tracker/screens/splash/splash_screen.dart';
+import 'package:slcovid_tracker/screens/verification/verification_screen.dart';
 
 var mainHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -26,6 +27,11 @@ var homeHandler = Handler(
   return HomeScreen();
 });
 
+var verificationHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return VerificationScreen();
+});
+   
 var permissionHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return PermissionScreen();

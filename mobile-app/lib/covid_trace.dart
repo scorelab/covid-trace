@@ -22,6 +22,12 @@ class CovidTrace extends StatelessWidget {
       child: MaterialApp(
         title: "Covid Trace",
         onGenerateRoute: Application.router.generator,
+        theme: ThemeData(
+          iconTheme: IconThemeData(color: Colors.tealAccent[400]),
+          brightness: Brightness.light,
+          primaryColor: Colors.tealAccent[400],
+          accentColor: Colors.white,
+        ),
       ),
     );
   }
