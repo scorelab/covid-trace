@@ -36,22 +36,22 @@ class _SignupScreenState extends State<SignupScreen> {
             _signingin = false;
           });
         }
-        if (state is Authenticated) {
-          setState(() {
-            _signingin = false;
-          });
-          Application.router.navigateTo(context, "/home", clearStack: true);
-        }
-        if (state is Loading) {
+        if (state is AuthLoading) {
           setState(() {
             _signingin = true;
           });
         }
-        if (state is Failed) {
+        if (state is AuthFailed) {
           print(state.error);
           setState(() {
             _signingin = false;
           });
+        }
+        if (state is Authenticated) {
+          setState(() {
+            _signingin = false;
+          });
+          Application.router.navigateTo(context, "/verification");
         }
       },
       cubit: Provider.of<AuthBloc>(context),
@@ -189,7 +189,7 @@ class _SignupScreenState extends State<SignupScreen> {
       final password = _passwordTEController.text.toString();
 
       Provider.of<AuthBloc>(context, listen: false)
-          .add(SendVerificationEvent(request: UserRegisterRequest(nic, phoneNumber, password)));
+          .add(SignUpEvent(request: UserRegisterRequest(nic, phoneNumber, password)));
     }
   }
 

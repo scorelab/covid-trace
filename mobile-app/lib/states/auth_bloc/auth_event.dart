@@ -11,12 +11,6 @@ class GetCurrentUserEvent extends AuthEvent {}
 
 class SignInEvent extends AuthEvent {}
 
-class SendVerificationEvent extends AuthEvent {
-  final UserRegisterRequest request;
-
-  SendVerificationEvent({@required this.request});
-}
-
 class SignUpEvent extends AuthEvent {
   final UserRegisterRequest request;
 
