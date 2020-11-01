@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:slcovid_tracker/core/failures/auth_failures.dart';
 import 'package:slcovid_tracker/core/failures/verify_failures.dart';
 import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/data/firebase/firebase_repository.dart';
@@ -24,7 +25,7 @@ class RepositoryImpl extends Repository {
   Future<void> signOut() => _userRepository.delete();
 
   @override
-  Future<Either<dynamic, User>> signIn(UserSignInRequest request) =>
+  Future<Either<AuthFailure, User>> signIn(UserSignInRequest request) =>
       _firebaseRepository
           .signIn(request)
           .then((value) => value.fold((l) => left(l), (r) async {
@@ -33,11 +34,15 @@ class RepositoryImpl extends Repository {
               }));
 
   @override
-  Future<Either<VerifyFailure, Unit>> sendVerification(User user) =>
+  Future<Either<VerifyFailure, String>> sendVerification(User user) =>
       _verifyRepository.sendVerification(user);
 
   @override
-  Future<Either<dynamic, User>> signUp(UserRegisterRequest request) =>
+  Future<Either<VerifyFailure, Unit>> checkCode(String code) =>
+      _verifyRepository.checkCode(code);
+
+  @override
+  Future<Either<AuthFailure, User>> signUp(UserRegisterRequest request) =>
       _firebaseRepository
           .createUser(request)
           .then((value) => value.fold((l) => left(l), (r) async {
@@ -46,6 +51,6 @@ class RepositoryImpl extends Repository {
               }));
 
   @override
-  Future<Either<dynamic, Unit>> verifyPhone(String userId) =>
+  Future<Either<VerifyFailure, Unit>> verifyPhone(String userId) =>
       _firebaseRepository.verifyPhone(userId);
 }

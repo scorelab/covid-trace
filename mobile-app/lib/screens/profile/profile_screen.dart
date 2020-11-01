@@ -115,6 +115,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0)),
+                      color: Theme.of(context).primaryColor,
+                      textColor: Colors.white,
+                      child: Text(
+                        'Verify Phone',
+                        textScaleFactor: 1.5,
+                      ),
+                      onPressed: () {
+                        _verifyPhone(context);
+                      },
+                    ),
+                  ),
+                  ButtonTheme(
+                    height: 50,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
                       color: Theme
                           .of(context)
                           .primaryColor,
@@ -135,6 +151,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  void _verifyPhone(context) {
+    Application.router.navigateTo(context, Routes.verification);
   }
 
   void _signOut(context) {

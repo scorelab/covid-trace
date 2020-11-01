@@ -21,20 +21,16 @@ class VerifyFailed extends VerifyState {
 }
 
 class SentVerification extends VerifyState {
+  final String code;
   final User user;
 
-  SentVerification({@required this.user});
+  SentVerification({@required this.code, @required this.user});
 
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [code, user];
 }
 
-class CodeReceived extends VerifyState {
-  final User user;
+class CodeReceived extends VerifyState {}
 
-  CodeReceived({@required this.user});
-
-  @override
-  List<Object> get props => [user];
-}
+class VerifySuccess extends VerifyState {}
 

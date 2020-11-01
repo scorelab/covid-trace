@@ -8,8 +8,8 @@ class UserRepository {
   Future<void> insert(User user) {
     return SharedPreferences.getInstance().then((pref) {
       pref.setString("id", user.id);
-      pref.setBool("phoneVerified", user.phoneVerified);
       pref.setString("phoneNumber", user.phoneNumber);
+      pref.setBool("numberVerified", user.numberVerified);
       pref.setString("nic", user.nic);
       pref.setString("userType", user.userType);
     });
@@ -26,7 +26,7 @@ class UserRepository {
       User user = User(
         pref.getString("id"),
         pref.getString("phoneNumber"),
-        pref.getBool("phoneVerified"),
+        pref.getBool("numberVerified"),
         pref.getString("nic"),
         '',
         pref.getString("userType"),
@@ -38,7 +38,7 @@ class UserRepository {
   Future<void> delete() {
     return SharedPreferences.getInstance().then((pref) {
       pref.setString("id", null);
-      pref.setBool("phoneVerified", null);
+      pref.setBool("numberVerified", null);
       pref.setString("phoneNumber", null);
       pref.setString("nic", null);
       pref.setString("userType", null);

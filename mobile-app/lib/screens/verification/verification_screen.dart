@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
+import 'package:slcovid_tracker/models/user.dart';
+import 'package:slcovid_tracker/routing/application.dart';
+import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:slcovid_tracker/states/verify_bloc/verify_bloc.dart';
 
 class VerificationScreen extends StatefulWidget {
@@ -12,10 +15,10 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  String _phoneNumber = "";
+  User _user;
   Timer _timer;
   int _start = 100;
-  bool _signingUp = false;
+  bool _loading = false;
   String _code = "";
 
   void startTimer() {
@@ -43,6 +46,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   @override
   void initState() {
     startTimer();
+    BlocProvider.of<VerifyBloc>(context).add(SendVerificationEvent());
     super.initState();
   }
 
@@ -62,15 +66,30 @@ class _VerificationScreenState extends State<VerificationScreen> {
         listener: (BuildContext context, VerifyState state) {
           if (state is VerifyLoading) {
             setState(() {
-              _signingUp = true;
+              _loading = true;
+            });
+          }
+          if (state is SentVerification) {
+            setState(() {
+              _loading = false;
+              _user = state.user;
+              _code = state.code;
             });
           }
           if (state is CodeReceived) {
+            _loading = false;
             _timer.cancel();
-            // TODO - Verify
+            _verifyPhone();
           }
           if (state is VerifyFailed) {
+            setState(() {
+              _loading = false;
+            });
             print(state.error);
+          }
+          if (state is VerifySuccess) {
+            Application.router
+                .navigateTo(context, Routes.home, clearStack: true);
           }
         },
         cubit: Provider.of<VerifyBloc>(context),
@@ -105,7 +124,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   ),
                   Center(
                     child: Text(
-                      "on your mobile number " + _phoneNumber,
+                      "on your mobile number " +
+                          (_user != null ? _user.phoneNumber : ''),
                       style: TextStyle(color: Colors.grey, fontSize: 15),
                     ),
                   ),
@@ -123,9 +143,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       keyboardType: TextInputType.number,
                       length: 6,
                       onCompleted: (String value) {
-                        setState(() {
-                          //complete
-                        });
+                        _matchManual(value);
                       },
                       onEditing: (bool value) {
                         setState(() {
@@ -134,30 +152,47 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       },
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.18, vertical: 30.0),
-                    child: ButtonTheme(
-                      height: 50,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0)),
-                        color: Theme.of(context).primaryColor,
-                        textColor: Colors.white,
-                        child: Text(
-                          'Verify',
-                          textScaleFactor: 1.5,
+                  if (_loading)
+                    Center(
+                        child: CircularProgressIndicator(
+                      backgroundColor: Theme.of(context).primaryColor,
+                    ))
+                  else
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 0.18, vertical: 30.0),
+                      child: ButtonTheme(
+                        height: 50,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          color: Theme.of(context).primaryColor,
+                          textColor: Colors.white,
+                          child: Text(
+                            'Verify',
+                            textScaleFactor: 1.5,
+                          ),
+                          onPressed: () {
+                            //verify function
+                          },
                         ),
-                        onPressed: () {
-                          //verify function
-                        },
                       ),
                     ),
-                  ),
                 ],
               ),
             ),
           ),
         ));
+  }
+
+  void _matchManual(String code) {
+    if (_code == _code) {
+      _verifyPhone();
+    }
+  }
+
+  void _verifyPhone() {
+    Provider.of<VerifyBloc>(context, listen: false)
+        .add(VerifyPhoneEvent(userId: _user.id));
   }
 }

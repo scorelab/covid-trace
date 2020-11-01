@@ -7,8 +7,11 @@ abstract class VerifyEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class SendVerificationEvent extends VerifyEvent {
-  final User user;
+class SendVerificationEvent extends VerifyEvent {}
 
-  SendVerificationEvent({@required this.user});
+class VerifyPhoneEvent extends VerifyEvent {
+  final String userId;
+
+  VerifyPhoneEvent({@required this.userId});
 }
+
