@@ -6,6 +6,8 @@ import 'package:slcovid_tracker/screens/history/history_screen.dart';
 import 'package:slcovid_tracker/screens/home/home_screen.dart';
 import 'package:slcovid_tracker/screens/permisson/permission_screen.dart';
 import 'package:slcovid_tracker/screens/profile/profile_screen.dart';
+import 'package:slcovid_tracker/screens/safeentrybeforecheckin/safeentrybeforecheckin_screen.dart';
+import 'package:slcovid_tracker/screens/safeentrycheckin/safeentrycheckin_screen.dart';
 import 'package:slcovid_tracker/screens/signin/signin_screen.dart';
 import 'package:slcovid_tracker/screens/signup/signup_screen.dart';
 import 'package:slcovid_tracker/screens/splash/splash_screen.dart';
@@ -50,11 +52,23 @@ var historyHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return HistoryScreen();
 });
+
 var uploadHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return UploadScreen();
 });
+
 var profileHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return ProfileScreen();
+});
+
+var safeentrybeforecheckinHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return SafeEntryBeforeCheckInScreen();
+});
+
+var safeentrycheckinHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return SafeEntryCheckInScreen();
 });

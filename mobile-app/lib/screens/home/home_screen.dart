@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:slcovid_tracker/widgets/bottom_navgiation.dart';
+import 'package:flutter/gestures.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: Icon(Icons.logout),
             onPressed: () {
-              //logout function
+              //Call a fuction to log out
             },
             color: Colors.grey[700],
           ),
@@ -67,8 +68,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(
-                      'Based on all your Trace Together and SafeEntry records from the last 14 days.See Details->'),
+                  subtitle: RichText(
+                    text: TextSpan(
+                      style: TextStyle(color: Colors.black54),
+                      children: <TextSpan>[
+                        TextSpan(text: 'Based on all your Trace Together and SafeEntry records from the last 14 days. '),
+                        TextSpan(
+                            text: 'See Details->',
+                            style: TextStyle(color: Colors.blue),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                // Call a function to see details
+                              }),
+                      ],
+                    ),
+                  ),
                   enabled: false,
                 ),
               ),
@@ -105,6 +119,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
               Container(height: 20),
 
+              //Note
+              //This container is for current check in locations
+              //N number of containers for N number of current check ins
               Container(
                 margin: EdgeInsets.symmetric(
                     horizontal: screenWidth * 0.07, vertical: 2.0),
@@ -118,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(color: Colors.grey, fontSize: 20),
                         ),
                         subtitle: Text(
-                          'University of Colombo',
+                          'University of Colombo', //Location name should be replaced
                           style: TextStyle(
                               color: Colors.black54,
                               fontWeight: FontWeight.bold,
@@ -141,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 textScaleFactor: 1.3,
                               ),
                               onPressed: () {
-                                //verify function
+                                //Call a function to view pass
                               },
                             ),
                           ),
@@ -158,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 textScaleFactor: 1.3,
                               ),
                               onPressed: () {
-                                //verify function
+                                //Call a function to checkout
                               },
                             ),
                           ),
@@ -205,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 textScaleFactor: 1.3,
                               ),
                               onPressed: () {
-                                //verify function
+                                Navigator.pushNamed(context, '/safeentrybeforecheckin');
                               },
                             ),
                           ),
