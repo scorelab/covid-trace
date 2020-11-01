@@ -1,53 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:slcovid_tracker/widgets/bottom_navgiation.dart';
-import 'package:flutter/gestures.dart';
 
 class SafeEntryBeforeCheckInScreen extends StatefulWidget {
   @override
-  _SafeEntryBeforeCheckInScreenState createState() => _SafeEntryBeforeCheckInScreenState();
+  _SafeEntryBeforeCheckInScreenState createState() =>
+      _SafeEntryBeforeCheckInScreenState();
 }
 
-class _SafeEntryBeforeCheckInScreenState extends State<SafeEntryBeforeCheckInScreen> {
+class _SafeEntryBeforeCheckInScreenState
+    extends State<SafeEntryBeforeCheckInScreen> {
   @override
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
-    var screenHeight = _mediaQueryData.size.height;
 
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.transparent,
         title: Text("Safe Check In"),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey[300],
       ),
       body: Padding(
         padding: EdgeInsets.only(
-          top: 20,
-          left: screenWidth*0.06,
-          right: screenWidth*0.06
-        ),
+            top: 20, left: screenWidth * 0.06, right: screenWidth * 0.06),
         child: Center(
           child: ListView(
             children: [
               Text(
                 'Check in to :',
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 17),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                    fontSize: 17),
               ),
               Container(
-                margin: EdgeInsets.symmetric(
-                    vertical: 20.0),
+                margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: ListTile(
                   tileColor: Colors.grey[200],
                   title: Text(
                     'University of Colombo', //location
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 20),
                   ),
                   subtitle: Text(
-                    'College House, 94 Kumaratunga Munidasa Mawatha, Colombo 00700', //address
-                    overflow: TextOverflow.ellipsis,
+                    'College House, 94 Kumaratunga Munidasa Mawatha, Colombo 00700',
+                    //address
                     style: TextStyle(color: Colors.black54, fontSize: 15),
                   ),
                   enabled: false,
@@ -55,23 +55,18 @@ class _SafeEntryBeforeCheckInScreenState extends State<SafeEntryBeforeCheckInScr
               ),
               RichText(
                 text: TextSpan(
-                  style: TextStyle(color: Colors.black54),
+                  style: TextStyle(color: Colors.black54, fontSize: 17),
                   children: <TextSpan>[
-                    TextSpan(text: 'By checking in, you declare that:\n\n'),
-                    TextSpan(text: '- You have no close contact with a confirmed COVID-19 case in the past 14 days\n'),
-                    TextSpan(text: "- You're not currently under a Quarantine Order or Stay-Home Notice\n"),
-                    TextSpan(text: '- You have no fever or flu-like symptoms\n'),
-                    TextSpan(text: '- You agree to the '),
+                    TextSpan(text: 'By Check-In, I declare that:\n\n'),
                     TextSpan(
-                        text: 'terms ',
-                        style: TextStyle(color: Colors.blue),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            // Call a function to see terms
-                          }),
-                    TextSpan(text: 'and consent to the collection/use of your information for COVID-19 contact tracing\n\n'),
-                    TextSpan(text: "Not applicable if you're seeking treatment at a medical facility\n"),
-                    TextSpan(text: 'Not applicable to COVID-19 frontline workers\n'),
+                        text:
+                            '- I have no close contact a confirmed Covid-19 case in last 14 days\n'),
+                    TextSpan(text: "- I am not under a Quarantine\n"),
+                    TextSpan(text: '- My body temperature is 38C\n'),
+                    TextSpan(text: '- I have no Covid-19 symptoms\n'),
+                    TextSpan(text: '      - fever\n'),
+                    TextSpan(text: "      - dry cough\n"),
+                    TextSpan(text: '      - tiredness\n'),
                   ],
                 ),
               ),
@@ -86,11 +81,12 @@ class _SafeEntryBeforeCheckInScreenState extends State<SafeEntryBeforeCheckInScr
                     color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
                     child: Text(
-                      'Check In',
+                      'CHECK IN',
                       textScaleFactor: 1.5,
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, '/safeentrycheckin');
+                      //CALL CHECK IN FUNCTION
                     },
                   ),
                 ),

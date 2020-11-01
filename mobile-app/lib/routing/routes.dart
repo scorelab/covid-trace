@@ -13,6 +13,7 @@ class Routes {
   static const profile = "/profile";
   static const safeentrybeforecheckin = "/safeentrybeforecheckin";
   static const safeentrycheckin = "/safeentrycheckin";
+  static const checkout = "/checkout";
 
   static void configureRouter(FluroRouter router) {
     router.define(main, handler: mainHandler);
@@ -27,5 +28,6 @@ class Routes {
     router.define(profile, handler: profileHandler);
     router.define(safeentrybeforecheckin, handler: safeentrybeforecheckinHandler);
     router.define(safeentrycheckin, handler: safeentrycheckinHandler);
+    router.define(checkout, handler: checkoutHandler);
   }
 }

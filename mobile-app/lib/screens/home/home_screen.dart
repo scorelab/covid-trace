@@ -13,7 +13,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
-    var screenHeight = _mediaQueryData.size.height;
     AssetImage assetImage = AssetImage('asset/images/home.png');
     AssetImage assetImage2 = AssetImage('asset/images/slflag.png');
     Image image = Image(image: assetImage, width: screenWidth * 0.8);
@@ -72,7 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     text: TextSpan(
                       style: TextStyle(color: Colors.black54),
                       children: <TextSpan>[
-                        TextSpan(text: 'Based on all your Trace Together and SafeEntry records from the last 14 days. '),
+                        TextSpan(
+                            text:
+                                'Based on all your Trace Together and SafeEntry records from the last 14 days. '),
                         TextSpan(
                             text: 'See Details->',
                             style: TextStyle(color: Colors.blue),
@@ -135,7 +136,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(color: Colors.grey, fontSize: 20),
                         ),
                         subtitle: Text(
-                          'University of Colombo', //Location name should be replaced
+                          'University of Colombo',
+                          //Location name should be replaced
                           style: TextStyle(
                               color: Colors.black54,
                               fontWeight: FontWeight.bold,
@@ -154,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Colors.grey,
                               textColor: Colors.white,
                               child: Text(
-                                'View Pass',
+                                'VIEW PASS',
                                 textScaleFactor: 1.3,
                               ),
                               onPressed: () {
@@ -171,11 +173,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Theme.of(context).primaryColor,
                               textColor: Colors.white,
                               child: Text(
-                                'Check Out',
+                                'CHECK OUT',
                                 textScaleFactor: 1.3,
                               ),
                               onPressed: () {
-                                //Call a function to checkout
+                                Navigator.pushNamed(context, '/checkout');
                               },
                             ),
                           ),
@@ -218,11 +220,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Theme.of(context).primaryColor,
                               textColor: Colors.white,
                               child: Text(
-                                'New Check In',
+                                'NEW CHECK IN',
                                 textScaleFactor: 1.3,
                               ),
                               onPressed: () {
-                                Navigator.pushNamed(context, '/safeentrybeforecheckin');
+                                Navigator.pushNamed(
+                                    context, '/safeentrybeforecheckin');
                               },
                             ),
                           ),
