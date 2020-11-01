@@ -1,21 +1,20 @@
-import { compose, createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { f } from "../config/config_env";
-import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
-import { reduxFirestore, getFirestore } from "redux-firestore";
-
-import rootReducer from "./reducers";
+import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { getFirestore, reduxFirestore } from 'redux-firestore';
+import thunk from 'redux-thunk';
+import { f } from '../config/config_env';
+import rootReducer from './reducers';
 
 // react-redux-firebase config
 const rrfConfig = {
-  userProfile: null,
+  userProfile: 'users',
   useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
-  attachAuthIsReady: true // attaches auth is ready promise to store
+  attachAuthIsReady: true, // attaches auth is ready promise to store
 };
 
 //show redux dev tools only in dev env
 const composeEnhancers =
-  process.env.NODE_ENV === "development"
+  process.env.NODE_ENV === 'development'
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : compose;
 
