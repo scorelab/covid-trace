@@ -31,7 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (event is GetCurrentUserEvent) {
       yield (await _repository.getSignedInUser()).fold<AuthState>(
         () => Unauthenticated(),
-        (_) => Authenticated(user: User('', '', false, '', '')),
+        (_) => Authenticated(user: User('', '', false, '', '', '')),
       );
     }
 
@@ -43,9 +43,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
 
     if (event is SignInEvent) {
-      yield (await _repository.signIn()).fold<AuthState>(
+      yield (await _repository.signIn(event.request)).fold<AuthState>(
         (l) => AuthFailed(error: l),
-        (r) => Authenticated(user: User('', '', false, '', '')),
+        (r) => Authenticated(user: r),
       );
     }
 
