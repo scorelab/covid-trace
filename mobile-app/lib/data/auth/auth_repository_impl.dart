@@ -12,6 +12,7 @@ import 'package:sms/sms.dart';
 class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<Option<User>> getSignedInUser() async => optionOf(null);
+
   //need to implement
 
   @override
@@ -23,20 +24,23 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<void> signOut() => Future.wait([]);
 
   @override
-  Future<Either<AuthFailure, Unit>> signUp(UserRegisterRequest request) async {
+  Future<Either<AuthFailure, Unit>> sendVerification(
+      UserRegisterRequest request) async {
     var otpSendResult = await _sendOTP(request.phoneNumber);
     return otpSendResult.fold(
       (l) => left(l),
-      (otp) async {
-        final receivedOtpResult = await _listenOTP();
-        return receivedOtpResult.fold(
-          (l) => left(l),
-          (_) {
-            return right(unit);
-          },
-        );
-      },
+      (otp) => right(unit)
     );
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signUp(
+      UserRegisterRequest request) async {
+    // var otpSendResult = await _sendOTP(request.phoneNumber);
+    // return otpSendResult.fold(
+    //   (l) => left(l),
+    //   (otp) => right(unit)
+    // );
   }
 
   Future<Either<AuthFailure, String>> _sendOTP(String phoneNumber) async {

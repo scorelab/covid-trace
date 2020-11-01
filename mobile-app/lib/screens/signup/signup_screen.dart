@@ -13,7 +13,6 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final _signupFormKey = GlobalKey<FormState>();
-  final _nameTEController = TextEditingController();
   final _phoneNumberTEController = TextEditingController();
   final _nicTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
@@ -42,6 +41,17 @@ class _SignupScreenState extends State<SignupScreen> {
             _signingin = false;
           });
           Application.router.navigateTo(context, "/home", clearStack: true);
+        }
+        if (state is Loading) {
+          setState(() {
+            _signingin = true;
+          });
+        }
+        if (state is Failed) {
+          print(state.error);
+          setState(() {
+            _signingin = false;
+          });
         }
       },
       cubit: Provider.of<AuthBloc>(context),
@@ -160,14 +170,6 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  String _nameValidator(String name) {
-    if (name.isEmpty) {
-      return 'Please enter your name';
-    }
-
-    return null;
-  }
-
   String _passwordValidator(String password) {
     if (password.isEmpty) {
       return 'Please enter the passowrd';
@@ -181,21 +183,13 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _onSignUp() {
-    setState(() {
-      _signingin = true;
-    });
     if (_signupFormKey.currentState.validate()) {
-      final name = _nameTEController.text.toString();
       final nic = _nicTEController.text.toString();
       final phoneNumber = _phoneNumberTEController.text.toString();
       final password = _passwordTEController.text.toString();
 
       Provider.of<AuthBloc>(context, listen: false)
-          .signUp(UserRegisterRequest(name, nic, phoneNumber, password));
-    } else {
-      setState(() {
-        _signingin = false;
-      });
+          .add(SendVerificationEvent(request: UserRegisterRequest(nic, phoneNumber, password)));
     }
   }
 

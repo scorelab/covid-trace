@@ -1,0 +1,34 @@
+PODS:
+  - Flutter (1.0.0)
+  - shared_preferences (0.0.1):
+    - Flutter
+  - sms (0.0.1):
+    - Flutter
+  - sms_autofill (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - sms (from `.symlinks/plugins/sms/ios`)
+  - sms_autofill (from `.symlinks/plugins/sms_autofill/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
+  sms:
+    :path: ".symlinks/plugins/sms/ios"
+  sms_autofill:
+    :path: ".symlinks/plugins/sms_autofill/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  sms: 1e6c3082da09f2a4961d61bc254cc86865993ffd
+  sms_autofill: c461043483362c3f1709ee76eaae6eb570b31686
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.0

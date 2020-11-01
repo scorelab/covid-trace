@@ -22,6 +22,10 @@ class RepositoryImpl extends Repository {
   Future<Either<AuthFailure, Unit>> signIn() => _authRepository.signIn();
 
   @override
+  Future<Either<AuthFailure, Unit>> sendVerification(UserRegisterRequest request) =>
+      _authRepository.sendVerification(request);
+
+  @override
   Future<Either<AuthFailure, Unit>> signUp(UserRegisterRequest request) =>
       _authRepository.signUp(request);
 }
