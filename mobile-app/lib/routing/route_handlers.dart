@@ -17,7 +17,7 @@ var mainHandler = Handler(
 
 var signinHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return SplashScreen();
+  return SigninScreen();
 });
 
 var signupHandler = Handler(
