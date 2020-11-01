@@ -20,11 +20,11 @@ class _SigninScreenState extends State<SigninScreen> {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
-    AssetImage assetImage = AssetImage('asset/images/signup.png');
+    AssetImage assetImage = AssetImage('asset/images/signin.png');
     Image image = Image(
       image: assetImage,
       width: screenWidth * 0.8,
-      height: screenHeight * 0.3,
+      height: screenHeight * 0.4,
     );
 
     return Scaffold(

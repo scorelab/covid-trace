@@ -28,7 +28,7 @@ class _SignupScreenState extends State<SignupScreen> {
     Image image = Image(
       image: assetImage,
       width: screenWidth * 0.8,
-      height: screenHeight * 0.3,
+      height: screenHeight * 0.4,
     );
     return BlocListener<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
@@ -50,7 +50,7 @@ class _SignupScreenState extends State<SignupScreen> {
           builder: (context) => Form(
             key: _signupFormKey,
             child: Padding(
-              padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
+              padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
               child: ListView(
                 children: <Widget>[
                   Container(height: 50),
