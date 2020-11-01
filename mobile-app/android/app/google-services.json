@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "979747229937",
+    "firebase_url": "https://sl-trace-dev.firebaseio.com",
+    "project_id": "sl-trace-dev",
+    "storage_bucket": "sl-trace-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979747229937:android:f1e0d3379a7a7cde291950",
+        "android_client_info": {
+          "package_name": "com.example.slcovid_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979747229937-k88vf8pgm1sckkng0tu6agn9udemgnb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.slcovid_tracker",
+            "certificate_hash": "34374147639455b49cd7682707247cf89a1969d7"
+          }
+        },
+        {
+          "client_id": "979747229937-uln6b5chegn97pe3s3jh0oltkbj3udng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMZbAYylkMyzE6F5_71Z_2Wha96XdUT2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979747229937-uln6b5chegn97pe3s3jh0oltkbj3udng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

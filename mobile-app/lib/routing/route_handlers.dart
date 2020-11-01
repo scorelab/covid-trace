@@ -1,5 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:slcovid_tracker/core/di/injection.dart';
 import 'package:slcovid_tracker/screens/history/history_screen.dart';
 import 'package:slcovid_tracker/screens/home/home_screen.dart';
 import 'package:slcovid_tracker/screens/permisson/permission_screen.dart';
@@ -9,6 +11,7 @@ import 'package:slcovid_tracker/screens/signup/signup_screen.dart';
 import 'package:slcovid_tracker/screens/splash/splash_screen.dart';
 import 'package:slcovid_tracker/screens/upload/Upload_screen.dart';
 import 'package:slcovid_tracker/screens/verification/verification_screen.dart';
+import 'package:slcovid_tracker/states/verify_bloc/verify_bloc.dart';
 
 var mainHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -32,7 +35,10 @@ var homeHandler = Handler(
 
 var verificationHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return VerificationScreen();
+      return BlocProvider<VerifyBloc>(
+        create: (BuildContext context) => getIt<VerifyBloc>(),
+        child: VerificationScreen(),
+      );
 });
 
 var permissionHandler = Handler(
