@@ -50,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
+              //Note
               //This container is only visible when patient is safe
               Container(
                 margin: EdgeInsets.symmetric(
@@ -104,30 +105,116 @@ class _HomeScreenState extends State<HomeScreen> {
 
               Container(height: 20),
 
-              Center(
-                child: Text(
-                  "Enter the verification code we just sent you",
-                  style: TextStyle(color: Colors.grey, fontSize: 15),
+              Container(
+                margin: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.07, vertical: 2.0),
+                child: Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ListTile(
+                        title: Text(
+                          'Last QR check In',
+                          style: TextStyle(color: Colors.grey, fontSize: 20),
+                        ),
+                        subtitle: Text(
+                          'University of Colombo',
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                      ButtonBar(
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          ButtonTheme(
+                            height: 40,
+                            minWidth: screenWidth * 0.38,
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              color: Colors.grey,
+                              textColor: Colors.white,
+                              child: Text(
+                                'View Pass',
+                                textScaleFactor: 1.3,
+                              ),
+                              onPressed: () {
+                                //verify function
+                              },
+                            ),
+                          ),
+                          ButtonTheme(
+                            height: 40,
+                            minWidth: screenWidth * 0.38,
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              color: Theme.of(context).primaryColor,
+                              textColor: Colors.white,
+                              child: Text(
+                                'Check Out',
+                                textScaleFactor: 1.3,
+                              ),
+                              onPressed: () {
+                                //verify function
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
               Container(
                 margin: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.2, vertical: 30.0),
-                child: ButtonTheme(
-                  height: 50,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    child: Text(
-                      'Verify',
-                      textScaleFactor: 1.5,
-                    ),
-                    onPressed: () {
-                      //verify function
-                    },
+                    horizontal: screenWidth * 0.07, vertical: 15.0),
+                child: Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        height: 15,
+                      ),
+                      ButtonBar(
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Icon(
+                            Icons.login_rounded,
+                            color: Colors.red,
+                            size: 40.0,
+                          ),
+                          Text(
+                            "Safe Check In",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                          ),
+                          ButtonTheme(
+                            height: 40,
+                            minWidth: screenWidth * 0.38,
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              color: Theme.of(context).primaryColor,
+                              textColor: Colors.white,
+                              child: Text(
+                                'New Check In',
+                                textScaleFactor: 1.3,
+                              ),
+                              onPressed: () {
+                                //verify function
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        height: 15,
+                      ),
+                    ],
                   ),
                 ),
               ),
