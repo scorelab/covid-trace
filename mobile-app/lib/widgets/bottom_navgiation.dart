@@ -8,8 +8,7 @@ class AppBottomNavbar extends StatelessWidget {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.graduationCap, size: 25),
-            label: 'Home'),
+            icon: Icon(FontAwesomeIcons.home, size: 25), label: 'Home'),
         BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.history, size: 25), label: 'History'),
         BottomNavigationBarItem(
@@ -18,22 +17,24 @@ class AppBottomNavbar extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.user, size: 25), label: 'Profile'),
       ].toList(),
+
+      //There is a problem Here.Selected color wont get apply.Will Check Soon
       type: BottomNavigationBarType.fixed,
       selectedItemColor: Theme.of(context).primaryColor,
       unselectedItemColor: Color(0xff626262),
       onTap: (int idx) {
         switch (idx) {
           case 0:
-            //Add routes here
+            Navigator.pushNamed(context, '/home');
             break;
           case 1:
-            //Add routes here
+            Navigator.pushNamed(context, '/history');
             break;
           case 2:
-            //Add routes here
+            Navigator.pushNamed(context, '/upload');
             break;
           case 3:
-            //Add routes here
+            Navigator.pushNamed(context, '/profile');
             break;
         }
       },

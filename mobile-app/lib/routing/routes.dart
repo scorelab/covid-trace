@@ -18,7 +18,7 @@ class Routes {
     router.define(permission, handler: permissionHandler);
     router.define(home, handler: homeHandler);
     router.define(history, handler: historyHandler);
-    router.define(history, handler: uploadHandler);
-    router.define(history, handler: profileHandler);
+    router.define(upload, handler: uploadHandler);
+    router.define(profile, handler: profileHandler);
   }
 }

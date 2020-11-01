@@ -24,11 +24,11 @@ class _SignupScreenState extends State<SignupScreen> {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
-    AssetImage assetImage = AssetImage('images/signup.png');
+    AssetImage assetImage = AssetImage('asset/images/signup.png');
     Image image = Image(
       image: assetImage,
-      width: screenWidth*0.8,
-      height: screenHeight*0.3,
+      width: screenWidth * 0.8,
+      height: screenHeight * 0.3,
     );
     return BlocListener<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
@@ -57,7 +57,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   Center(
                     child: Text(
                       "To get started we need following",
-                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 20),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 20),
                     ),
                   ),
                   Center(
@@ -97,8 +100,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             borderSide: BorderSide(width: 0.4),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
-                      ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          )),
                     ),
                   ),
 
@@ -106,18 +110,17 @@ class _SignupScreenState extends State<SignupScreen> {
                   if (_signingin)
                     Center(
                         child: CircularProgressIndicator(
-                          backgroundColor: Theme.of(context).primaryColor,
-                        ))
+                      backgroundColor: Theme.of(context).primaryColor,
+                    ))
                   else
                     Container(
                       margin: EdgeInsets.symmetric(
                           horizontal: screenWidth * 0.18, vertical: 30.0),
-                      child : ButtonTheme(
+                      child: ButtonTheme(
                         height: 50,
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)
-                          ),
+                              borderRadius: BorderRadius.circular(30.0)),
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white,
                           child: Text(
@@ -133,7 +136,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           },
                         ),
                       ),
-
                     ),
                   Container(
                     margin: EdgeInsets.symmetric(
