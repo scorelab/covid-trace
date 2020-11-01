@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/routing/application.dart';
+import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 
@@ -51,7 +52,7 @@ class _SignupScreenState extends State<SignupScreen> {
           setState(() {
             _signingin = false;
           });
-          Application.router.navigateTo(context, "/verification");
+          Application.router.navigateTo(context, Routes.verification);
         }
       },
       cubit: Provider.of<AuthBloc>(context),
@@ -138,11 +139,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             textScaleFactor: 1.5,
                           ),
                           onPressed: () {
-                            setState(() {
-                              if (_signupFormKey.currentState.validate()) {
-                                _onSignUp();
-                              }
-                            });
+                            if (_signupFormKey.currentState.validate()) {
+                              _onSignUp();
+                            }
                           },
                         ),
                       ),
@@ -188,8 +187,8 @@ class _SignupScreenState extends State<SignupScreen> {
       final phoneNumber = _phoneNumberTEController.text.toString();
       final password = _passwordTEController.text.toString();
 
-      Provider.of<AuthBloc>(context, listen: false)
-          .add(SignUpEvent(request: UserRegisterRequest(nic, phoneNumber, password)));
+      Provider.of<AuthBloc>(context, listen: false).add(SignUpEvent(
+          request: UserRegisterRequest(nic, phoneNumber, password)));
     }
   }
 
