@@ -5,6 +5,7 @@ class Routes {
   static const main = "/";
   static const signin = "/signin";
   static const signup = "/signup";
+  static const permission = "/permission";
   static const home = "/home";
 
   static void configureRouter(FluroRouter router) {
@@ -12,5 +13,6 @@ class Routes {
     router.define(signin, handler: signinHandler);
     router.define(signup, handler: signupHandler);
     router.define(home, handler: homeHandler);
+    router.define(permission, handler: permissionHandler);
   }
 }
