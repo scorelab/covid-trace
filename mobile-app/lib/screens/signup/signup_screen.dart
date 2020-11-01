@@ -13,7 +13,6 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final _signupFormKey = GlobalKey<FormState>();
-  final _nameTEController = TextEditingController();
   final _phoneNumberTEController = TextEditingController();
   final _nicTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
@@ -24,11 +23,11 @@ class _SignupScreenState extends State<SignupScreen> {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
-    AssetImage assetImage = AssetImage('images/signup.png');
+    AssetImage assetImage = AssetImage('asset/images/signup.png');
     Image image = Image(
       image: assetImage,
-      width: screenWidth*0.8,
-      height: screenHeight*0.3,
+      width: screenWidth * 0.8,
+      height: screenHeight * 0.4,
     );
     return BlocListener<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
@@ -37,11 +36,22 @@ class _SignupScreenState extends State<SignupScreen> {
             _signingin = false;
           });
         }
+        if (state is AuthLoading) {
+          setState(() {
+            _signingin = true;
+          });
+        }
+        if (state is AuthFailed) {
+          print(state.error);
+          setState(() {
+            _signingin = false;
+          });
+        }
         if (state is Authenticated) {
           setState(() {
             _signingin = false;
           });
-          Application.router.navigateTo(context, "/home", clearStack: true);
+          Application.router.navigateTo(context, "/verification");
         }
       },
       cubit: Provider.of<AuthBloc>(context),
@@ -50,14 +60,17 @@ class _SignupScreenState extends State<SignupScreen> {
           builder: (context) => Form(
             key: _signupFormKey,
             child: Padding(
-              padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
+              padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
               child: ListView(
                 children: <Widget>[
                   Container(height: 50),
                   Center(
                     child: Text(
                       "To get started we need following",
-                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 20),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 20),
                     ),
                   ),
                   Center(
@@ -97,8 +110,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             borderSide: BorderSide(width: 0.4),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0),)
-                      ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          )),
                     ),
                   ),
 
@@ -106,18 +120,17 @@ class _SignupScreenState extends State<SignupScreen> {
                   if (_signingin)
                     Center(
                         child: CircularProgressIndicator(
-                          backgroundColor: Theme.of(context).primaryColor,
-                        ))
+                      backgroundColor: Theme.of(context).primaryColor,
+                    ))
                   else
                     Container(
                       margin: EdgeInsets.symmetric(
                           horizontal: screenWidth * 0.18, vertical: 30.0),
-                      child : ButtonTheme(
+                      child: ButtonTheme(
                         height: 50,
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)
-                          ),
+                              borderRadius: BorderRadius.circular(30.0)),
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white,
                           child: Text(
@@ -133,7 +146,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           },
                         ),
                       ),
-
                     ),
                   Container(
                     margin: EdgeInsets.symmetric(
@@ -158,14 +170,6 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  String _nameValidator(String name) {
-    if (name.isEmpty) {
-      return 'Please enter your name';
-    }
-
-    return null;
-  }
-
   String _passwordValidator(String password) {
     if (password.isEmpty) {
       return 'Please enter the passowrd';
@@ -179,21 +183,13 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _onSignUp() {
-    setState(() {
-      _signingin = true;
-    });
     if (_signupFormKey.currentState.validate()) {
-      final name = _nameTEController.text.toString();
       final nic = _nicTEController.text.toString();
       final phoneNumber = _phoneNumberTEController.text.toString();
       final password = _passwordTEController.text.toString();
 
       Provider.of<AuthBloc>(context, listen: false)
-          .signUp(UserRegisterRequest(name, nic, phoneNumber, password));
-    } else {
-      setState(() {
-        _signingin = false;
-      });
+          .add(SignUpEvent(request: UserRegisterRequest(nic, phoneNumber, password)));
     }
   }
 

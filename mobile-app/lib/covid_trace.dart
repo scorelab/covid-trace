@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -10,19 +11,41 @@ class CovidTrace extends StatelessWidget {
     Application.initiateRoutes();
   }
 
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        BlocProvider<AuthBloc>(
-          create: (BuildContext context) =>
-              getIt<AuthBloc>()..add(GetCurrentUserEvent()),
-        ),
-      ],
-      child: MaterialApp(
-        title: "Covid Trace",
-        onGenerateRoute: Application.router.generator,
-      ),
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Container();
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          return MultiProvider(
+            providers: [
+              BlocProvider<AuthBloc>(
+                create: (BuildContext context) =>
+                getIt<AuthBloc>()..add(GetCurrentUserEvent()),
+              ),
+            ],
+            child: MaterialApp(
+              title: "Covid Trace",
+              onGenerateRoute: Application.router.generator,
+              theme: ThemeData(
+                iconTheme: IconThemeData(color: Colors.tealAccent[400]),
+                brightness: Brightness.light,
+                primaryColor: Color(0xff1DE9B6),
+                accentColor: Colors.white,
+              ),
+            ),
+          );
+        }
+
+        return Container();
+      },
     );
   }
+
 }

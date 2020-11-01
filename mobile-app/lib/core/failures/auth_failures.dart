@@ -4,8 +4,4 @@ abstract class AuthFailure extends Failure {}
 
 class LoginFailure extends AuthFailure {}
 
-class OTPSendFailure extends AuthFailure {}
-
-class OTPReadFailure extends AuthFailure {}
-
-class OTPMismatchFailure extends AuthFailure {}
+class SignUpFailure extends AuthFailure {}

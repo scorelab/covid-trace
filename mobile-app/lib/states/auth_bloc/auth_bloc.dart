@@ -4,10 +4,13 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:slcovid_tracker/core/failures/auth_failures.dart';
 import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/data/repository.dart';
+import 'package:slcovid_tracker/models/user.dart';
 
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 @Injectable()
@@ -22,24 +25,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
-    yield SigningIn();
+    print(event);
+
+    yield AuthLoading();
     if (event is GetCurrentUserEvent) {
       yield (await _repository.getSignedInUser()).fold<AuthState>(
         () => Unauthenticated(),
-        (_) => Authenticated(),
+        (_) => Authenticated(user: User('', '', false, '', '', '')),
       );
     }
+
     if (event is SignUpEvent) {
       yield (await _repository.signUp(event.request)).fold<AuthState>(
-        (l) => Unauthenticated(),
-        (r) => Authenticated(),
+        (l) => AuthFailed(error: l),
+        (r) => Authenticated(user: r),
       );
     }
 
     if (event is SignInEvent) {
-      yield (await _repository.signIn()).fold<AuthState>(
-        (l) => Unauthenticated(),
-        (r) => Authenticated(),
+      yield (await _repository.signIn(event.request)).fold<AuthState>(
+        (l) => AuthFailed(error: l),
+        (r) => Authenticated(user: r),
       );
     }
 
@@ -47,13 +53,5 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await _repository.signOut();
       yield Unauthenticated();
     }
-  }
-
-  void signUp(UserRegisterRequest request) {
-    add(SignUpEvent(request: request));
-  }
-
-  void signOut() {
-    add(SignOutEvent());
   }
 }
