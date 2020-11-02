@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slcovid_tracker/core/di/injection.dart';
 import 'package:slcovid_tracker/screens/checkout/checkout_screen.dart';
 import 'package:slcovid_tracker/screens/history/history_screen.dart';
+import 'package:slcovid_tracker/screens/history/historypossible_screen.dart';
 import 'package:slcovid_tracker/screens/home/home_screen.dart';
 import 'package:slcovid_tracker/screens/permisson/permission_screen.dart';
 import 'package:slcovid_tracker/screens/profile/profile_screen.dart';
@@ -53,6 +54,11 @@ var historyHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return HistoryScreen();
 });
+
+var historypossibleHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return HistoryPossibleScreen();
+    });
 
 var uploadHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
