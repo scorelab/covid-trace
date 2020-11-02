@@ -110,51 +110,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             _dropDownValue,
                           ),
                   ),
-                  ButtonTheme(
-                    height: 50,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      color: Theme.of(context).primaryColor,
-                      textColor: Colors.white,
-                      child: Text(
-                        'Verify Phone',
-                        textScaleFactor: 1.5,
-                      ),
-                      onPressed: () {
-                        _verifyPhone(context);
-                      },
-                    ),
-                  ),
-                  ButtonTheme(
-                    height: 50,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      color: Theme
-                          .of(context)
-                          .primaryColor,
-                      textColor: Colors.white,
-                      child: Text(
-                        'Sign Out',
-                        textScaleFactor: 1.5,
-                      ),
-                      onPressed: () {
-                        _signOut(context);
-                      },
-                    ),
-                  ),
                 ],
-              )
+              ),
+              //Temporay widget
+              ButtonTheme(
+                height: 50,
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  color: Theme.of(context).primaryColor,
+                  textColor: Colors.white,
+                  child: Text(
+                    'Sign Out',
+                    textScaleFactor: 1.5,
+                  ),
+                  onPressed: () {
+                    _signOut(context);
+                  },
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  void _verifyPhone(context) {
-    Application.router.navigateTo(context, Routes.verification);
   }
 
   void _signOut(context) {
@@ -252,7 +231,9 @@ class _profiledetails extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30.0),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              _verifyPhone(context);
+                            },
                             color: Colors.red,
                             textColor: Colors.white,
                             child: Text("Not Verified",
@@ -265,5 +246,9 @@ class _profiledetails extends StatelessWidget {
         )
       ],
     );
+  }
+
+  void _verifyPhone(context) {
+    Application.router.navigateTo(context, Routes.verification);
   }
 }
