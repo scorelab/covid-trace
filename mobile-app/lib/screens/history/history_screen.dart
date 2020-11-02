@@ -22,11 +22,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         backgroundColor: Colors.grey[300],
       ),
       bottomNavigationBar: AppBottomNavbar(),
-      body: Padding(
-        padding: EdgeInsets.only(
-            top: 20, left: screenWidth * 0.06, right: screenWidth * 0.06),
-        child: Center(
-          child: ListView(
+      body: Column(
             children: [
               ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
@@ -68,11 +64,25 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 ],
               ),
               Divider(),
-              Text("ALL")
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index){
+                    return Column(
+                      children: [
+                        ListTile(
+                          title: Text('hi'),
+                        )
+                      ],
+                    );
+                  },
+                ),
+              ),
             ],
+
           ),
-        ),
-      ),
+
     );
   }
 }
