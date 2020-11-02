@@ -51,7 +51,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
-    AssetImage assetImage = AssetImage('assets/images/verification.png');
+    AssetImage assetImage = AssetImage('asset/images/verification.png');
     Image image = Image(
       image: assetImage,
       width: screenWidth * 0.8,
