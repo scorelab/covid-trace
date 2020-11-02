@@ -26,7 +26,8 @@ class _AppBottomNavbarState extends State<AppBottomNavbar> {
             icon: Icon(FontAwesomeIcons.user, size: 25), label: 'Profile'),
       ].toList(),
 
-      //Still There is problem.You pressed back buton it will go to the revlevent back page but wont change selected item color
+      /*Still There is problem.When You pressed back buton it will go to the revlevent back 
+      page but wont change selected item color.Will Check it soon*/
       type: BottomNavigationBarType.fixed,
       selectedItemColor: Theme.of(context).primaryColor,
       unselectedItemColor: Color(0xff626262),
