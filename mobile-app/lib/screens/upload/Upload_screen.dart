@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:slcovid_tracker/widgets/bottom_navgiation.dart';
 import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 
 class UploadScreen extends StatefulWidget {
@@ -30,7 +29,6 @@ class _UploadScreenState extends State<UploadScreen> {
         title: Center(
             child: Text("Marked as Infector ", textAlign: TextAlign.center)),
       ),
-      bottomNavigationBar: AppBottomNavbar(),
       body: Padding(
         padding: EdgeInsets.only(top: screenHeight * 0.06, left: 10, right: 10),
         child: Center(

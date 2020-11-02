@@ -52,7 +52,7 @@ class _SigninScreenState extends State<SigninScreen> {
             setState(() {
               _isLoading = false;
             });
-            Application.router.navigateTo(context, Routes.home, );
+            Application.router.navigateTo(context, Routes.main, clearStack: true);
           }
         },
         cubit: Provider.of<AuthBloc>(context),

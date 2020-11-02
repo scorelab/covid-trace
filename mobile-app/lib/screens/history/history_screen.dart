@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:slcovid_tracker/widgets/bottom_navgiation.dart';
 
 class HistoryScreen extends StatefulWidget {
   @override
@@ -21,7 +20,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
         ),
         backgroundColor: Colors.grey[300],
       ),
-      bottomNavigationBar: AppBottomNavbar(),
       body: Column(
         children: [
           ButtonBar(

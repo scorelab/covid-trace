@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:slcovid_tracker/widgets/bottom_navgiation.dart';
 import 'package:flutter/gestures.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     return Scaffold(
-      bottomNavigationBar: AppBottomNavbar(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,

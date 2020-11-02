@@ -35,7 +35,7 @@ class SplashScreen extends StatelessWidget {
               .navigateTo(context, Routes.signin, clearStack: true);
         }
         if (state is Authenticated) {
-          Application.router.navigateTo(context, Routes.home, clearStack: true);
+          Application.router.navigateTo(context, Routes.main, clearStack: true);
         }
       },
       child: Scaffold(
