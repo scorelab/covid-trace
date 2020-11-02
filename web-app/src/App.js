@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 //Higher Order Components
 import HomePage from './components/home/HomePage';
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
 import './index.css';
 
 class App extends Component {
@@ -10,6 +12,8 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/signIn" component={SignIn} />
+        <Route exact path="/signUp" component={SignUp} />
       </Switch>
     );
   }
