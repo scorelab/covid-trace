@@ -14,7 +14,7 @@ function Navbar(props) {
             </Header>
             <Header style={{ background: 'rgba(29, 233, 182, 0.23)', height: '50px', display: 'flex', alignItems: "center", paddingLeft: "20px" }}>
                 <Avatar size={35} src={family} style={{ float: 'left', }} />
-                <Text style={{ color: "#626262", marginLeft: "5px", marginTop: "5px" }}>Safe Check-in & Checkout Voluntary Drive to Expose Potential Covid-19 Spread  |  Stay Home & Stay Safe</Text>
+                <Text style={{ color: "#626262", marginLeft: "5px", marginTop: "4px" }}>Safe Check-in & Checkout Voluntary Drive to Expose Potential Covid-19 Spread  |  Stay Home & Stay Safe</Text>
             </Header>
         </div>
     )

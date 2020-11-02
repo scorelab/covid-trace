@@ -14,7 +14,7 @@ function SignIn(props) {
                     <Card title="Welcome" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "131px", height: '300px' }}>
                         <div style={{ margin: "10px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
                             <Input addonBefore="+94" defaultValue="" placeholder="Contact No" style={{ marginBottom: '30px' }} type="number" />
-                            <Input defaultValue="" placeholder="Password" style={{ marginBottom: '30px' }} />
+                            <Input defaultValue="" placeholder="Password" type="password" style={{ marginBottom: '30px' }} />
                             <Button type="primary" style={{ marginLeft: "130px", marginRight: '130px' }}>Sign In</Button>
                         </div>
                     </Card>
