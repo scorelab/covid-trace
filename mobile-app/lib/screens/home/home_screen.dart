@@ -15,10 +15,10 @@ class _HomeScreenState extends State<HomeScreen> {
     var screenWidth = _mediaQueryData.size.width;
     AssetImage assetImage = AssetImage('asset/images/home.png');
     AssetImage assetImage2 = AssetImage('asset/images/slflag.png');
-    Image image = Image(image: assetImage, width: screenWidth * 0.8);
+    Image image = Image(image: assetImage, width: screenWidth * 0.4);
     Image image2 = Image(
       image: assetImage2,
-      width: screenWidth * 0.25,
+      width: screenWidth * 0.17,
     );
 
     return Scaffold(
@@ -50,8 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              //Note
-              //This container is only visible when patient is safe
               Container(
                 margin: EdgeInsets.symmetric(
                     horizontal: screenWidth * 0.1, vertical: 20.0),
@@ -118,11 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
 
-              Container(height: 20),
+              Container(height: 5),
 
-              //Note
-              //This container is for current check in locations
-              //N number of containers for N number of current check ins
               Container(
                 margin: EdgeInsets.symmetric(
                     horizontal: screenWidth * 0.07, vertical: 2.0),
@@ -190,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               Container(
                 margin: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.07, vertical: 15.0),
+                    horizontal: screenWidth * 0.07),
                 child: Card(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -231,9 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      Container(
-                        height: 15,
-                      ),
+
                     ],
                   ),
                 ),
