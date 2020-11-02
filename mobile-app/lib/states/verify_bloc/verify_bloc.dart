@@ -16,19 +16,40 @@ part 'verify_state.dart';
 class VerifyBloc extends Bloc<VerifyEvent, VerifyState> {
   final Repository _repository;
 
-  VerifyBloc(this._repository,) : super(Initializing());
+  VerifyBloc(
+    this._repository,
+  ) : super(Initializing());
 
   @override
-  Stream<VerifyState> mapEventToState(VerifyEvent event,) async* {
+  Stream<VerifyState> mapEventToState(
+    VerifyEvent event,
+  ) async* {
     print(event);
 
     yield VerifyLoading();
     if (event is SendVerificationEvent) {
-      yield SentVerification(user: event.user);
-      yield (await _repository.sendVerification(event.user))
-          .fold<VerifyState>(
+      User user = (await _repository.getSignedInUser()).getOrElse(() => null);
+
+      if (user != null) {
+        var sent = (await _repository.sendVerification(user)).fold<VerifyState>(
+          (l) => VerifyFailed(error: l),
+          (r) => SentVerification(code: r, user: user),
+        );
+        yield sent;
+
+        if (sent is SentVerification) {
+          yield (await _repository.checkCode(sent.code)).fold<VerifyState>(
             (l) => VerifyFailed(error: l),
-            (r) => CodeReceived(user: event.user),
+            (r) => CodeReceived(),
+          );
+        }
+      }
+    }
+
+    if (event is VerifyPhoneEvent) {
+      yield (await _repository.verifyPhone(event.userId)).fold<VerifyState>(
+        (l) => VerifyFailed(error: l),
+        (r) => VerifySuccess(),
       );
     }
   }

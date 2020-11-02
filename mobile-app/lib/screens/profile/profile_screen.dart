@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:slcovid_tracker/routing/application.dart';
+import 'package:slcovid_tracker/routing/routes.dart';
+import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 import 'package:slcovid_tracker/widgets/bottom_navgiation.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -105,7 +109,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         : Text(
                             _dropDownValue,
                           ),
-                  )
+                  ),
+                  ButtonTheme(
+                    height: 50,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      color: Theme.of(context).primaryColor,
+                      textColor: Colors.white,
+                      child: Text(
+                        'Verify Phone',
+                        textScaleFactor: 1.5,
+                      ),
+                      onPressed: () {
+                        _verifyPhone(context);
+                      },
+                    ),
+                  ),
+                  ButtonTheme(
+                    height: 50,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      color: Theme
+                          .of(context)
+                          .primaryColor,
+                      textColor: Colors.white,
+                      child: Text(
+                        'Sign Out',
+                        textScaleFactor: 1.5,
+                      ),
+                      onPressed: () {
+                        _signOut(context);
+                      },
+                    ),
+                  ),
                 ],
               )
             ],
@@ -113,6 +151,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  void _verifyPhone(context) {
+    Application.router.navigateTo(context, Routes.verification);
+  }
+
+  void _signOut(context) {
+    BlocProvider.of<AuthBloc>(context).add(SignOutEvent());
+    Application.router.navigateTo(context, Routes.signin, clearStack: true);
   }
 }
 

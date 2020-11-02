@@ -52,7 +52,7 @@ class _SigninScreenState extends State<SigninScreen> {
             setState(() {
               _isLoading = false;
             });
-            Application.router.navigateTo(context, "/home");
+            Application.router.navigateTo(context, Routes.home, );
           }
         },
         cubit: Provider.of<AuthBloc>(context),
@@ -116,11 +116,9 @@ class _SigninScreenState extends State<SigninScreen> {
                               textScaleFactor: 1.5,
                             ),
                             onPressed: () {
-                              setState(() {
-                                if (_signinFormKey.currentState.validate()) {
-                                  _signIn();
-                                }
-                              });
+                              if (_signinFormKey.currentState.validate()) {
+                                _signIn();
+                              }
                             },
                           ),
                         ),

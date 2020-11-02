@@ -20,25 +20,6 @@ class AuthFailed extends AuthState {
   List<Object> get props => [error];
 }
 
-class SentVerification extends AuthState {
-  final User user;
-
-  SentVerification({@required this.user});
-
-  @override
-  List<Object> get props => [user];
-}
-
-class CodeReceived extends AuthState {
-  final User user;
-
-  CodeReceived({@required this.user});
-
-  @override
-  List<Object> get props => [user];
-}
-
-
 class Authenticated extends AuthState {
   final User user;
 
