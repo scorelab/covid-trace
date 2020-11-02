@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:slcovid_tracker/routing/application.dart';
+import 'package:slcovid_tracker/routing/routes.dart';
 
 class CheckOutScreen extends StatefulWidget {
   @override
@@ -107,7 +109,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       textScaleFactor: 1.5,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/home');
+                      Application.router.navigateTo(context, Routes.main);
                     },
                   ),
                 ),

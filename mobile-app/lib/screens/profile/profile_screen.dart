@@ -25,110 +25,118 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: Container(
         child: Padding(
-          padding: const EdgeInsets.only(top: 50, left: 35, right: 35),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _profiledetails(
-                icon: Icons.phone,
-                label: "Phone Number",
-                value: "+94" + "$_phonenumber",
-                button: true,
-                verfied: _numberverfied,
-              ),
-              SizedBox(
-                height: 35,
-              ),
-              _profiledetails(
-                icon: FontAwesomeIcons.addressCard,
-                label: "NIC",
-                value: "$_nic",
-                button: false,
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Text("Help and Feedback",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 22)),
-              SizedBox(
-                height: 30,
-              ),
-              _Helpandfeedbackitems(
-                name: "Report a Problem",
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              _Helpandfeedbackitems(
-                name: "Help",
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text("Change Language",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 22)),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Selected Language",
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black,
-                          fontSize: 20)),
-                  DropdownButton(
-                    items: <String>[
-                      'English',
-                      'සිංහල',
-                      'தமிழ்',
-                    ].map((String value) {
-                      return new DropdownMenuItem<String>(
-                        value: value,
-                        child: new Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (val) {
-                      setState(
-                        () {
-                          _dropDownValue = val;
-                        },
-                      );
-                    },
-                    hint: _dropDownValue == null
-                        ? Text('English')
-                        : Text(
-                            _dropDownValue,
-                          ),
-                  ),
-                ],
-              ),
-              //Temporay widget
-              ButtonTheme(
-                height: 50,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  child: Text(
-                    'Sign Out',
-                    textScaleFactor: 1.5,
-                  ),
-                  onPressed: () {
-                    _signOut(context);
-                  },
+          padding: const EdgeInsets.only(top: 40, left: 35, right: 35),
+          child: ListView(children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    _profiledetails(
+                      icon: Icons.phone,
+                      label: "Phone Number",
+                      value: "+94" + "$_phonenumber",
+                      button: true,
+                      verfied: _numberverfied,
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
+                SizedBox(
+                  height: 35,
+                ),
+                _profiledetails(
+                  icon: FontAwesomeIcons.addressCard,
+                  label: "NIC",
+                  value: "$_nic",
+                  button: false,
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Text("Help and Feedback",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 22)),
+                SizedBox(
+                  height: 10,
+                ),
+                _Helpandfeedbackitems(
+                  name: "Report a Problem",
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                _Helpandfeedbackitems(
+                  name: "Help",
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text("Change Language",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 22)),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Selected Language",
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                            fontSize: 20)),
+                    DropdownButton(
+                      items: <String>[
+                        'English',
+                        'සිංහල',
+                        'தமிழ்',
+                      ].map((String value) {
+                        return new DropdownMenuItem<String>(
+                          value: value,
+                          child: new Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (val) {
+                        setState(
+                          () {
+                            _dropDownValue = val;
+                          },
+                        );
+                      },
+                      hint: _dropDownValue == null
+                          ? Text('English')
+                          : Text(
+                              _dropDownValue,
+                            ),
+                    ),
+                  ],
+                ),
+                //Logout removed
+                // ButtonTheme(
+                //   height: 50,
+                //   child: RaisedButton(
+                //     shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(30.0)),
+                //     color: Theme.of(context).primaryColor,
+                //     textColor: Colors.white,
+                //     child: Text(
+                //       'Sign Out',
+                //       textScaleFactor: 1.5,
+                //     ),
+                //     onPressed: () {
+                //       _signOut(context);
+                //     },
+                //   ),
+                // ),
+              ],
+            ),
+          ]),
         ),
       ),
     );

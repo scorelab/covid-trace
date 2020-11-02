@@ -20,7 +20,7 @@ class _UploadScreenState extends State<UploadScreen> {
     Image image1 = Image(
       image: assetImage,
       width: screenWidth,
-      height: screenHeight * 0.32,
+      height: _infected ? screenHeight * 0.25 : screenHeight * 0.32,
     );
     return Scaffold(
       appBar: new AppBar(
@@ -30,7 +30,10 @@ class _UploadScreenState extends State<UploadScreen> {
             child: Text("Marked as Infector ", textAlign: TextAlign.center)),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: screenHeight * 0.06, left: 10, right: 10),
+        padding: EdgeInsets.only(
+            top: _infected ? screenHeight * 0.02 : screenHeight * 0.06,
+            left: 10,
+            right: 10),
         child: Center(
           child: ListView(
             children: <Widget>[
@@ -40,7 +43,7 @@ class _UploadScreenState extends State<UploadScreen> {
                   children: [
                     image1,
                     Container(
-                      height: 100,
+                      height: 80,
                       width: screenWidth * 0.8,
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -99,7 +102,7 @@ class _UploadScreenState extends State<UploadScreen> {
                                 fontSize: 22),
                           ),
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     LabelTextFormField(
                       labelText: "Code",
@@ -107,7 +110,7 @@ class _UploadScreenState extends State<UploadScreen> {
                       keyboardType: TextInputType.number,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     SizedBox(
                       height: 50,
