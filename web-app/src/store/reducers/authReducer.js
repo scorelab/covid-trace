@@ -36,7 +36,7 @@ const signinFail = (state, payload) => {
 };
 
 const signinEnd = (state) => {
-  return { ...state, signin: { loading: false, error: null } };
+  return { ...state, signin: { ...state.signin, loading: false } };
 };
 
 export default (state = initialState, { type, payload }) => {

@@ -22,6 +22,8 @@ function SignIn(props) {
     props.logIn({ phoneNumber, password });
   };
 
+  console.log(props.error);
+
   return (
     <div style={{ background: '#F2F2F2' }}>
       <Layout style={{ height: '100vh' }}>
@@ -74,6 +76,8 @@ function SignIn(props) {
               >
                 Sign In
               </Button>
+              {props.loading ? 'siginin..' : null}
+              {props.error ? props.error : null}
             </div>
           </Card>
         </Content>
@@ -84,8 +88,8 @@ function SignIn(props) {
 }
 
 const mapStateToProps = ({ auth }) => ({
-  loading: auth.loading,
-  error: auth.error,
+  loading: auth.signin.loading,
+  error: auth.signin.error,
 });
 
 const mapDispatchToProps = {
