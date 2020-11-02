@@ -8,7 +8,7 @@ class CheckOutScreen extends StatefulWidget {
   _CheckOutScreenState createState() => _CheckOutScreenState();
 }
 
-class _CheckOutScreenState extends State< CheckOutScreen> {
+class _CheckOutScreenState extends State<CheckOutScreen> {
   @override
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
@@ -23,22 +23,26 @@ class _CheckOutScreenState extends State< CheckOutScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.only(
-            top: 20,
-            left: screenWidth*0.06,
-            right: screenWidth*0.06
-        ),
+            top: 20, left: screenWidth * 0.06, right: screenWidth * 0.06),
         child: Center(
           child: ListView(
             children: [
-              Container(height: 50,),
+              Container(
+                height: 50,
+              ),
               Card(
                 color: Colors.red,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     ListTile(
-                      leading: Icon(Icons.login_rounded, size: 50, color: Colors.white,),
-                      title: Text('Check Out', style: TextStyle(color: Colors.white, fontSize: 25)),
+                      leading: Icon(
+                        Icons.logout,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      title: Text('Check Out',
+                          style: TextStyle(color: Colors.white, fontSize: 25)),
                     ),
                     Card(
                       color: Colors.grey[200],
@@ -52,15 +56,35 @@ class _CheckOutScreenState extends State< CheckOutScreen> {
                             width: screenWidth,
                             child: Column(
                               children: [
-                                Container(height: 50,),
-                                Text('1 Nov 2020', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54, fontSize: 25)),//Date
-                                Container(height: 10,),
-                                Text('2:15 PM', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54, fontSize: 25)),//Time
-                                Container(height: 10,),
-                                Text('University of Colombo', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54, fontSize: 25)),//Location
-                                Container(height: 50,),
+                                Container(
+                                  height: 50,
+                                ),
+                                Text('1 Nov 2020',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                        fontSize: 25)), //Date
+                                Container(
+                                  height: 10,
+                                ),
+                                Text('2:15 PM',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                        fontSize: 25)), //Time
+                                Container(
+                                  height: 10,
+                                ),
+                                Text('University of Colombo',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                        fontSize: 25)), //Location
+                                Container(
+                                  height: 50,
+                                ),
                               ],
-                            ) ,
+                            ),
                           )
                         ],
                       ),
@@ -68,7 +92,9 @@ class _CheckOutScreenState extends State< CheckOutScreen> {
                   ],
                 ),
               ),
-              Container(height: 50,),
+              Container(
+                height: 50,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(
                     horizontal: screenWidth * 0.1, vertical: 30.0),
