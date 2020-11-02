@@ -49,7 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: image,
                 ),
               ),
-
               Container(
                 margin: EdgeInsets.symmetric(
                     horizontal: screenWidth * 0.1, vertical: 20.0),
@@ -77,7 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: TextStyle(color: Colors.blue),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                // Call a function to see details
+                                Navigator.pushNamed(
+                                    context, '/historypossible');
                               }),
                       ],
                     ),
@@ -85,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   enabled: false,
                 ),
               ),
-
               Row(
                 children: <Widget>[
                   Container(
@@ -115,9 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-
               Container(height: 5),
-
               Container(
                 margin: EdgeInsets.symmetric(
                     horizontal: screenWidth * 0.07, vertical: 2.0),
@@ -155,7 +152,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 textScaleFactor: 1.3,
                               ),
                               onPressed: () {
-                                //Call a function to view pass
+                                Navigator.pushNamed(
+                                    context, '/safeentrycheckin');
                               },
                             ),
                           ),
@@ -182,10 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-
               Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.07),
+                margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.07),
                 child: Card(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -226,7 +222,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-
                     ],
                   ),
                 ),
