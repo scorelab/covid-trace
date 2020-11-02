@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:slcovid_tracker/widgets/bottom_navgiation.dart';
-import 'package:flutter/gestures.dart';
 
 class CheckOutScreen extends StatefulWidget {
   @override
@@ -13,7 +11,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
-    var screenHeight = _mediaQueryData.size.height;
 
     return Scaffold(
       appBar: AppBar(

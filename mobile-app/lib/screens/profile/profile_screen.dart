@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
-import 'package:slcovid_tracker/widgets/bottom_navgiation.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -24,7 +23,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Color(0xffd9d9d9),
         title: Center(child: Text("Profile", textAlign: TextAlign.center)),
       ),
-      bottomNavigationBar: AppBottomNavbar(),
       body: Container(
         child: Padding(
           padding: const EdgeInsets.only(top: 50, left: 35, right: 35),
