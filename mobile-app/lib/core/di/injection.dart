@@ -5,4 +5,4 @@ import 'package:slcovid_tracker/core/di/injection.config.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit()
-void configureDependencies() => $initGetIt(getIt);
+Future<GetIt> configureDependencies() => $initGetIt(getIt);

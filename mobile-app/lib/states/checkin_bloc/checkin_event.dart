@@ -12,3 +12,9 @@ class FetchLocationEvent extends CheckInEvent {
 
   FetchLocationEvent({@required this.args});
 }
+
+class CheckEvent extends CheckInEvent {
+  final Location location;
+
+  CheckEvent({@required this.location});
+}

@@ -11,6 +11,8 @@ class Initializing extends CheckInState {}
 
 class Fetching extends CheckInState {}
 
+class Checking extends CheckInState {}
+
 class FetchSuccess extends CheckInState {
   final Location location;
 
@@ -24,6 +26,17 @@ class FetchFailed extends CheckInState {
   final dynamic error;
 
   FetchFailed({@required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
+class CheckSuccess extends CheckInState {}
+
+class CheckFailed extends CheckInState {
+  final dynamic error;
+
+  CheckFailed({@required this.error});
 
   @override
   List<Object> get props => [error];

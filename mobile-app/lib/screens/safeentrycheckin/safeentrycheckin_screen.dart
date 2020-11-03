@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:slcovid_tracker/models/location.dart';
 
 class SafeEntryCheckInScreen extends StatefulWidget {
+  final Location args;
+
+  const SafeEntryCheckInScreen({Key key, this.args}) : super(key: key);
+
   @override
-  _SafeEntryCheckInScreenState createState() => _SafeEntryCheckInScreenState();
+  _SafeEntryCheckInScreenState createState() => _SafeEntryCheckInScreenState(args);
 }
 
 class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
+  final Location _location;
+
+  _SafeEntryCheckInScreenState(this._location);
+
   @override
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
@@ -56,7 +65,7 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                                 Container(
                                   height: 50,
                                 ),
-                                Text('1 Nov 2020',
+                                Text(_location.time.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
@@ -64,15 +73,7 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                                 Container(
                                   height: 10,
                                 ),
-                                Text('2:15 PM',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black54,
-                                        fontSize: 25)), //Time
-                                Container(
-                                  height: 10,
-                                ),
-                                Text('University of Colombo',
+                                Text(_location.name,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
@@ -107,7 +108,7 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                       textScaleFactor: 1.5,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/main');
+                      Navigator.pop(context);
                     },
                   ),
                 ),

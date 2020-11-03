@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:slcovid_tracker/data/local/user/user_repository.dart';
 import 'package:slcovid_tracker/models/user.dart';
 
 @Injectable(as: UserRepository)
-class UserRepository {
+class UserRepositoryImpl extends UserRepository {
+  @override
   Future<void> insert(User user) {
     return SharedPreferences.getInstance().then((pref) {
       pref.setString("id", user.id);
@@ -15,6 +17,7 @@ class UserRepository {
     });
   }
 
+  @override
   Future<Option<User>> getUser() {
     return SharedPreferences.getInstance().then((pref) {
       String userId = pref.getString("id");
@@ -35,6 +38,7 @@ class UserRepository {
     });
   }
 
+  @override
   Future<void> delete() {
     return SharedPreferences.getInstance().then((pref) {
       pref.setString("id", null);
