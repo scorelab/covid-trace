@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       col: Colors.red,
                       title: 'Alert',
                       subtile:
-                          "You're exposed to Covid-19 positive person, Don't worry. Please contact the authorities and self-quarantine",
+                          "You're exposed to Covid-19 positive person, Don't worry. Please contact the authorities and self-quarantine.",
                     ),
               !_notcheckoutcompletely
                   ? Row(
