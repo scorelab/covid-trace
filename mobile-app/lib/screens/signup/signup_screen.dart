@@ -94,7 +94,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                          flex: 2,
+                          flex: 3,
                           child: ButtonTheme(
                             height: _n,
                             minWidth: 20,
@@ -115,7 +115,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         Expanded(
-                          flex: 8,
+                          flex: 7,
                           child: Container(
                             margin: EdgeInsets.symmetric(vertical: 8.0),
                             child: TextFormField(
@@ -139,12 +139,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                     _n = 80;
                                   });
                                   return "Phone number should be valid";
-                                }
-                                if (!(value is int)) {
-                                  setState(() {
-                                    _n = 80;
-                                  });
-                                  return "Phone number should only contains digits";
                                 }
                                 return null;
                               },
