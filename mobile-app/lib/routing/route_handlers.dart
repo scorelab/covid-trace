@@ -2,6 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slcovid_tracker/core/di/injection.dart';
+import 'package:slcovid_tracker/screens/checkin/checkin_screen.dart';
 import 'package:slcovid_tracker/screens/checkout/checkout_screen.dart';
 import 'package:slcovid_tracker/screens/main/main_screen.dart';
 import 'package:slcovid_tracker/screens/permisson/permission_screen.dart';
@@ -46,9 +47,16 @@ var permissionHandler = Handler(
   return PermissionScreen();
 });
 
+var checkinHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  return CheckInScreen();
+});
+
 var safeentrybeforecheckinHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return SafeEntryBeforeCheckInScreen();
+  final args = context.arguments as SafeEntryBeforeCheckInScreenArgs;
+
+  return SafeEntryBeforeCheckInScreen(args: args);
 });
 
 var safeentrycheckinHandler = Handler(

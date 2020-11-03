@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:slcovid_tracker/core/di/injection.dart';
 import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
+import 'package:slcovid_tracker/states/checkin_bloc/checkin_bloc.dart';
 
 class CovidTrace extends StatelessWidget {
   CovidTrace() {
@@ -28,6 +29,10 @@ class CovidTrace extends StatelessWidget {
               BlocProvider<AuthBloc>(
                 create: (BuildContext context) =>
                 getIt<AuthBloc>()..add(GetCurrentUserEvent()),
+              ),
+              BlocProvider<CheckInBloc>(
+                create: (BuildContext context) =>
+                getIt<CheckInBloc>(),
               ),
             ],
             child: MaterialApp(

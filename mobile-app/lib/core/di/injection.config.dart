@@ -11,6 +11,7 @@ import 'package:slcovid_tracker/data/firebase/firebase_repository_impl.dart';
 import 'package:slcovid_tracker/data/local/user_repository.dart';
 import 'package:slcovid_tracker/data/verify/verify_repository.dart';
 import 'package:slcovid_tracker/data/verify/verify_repository_impl.dart';
+import 'package:slcovid_tracker/states/checkin_bloc/checkin_bloc.dart';
 import 'package:slcovid_tracker/states/verify_bloc/verify_bloc.dart';
 
 import '../../states/auth_bloc/auth_bloc.dart';
@@ -33,5 +34,6 @@ GetIt $initGetIt(
       get<FirebaseRepository>(), get<UserRepository>()));
   gh.factory<AuthBloc>(() => AuthBloc(get<Repository>()));
   gh.factory<VerifyBloc>(() => VerifyBloc(get<Repository>()));
+  gh.factory<CheckInBloc>(() => CheckInBloc(get<Repository>()));
   return get;
 }
