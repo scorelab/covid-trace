@@ -36,8 +36,7 @@ class _SignupScreenState extends State<SignupScreen> {
     AssetImage assetImage = AssetImage('asset/images/signup.png');
     Image image = Image(
       image: assetImage,
-      width: screenWidth * 0.8,
-      height: screenHeight * 0.4,
+      width: screenWidth * 0.4,
     );
     return BlocListener<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
@@ -70,10 +69,10 @@ class _SignupScreenState extends State<SignupScreen> {
           builder: (context) => Form(
             key: _signupFormKey,
             child: Padding(
-              padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+              padding: EdgeInsets.only( left: 10.0, right: 10.0),
               child: ListView(
                 children: <Widget>[
-                  Container(height: 50),
+                  Container(height: 25),
                   Center(
                     child: Text(
                       "To get started we need following",
@@ -101,7 +100,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             minWidth: 20,
                             child: RaisedButton(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(topLeft:  Radius.circular(10), bottomLeft:  Radius.circular(10)),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10)),
                               ),
                               color: Colors.grey[200],
                               textColor: Colors.black54,
@@ -127,19 +128,19 @@ class _SignupScreenState extends State<SignupScreen> {
 
                                   return "Phone number is required";
                                 }
-                                if (value.toString().length < 9){
+                                if (value.toString().length < 9) {
                                   setState(() {
                                     _n = 80;
                                   });
                                   return "9 digits required. Ex: 713456789";
                                 }
-                                if (value.toString().length > 9){
+                                if (value.toString().length > 9) {
                                   setState(() {
                                     _n = 80;
                                   });
                                   return "Phone number should be valid";
                                 }
-                                if (!(value is int)){
+                                if (!(value is int)) {
                                   setState(() {
                                     _n = 80;
                                   });
@@ -156,10 +157,14 @@ class _SignupScreenState extends State<SignupScreen> {
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(width: 0.4),
-                                    borderRadius: BorderRadius.only(topRight:  Radius.circular(10), bottomRight:  Radius.circular(10)),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
                                   ),
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.only(topRight:  Radius.circular(10), bottomRight:  Radius.circular(10)),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
                                   )),
                             ),
                           ),
@@ -167,7 +172,6 @@ class _SignupScreenState extends State<SignupScreen> {
                       ],
                     ),
                   ),
-
 
                   //Phone Number
 
@@ -210,7 +214,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   else
                     Container(
                       margin: EdgeInsets.symmetric(
-                          horizontal: screenWidth * 0.18, vertical: 30.0),
+                          horizontal: screenWidth * 0.18, vertical: 15.0),
                       child: ButtonTheme(
                         height: 50,
                         child: RaisedButton(
@@ -243,7 +247,6 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
-                  Container(height: 50),
                 ],
               ),
             ),

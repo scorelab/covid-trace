@@ -5,7 +5,6 @@ import 'package:slcovid_tracker/core/di/injection.dart';
 import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/screens/checkin/checkin_screen.dart';
 import 'package:slcovid_tracker/screens/checkout/checkout_screen.dart';
-import 'package:slcovid_tracker/screens/history/historypossible_screen.dart';
 import 'package:slcovid_tracker/screens/main/main_screen.dart';
 import 'package:slcovid_tracker/screens/permisson/permission_screen.dart';
 import 'package:slcovid_tracker/screens/safeentrybeforecheckin/safeentrybeforecheckin_screen.dart';
@@ -47,11 +46,6 @@ var mainHandler = Handler(
 var permissionHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return PermissionScreen();
-});
-
-var historypossibleHandler = Handler(
-    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return HistoryPossibleScreen();
 });
 
 var checkinHandler = Handler(

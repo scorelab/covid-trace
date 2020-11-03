@@ -115,47 +115,68 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fontSize: 16),
                               ),
                             ),
-                            ButtonBar(
-                              alignment: MainAxisAlignment.spaceBetween,
+                            Row(
                               children: <Widget>[
-                                ButtonTheme(
-                                  height: 40,
-                                  minWidth: screenWidth * 0.38,
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0)),
-                                    color: Colors.grey,
-                                    textColor: Colors.white,
-                                    child: Text(
-                                      'VIEW PASS',
-                                      textScaleFactor: 1.3,
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                                Expanded(
+                                  flex: 15,
+                                  child: ButtonTheme(
+                                    height: 40,
+                                    minWidth: screenWidth * 0.38,
+                                    child: RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0)),
+                                      color: Colors.grey,
+                                      textColor: Colors.white,
+                                      child: Text(
+                                        'VIEW PASS',
+                                        textScaleFactor: 1.3,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, '/safeentrycheckin');
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, '/safeentrycheckin');
-                                    },
                                   ),
                                 ),
-                                ButtonTheme(
-                                  height: 40,
-                                  minWidth: screenWidth * 0.38,
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30.0)),
-                                    color: Theme.of(context).primaryColor,
-                                    textColor: Colors.white,
-                                    child: Text(
-                                      'CHECK OUT',
-                                      textScaleFactor: 1.3,
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                                Expanded(
+                                  flex: 15,
+                                  child: ButtonTheme(
+                                    height: 40,
+                                    minWidth: screenWidth * 0.38,
+                                    child: RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0)),
+                                      color: Theme.of(context).primaryColor,
+                                      textColor: Colors.white,
+                                      child: Text(
+                                        'CHECK OUT',
+                                        textScaleFactor: 1.3,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, '/checkout');
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Navigator.pushNamed(context, '/checkout');
-                                    },
                                   ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
                                 ),
                               ],
+                            ),
+                            Container(
+                              height: 8,
                             ),
                           ],
                         ),
@@ -169,33 +190,47 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Container(
-                        height: 15,
+                        height: 8,
                       ),
-                      ButtonBar(
-                        alignment: MainAxisAlignment.spaceBetween,
+                      Row(
                         children: <Widget>[
-                          Icon(
-                            Icons.login_rounded,
-                            color: Colors.red,
-                            size: 40.0,
+                          Expanded(
+                            flex: 1,
+                            child: Container(),
                           ),
-                          Text(
-                            "Safe Check In",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                          Expanded(
+                            flex: 4,
+                            child: Icon(
+                              Icons.login_rounded,
+                              color: Colors.red,
+                              size: 30.0,
+                            ),
                           ),
-                          ButtonTheme(
-                            height: 40,
-                            minWidth: screenWidth * 0.38,
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Theme.of(context).primaryColor,
-                              textColor: Colors.white,
-                              child: Text(
-                                'NEW CHECK IN',
-                                textScaleFactor: 1.3,
-                              ),
+                          Expanded(
+                            flex: 8,
+                            child: Text(
+                              "Safe Check In",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 14),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 14,
+                            child: ButtonTheme(
+                              height: 40,
+                              minWidth: screenWidth * 0.38,
+                              child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0)),
+                                color: Theme.of(context).primaryColor,
+                                textColor: Colors.white,
+                                child: Text(
+                                  'NEW CHECK IN',
+                                  textScaleFactor: 1.2,
+                                ),
+
+
                               onPressed: () {
                                 // Navigator.pushNamed(
                                 //     context, Routes.checkin);
@@ -206,7 +241,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                             ),
                           ),
+                          Expanded(
+                            flex: 1,
+                            child: Container(),
+                          ),
                         ],
+                      ),
+                      Container(
+                        height: 8,
                       ),
                     ],
                   ),
