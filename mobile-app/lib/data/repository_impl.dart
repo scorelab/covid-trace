@@ -4,8 +4,9 @@ import 'package:slcovid_tracker/core/failures/auth_failures.dart';
 import 'package:slcovid_tracker/core/failures/verify_failures.dart';
 import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/data/firebase/firebase_repository.dart';
+import 'package:slcovid_tracker/data/local/dao/location_dto.dart';
+import 'package:slcovid_tracker/data/local/user/user_repository.dart';
 import 'package:slcovid_tracker/data/repository.dart';
-import 'package:slcovid_tracker/data/local/user_repository.dart';
 import 'package:slcovid_tracker/data/verify/verify_repository.dart';
 import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/models/user.dart';
@@ -15,9 +16,10 @@ class RepositoryImpl extends Repository {
   final VerifyRepository _verifyRepository;
   final FirebaseRepository _firebaseRepository;
   final UserRepository _userRepository;
+  final LocationDao _locationDao;
 
-  RepositoryImpl(
-      this._verifyRepository, this._firebaseRepository, this._userRepository);
+  RepositoryImpl(this._verifyRepository, this._firebaseRepository,
+      this._userRepository, this._locationDao);
 
   @override
   Future<Option<User>> getSignedInUser() => _userRepository.getUser();
@@ -58,4 +60,13 @@ class RepositoryImpl extends Repository {
   @override
   Future<Either<dynamic, Location>> getLocation(String type, String id) =>
       _firebaseRepository.getLocation(type, id);
+
+  @override
+  Future<Either<dynamic, Unit>> checkIn(Location location) async {
+    await _locationDao
+        .insertLocation(location)
+        .catchError((error) => left(error));
+
+    return right(unit);
+  }
 }

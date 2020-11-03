@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
+import 'package:slcovid_tracker/screens/safeentrybeforecheckin/safeentrybeforecheckin_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -229,14 +229,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   'NEW CHECK IN',
                                   textScaleFactor: 1.2,
                                 ),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, Routes.checkin);
-                                  // Navigator.pushNamed(
-                                  //     context, Routes.safeentrybeforecheckin,
-                                  //     arguments: SafeEntryBeforeCheckInScreenArgs(
-                                  //         ("https://safecheckin.com/loc/sc_bus/AXeyPFiEpYBGIfyasNGr")));
-                                },
-                              ),
+
+
+                              onPressed: () {
+                                // Navigator.pushNamed(
+                                //     context, Routes.checkin);
+                                Navigator.pushNamed(
+                                    context, Routes.safeentrybeforecheckin,
+                                    arguments: SafeEntryBeforeCheckInScreenArgs(
+                                        ("https://safecheckin.com/sc_bus|AXeyPFiEpYBGIfyasNGr|Namal Travels|NM-0001")));
+                              },
                             ),
                           ),
                           Expanded(

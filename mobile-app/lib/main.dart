@@ -4,6 +4,6 @@ import 'package:slcovid_tracker/covid_trace.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureDependencies();
   runApp(CovidTrace());
 }

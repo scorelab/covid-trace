@@ -2,19 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:slcovid_tracker/models/location.dart';
+import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:slcovid_tracker/states/checkin_bloc/checkin_bloc.dart';
 
 class SafeEntryBeforeCheckInScreenArgs {
   final String url;
 
   SafeEntryBeforeCheckInScreenArgs(this.url);
-}
-
-class SafeEntryLocation {
-  final String type;
-  final String id;
-
-  SafeEntryLocation(this.type, this.id);
 }
 
 class SafeEntryBeforeCheckInScreen extends StatefulWidget {
@@ -32,6 +26,7 @@ class _SafeEntryBeforeCheckInScreenState
     extends State<SafeEntryBeforeCheckInScreen> {
   final SafeEntryBeforeCheckInScreenArgs _args;
   bool _fetching = false;
+  bool _checking = false;
   bool _isInvalidUrl = false;
   Location _location;
 
@@ -55,6 +50,11 @@ class _SafeEntryBeforeCheckInScreenState
               _fetching = true;
             });
           }
+          if (state is Checking) {
+            setState(() {
+              _checking = true;
+            });
+          }
           if (state is FetchSuccess) {
             setState(() {
               _fetching = false;
@@ -69,6 +69,17 @@ class _SafeEntryBeforeCheckInScreenState
             setState(() {
               _fetching = false;
               _isInvalidUrl = true;
+            });
+          }
+          if (state is CheckSuccess) {
+            setState(() {
+              _checking = false;
+            });
+            Navigator.pushReplacementNamed(context, Routes.safeentrycheckin, arguments: _location);
+          }
+          if (state is CheckFailed) {
+            setState(() {
+              _checking = false;
             });
           }
         },
@@ -137,14 +148,16 @@ class _SafeEntryBeforeCheckInScreenState
                                   borderRadius: BorderRadius.circular(30.0)),
                               color: Theme.of(context).primaryColor,
                               textColor: Colors.white,
-                              child: Text(
-                                'CHECK IN',
-                                textScaleFactor: 1.5,
-                              ),
+                              child: _checking
+                                  ? CircularProgressIndicator(
+                                      backgroundColor: Colors.white,
+                                    )
+                                  : Text(
+                                      'CHECK IN',
+                                      textScaleFactor: 1.5,
+                                    ),
                               onPressed: () {
-                                Navigator.pushNamed(
-                                    context, '/safeentrycheckin');
-                                //CALL CHECK IN FUNCTION
+                                _onCheck();
                               },
                             ),
                           ),
@@ -165,26 +178,8 @@ class _SafeEntryBeforeCheckInScreenState
   Widget _buildLocationDetails(BuildContext context) {
     if (_location == null) return Container();
 
-    var title = "";
-    var subtitle = "";
-
-    if (_location is LocationLocation) {
-      LocationLocation location = _location as LocationLocation;
-      title = location.name;
-      subtitle = location.address;
-    } else if (_location is BusLocation) {
-      BusLocation location = _location as BusLocation;
-      title = location.name;
-      subtitle = location.busRouteNo + " - " + location.busNo;
-    } else if (_location is TrainLocation) {
-      TrainLocation location = _location as TrainLocation;
-      title = location.trainName;
-      subtitle = location.trainNo;
-    } else if (_location is VehicleLocation) {
-      VehicleLocation location = _location as VehicleLocation;
-      title = location.name;
-      subtitle = location.vehicleNo;
-    }
+    var title = _location.name;
+    var subtitle = _location.address;
 
     return ListTile(
       tileColor: Colors.grey[200],
@@ -199,5 +194,9 @@ class _SafeEntryBeforeCheckInScreenState
       ),
       enabled: false,
     );
+  }
+
+  void _onCheck() {
+    BlocProvider.of<CheckInBloc>(context).add(CheckEvent(location: _location));
   }
 }

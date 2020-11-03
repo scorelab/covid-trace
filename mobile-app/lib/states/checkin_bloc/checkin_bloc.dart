@@ -16,37 +16,37 @@ part 'checkin_state.dart';
 class CheckInBloc extends Bloc<CheckInEvent, CheckInState> {
   final Repository _repository;
 
-  CheckInBloc(
-    this._repository,
-  ) : super(Initializing());
+  CheckInBloc(this._repository) : super(Initializing());
 
   @override
   Stream<CheckInState> mapEventToState(
     CheckInEvent event,
   ) async* {
-    print(event);
-
     if (event is FetchLocationEvent) {
       yield Fetching();
-      SafeEntryLocation qRLocation = _parseUrl(event.args);
+      Location qRLocation = _parseUrl(event.args);
 
       if (qRLocation != null) {
-        yield (await _repository.getLocation(qRLocation.type, qRLocation.id))
-            .fold(
-                (l) => FetchFailed(error: l), (r) => FetchSuccess(location: r));
+        yield FetchSuccess(location: qRLocation);
       } else
         yield InvalidQR();
     }
+
+    if (event is CheckEvent) {
+      yield Checking();
+
+      yield (await _repository.checkIn(event.location))
+          .fold((l) => CheckFailed(error: l), (r) => CheckSuccess());
+    }
   }
 
-  SafeEntryLocation _parseUrl(args) {
+  Location _parseUrl(args) {
+    // TODO - Update parsing logic based on the QR design
     if (args == null) return null;
 
-    var splitUrl = args.url.split('/');
-    print(splitUrl);
+    var data = args.url.split('/')[3].split("|");
 
-    if (splitUrl[3] != 'loc' || splitUrl.length != 6) return null;
-
-    return SafeEntryLocation(splitUrl[4], splitUrl[5]);
+    // Parse id, name, address, type
+    return Location(data[1], data[2], data[3], data[0]);
   }
 }
