@@ -12,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     String _lastcheckin = "University of Colombo";
     bool _notcheckoutcompletely = true;
-    bool _safe = true;
+    bool _safe = false;
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
