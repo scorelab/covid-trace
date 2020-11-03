@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:slcovid_tracker/routing/routes.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -197,7 +198,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, '/safeentrybeforecheckin');
+                                    context, Routes.checkin);
+                                // Navigator.pushNamed(
+                                //     context, Routes.safeentrybeforecheckin,
+                                //     arguments: SafeEntryBeforeCheckInScreenArgs(
+                                //         ("https://safecheckin.com/loc/sc_bus/AXeyPFiEpYBGIfyasNGr")));
                               },
                             ),
                           ),

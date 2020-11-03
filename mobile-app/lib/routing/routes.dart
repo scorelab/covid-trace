@@ -9,6 +9,7 @@ class Routes {
   static const verification = "/verification";
   static const main = "/main";
   static const historypossible = "/historypossible";
+  static const checkin = "/checkin";
   static const safeentrybeforecheckin = "/safeentrybeforecheckin";
   static const safeentrycheckin = "/safeentrycheckin";
   static const checkout = "/checkout";
@@ -21,6 +22,7 @@ class Routes {
     router.define(main, handler: mainHandler);
     router.define(historypossible, handler: historypossibleHandler);
     router.define(verification, handler: verificationHandler);
+    router.define(checkin, handler: checkinHandler);
     router.define(safeentrybeforecheckin, handler: safeentrybeforecheckinHandler);
     router.define(safeentrycheckin, handler: safeentrycheckinHandler);
     router.define(checkout, handler: checkoutHandler);
