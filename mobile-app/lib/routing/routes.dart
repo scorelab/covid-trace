@@ -8,6 +8,7 @@ class Routes {
   static const permission = "/permission";
   static const verification = "/verification";
   static const main = "/main";
+  static const history = "/history";
   static const historypossible = "/historypossible";
   static const safeentrybeforecheckin = "/safeentrybeforecheckin";
   static const safeentrycheckin = "/safeentrycheckin";
@@ -19,7 +20,6 @@ class Routes {
     router.define(signup, handler: signupHandler);
     router.define(permission, handler: permissionHandler);
     router.define(main, handler: mainHandler);
-    router.define(historypossible, handler: historypossibleHandler);
     router.define(verification, handler: verificationHandler);
     router.define(safeentrybeforecheckin, handler: safeentrybeforecheckinHandler);
     router.define(safeentrycheckin, handler: safeentrycheckinHandler);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+var _state = true;
+
 class HistoryScreen extends StatefulWidget {
   @override
   _HistoryScreenState createState() => _HistoryScreenState();
@@ -38,7 +40,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     textScaleFactor: 1,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/history');
+                    setState(() {
+                      _state = true;
+                    });
                   },
                 ),
               ),
@@ -55,43 +59,84 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     textScaleFactor: 1,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/historypossible');
+                    setState(() {
+                      _state = false;
+                    });
                   },
                 ),
               ),
             ],
           ),
           Divider(),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  color: Theme.of(context).accentColor,
-                  elevation: 2.0,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      child: Icon(
-                        Icons.location_on_rounded,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    title: Text("University of Colombo", //data.name[index]
-                        style: TextStyle(color: Colors.black, fontSize: 16)),
-                    subtitle: Text(
-                        "2020-08-02\n" //data.date[index]
-                        "From "
-                        "9.30 AM " //data.time[index]
-                        "to "
-                        "10.00 AM", //data.time[index]
-                        style: TextStyle(color: Colors.black54)),
+          (_state)
+              ?
+              //Normal History
+              Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        color: Theme.of(context).accentColor,
+                        elevation: 2.0,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            child: Icon(
+                              Icons.location_on_rounded,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          title: Text(
+                              "University of Colombo", //data.name[index]
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16)),
+                          subtitle: Text(
+                              "2020-08-02\n" //data.date[index]
+                              "From "
+                              "9.30 AM " //data.time[index]
+                              "to "
+                              "10.00 AM", //data.time[index]
+                              style: TextStyle(color: Colors.black54)),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
+                )
+              :
+              //Possible exposures
+              Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: 3,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        color: Theme.of(context).accentColor,
+                        elevation: 2.0,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            child: Icon(
+                              Icons.location_on_rounded,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          title: Text(
+                              "University of Colombo", //data.name[index]
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16)),
+                          subtitle: Text(
+                              "2020-08-02\n" //data.date[index]
+                              "From "
+                              "9.30 AM " //data.time[index]
+                              "to "
+                              "10.00 AM", //data.time[index]
+                              style: TextStyle(color: Colors.black54)),
+                        ),
+                      );
+                    },
+                  ),
+                ),
         ],
       ),
     );
