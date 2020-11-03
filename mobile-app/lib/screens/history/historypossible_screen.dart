@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class HistoryScreen extends StatefulWidget {
+class HistoryPossibleScreen extends StatefulWidget {
   @override
-  _HistoryScreenState createState() => _HistoryScreenState();
+  _HistoryPossibleScreenState createState() => _HistoryPossibleScreenState();
 }
 
-class _HistoryScreenState extends State<HistoryScreen> {
+class _HistoryPossibleScreenState extends State<HistoryPossibleScreen> {
   @override
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
@@ -31,7 +31,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
-                  color: Theme.of(context).primaryColor,
+                  color: Colors.grey,
                   textColor: Colors.white,
                   child: Text(
                     'ALL RECORDS',
@@ -48,7 +48,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
-                  color: Colors.grey,
+                  color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   child: Text(
                     'POSSIBLE EXPOSURES',
@@ -65,7 +65,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: 5,
+              itemCount: 3,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
                   color: Theme.of(context).accentColor,
@@ -82,10 +82,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         style: TextStyle(color: Colors.black, fontSize: 16)),
                     subtitle: Text(
                         "2020-08-02\n" //data.date[index]
-                        "From "
-                        "9.30 AM " //data.time[index]
-                        "to "
-                        "10.00 AM", //data.time[index]
+                            "From "
+                            "9.30 AM " //data.time[index]
+                            "to "
+                            "10.00 AM", //data.time[index]
                         style: TextStyle(color: Colors.black54)),
                   ),
                 );

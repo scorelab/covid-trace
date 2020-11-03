@@ -107,7 +107,7 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                       textScaleFactor: 1.5,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/home');
+                      Navigator.pushNamed(context, '/main');
                     },
                   ),
                 ),

@@ -14,18 +14,21 @@ class VerifyRepositoryImpl extends VerifyRepository {
   // Future<Option<User>> getSignedInUser() async => optionOf(null);
 
   @override
-  Future<Either<VerifyFailure, Unit>> sendVerification(User user) async {
+  Future<Either<VerifyFailure, String>> sendVerification(User user) async {
     var otpSendResult = await _sendOTP(user.phoneNumber);
     return otpSendResult.fold(
       (l) => left(l),
-      (otp) async {
-        final receivedOtpResult = await _listenOTP();
-        return receivedOtpResult.fold(
-          (l) => left(l),
-          (_) {
-            return right(unit);
-          },
-        );
+      (otp) => right(otp),
+    );
+  }
+
+  @override
+  Future<Either<VerifyFailure, Unit>> checkCode(String code) async {
+    var receivedOtpResult = await _listenOTP(code);
+    return receivedOtpResult.fold(
+      (l) => left(l),
+      (_) {
+        return right(unit);
       },
     );
   }
@@ -41,13 +44,13 @@ class VerifyRepositoryImpl extends VerifyRepository {
     return right(code.toString());
   }
 
-  Future<Either<VerifyFailure, String>> _listenOTP() async {
+  Future<Either<VerifyFailure, String>> _listenOTP(String code) async {
     SmsReceiver receiver = new SmsReceiver();
     var result = await receiver.onSmsReceived
         .timeout(Duration(seconds: 5), onTimeout: (EventSink sink) {
           sink.close();
         })
-        .first
+        .singleWhere((sms) => sms.body.contains(code))
         .catchError((onError) {
           left(OTPReadFailure());
         });

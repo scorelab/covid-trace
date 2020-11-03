@@ -35,7 +35,7 @@ class SplashScreen extends StatelessWidget {
               .navigateTo(context, Routes.signin, clearStack: true);
         }
         if (state is Authenticated) {
-          Application.router.navigateTo(context, Routes.home, clearStack: true);
+          Application.router.navigateTo(context, Routes.main, clearStack: true);
         }
       },
       child: Scaffold(
@@ -57,7 +57,7 @@ class SplashScreen extends StatelessWidget {
                     children: [
                       image2,
                       Text(
-                        "COVID-19 TRACKER",
+                        "SAFE CHECK IN",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).primaryColor,
@@ -83,7 +83,7 @@ class SplashScreen extends StatelessWidget {
                   "Voluntary Drive to Expose Potential Covid - 19 \nSpread",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                       color: Color(0xff626262),
                       fontSize: 15),
                 )

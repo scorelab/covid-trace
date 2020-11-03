@@ -27,8 +27,8 @@ class _SigninScreenState extends State<SigninScreen> {
     AssetImage assetImage = AssetImage('asset/images/signin.png');
     Image image = Image(
       image: assetImage,
-      width: screenWidth * 0.8,
-      height: screenHeight * 0.4,
+      width: screenWidth,
+      height: screenHeight * 0.32,
     );
     return BlocListener<AuthBloc, AuthState>(
         listener: (BuildContext context, AuthState state) {
@@ -52,7 +52,8 @@ class _SigninScreenState extends State<SigninScreen> {
             setState(() {
               _isLoading = false;
             });
-            Application.router.navigateTo(context, "/home");
+            Application.router
+                .navigateTo(context, Routes.main, clearStack: true);
           }
         },
         cubit: Provider.of<AuthBloc>(context),
@@ -61,16 +62,16 @@ class _SigninScreenState extends State<SigninScreen> {
             builder: (context) => Form(
               key: _signinFormKey,
               child: Padding(
-                padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
+                padding: EdgeInsets.only(
+                    top: screenHeight * 0.02, left: 10.0, right: 10.0),
                 child: ListView(
                   children: <Widget>[
-                    Container(height: 50),
                     Center(
                       child: Text(
                         "Welcome Back",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontSize: 20),
                       ),
                     ),
@@ -116,11 +117,9 @@ class _SigninScreenState extends State<SigninScreen> {
                               textScaleFactor: 1.5,
                             ),
                             onPressed: () {
-                              setState(() {
-                                if (_signinFormKey.currentState.validate()) {
-                                  _signIn();
-                                }
-                              });
+                              if (_signinFormKey.currentState.validate()) {
+                                _signIn();
+                              }
                             },
                           ),
                         ),

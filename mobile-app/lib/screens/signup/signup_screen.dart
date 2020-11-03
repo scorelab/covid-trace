@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/routing/application.dart';
+import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
+
+var _n = 55.00;
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -17,6 +20,13 @@ class _SignupScreenState extends State<SignupScreen> {
   final _nicTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
   bool _signingin = false;
+
+  @override
+  void initState() {
+    setState(() {
+      _n = 55;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +61,7 @@ class _SignupScreenState extends State<SignupScreen> {
           setState(() {
             _signingin = false;
           });
-          Application.router.navigateTo(context, "/verification");
+          Application.router.navigateTo(context, Routes.verification);
         }
       },
       cubit: Provider.of<AuthBloc>(context),
@@ -79,12 +89,87 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
 
-                  //Phone Number
-                  LabelTextFormField(
-                    labelText: "Phone Number",
-                    controller: _phoneNumberTEController,
-                    keyboardType: TextInputType.number,
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05, vertical: 8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: ButtonTheme(
+                            height: _n,
+                            minWidth: 20,
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(topLeft:  Radius.circular(10), bottomLeft:  Radius.circular(10)),
+                              ),
+                              color: Colors.grey[200],
+                              textColor: Colors.black54,
+                              child: Text(
+                                '+94',
+                                textScaleFactor: 1.5,
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 8,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(vertical: 8.0),
+                            child: TextFormField(
+                              controller: _phoneNumberTEController,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  setState(() {
+                                    _n = 80;
+                                  });
+
+                                  return "Phone number is required";
+                                }
+                                if (value.toString().length < 9){
+                                  setState(() {
+                                    _n = 80;
+                                  });
+                                  return "9 digits required. Ex: 713456789";
+                                }
+                                if (value.toString().length > 9){
+                                  setState(() {
+                                    _n = 80;
+                                  });
+                                  return "Phone number should be valid";
+                                }
+                                if (!(value is int)){
+                                  setState(() {
+                                    _n = 80;
+                                  });
+                                  return "Phone number should only contains digits";
+                                }
+                                return null;
+                              },
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                  labelText: 'Phone Number',
+                                  prefixIcon: Padding(
+                                    padding: EdgeInsets.only(top: 0),
+                                    // add padding to adjust icon
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(width: 0.4),
+                                    borderRadius: BorderRadius.only(topRight:  Radius.circular(10), bottomRight:  Radius.circular(10)),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.only(topRight:  Radius.circular(10), bottomRight:  Radius.circular(10)),
+                                  )),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
+
+
+                  //Phone Number
 
                   //NIC
                   LabelTextFormField(
@@ -138,11 +223,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             textScaleFactor: 1.5,
                           ),
                           onPressed: () {
-                            setState(() {
-                              if (_signupFormKey.currentState.validate()) {
-                                _onSignUp();
-                              }
-                            });
+                            if (_signupFormKey.currentState.validate()) {
+                              _onSignUp();
+                            }
                           },
                         ),
                       ),
@@ -185,11 +268,11 @@ class _SignupScreenState extends State<SignupScreen> {
   void _onSignUp() {
     if (_signupFormKey.currentState.validate()) {
       final nic = _nicTEController.text.toString();
-      final phoneNumber = _phoneNumberTEController.text.toString();
+      final phoneNumber = "+94" + _phoneNumberTEController.text.toString();
       final password = _passwordTEController.text.toString();
 
-      Provider.of<AuthBloc>(context, listen: false)
-          .add(SignUpEvent(request: UserRegisterRequest(nic, phoneNumber, password)));
+      Provider.of<AuthBloc>(context, listen: false).add(SignUpEvent(
+          request: UserRegisterRequest(nic, phoneNumber, password)));
     }
   }
 
