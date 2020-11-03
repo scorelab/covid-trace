@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import AddOrganisation from './components/AddOrganisation/AddOrganisation';
 //Higher Order Components
 import HomePage from './components/home/HomePage';
+import Locations from './components/Locations/Locations';
 import Organisation from './components/Organisations/Organisation';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
@@ -18,6 +19,7 @@ class App extends Component {
         <Route exact path="/signUp" component={SignUp} />
         <Route exact path="/organisations" component={Organisation} />
         <Route exact path="/addOrganisation" component={AddOrganisation} />
+        <Route exact path="/locations" component={Locations} />
       </Switch>
     );
   }
