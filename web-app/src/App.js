@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import AddOrganisation from './components/AddOrganisation/AddOrganisation';
 //Higher Order Components
 import HomePage from './components/home/HomePage';
 import Organisation from './components/Organisations/Organisation';
@@ -16,6 +17,7 @@ class App extends Component {
         <Route exact path="/signIn" component={SignIn} />
         <Route exact path="/signUp" component={SignUp} />
         <Route exact path="/organisations" component={Organisation} />
+        <Route exact path="/addOrganisation" component={AddOrganisation} />
       </Switch>
     );
   }

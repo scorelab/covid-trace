@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Card, Input, Button, Row, Col } from 'antd';
+import { Layout, Card, Button, Row, Col } from 'antd';
 import Navbar from '../UiElements/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 const { Content } = Layout;
