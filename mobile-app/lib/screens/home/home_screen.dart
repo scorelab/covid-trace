@@ -10,35 +10,30 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    String _lastcheckin = "University of Colombo";
+    bool _notcheckoutcompletely = true;
+    bool _safe = false;
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
+    var screenHeight = _mediaQueryData.size.height;
     AssetImage assetImage = AssetImage('asset/images/home.png');
     AssetImage assetImage2 = AssetImage('asset/images/slflag.png');
-    Image image = Image(image: assetImage, width: screenWidth * 0.4);
+    Image image = Image(
+      image: assetImage,
+      width: screenWidth,
+      height: _notcheckoutcompletely ? screenHeight * 0.3 : screenHeight * 0.4,
+    );
     Image image2 = Image(
       image: assetImage2,
       width: screenWidth * 0.17,
     );
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () {
-              //Call a fuction to log out
-            },
-            color: Colors.grey[700],
-          ),
-        ],
-      ),
       body: Padding(
         padding: EdgeInsets.only(
-          top: 0,
-        ),
+            top: _notcheckoutcompletely
+                ? screenHeight * 0.01
+                : screenHeight * 0.03),
         child: Center(
           child: ListView(
             children: [
@@ -47,137 +42,125 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: image,
                 ),
               ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.1, vertical: 20.0),
-                child: ListTile(
-                  tileColor: Colors.grey[200],
-                  leading: Icon(
-                    Icons.beenhere_outlined,
-                    color: Theme.of(context).primaryColor,
-                    size: 50.0,
-                  ),
-                  title: Text(
-                    'You are okay',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: RichText(
-                    text: TextSpan(
-                      style: TextStyle(color: Colors.black54),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text:
-                                'Based on all your Trace Together and SafeEntry records from the last 14 days. '),
-                        TextSpan(
-                            text: 'See Details->',
-                            style: TextStyle(color: Colors.blue),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.pushNamed(
-                                    context, '/historypossible');
-                              }),
+              _safe
+                  ? _safedetails(
+                      screenWidth: screenWidth,
+                      icon: Icons.beenhere_outlined,
+                      title: 'You are ok',
+                      col: Theme.of(context).primaryColor,
+                      subtile:
+                          'Based on all your Safe Check-In records from the last 14 days.',
+                    )
+                  : _safedetails(
+                      screenWidth: screenWidth,
+                      icon: Icons.warning,
+                      col: Colors.red,
+                      title: 'Alert',
+                      subtile:
+                          "You're exposed to Covid-19 positive person, Don't worry. Please contact the authorities and self-quarantine.",
+                    ),
+              !_notcheckoutcompletely
+                  ? Row(
+                      children: <Widget>[
+                        Container(
+                          width: screenWidth * 0.09,
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: screenWidth * 0.7,
+                            child: Center(
+                              child: Text(
+                                "Let's stand together",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Container(
+                              child: image2,
+                            ),
+                          ),
+                        ),
                       ],
-                    ),
-                  ),
-                  enabled: false,
-                ),
-              ),
-              Row(
-                children: <Widget>[
-                  Container(
-                    width: screenWidth * 0.09,
-                  ),
-                  Expanded(
-                    child: Container(
-                      width: screenWidth * 0.7,
-                      child: Center(
-                        child: Text(
-                          "Let's stand together",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey,
-                              fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Container(
-                        child: image2,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                    )
+                  : SizedBox(),
               Container(height: 5),
-              Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.07, vertical: 2.0),
-                child: Card(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ListTile(
-                        title: Text(
-                          'Last QR check In',
-                          style: TextStyle(color: Colors.grey, fontSize: 20),
-                        ),
-                        subtitle: Text(
-                          'University of Colombo',
-                          //Location name should be replaced
-                          style: TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
+              _notcheckoutcompletely
+                  ? Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 0.07, vertical: 2.0),
+                      child: Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              title: Text(
+                                'Last QR check In',
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 20),
+                              ),
+                              subtitle: Text(
+                                '$_lastcheckin',
+                                //Location name should be replaced
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                            ),
+                            ButtonBar(
+                              alignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                ButtonTheme(
+                                  height: 40,
+                                  minWidth: screenWidth * 0.38,
+                                  child: RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.0)),
+                                    color: Colors.grey,
+                                    textColor: Colors.white,
+                                    child: Text(
+                                      'VIEW PASS',
+                                      textScaleFactor: 1.3,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/safeentrycheckin');
+                                    },
+                                  ),
+                                ),
+                                ButtonTheme(
+                                  height: 40,
+                                  minWidth: screenWidth * 0.38,
+                                  child: RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.0)),
+                                    color: Theme.of(context).primaryColor,
+                                    textColor: Colors.white,
+                                    child: Text(
+                                      'CHECK OUT',
+                                      textScaleFactor: 1.3,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, '/checkout');
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                      ButtonBar(
-                        alignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          ButtonTheme(
-                            height: 40,
-                            minWidth: screenWidth * 0.38,
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Colors.grey,
-                              textColor: Colors.white,
-                              child: Text(
-                                'VIEW PASS',
-                                textScaleFactor: 1.3,
-                              ),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, '/safeentrycheckin');
-                              },
-                            ),
-                          ),
-                          ButtonTheme(
-                            height: 40,
-                            minWidth: screenWidth * 0.38,
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Theme.of(context).primaryColor,
-                              textColor: Colors.white,
-                              child: Text(
-                                'CHECK OUT',
-                                textScaleFactor: 1.3,
-                              ),
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/checkout');
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                    )
+                  : SizedBox(),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.07),
                 child: Card(
@@ -227,6 +210,51 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _safedetails extends StatelessWidget {
+  const _safedetails(
+      {@required this.title,
+      @required this.screenWidth,
+      @required this.subtile,
+      @required this.icon,
+      @required this.col});
+
+  final double screenWidth;
+  final String title;
+  final String subtile;
+  final IconData icon;
+  final Color col;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin:
+          EdgeInsets.symmetric(horizontal: screenWidth * 0.1, vertical: 20.0),
+      child: ListTile(
+        tileColor: Color(0xffd9d9d9),
+        leading: Icon(
+          icon,
+          color: col,
+          size: 50.0,
+        ),
+        title: Text(
+          title,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        subtitle: RichText(
+          text: TextSpan(
+            style: TextStyle(color: Colors.black87),
+            children: <TextSpan>[
+              TextSpan(text: subtile),
+            ],
+          ),
+        ),
+        enabled: false,
       ),
     );
   }
