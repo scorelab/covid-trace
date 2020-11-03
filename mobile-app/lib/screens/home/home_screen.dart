@@ -46,10 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ? _safedetails(
                       screenWidth: screenWidth,
                       icon: Icons.beenhere_outlined,
-                      title: 'You are okay',
+                      title: 'You are ok',
                       col: Theme.of(context).primaryColor,
                       subtile:
-                          'Based on all your Trace Together and SafeEntry records from the last 14 days. ',
+                          'Based on all your Safe Check-In records from the last 14 days.',
                     )
                   : _safedetails(
                       screenWidth: screenWidth,
@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       col: Colors.red,
                       title: 'Alert',
                       subtile:
-                          "You're exposed to Covid-19 positive person, Don't worry. Please contact the Authorities and self-quarantine",
+                          "You're exposed to Covid-19 positive person, Don't worry. Please contact the authorities and self-quarantine",
                     ),
               !_notcheckoutcompletely
                   ? Row(
