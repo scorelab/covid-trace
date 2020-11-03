@@ -1,27 +1,36 @@
-class Location {
-  final String id;
-  final String locationId;
+import 'package:floor/floor.dart';
 
-  Location(this.id, this.locationId);
+@entity
+class Location {
+  @primaryKey
+  final String id;
+
+  final String name;
+  final String address;
+  final String type;
+  DateTime time;
+
+  Location(this.id, this.name, this.address, this.type) {
+    this.time = DateTime.now();
+  }
 }
 
 class BusLocation extends Location {
-  final String name;
-  final String busNo;
+  final String locationId;
   final String busRouteNo;
   final String contactNumber;
   final String type;
 
-  BusLocation(String id, String locationId, this.name, this.busNo,
+  BusLocation(String id, String name, String busNo, this.locationId,
       this.busRouteNo, this.contactNumber, this.type)
-      : super(id, locationId);
+      : super(id, name, busNo, 'sc_bus');
 
   factory BusLocation.fromFirebase(String id, Map<String, dynamic> document) {
     return BusLocation(
       id,
-      document['location_id'],
       document['name'],
       document['bus_no'],
+      document['location_id'],
       document['bus_route_no'],
       document['contact_number'],
       document['type'],
@@ -30,8 +39,7 @@ class BusLocation extends Location {
 }
 
 class LocationLocation extends Location {
-  final String name;
-  final String address;
+  final String locationId;
   final String postalCode;
   final String city;
   final String district;
@@ -42,9 +50,9 @@ class LocationLocation extends Location {
 
   LocationLocation(
       String id,
-      String locationId,
-      this.name,
-      this.address,
+      String name,
+      String address,
+      this.locationId,
       this.postalCode,
       this.city,
       this.district,
@@ -52,15 +60,15 @@ class LocationLocation extends Location {
       this.floorNo,
       this.premiseType,
       this.unitType)
-      : super(id, locationId);
+      : super(id, name, address, 'sc_location');
 
   factory LocationLocation.fromFirebase(
       String id, Map<String, dynamic> document) {
     return LocationLocation(
       id,
-      document['location_id'],
       document['name'],
       document['address'],
+      document['location_id'],
       document['postal_code'],
       document['city'],
       document['district'],
@@ -73,33 +81,31 @@ class LocationLocation extends Location {
 }
 
 class TrainLocation extends Location {
-  final String trainName;
-  final String trainNo;
+  final String locationId;
   final String carriageNo;
   final String type;
 
-  TrainLocation(String id, String locationId, this.trainName, this.trainNo,
+  TrainLocation(String id, String trainName, String trainNo, this.locationId,
       this.carriageNo, this.type)
-      : super(id, locationId);
+      : super(id, trainName, trainNo, 'sc_train');
 
   factory TrainLocation.fromFirebase(String id, Map<String, dynamic> document) {
-    return TrainLocation(id, document['location_id'], document['train_name'],
-        document['train_no'], document['carriage_no'], document['type']);
+    return TrainLocation(id, document['train_name'], document['train_no'],
+        document['location_id'], document['carriage_no'], document['type']);
   }
 }
 
 class VehicleLocation extends Location {
-  final String name;
-  final String vehicleNo;
+  final String locationId;
   final String contactNumber;
 
-  VehicleLocation(String id, String locationId, this.name, this.vehicleNo,
+  VehicleLocation(String id, String name, String vehicleNo, this.locationId,
       this.contactNumber)
-      : super(id, locationId);
+      : super(id, name, vehicleNo, 'sc_vehicle');
 
   factory VehicleLocation.fromFirebase(
       String id, Map<String, dynamic> document) {
-    return VehicleLocation(id, document['location_id'], document['name'],
-        document['vehicle_no'], document['contact_number']);
+    return VehicleLocation(id, document['name'], document['vehicle_no'],
+        document['location_id'], document['contact_number']);
   }
 }

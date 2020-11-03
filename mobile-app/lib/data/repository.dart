@@ -16,4 +16,6 @@ abstract class Repository {
   Future<Either<VerifyFailure, Unit>> verifyPhone(String userId);
 
   Future<Either<dynamic, Location>> getLocation(String type, String id);
+
+  Future<Either<dynamic, Unit>> checkIn(Location location);
 }
