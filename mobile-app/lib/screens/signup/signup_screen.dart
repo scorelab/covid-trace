@@ -20,6 +20,14 @@ class _SignupScreenState extends State<SignupScreen> {
   final _nicTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
   bool _signingin = false;
+
+  @override
+  void initState() {
+    setState(() {
+      _n = 55;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
@@ -269,10 +277,6 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _signin() {
-    setState(() {
-      _n = 55;
-    });
     Application.router.pop(context);
-
   }
 }
