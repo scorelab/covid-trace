@@ -24,45 +24,48 @@ class _HistoryScreenState extends State<HistoryScreen> {
       ),
       body: Column(
         children: [
-          ButtonBar(
-            alignment: MainAxisAlignment.spaceBetween,
+          Row(
             children: <Widget>[
-              ButtonTheme(
-                height: 30,
-                minWidth: screenWidth * 0.47,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  child: Text(
-                    'ALL RECORDS',
-                    textScaleFactor: 1,
+              Expanded(
+                child: ButtonTheme(
+                  height: 30,
+                  minWidth: screenWidth * 0.47,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    color: Theme.of(context).primaryColor,
+                    textColor: Colors.white,
+                    child: Text(
+                      'ALL RECORDS',
+                      textScaleFactor: 0.85,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _state = true;
+                      });
+                    },
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _state = true;
-                    });
-                  },
                 ),
               ),
-              ButtonTheme(
-                height: 30,
-                minWidth: screenWidth * 0.47,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  color: Colors.grey,
-                  textColor: Colors.white,
-                  child: Text(
-                    'POSSIBLE EXPOSURES',
-                    textScaleFactor: 1,
+              Expanded(
+                child: ButtonTheme(
+                  height: 30,
+                  minWidth: screenWidth * 0.47,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    color: Colors.grey,
+                    textColor: Colors.white,
+                    child: Text(
+                      'POSSIBLE EXPOSURES',
+                      textScaleFactor: 0.85,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _state = false;
+                      });
+                    },
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _state = false;
-                    });
-                  },
                 ),
               ),
             ],
