@@ -7,6 +7,7 @@ import 'package:slcovid_tracker/data/firebase/firebase_repository.dart';
 import 'package:slcovid_tracker/data/repository.dart';
 import 'package:slcovid_tracker/data/local/user_repository.dart';
 import 'package:slcovid_tracker/data/verify/verify_repository.dart';
+import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/models/user.dart';
 
 @LazySingleton(as: Repository)
@@ -53,4 +54,8 @@ class RepositoryImpl extends Repository {
   @override
   Future<Either<VerifyFailure, Unit>> verifyPhone(String userId) =>
       _firebaseRepository.verifyPhone(userId);
+
+  @override
+  Future<Either<dynamic, Location>> getLocation(String type, String id) =>
+      _firebaseRepository.getLocation(type, id);
 }

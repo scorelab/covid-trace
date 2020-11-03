@@ -8,13 +8,15 @@ import 'package:slcovid_tracker/core/failures/auth_failures.dart';
 import 'package:slcovid_tracker/core/failures/verify_failures.dart';
 import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/data/firebase/firebase_repository.dart';
+import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/models/user.dart';
 import 'package:crypto/crypto.dart';
 
 @Injectable(as: FirebaseRepository)
 class FirebaseRepositoryImpl extends FirebaseRepository {
   @override
-  Future<Either<AuthFailure, User>> createUser(UserRegisterRequest request) async {
+  Future<Either<AuthFailure, User>> createUser(
+      UserRegisterRequest request) async {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
     var hashedNic = sha256.convert(utf8.encode(request.nic)).toString();
@@ -80,5 +82,30 @@ class FirebaseRepositoryImpl extends FirebaseRepository {
     }).catchError((error) => left(UnknownVerifyError(error: error)));
 
     return right(unit);
+  }
+
+  @override
+  Future<Either<dynamic, Location>> getLocation(String type, String id) async {
+    CollectionReference locations = FirebaseFirestore.instance.collection(type);
+
+    var document =
+        await locations.doc(id).get().catchError((error) => left(error));
+
+    switch (type) {
+      case 'sc_bus':
+        return right(BusLocation.fromFirebase(id, document.data()));
+        break;
+      case 'sc_location':
+        return right(LocationLocation.fromFirebase(id, document.data()));
+        break;
+      case 'sc_train':
+        return right(TrainLocation.fromFirebase(id, document.data()));
+        break;
+      case 'sc_vehicle':
+        return right(VehicleLocation.fromFirebase(id, document.data()));
+        break;
+      default:
+        return left(null);
+    }
   }
 }
