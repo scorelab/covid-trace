@@ -8,6 +8,7 @@ import Navbar from '../UiElements/Navbar';
 const { Content } = Layout;
 
 function SignIn(props) {
+
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
 
@@ -85,6 +86,7 @@ function SignIn(props) {
       </Layout>
     </div>
   );
+
 }
 
 const mapStateToProps = ({ auth }) => ({
