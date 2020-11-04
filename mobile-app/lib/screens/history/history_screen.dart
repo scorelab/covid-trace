@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:slcovid_tracker/models/location.dart';
+import 'package:slcovid_tracker/states/checkin_bloc/checkin_bloc.dart';
+import 'package:intl/intl.dart';
 
 var _state = true;
 
@@ -71,77 +75,52 @@ class _HistoryScreenState extends State<HistoryScreen> {
             ],
           ),
           Divider(),
-          (_state)
-              ?
-              //Normal History
-              Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        color: Theme.of(context).accentColor,
-                        elevation: 2.0,
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            child: Icon(
-                              Icons.location_on_rounded,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          title: Text(
-                              "University of Colombo", //data.name[index]
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16)),
-                          subtitle: Text(
-                              "2020-08-02\n" //data.date[index]
-                              "From "
-                              "9.30 AM " //data.time[index]
-                              "to "
-                              "10.00 AM", //data.time[index]
-                              style: TextStyle(color: Colors.black54)),
-                        ),
-                      );
-                    },
-                  ),
-                )
-              :
-              //Possible exposures
-              Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 3,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        color: Theme.of(context).accentColor,
-                        elevation: 2.0,
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            child: Icon(
-                              Icons.location_on_rounded,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          title: Text(
-                              "University of Colombo", //data.name[index]
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16)),
-                          subtitle: Text(
-                              "2020-08-02\n" //data.date[index]
-                              "From "
-                              "9.30 AM " //data.time[index]
-                              "to "
-                              "10.00 AM", //data.time[index]
-                              style: TextStyle(color: Colors.black54)),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+          StreamBuilder(
+            stream: BlocProvider.of<CheckInBloc>(context).checkedOutLocations,
+            builder: _buildCheckedOut,
+          ),
         ],
       ),
     );
+  }
+
+  Widget _buildCheckedOut(context, AsyncSnapshot<List<Location>> snapshot) {
+    if (!snapshot.hasData) {
+      return Container();
+    }
+
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: snapshot.data.length,
+      itemBuilder: (BuildContext context, int index) {
+        Location location = snapshot.data[index];
+        return Card(
+          color: Theme.of(context).accentColor,
+          elevation: 2.0,
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.transparent,
+              child: Icon(
+                Icons.location_on_rounded,
+                color: Colors.grey,
+              ),
+            ),
+            title: Text(location.name, //data.name[index]
+                style: TextStyle(color: Colors.black, fontSize: 16)),
+            subtitle: Text(_genTimePeriod(location.checkIn, location.checkOut),
+                //data.time[index]
+                style: TextStyle(color: Colors.black54)),
+          ),
+        );
+      },
+    );
+  }
+
+  String _genTimePeriod(DateTime start, DateTime end) {
+    String day = DateFormat('yyyy-MM-dd').format(start);
+    String startTime = DateFormat('jm').format(start);
+    String endTime = DateFormat('jm').format(start);
+
+    return day + " from " + startTime + " to " + endTime;
   }
 }

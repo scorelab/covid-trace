@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/routing/application.dart';
-import 'package:slcovid_tracker/routing/routes.dart';
 
 class CheckOutScreen extends StatefulWidget {
+  final Location args;
+
+  const CheckOutScreen({Key key, this.args}) : super(key: key);
+
   @override
-  _CheckOutScreenState createState() => _CheckOutScreenState();
+  _CheckOutScreenState createState() => _CheckOutScreenState(args);
 }
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
+  final Location _args;
+
+  _CheckOutScreenState(this._args);
+
   @override
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
@@ -58,19 +66,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 Container(
                                   height: 50,
                                 ),
-                                Text('1 Nov 2020',
+                                Text(_args.checkOut.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
-                                        fontSize: 25)), //Date
-                                Container(
-                                  height: 10,
-                                ),
-                                Text('2:15 PM',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black54,
-                                        fontSize: 25)), //Time
+                                        fontSize: 25)), //Dae
                                 Container(
                                   height: 10,
                                 ),
@@ -109,7 +109,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       textScaleFactor: 1.5,
                     ),
                     onPressed: () {
-                      Application.router.navigateTo(context, Routes.main);
+                      Application.router.pop(context);
                     },
                   ),
                 ),

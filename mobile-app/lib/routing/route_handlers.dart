@@ -69,5 +69,7 @@ var safeentrycheckinHandler = Handler(
 
 var checkoutHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return CheckOutScreen();
+  final args = context.arguments as Location;
+
+  return CheckOutScreen(args: args);
 });

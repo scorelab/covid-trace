@@ -18,4 +18,7 @@ abstract class Repository {
   Future<Either<dynamic, Location>> getLocation(String type, String id);
 
   Future<Either<dynamic, Unit>> checkIn(Location location);
+  Future<Either<dynamic, Location>> checkOut(Location location);
+  Stream<List<Location>> checkedInLocations();
+  Stream<List<Location>> checkedOutLocations();
 }

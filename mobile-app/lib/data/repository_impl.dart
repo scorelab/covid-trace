@@ -63,10 +63,32 @@ class RepositoryImpl extends Repository {
 
   @override
   Future<Either<dynamic, Unit>> checkIn(Location location) async {
+    print(location);
+
     await _locationDao
         .insertLocation(location)
         .catchError((error) => left(error));
 
     return right(unit);
   }
+
+  @override
+  Future<Either<dynamic, Location>> checkOut(Location location) async {
+    location.checkedIn = false;
+    location.checkOut = DateTime.now();
+
+    await _locationDao
+        .updateLocation(location)
+        .catchError((error) => left(error));
+
+    return right(location);
+  }
+
+  @override
+  Stream<List<Location>> checkedInLocations() =>
+      _locationDao.findCheckedInLocations();
+
+  @override
+  Stream<List<Location>> checkedOutLocations() =>
+      _locationDao.findCheckedOutLocations();
 }
