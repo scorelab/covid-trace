@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
-import 'package:slcovid_tracker/screens/safeentrybeforecheckin/safeentrybeforecheckin_screen.dart';
+import 'package:slcovid_tracker/states/checkin_bloc/checkin_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,30 +13,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    String _lastcheckin = "University of Colombo";
-    bool _notcheckoutcompletely = true;
     bool _safe = false;
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
     AssetImage assetImage = AssetImage('asset/images/home.png');
-    AssetImage assetImage2 = AssetImage('asset/images/slflag.png');
     Image image = Image(
       image: assetImage,
       width: screenWidth,
-      height: _notcheckoutcompletely ? screenHeight * 0.3 : screenHeight * 0.4,
-    );
-    Image image2 = Image(
-      image: assetImage2,
-      width: screenWidth * 0.17,
     );
 
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(
-            top: _notcheckoutcompletely
-                ? screenHeight * 0.01
-                : screenHeight * 0.03),
+            top: screenHeight * 0.03),
         child: Center(
           child: ListView(
             children: [
@@ -60,131 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       subtile:
                           "You're exposed to Covid-19 positive person, Don't worry. Please contact the authorities and self-quarantine.",
                     ),
-              !_notcheckoutcompletely
-                  ? Row(
-                      children: <Widget>[
-                        Container(
-                          width: screenWidth * 0.09,
-                        ),
-                        Expanded(
-                          child: Container(
-                            width: screenWidth * 0.7,
-                            child: Center(
-                              child: Text(
-                                "Let's stand together",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 20),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Container(
-                              child: image2,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  : SizedBox(),
               Container(height: 5),
-              _notcheckoutcompletely
-                  ? Container(
-                      margin: EdgeInsets.symmetric(
-                          horizontal: screenWidth * 0.07, vertical: 2.0),
-                      child: Card(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            ListTile(
-                              title: Text(
-                                'Last QR check In',
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 20),
-                              ),
-                              subtitle: Text(
-                                '$_lastcheckin',
-                                //Location name should be replaced
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16),
-                              ),
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                Expanded(
-                                  flex: 15,
-                                  child: ButtonTheme(
-                                    height: 40,
-                                    minWidth: screenWidth * 0.38,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30.0)),
-                                      color: Colors.grey,
-                                      textColor: Colors.white,
-                                      child: Text(
-                                        'VIEW PASS',
-                                        textScaleFactor: 1.3,
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, '/safeentrycheckin');
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                Expanded(
-                                  flex: 15,
-                                  child: ButtonTheme(
-                                    height: 40,
-                                    minWidth: screenWidth * 0.38,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30.0)),
-                                      color: Theme.of(context).primaryColor,
-                                      textColor: Colors.white,
-                                      child: Text(
-                                        'CHECK OUT',
-                                        textScaleFactor: 1.3,
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, '/checkout');
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              height: 8,
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  : SizedBox(),
+              StreamBuilder(
+                  stream:
+                      BlocProvider.of<CheckInBloc>(context).checkedInLocations,
+                  builder: _buildCurrentCheckIn),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.07),
+                margin: EdgeInsets.symmetric(horizontal: 24),
                 child: Card(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -232,12 +106,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
                               onPressed: () {
-                                // Navigator.pushNamed(
-                                //     context, Routes.checkin);
                                 Navigator.pushNamed(
-                                    context, Routes.safeentrybeforecheckin,
-                                    arguments: SafeEntryBeforeCheckInScreenArgs(
-                                        ("https://safecheckin.com/sc_bus|AXeyPFiEpYBGIfyasNGr|Namal Travels|NM-0001")));
+                                    context, Routes.checkin);
+                                // Navigator.pushNamed(
+                                //     context, Routes.safeentrybeforecheckin,
+                                //     arguments: SafeEntryBeforeCheckInScreenArgs(
+                                //         ("https://safecheckin.com/sc_bus|AXeyPFiEpYBGIfyasNGr|Namal Travels|NM-0001")));
                               },
                             ),
                           ),
@@ -258,6 +132,106 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildCurrentCheckIn(context, AsyncSnapshot<List<Location>> snapshot) {
+    if (!snapshot.hasData || snapshot.data.length <= 0) {
+      return _buildNotCheckedIn(context);
+    }
+
+    Location lastCheckIn = snapshot.data[0];
+
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              title: Text(
+                'Last QR check In',
+                style: TextStyle(color: Colors.grey, fontSize: 20),
+              ),
+              subtitle: Text(
+                lastCheckIn.name,
+                //Location name should be replaced
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+            ),
+            ButtonBar(
+              alignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                ButtonTheme(
+                  height: 40,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    color: Colors.grey,
+                    textColor: Colors.white,
+                    child: Text(
+                      'VIEW PASS',
+                      textScaleFactor: 1.3,
+                    ),
+                    onPressed: () => _onViewPass(lastCheckIn),
+                  ),
+                ),
+                ButtonTheme(
+                  height: 40,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    color: Theme.of(context).primaryColor,
+                    textColor: Colors.white,
+                    child: Text(
+                      'CHECK OUT',
+                      textScaleFactor: 1.3,
+                    ),
+                    onPressed: () => _onCheckOut(lastCheckIn),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _onViewPass(Location location) {
+    Navigator.pushNamed(context, Routes.safeentrycheckin, arguments: location);
+  }
+
+  void _onCheckOut(Location location) async {
+    (await BlocProvider.of<CheckInBloc>(context).checkOut(location)).fold(
+      (l) => null,
+      (r) => Navigator.pushNamed(context, Routes.checkout, arguments: r),
+    );
+  }
+
+  Widget _buildNotCheckedIn(context) {
+    AssetImage assetImage2 = AssetImage('asset/images/slflag.png');
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            "Let's stand together",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
+          ),
+          Image(
+            image: assetImage2,
+            width: 64,
+          ),
+        ],
       ),
     );
   }

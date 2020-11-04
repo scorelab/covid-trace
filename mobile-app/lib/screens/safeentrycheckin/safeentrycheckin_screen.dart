@@ -65,7 +65,7 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                                 Container(
                                   height: 50,
                                 ),
-                                Text(_location.time.toString(),
+                                Text(_location.checkIn.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,

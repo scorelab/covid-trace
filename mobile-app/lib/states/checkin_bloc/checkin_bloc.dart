@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
@@ -40,6 +41,18 @@ class CheckInBloc extends Bloc<CheckInEvent, CheckInState> {
     }
   }
 
+  Stream<List<Location>> get checkedInLocations {
+    return _repository.checkedInLocations();
+  }
+
+  Stream<List<Location>> get checkedOutLocations {
+    return _repository.checkedOutLocations();
+  }
+
+  Future<Either<dynamic, Location>> checkOut(Location location) {
+    return _repository.checkOut(location);
+  }
+
   Location _parseUrl(args) {
     // TODO - Update parsing logic based on the QR design
     if (args == null) return null;
@@ -47,6 +60,6 @@ class CheckInBloc extends Bloc<CheckInEvent, CheckInState> {
     var data = args.url.split('/')[3].split("|");
 
     // Parse id, name, address, type
-    return Location(data[1], data[2], data[3], data[0]);
+    return Location.create(data[1], data[2], data[3], data[0]);
   }
 }
