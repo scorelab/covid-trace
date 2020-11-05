@@ -6,6 +6,7 @@ import AddOrganisation from './components/AddOrganisation/AddOrganisation';
 import HomePage from './components/home/HomePage';
 import Locations from './components/Locations/Locations';
 import Organisation from './components/Organisations/Organisation';
+import Registration from './components/Registrations/Registration';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import './index.css';
@@ -20,6 +21,7 @@ class App extends Component {
         <Route exact path="/organisations" component={Organisation} />
         <Route exact path="/addOrganisation" component={AddOrganisation} />
         <Route exact path="/locations" component={Locations} />
+        <Route exact path="/registration" component={Registration} />
       </Switch>
     );
   }
