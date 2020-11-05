@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Layout, Card, Divider, Row, Col, Input, Typography, Select, Checkbox, Button } from 'antd';
+import { Layout, Card, Row, Col, Input, Typography, Select } from 'antd';
 import Navbar from '../UiElements/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import BusinessReg from './BusinessReg';
 import BusReg from './BusReg';
 import ThreeWheelReg from './ThreeWheelReg';
 import TrainReg from './TrainReg';
-const { Text, Link } = Typography;
+const { Text } = Typography;
 const { Content } = Layout;
 const { Option } = Select;
 
@@ -27,6 +27,24 @@ function Registration(props) {
         console.log(`checked = ${e.target.checked}`);
     }
 
+    let component = null;
+
+    switch (requestType) {
+        case "Business":
+            component = <BusinessReg />;
+            break;
+        case "Bus":
+            component = <BusReg />;
+            break;
+        case "Three Wheel":
+            component = <ThreeWheelReg />;
+            break;
+        case "Train":
+            component = <TrainReg />;
+            break;
+        default:
+            component = <div></div>;
+    }
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ height: "100vh" }}>
@@ -49,8 +67,7 @@ function Registration(props) {
                             </Col>
                         </Row>
                     </Card>
-
-
+                    {component}
                 </Content>
                 <BottomFooter />
             </Layout>

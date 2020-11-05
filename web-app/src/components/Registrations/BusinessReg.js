@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-import { Layout, Card, Divider, Row, Col, Input, Typography, Select, Checkbox, Button } from 'antd';
-import Navbar from '../UiElements/Navbar';
-import BottomFooter from '../UiElements/BottomFooter';
-const { Text, Link } = Typography;
-const { Content } = Layout;
+import {  Card, Divider, Row, Col, Input, Select, Checkbox, Button } from 'antd';
 const { Option } = Select;
 
 function BusinessReg(props) {

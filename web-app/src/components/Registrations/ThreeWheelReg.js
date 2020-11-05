@@ -1,10 +1,5 @@
 import React, { useState } from 'react'
-import { Layout, Card, Divider, Row, Col, Input, Typography, Select, Checkbox, Button } from 'antd';
-import Navbar from '../UiElements/Navbar';
-import BottomFooter from '../UiElements/BottomFooter';
-const { Text, Link } = Typography;
-const { Content } = Layout;
-const { Option } = Select;
+import {  Card, Row, Col, Input, Checkbox, Button } from 'antd';
 
 function ThreeWheelReg(props) {
 
