@@ -5,6 +5,7 @@ import BottomFooter from '../UiElements/BottomFooter';
 import BusinessReg from './BusinessReg';
 import BusReg from './BusReg';
 import ThreeWheelReg from './ThreeWheelReg';
+import TrainReg from './TrainReg';
 const { Text, Link } = Typography;
 const { Content } = Layout;
 const { Option } = Select;
@@ -49,7 +50,6 @@ function Registration(props) {
                         </Row>
                     </Card>
 
-                
 
                 </Content>
                 <BottomFooter />
