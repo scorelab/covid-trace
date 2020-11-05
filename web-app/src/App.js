@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import AddOrganisation from './components/AddOrganisation/AddOrganisation';
+import CompanyInfo from './components/CompanyInfo/CompanyInfo';
 //Higher Order Components
 import HomePage from './components/home/HomePage';
 import Locations from './components/Locations/Locations';
@@ -22,6 +23,7 @@ class App extends Component {
         <Route exact path="/addOrganisation" component={AddOrganisation} />
         <Route exact path="/locations" component={Locations} />
         <Route exact path="/registration" component={Registration} />
+        <Route exact path="/companyInfo" component={CompanyInfo} />
       </Switch>
     );
   }

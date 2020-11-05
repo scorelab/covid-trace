@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Layout, Card, Row, Col, Input, Typography, Select } from 'antd';
 import Navbar from '../UiElements/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
-import BusinessReg from './BusinessReg';
-import BusReg from './BusReg';
-import ThreeWheelReg from './ThreeWheelReg';
-import TrainReg from './TrainReg';
+import BusinessReg from './ReqTypeComponents/BusinessReg';
+import BusReg from './ReqTypeComponents/BusReg';
+import ThreeWheelReg from './ReqTypeComponents/ThreeWheelReg';
+import TrainReg from './ReqTypeComponents/TrainReg';
 const { Text } = Typography;
 const { Content } = Layout;
 const { Option } = Select;
