@@ -3,6 +3,7 @@ import { Layout, Card, Divider, Row, Col, Input, Typography, Select, Checkbox, B
 import Navbar from '../UiElements/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import BusinessReg from './BusinessReg';
+import BusReg from './BusReg';
 const { Text, Link } = Typography;
 const { Content } = Layout;
 const { Option } = Select;
@@ -46,9 +47,8 @@ function Registration(props) {
                             </Col>
                         </Row>
                     </Card>
-                    
 
-                     <BusinessReg />
+                  
 
 
                 </Content>
