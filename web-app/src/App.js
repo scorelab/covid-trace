@@ -10,6 +10,7 @@ import Organisation from './components/Organisations/Organisation';
 import Registration from './components/Registrations/Registration';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
+import UserProfile from './components/UserProfile/UserProfile';
 import './index.css';
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
         <Route exact path="/locations" component={Locations} />
         <Route exact path="/registration" component={Registration} />
         <Route exact path="/companyInfo" component={CompanyInfo} />
+        <Route exact path="/userProfile" component={UserProfile} />
       </Switch>
     );
   }
