@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Location` (`id` TEXT, `name` TEXT, `address` TEXT, `type` TEXT, `time` INTEGER, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `Location` (`pk` INTEGER PRIMARY KEY AUTOINCREMENT, `id` TEXT, `name` TEXT, `address` TEXT, `type` TEXT, `checkIn` INTEGER, `checkOut` INTEGER, `checkedIn` INTEGER)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -101,11 +101,31 @@ class _$LocationDao extends LocationDao {
             database,
             'Location',
             (Location item) => <String, dynamic>{
+                  'pk': item.pk,
                   'id': item.id,
                   'name': item.name,
                   'address': item.address,
                   'type': item.type,
-                  'time': _dateTimeConverter.encode(item.time)
+                  'checkIn': _dateTimeConverter.encode(item.checkIn),
+                  'checkOut': _dateTimeConverter.encode(item.checkOut),
+                  'checkedIn':
+                      item.checkedIn == null ? null : (item.checkedIn ? 1 : 0)
+                },
+            changeListener),
+        _locationUpdateAdapter = UpdateAdapter(
+            database,
+            'Location',
+            ['pk'],
+            (Location item) => <String, dynamic>{
+                  'pk': item.pk,
+                  'id': item.id,
+                  'name': item.name,
+                  'address': item.address,
+                  'type': item.type,
+                  'checkIn': _dateTimeConverter.encode(item.checkIn),
+                  'checkOut': _dateTimeConverter.encode(item.checkOut),
+                  'checkedIn':
+                      item.checkedIn == null ? null : (item.checkedIn ? 1 : 0)
                 },
             changeListener);
 
@@ -117,16 +137,56 @@ class _$LocationDao extends LocationDao {
 
   final InsertionAdapter<Location> _locationInsertionAdapter;
 
+  final UpdateAdapter<Location> _locationUpdateAdapter;
+
   @override
   Stream<List<Location>> findAllLocations() {
     return _queryAdapter.queryListStream('SELECT * FROM Location',
         queryableName: 'Location',
         isView: false,
         mapper: (Map<String, dynamic> row) => Location(
+            row['pk'] as int,
             row['id'] as String,
             row['name'] as String,
             row['address'] as String,
-            row['type'] as String));
+            row['type'] as String,
+            _dateTimeConverter.decode(row['checkIn'] as int),
+            _dateTimeConverter.decode(row['checkOut'] as int),
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0));
+  }
+
+  @override
+  Stream<List<Location>> findCheckedOutLocations() {
+    return _queryAdapter.queryListStream(
+        'SELECT * FROM Location WHERE checkedIn = 0 ORDER BY checkOut DESC',
+        queryableName: 'Location',
+        isView: false,
+        mapper: (Map<String, dynamic> row) => Location(
+            row['pk'] as int,
+            row['id'] as String,
+            row['name'] as String,
+            row['address'] as String,
+            row['type'] as String,
+            _dateTimeConverter.decode(row['checkIn'] as int),
+            _dateTimeConverter.decode(row['checkOut'] as int),
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0));
+  }
+
+  @override
+  Stream<List<Location>> findCheckedInLocations() {
+    return _queryAdapter.queryListStream(
+        'SELECT * FROM Location WHERE checkedIn = 1 ORDER BY checkIn DESC',
+        queryableName: 'Location',
+        isView: false,
+        mapper: (Map<String, dynamic> row) => Location(
+            row['pk'] as int,
+            row['id'] as String,
+            row['name'] as String,
+            row['address'] as String,
+            row['type'] as String,
+            _dateTimeConverter.decode(row['checkIn'] as int),
+            _dateTimeConverter.decode(row['checkOut'] as int),
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0));
   }
 
   @override
@@ -134,15 +194,25 @@ class _$LocationDao extends LocationDao {
     return _queryAdapter.query('SELECT * FROM Location WHERE id = ?',
         arguments: <dynamic>[id],
         mapper: (Map<String, dynamic> row) => Location(
+            row['pk'] as int,
             row['id'] as String,
             row['name'] as String,
             row['address'] as String,
-            row['type'] as String));
+            row['type'] as String,
+            _dateTimeConverter.decode(row['checkIn'] as int),
+            _dateTimeConverter.decode(row['checkOut'] as int),
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0));
   }
 
   @override
   Future<void> insertLocation(Location location) async {
     await _locationInsertionAdapter.insert(location, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<int> updateLocation(Location location) {
+    return _locationUpdateAdapter.updateAndReturnChangedRows(
+        location, OnConflictStrategy.abort);
   }
 }
 
