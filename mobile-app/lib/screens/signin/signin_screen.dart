@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
+import 'package:country_code_picker/country_code_picker.dart';
+
+var _countryCode;
 
 class SigninScreen extends StatefulWidget {
   @override
@@ -18,6 +21,12 @@ class _SigninScreenState extends State<SigninScreen> {
   TextEditingController _numberController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   var _isLoading = false;
+
+  void _onCountryChange(CountryCode countryCode) {
+    setState(() {
+      _countryCode = countryCode.toString();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +91,93 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
 
                     //Phone Number
-                    LabelTextFormField(
-                      labelText: "Phone Number",
-                      controller: _numberController,
-                      keyboardType: TextInputType.number,
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 0.05, vertical: 8.0),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            flex: 14,
+                            child: ButtonTheme(
+                              height: 55,
+                              child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10)),
+                                ),
+                                color: Colors.grey[100],
+                                textColor: Colors.white,
+                                child: CountryCodePicker(
+                                  onChanged: _onCountryChange,
+                                  initialSelection: 'LK',
+                                  showCountryOnly: false,
+                                  showOnlyCountryWhenClosed: false,
+                                  alignLeft: false,
+                                ),
+                                onPressed: () {},
+                              ),
+                            ),
+
+                            // ButtonTheme(
+                            //   height: _n,
+                            //   minWidth: 20,
+                            //   child: RaisedButton(
+                            //     shape: RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.only(
+                            //           topLeft: Radius.circular(10),
+                            //           bottomLeft: Radius.circular(10)),
+                            //     ),
+                            //     color: Colors.grey[200],
+                            //     textColor: Colors.black54,
+                            //     child: Text(
+                            //       '+94',
+                            //       textScaleFactor: 1.5,
+                            //     ),
+                            //     onPressed: () {},
+                            //   ),
+                            // ),
+                          ),
+
+                          Expanded(
+                            flex: 1,
+                            child: Container(),
+                          ),
+                          Expanded(
+                            flex: 21,
+                            child: Container(
+                              margin: EdgeInsets.symmetric(vertical: 8.0),
+                              child: TextFormField(
+                                controller: _numberController,
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return "Phone number is required";
+                                  }
+                                  return null;
+                                },
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                    labelText: 'Phone Number',
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.only(top: 0),
+                                      // add padding to adjust icon
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(width: 0.4),
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(10),
+                                          bottomRight: Radius.circular(10)),
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(10),
+                                          bottomRight: Radius.circular(10)),
+                                    )),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
 
                     //Password
@@ -159,7 +251,7 @@ class _SigninScreenState extends State<SigninScreen> {
 
   void _signIn() {
     if (_signinFormKey.currentState.validate()) {
-      final phoneNumber = _numberController.text.toString();
+      final phoneNumber = _countryCode + _numberController.text.toString();
       final password = _passwordController.text.toString();
 
       Provider.of<AuthBloc>(context, listen: false)

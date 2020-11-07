@@ -89,6 +89,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
 
+                      //Phone Number
                       Container(
                         margin: EdgeInsets.symmetric(
                             horizontal: screenWidth * 0.05, vertical: 8.0),
@@ -104,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                         topLeft: Radius.circular(10),
                                         bottomLeft: Radius.circular(10)),
                                   ),
-                                  color: Colors.grey,
+                                  color: Colors.grey[100],
                                   textColor: Colors.white,
                                   child: CountryCodePicker(
                                     onChanged: _onCountryChange,
@@ -141,6 +142,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               flex: 1,
                               child: Container(),
                             ),
+
                             Expanded(
                               flex: 21,
                               child: Container(
@@ -177,8 +179,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           ],
                         ),
                       ),
-
-                      //Phone Number
 
                       //NIC
                       LabelTextFormField(
