@@ -53,7 +53,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   button: false,
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 25,
+                ),
+                   const Divider(
+                  color: Colors.black,
+                  height: 20,
+                  thickness: 3,
+                 
+                ),
+                 SizedBox(
+                  height: 15,
                 ),
                 Text("Help and Feedback",
                     style: TextStyle(
@@ -63,6 +72,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(
                   height: 10,
                 ),
+             
+
                 _Helpandfeedbackitems(
                   name: "Report a Problem",
                 ),
@@ -73,7 +84,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   name: "Help",
                 ),
                 SizedBox(
+                  height: 10,
+                ),
+                       const Divider(
+                  color: Colors.black,
                   height: 20,
+                  thickness: 3,
+                 
+                ),
+                  SizedBox(
+                  height: 10,
                 ),
                 Text("Change Language",
                     style: TextStyle(
