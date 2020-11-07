@@ -8,7 +8,7 @@ import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 
-var _countryCode;
+var _countryCode = "+94";
 
 class SignupScreen extends StatefulWidget {
   @override
