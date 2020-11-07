@@ -13,7 +13,7 @@ function UserProfile(props) {
             <Layout style={{ height: "100vh" }}>
                 <Navbar />
                 <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Card style={{ width: '1049px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "703px", position: "sticky" }}>
+                    <Card style={{ width: '1049px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "71vh", position: "sticky" }}>
                         <Tabs tabPosition='left'>
                             <TabPane tab="Profile" key="1">
                                 <Profile />
