@@ -142,7 +142,6 @@ class _SafeEntryBeforeCheckInScreenState
                           margin: EdgeInsets.symmetric(
                               horizontal: screenWidth * 0.18, vertical: 30.0),
                           child: ButtonTheme(
-                            height: 50,
                             child: RaisedButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30.0)),
@@ -154,7 +153,6 @@ class _SafeEntryBeforeCheckInScreenState
                                     )
                                   : Text(
                                       'CHECK IN',
-                                      textScaleFactor: 1.5,
                                     ),
                               onPressed: () {
                                 _onCheck();

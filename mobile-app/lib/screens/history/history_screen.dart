@@ -32,7 +32,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
             children: <Widget>[
               Expanded(
                 child: ButtonTheme(
-                  height: 30,
                   minWidth: screenWidth * 0.47,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
@@ -41,7 +40,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     textColor: Colors.white,
                     child: Text(
                       'ALL RECORDS',
-                      textScaleFactor: 0.85,
                     ),
                     onPressed: () {
                       setState(() {
@@ -53,7 +51,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
               Expanded(
                 child: ButtonTheme(
-                  height: 30,
                   minWidth: screenWidth * 0.47,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
@@ -62,7 +59,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     textColor: Colors.white,
                     child: Text(
                       'POSSIBLE EXPOSURES',
-                      textScaleFactor: 0.85,
                     ),
                     onPressed: () {
                       setState(() {

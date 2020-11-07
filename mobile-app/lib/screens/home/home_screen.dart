@@ -92,7 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           Expanded(
                             flex: 14,
                             child: ButtonTheme(
-                              height: 40,
                               minWidth: screenWidth * 0.38,
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
@@ -101,9 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 textColor: Colors.white,
                                 child: Text(
                                   'NEW CHECK IN',
-                                  textScaleFactor: 1.2,
                                 ),
-
 
                               onPressed: () {
                                 Navigator.pushNamed(
@@ -167,7 +164,6 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 ButtonTheme(
-                  height: 40,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
@@ -175,13 +171,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     textColor: Colors.white,
                     child: Text(
                       'VIEW PASS',
-                      textScaleFactor: 1.3,
                     ),
                     onPressed: () => _onViewPass(lastCheckIn),
                   ),
                 ),
                 ButtonTheme(
-                  height: 40,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
@@ -189,7 +183,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     textColor: Colors.white,
                     child: Text(
                       'CHECK OUT',
-                      textScaleFactor: 1.3,
                     ),
                     onPressed: () => _onCheckOut(lastCheckIn),
                   ),

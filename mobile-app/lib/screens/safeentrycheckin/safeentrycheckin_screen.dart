@@ -97,7 +97,6 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                 margin: EdgeInsets.symmetric(
                     horizontal: screenWidth * 0.1, vertical: 30.0),
                 child: ButtonTheme(
-                  height: 50,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
@@ -105,7 +104,6 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                     textColor: Colors.white,
                     child: Text(
                       'BACK TO HOME',
-                      textScaleFactor: 1.5,
                     ),
                     onPressed: () {
                       Navigator.pop(context);
