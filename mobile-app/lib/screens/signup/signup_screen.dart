@@ -29,6 +29,13 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   @override
+  void initState() {
+    setState(() {
+      _countryCode = "+94";
+    });
+  }
+  
+  @override
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
