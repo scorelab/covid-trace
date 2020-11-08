@@ -56,9 +56,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 25,
                 ),
                    const Divider(
-                  color: Colors.black,
+                  color: Colors.grey,
                   height: 20,
-                  thickness: 3,
+                  thickness: 1,
                  
                 ),
                  SizedBox(
@@ -87,9 +87,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 10,
                 ),
                        const Divider(
-                  color: Colors.black,
+                  color: Colors.grey,
                   height: 20,
-                  thickness: 3,
+                  thickness: 1,
                  
                 ),
                   SizedBox(

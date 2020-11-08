@@ -50,7 +50,7 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                     _infected
                         ? Container(
-                            height: 115,
+                            height: 110,
                             width: screenWidth * 0.8,
                             decoration: BoxDecoration(
                               boxShadow: [
@@ -64,22 +64,34 @@ class _UploadScreenState extends State<UploadScreen> {
                               color: Color(0xffd9d9d9),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.only(left:2.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(
                                     height: 2,
                                   ),
                                   Text(
-                                    "You are infected with Covid-19 \n Type this code to upload your data for contact tracing \n $_code",
+                                    "You are infected with Covid-19 Type\nthis code to upload your data for contact tracing",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.red,
+                                        fontSize: 20),
+                                  ),
+                              
+                                   Text(
+                                    "$_code",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.red,
-                                        fontSize: 21),
-                                  )
+                                        fontSize: 20),
+                                  ),
+
+                               
+                                  
                                 ],
                               ),
                             ),
@@ -164,8 +176,8 @@ class _UploadScreenState extends State<UploadScreen> {
                           }
                         },
                         pinTheme: PinTheme(
-                          inactiveColor: Colors.black,
-                          inactiveFillColor: Colors.red,
+                          inactiveColor: Colors.grey,
+                          inactiveFillColor: Colors.grey,
                           activeFillColor: Colors.white10,
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(2),
