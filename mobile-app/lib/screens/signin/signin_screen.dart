@@ -69,6 +69,8 @@ class _SigninScreenState extends State<SigninScreen> {
         actions: <Widget>[
           new FlatButton(
             onPressed: () {
+              _numberController.clear();
+              _passwordController.clear();
               Navigator.of(context, rootNavigator: true)
                   .pop(); // dismisses only the dialog and returns nothing
             },
@@ -206,9 +208,11 @@ class _SigninScreenState extends State<SigninScreen> {
 
                     //Password
                     LabelTextFormField(
+                      
                       labelText: "Password",
                       controller: _passwordController,
                       isObscure: true,
+
                     ),
 
                     //Login button
