@@ -13,7 +13,7 @@ class _UploadScreenState extends State<UploadScreen> {
   String currentText = "";
   @override
   Widget build(BuildContext context) {
-    bool _infected = true;
+    bool _infected = false;
     int _code = 957181;
     TextEditingController _codeController = TextEditingController();
     var _mediaQueryData = MediaQuery.of(context);
@@ -34,7 +34,7 @@ class _UploadScreenState extends State<UploadScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.only(
-            top: _infected ? screenHeight * 0.02 : screenHeight * 0.06,
+            top: _infected ? screenHeight * 0.02 : screenHeight * 0.02,
             left: 10,
             right: 10),
         child: Center(
@@ -172,9 +172,10 @@ class _UploadScreenState extends State<UploadScreen> {
                           }
                         },
                         pinTheme: PinTheme(
-                          inactiveColor: Colors.grey,
-                          inactiveFillColor: Colors.transparent,
+                            inactiveColor: Colors.grey,
+                          inactiveFillColor:Colors.transparent,
                           activeFillColor: Colors.transparent,
+                          activeColor: Colors.black54,
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(2),
                           fieldHeight: 60,
@@ -184,13 +185,7 @@ class _UploadScreenState extends State<UploadScreen> {
                         textStyle: TextStyle(fontSize: 20, height: 1.6),
                         controller: _codeController,
                         keyboardType: TextInputType.number,
-                        boxShadows: [
-                          BoxShadow(
-                            offset: Offset(0, 1),
-                            color: Colors.black12,
-                            blurRadius: 10,
-                          )
-                        ],
+                    
                         onCompleted: (v) {
                           print("Completed");
                         },
