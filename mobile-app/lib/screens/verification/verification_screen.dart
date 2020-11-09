@@ -155,7 +155,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         ),
                         length: 6,
                         obscureText: false,
-                        obscuringCharacter: '*',
+
                         validator: (v) {
                           if (v.length < 6) {
                             return "6 digits required";
@@ -165,18 +165,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         },
                         pinTheme: PinTheme(
                           inactiveColor: Colors.grey,
-                          inactiveFillColor:Colors.grey[500],
-                          activeFillColor: Colors.grey[500],
+                          inactiveFillColor:Colors.transparent,
+                          activeFillColor: Colors.transparent,
                           activeColor: Colors.black54,
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(2),
                           fieldHeight: 50,
                           fieldWidth: 50,
                         ),
-                        cursorColor: Colors.black,
                         textStyle: TextStyle(fontSize: 20, height: 1.6),
                         keyboardType: TextInputType.number,
-
                         onCompleted: (String value) {
                           _matchManual(value);
                         },
