@@ -60,6 +60,25 @@ class _SigninScreenState extends State<SigninScreen> {
           }
           if (state is AuthFailed) {
             print(state.error);
+          showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Error'),
+        content: Text(
+                  "Invalid login credentials. Please try again"),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () {
+              _numberController.clear();
+              _passwordController.clear();
+              Navigator.of(context, rootNavigator: true)
+                  .pop(); // dismisses only the dialog and returns nothing
+            },
+            child: new Text('OK'),
+          ),
+        ],
+      ),
+    );
             setState(() {
               _isLoading = false;
             });
@@ -189,9 +208,11 @@ class _SigninScreenState extends State<SigninScreen> {
 
                     //Password
                     LabelTextFormField(
+                      
                       labelText: "Password",
                       controller: _passwordController,
                       isObscure: true,
+
                     ),
 
                     //Login button
@@ -269,4 +290,6 @@ class _SigninScreenState extends State<SigninScreen> {
   void _signup() {
     Application.router.navigateTo(context, Routes.signup);
   }
+
+  
 }

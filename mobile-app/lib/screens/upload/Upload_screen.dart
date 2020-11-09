@@ -13,7 +13,7 @@ class _UploadScreenState extends State<UploadScreen> {
   String currentText = "";
   @override
   Widget build(BuildContext context) {
-    bool _infected = true;
+    bool _infected = false;
     int _code = 957181;
     TextEditingController _codeController = TextEditingController();
     var _mediaQueryData = MediaQuery.of(context);
@@ -34,7 +34,7 @@ class _UploadScreenState extends State<UploadScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.only(
-            top: _infected ? screenHeight * 0.02 : screenHeight * 0.06,
+            top: _infected ? screenHeight * 0.02 : screenHeight * 0.02,
             left: 10,
             right: 10),
         child: Center(
@@ -50,7 +50,7 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                     _infected
                         ? Container(
-                            height: 115,
+                            height: 110,
                             width: screenWidth * 0.8,
                             decoration: BoxDecoration(
                               boxShadow: [
@@ -64,22 +64,30 @@ class _UploadScreenState extends State<UploadScreen> {
                               color: Color(0xffd9d9d9),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.only(left: 2.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(
                                     height: 2,
                                   ),
                                   Text(
-                                    "You are infected with Covid-19 \n Type this code to upload your data for contact tracing \n $_code",
+                                    "You are infected with Covid-19 Type\nthis code to upload your data for contact tracing",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.red,
+                                        fontSize: 20),
+                                  ),
+                                  Text(
+                                    "$_code",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.red,
-                                        fontSize: 21),
-                                  )
+                                        fontSize: 20),
+                                  ),
                                 ],
                               ),
                             ),
@@ -164,9 +172,10 @@ class _UploadScreenState extends State<UploadScreen> {
                           }
                         },
                         pinTheme: PinTheme(
-                          inactiveColor: Colors.black,
-                          inactiveFillColor: Colors.red,
-                          activeFillColor: Colors.white10,
+                            inactiveColor: Colors.grey,
+                          inactiveFillColor:Colors.transparent,
+                          activeFillColor: Colors.transparent,
+                          activeColor: Colors.black54,
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(2),
                           fieldHeight: 60,
@@ -176,13 +185,7 @@ class _UploadScreenState extends State<UploadScreen> {
                         textStyle: TextStyle(fontSize: 20, height: 1.6),
                         controller: _codeController,
                         keyboardType: TextInputType.number,
-                        boxShadows: [
-                          BoxShadow(
-                            offset: Offset(0, 1),
-                            color: Colors.black12,
-                            blurRadius: 10,
-                          )
-                        ],
+                    
                         onCompleted: (v) {
                           print("Completed");
                         },
