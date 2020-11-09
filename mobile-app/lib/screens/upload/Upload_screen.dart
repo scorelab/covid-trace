@@ -64,7 +64,7 @@ class _UploadScreenState extends State<UploadScreen> {
                               color: Color(0xffd9d9d9),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.only(left:2.0),
+                              padding: const EdgeInsets.only(left: 2.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,8 +80,7 @@ class _UploadScreenState extends State<UploadScreen> {
                                         color: Colors.red,
                                         fontSize: 20),
                                   ),
-                              
-                                   Text(
+                                  Text(
                                     "$_code",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -89,9 +88,6 @@ class _UploadScreenState extends State<UploadScreen> {
                                         color: Colors.red,
                                         fontSize: 20),
                                   ),
-
-                               
-                                  
                                 ],
                               ),
                             ),
@@ -177,8 +173,8 @@ class _UploadScreenState extends State<UploadScreen> {
                         },
                         pinTheme: PinTheme(
                           inactiveColor: Colors.grey,
-                          inactiveFillColor: Colors.grey,
-                          activeFillColor: Colors.white10,
+                          inactiveFillColor: Colors.transparent,
+                          activeFillColor: Colors.transparent,
                           shape: PinCodeFieldShape.box,
                           borderRadius: BorderRadius.circular(2),
                           fieldHeight: 60,
