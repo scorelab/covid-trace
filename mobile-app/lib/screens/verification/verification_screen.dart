@@ -8,6 +8,7 @@ import 'package:slcovid_tracker/models/user.dart';
 import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:slcovid_tracker/states/verify_bloc/verify_bloc.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerificationScreen extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         () {
           if (_start < 1) {
             timer.cancel();
+            Application.router.navigateTo(context, Routes.signup);
           } else {
             _start = _start - 1;
           }
@@ -136,22 +138,70 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       style: TextStyle(color: Colors.grey, fontSize: 15),
                     ),
                   ),
-                  Center(
-                    child: VerificationCode(
-                      textStyle: TextStyle(fontSize: 20.0, color: Colors.grey),
-                      underlineColor: Theme.of(context).primaryColor,
-                      keyboardType: TextInputType.number,
-                      length: 6,
-                      onCompleted: (String value) {
-                        _matchManual(value);
-                      },
-                      onEditing: (bool value) {
-                        setState(() {
-                          //edit
-                        });
-                      },
+
+                  //Box Pin Code field as requested
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: screenHeight * 0.03,
+                      left: screenWidth * 0.07,
+                      right: screenWidth * 0.07
+                    ),
+                    child: Center(
+                      child: PinCodeTextField(
+                        appContext: context,
+                        pastedTextStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        length: 6,
+                        obscureText: false,
+                        obscuringCharacter: '*',
+                        validator: (v) {
+                          if (v.length < 6) {
+                            return "6 digits required";
+                          } else {
+                            return null;
+                          }
+                        },
+                        pinTheme: PinTheme(
+                          inactiveColor: Colors.grey,
+                          inactiveFillColor:Colors.grey[500],
+                          activeFillColor: Colors.grey[500],
+                          activeColor: Colors.black54,
+                          shape: PinCodeFieldShape.box,
+                          borderRadius: BorderRadius.circular(2),
+                          fieldHeight: 50,
+                          fieldWidth: 50,
+                        ),
+                        cursorColor: Colors.black,
+                        textStyle: TextStyle(fontSize: 20, height: 1.6),
+                        keyboardType: TextInputType.number,
+
+                        onCompleted: (String value) {
+                          _matchManual(value);
+                        },
+                        onChanged: (value) {},
+                      ),
                     ),
                   ),
+
+                  // Center(
+                  //   child: VerificationCode(
+                  //     textStyle: TextStyle(fontSize: 20.0, color: Colors.grey),
+                  //     underlineColor: Theme.of(context).primaryColor,
+                  //     keyboardType: TextInputType.number,
+                  //     length: 6,
+                  //     onCompleted: (String value) {
+                  //       _matchManual(value);
+                  //     },
+                  //     onEditing: (bool value) {
+                  //       setState(() {
+                  //         //edit
+                  //       });
+                  //     },
+                  //   ),
+                  // ),
+
                   if (_loading)
                     Center(
                         child: CircularProgressIndicator(
@@ -186,7 +236,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   }
 
   void _matchManual(String code) {
-    if (_code == _code) {
+    if (_code == code) {
       _verifyPhone();
     }
   }
