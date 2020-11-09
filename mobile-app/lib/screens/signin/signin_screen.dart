@@ -60,25 +60,34 @@ class _SigninScreenState extends State<SigninScreen> {
           }
           if (state is AuthFailed) {
             print(state.error);
-          showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Error'),
-        content: Text(
-                  "Invalid login credentials. Please try again"),
-        actions: <Widget>[
-          new FlatButton(
-            onPressed: () {
-              _numberController.clear();
-              _passwordController.clear();
-              Navigator.of(context, rootNavigator: true)
-                  .pop(); // dismisses only the dialog and returns nothing
-            },
-            child: new Text('OK'),
-          ),
-        ],
-      ),
-    );
+            showDialog(
+              context: context,
+              builder: (context) => new AlertDialog(
+                title: new Text(
+                  'Error!',
+                  style: TextStyle(fontSize: 25, color: Colors.white),
+                ),
+                backgroundColor: Theme.of(context).primaryColor,
+                content: Text(
+                  "Invalid login credentials. Please try again",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                actions: <Widget>[
+                  new FlatButton(
+                    onPressed: () {
+                      _numberController.clear();
+                      _passwordController.clear();
+                      Navigator.of(context, rootNavigator: true)
+                          .pop(); // dismisses only the dialog and returns nothing
+                    },
+                    child: new Text(
+                      'OK',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            );
             setState(() {
               _isLoading = false;
             });
@@ -164,7 +173,6 @@ class _SigninScreenState extends State<SigninScreen> {
                             //   ),
                             // ),
                           ),
-
                           Expanded(
                             flex: 1,
                             child: Container(),
@@ -208,11 +216,9 @@ class _SigninScreenState extends State<SigninScreen> {
 
                     //Password
                     LabelTextFormField(
-                      
                       labelText: "Password",
                       controller: _passwordController,
                       isObscure: true,
-
                     ),
 
                     //Login button
@@ -290,6 +296,4 @@ class _SigninScreenState extends State<SigninScreen> {
   void _signup() {
     Application.router.navigateTo(context, Routes.signup);
   }
-
-  
 }
