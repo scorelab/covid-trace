@@ -59,19 +59,20 @@ class _SigninScreenState extends State<SigninScreen> {
             });
           }
           if (state is AuthFailed) {
-            print(state.error);
+            
+            //Getting the error Msh
+            String err=state.error.runtimeType.toString();
             showDialog(
               context: context,
               builder: (context) => new AlertDialog(
                 title: new Text(
-                  'Error!',
+                  'Error Occured!',
                   style: TextStyle(fontSize: 25, color: Colors.white),
                 ),
                 backgroundColor: Theme.of(context).primaryColor,
-                content: Text(
-                  "Invalid login credentials. Please try again",
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
+                content: err=="InvalidCredentials" ? Text("The username or password you have entered is invalid.", style: TextStyle(fontSize: 18, color: Colors.white)): Text("Phone number you are entering is already registered", style: TextStyle(fontSize: 18, color: Colors.white)),
+                  
+            
                 actions: <Widget>[
                   new FlatButton(
                     onPressed: () {
@@ -154,24 +155,7 @@ class _SigninScreenState extends State<SigninScreen> {
                               ),
                             ),
 
-                            // ButtonTheme(
-                            //   height: _n,
-                            //   minWidth: 20,
-                            //   child: RaisedButton(
-                            //     shape: RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.only(
-                            //           topLeft: Radius.circular(10),
-                            //           bottomLeft: Radius.circular(10)),
-                            //     ),
-                            //     color: Colors.grey[200],
-                            //     textColor: Colors.black54,
-                            //     child: Text(
-                            //       '+94',
-                            //       textScaleFactor: 1.5,
-                            //     ),
-                            //     onPressed: () {},
-                            //   ),
-                            // ),
+                    
                           ),
                           Expanded(
                             flex: 1,
