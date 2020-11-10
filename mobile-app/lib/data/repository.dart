@@ -26,7 +26,4 @@ abstract class Repository {
   Stream<List<Location>> getExposedLocations();
   Future<List<Location>> getNonExposedLocations();
   Future<Either<dynamic, Unit>> expose(Location location);
-
-  Future<Either<dynamic, List<InfectedLocation>>> getInfectedLocations(
-      DateTime after);
 }
