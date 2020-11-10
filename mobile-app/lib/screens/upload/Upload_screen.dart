@@ -14,7 +14,7 @@ class _UploadScreenState extends State<UploadScreen> {
  
   @override
   Widget build(BuildContext context) {
-    bool _infected = false;
+    bool _infected = true;
     int _code = 957181;
     TextEditingController _codeController = TextEditingController();
     var _mediaQueryData = MediaQuery.of(context);
@@ -52,7 +52,7 @@ class _UploadScreenState extends State<UploadScreen> {
                     _infected
                         ? Container(
                             height: 110,
-                            width: screenWidth * 0.8,
+                            width: screenWidth * 0.9,
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
@@ -97,7 +97,7 @@ class _UploadScreenState extends State<UploadScreen> {
                             children: [
                               Container(
                                 height: 80,
-                                width: screenWidth * 0.8,
+                                width: screenWidth * 0.9,
                                 decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
@@ -155,7 +155,7 @@ class _UploadScreenState extends State<UploadScreen> {
                       height: 25,
                     ),
                     Container(
-                      width: screenWidth * 0.8,
+                      width: screenWidth * 0.9,
                       child: PinCodeTextField(
                         appContext: context,
                         pastedTextStyle: TextStyle(
@@ -199,7 +199,7 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                     SizedBox(
                       height: 50,
-                      width: screenWidth * 0.8, // specific value
+                      width: screenWidth * 0.9, // specific value
                       child: RaisedButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
