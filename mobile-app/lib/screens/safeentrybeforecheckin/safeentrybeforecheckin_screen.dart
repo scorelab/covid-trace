@@ -195,6 +195,8 @@ class _SafeEntryBeforeCheckInScreenState
   }
 
   void _onCheck() {
-    BlocProvider.of<CheckInBloc>(context).add(CheckEvent(location: _location));
+    if(_location != null){
+      BlocProvider.of<CheckInBloc>(context).add(CheckEvent(location: _location));
+    }
   }
 }
