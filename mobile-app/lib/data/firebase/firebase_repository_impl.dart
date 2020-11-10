@@ -8,6 +8,7 @@ import 'package:slcovid_tracker/core/failures/auth_failures.dart';
 import 'package:slcovid_tracker/core/failures/verify_failures.dart';
 import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/data/firebase/firebase_repository.dart';
+import 'package:slcovid_tracker/models/infected.dart';
 import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/models/user.dart';
 import 'package:crypto/crypto.dart';
@@ -107,5 +108,22 @@ class FirebaseRepositoryImpl extends FirebaseRepository {
       default:
         return left(null);
     }
+  }
+
+  @override
+  Future<Either<dynamic, List<InfectedLocation>>> getInfectedLocations(
+      DateTime after) async {
+    CollectionReference locations =
+        FirebaseFirestore.instance.collection('sc_infected_check_in_out');
+
+    var document = await locations
+        .where('upload_time', isGreaterThan: after)
+        .orderBy('upload_time', descending: true)
+        .get()
+        .catchError((error) => left(error));
+
+    return right(document.docs
+        .map((e) => InfectedLocation.fromFirebase(e.id, e.data()))
+        .toList());
   }
 }

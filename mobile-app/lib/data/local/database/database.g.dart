@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Location` (`pk` INTEGER PRIMARY KEY AUTOINCREMENT, `id` TEXT, `name` TEXT, `address` TEXT, `type` TEXT, `checkIn` INTEGER, `checkOut` INTEGER, `checkedIn` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `Location` (`pk` INTEGER PRIMARY KEY AUTOINCREMENT, `id` TEXT, `name` TEXT, `address` TEXT, `type` TEXT, `checkIn` INTEGER, `checkOut` INTEGER, `checkedIn` INTEGER, `exposed` INTEGER)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -109,7 +109,9 @@ class _$LocationDao extends LocationDao {
                   'checkIn': _dateTimeConverter.encode(item.checkIn),
                   'checkOut': _dateTimeConverter.encode(item.checkOut),
                   'checkedIn':
-                      item.checkedIn == null ? null : (item.checkedIn ? 1 : 0)
+                      item.checkedIn == null ? null : (item.checkedIn ? 1 : 0),
+                  'exposed':
+                      item.exposed == null ? null : (item.exposed ? 1 : 0)
                 },
             changeListener),
         _locationUpdateAdapter = UpdateAdapter(
@@ -125,7 +127,9 @@ class _$LocationDao extends LocationDao {
                   'checkIn': _dateTimeConverter.encode(item.checkIn),
                   'checkOut': _dateTimeConverter.encode(item.checkOut),
                   'checkedIn':
-                      item.checkedIn == null ? null : (item.checkedIn ? 1 : 0)
+                      item.checkedIn == null ? null : (item.checkedIn ? 1 : 0),
+                  'exposed':
+                      item.exposed == null ? null : (item.exposed ? 1 : 0)
                 },
             changeListener);
 
@@ -140,10 +144,8 @@ class _$LocationDao extends LocationDao {
   final UpdateAdapter<Location> _locationUpdateAdapter;
 
   @override
-  Stream<List<Location>> findAllLocations() {
-    return _queryAdapter.queryListStream('SELECT * FROM Location',
-        queryableName: 'Location',
-        isView: false,
+  Future<List<Location>> findAllLocations() async {
+    return _queryAdapter.queryList('SELECT * FROM Location',
         mapper: (Map<String, dynamic> row) => Location(
             row['pk'] as int,
             row['id'] as String,
@@ -152,7 +154,8 @@ class _$LocationDao extends LocationDao {
             row['type'] as String,
             _dateTimeConverter.decode(row['checkIn'] as int),
             _dateTimeConverter.decode(row['checkOut'] as int),
-            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0));
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0,
+            row['exposed'] == null ? null : (row['exposed'] as int) != 0));
   }
 
   @override
@@ -169,7 +172,8 @@ class _$LocationDao extends LocationDao {
             row['type'] as String,
             _dateTimeConverter.decode(row['checkIn'] as int),
             _dateTimeConverter.decode(row['checkOut'] as int),
-            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0));
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0,
+            row['exposed'] == null ? null : (row['exposed'] as int) != 0));
   }
 
   @override
@@ -186,7 +190,8 @@ class _$LocationDao extends LocationDao {
             row['type'] as String,
             _dateTimeConverter.decode(row['checkIn'] as int),
             _dateTimeConverter.decode(row['checkOut'] as int),
-            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0));
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0,
+            row['exposed'] == null ? null : (row['exposed'] as int) != 0));
   }
 
   @override
@@ -201,7 +206,41 @@ class _$LocationDao extends LocationDao {
             row['type'] as String,
             _dateTimeConverter.decode(row['checkIn'] as int),
             _dateTimeConverter.decode(row['checkOut'] as int),
-            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0));
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0,
+            row['exposed'] == null ? null : (row['exposed'] as int) != 0));
+  }
+
+  @override
+  Future<List<Location>> findNonExposedLocations() async {
+    return _queryAdapter.queryList('SELECT * FROM Location WHERE exposed = 0',
+        mapper: (Map<String, dynamic> row) => Location(
+            row['pk'] as int,
+            row['id'] as String,
+            row['name'] as String,
+            row['address'] as String,
+            row['type'] as String,
+            _dateTimeConverter.decode(row['checkIn'] as int),
+            _dateTimeConverter.decode(row['checkOut'] as int),
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0,
+            row['exposed'] == null ? null : (row['exposed'] as int) != 0));
+  }
+
+  @override
+  Stream<List<Location>> findExposedLocations() {
+    return _queryAdapter.queryListStream(
+        'SELECT * FROM Location WHERE exposed = 1',
+        queryableName: 'Location',
+        isView: false,
+        mapper: (Map<String, dynamic> row) => Location(
+            row['pk'] as int,
+            row['id'] as String,
+            row['name'] as String,
+            row['address'] as String,
+            row['type'] as String,
+            _dateTimeConverter.decode(row['checkIn'] as int),
+            _dateTimeConverter.decode(row['checkOut'] as int),
+            row['checkedIn'] == null ? null : (row['checkedIn'] as int) != 0,
+            row['exposed'] == null ? null : (row['exposed'] as int) != 0));
   }
 
   @override

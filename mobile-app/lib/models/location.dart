@@ -12,13 +12,14 @@ class Location {
   DateTime checkIn;
   DateTime checkOut;
   bool checkedIn;
+  bool exposed;
 
   Location(this.pk, this.id, this.name, this.address, this.type, this.checkIn,
-      this.checkOut, this.checkedIn);
+      this.checkOut, this.checkedIn, this.exposed);
 
   factory Location.create(String id, String name, String address, String type) {
     return Location(null, id, name, address, type, DateTime.now(),
-        DateTime.fromMicrosecondsSinceEpoch(0), true);
+        DateTime.fromMicrosecondsSinceEpoch(0), true, false);
   }
 
   @override
@@ -29,11 +30,15 @@ class Location {
         ", " +
         name +
         ", " +
+        type +
+        ", " +
         checkIn.toString() +
         " -> " +
         checkOut.toString() +
         ", " +
-        checkedIn.toString();
+        checkedIn.toString() +
+        ", " +
+        exposed.toString();
   }
 }
 
@@ -46,7 +51,7 @@ class BusLocation extends Location {
   BusLocation(String id, String name, String busNo, this.locationId,
       this.busRouteNo, this.contactNumber, this.type)
       : super(null, id, name, busNo, 'sc_bus', DateTime.now(),
-            DateTime.fromMillisecondsSinceEpoch(0), true);
+            DateTime.fromMillisecondsSinceEpoch(0), true, false);
 
   factory BusLocation.fromFirebase(String id, Map<String, dynamic> document) {
     return BusLocation(
@@ -84,7 +89,7 @@ class LocationLocation extends Location {
       this.premiseType,
       this.unitType)
       : super(null, id, name, address, 'sc_location', DateTime.now(),
-            DateTime.fromMillisecondsSinceEpoch(0), true);
+            DateTime.fromMillisecondsSinceEpoch(0), true, false);
 
   factory LocationLocation.fromFirebase(
       String id, Map<String, dynamic> document) {
@@ -112,7 +117,7 @@ class TrainLocation extends Location {
   TrainLocation(String id, String trainName, String trainNo, this.locationId,
       this.carriageNo, this.type)
       : super(null, id, trainName, trainNo, 'sc_train', DateTime.now(),
-            DateTime.fromMillisecondsSinceEpoch(0), true);
+            DateTime.fromMillisecondsSinceEpoch(0), true, false);
 
   factory TrainLocation.fromFirebase(String id, Map<String, dynamic> document) {
     return TrainLocation(id, document['train_name'], document['train_no'],
@@ -127,7 +132,7 @@ class VehicleLocation extends Location {
   VehicleLocation(String id, String name, String vehicleNo, this.locationId,
       this.contactNumber)
       : super(null, id, name, vehicleNo, 'sc_vehicle', DateTime.now(),
-            DateTime.fromMillisecondsSinceEpoch(0), true);
+            DateTime.fromMillisecondsSinceEpoch(0), true, false);
 
   factory VehicleLocation.fromFirebase(
       String id, Map<String, dynamic> document) {
