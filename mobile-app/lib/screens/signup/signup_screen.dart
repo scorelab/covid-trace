@@ -192,31 +192,13 @@ class _SignupScreenState extends State<SignupScreen> {
                         labelText: "NIC",
                         controller: _nicTEController,
                       ),
-
-                      //Password
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: screenWidth * 0.05, vertical: 8.0),
-                        child: TextFormField(
-                          obscureText: true,
-                          controller: _passwordTEController,
-                          validator: _passwordValidator,
-                          decoration: InputDecoration(
-                              labelText: 'Password',
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.only(top: 0),
-                                // add padding to adjust icon
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(width: 0.4),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              )),
-                        ),
-                      ),
-
+       LabelTextFormField(
+                      labelText: "Password",
+                      controller: _passwordTEController,
+                    
+                      isObscure: true,
+                    ),
+           
                       //Login button
                       if (_signingin)
                         Center(
