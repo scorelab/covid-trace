@@ -53,13 +53,27 @@ class CheckInBloc extends Bloc<CheckInEvent, CheckInState> {
     return _repository.checkOut(location);
   }
 
-  Location _parseUrl(args) {
-    // TODO - Update parsing logic based on the QR design
+  Location _parseUrl(SafeEntryBeforeCheckInScreenArgs args) {
     if (args == null) return null;
 
-    var data = args.url.split('/')[3].split("|");
+    String type;
+    String id;
+    String name;
+
+    // https://safecheckin.com/sc_bus/AXeyPFiEpYBGIfyasNGr?name=Nimal Travels
+    var uri = Uri.parse(args.url);
+    if (uri.pathSegments.length > 1) {
+      type = uri.pathSegments[0];
+      id = uri.pathSegments[1];
+    } else
+      return null;
+
+    if (uri.queryParameters.containsKey('name')) {
+      name = uri.queryParameters['name'];
+    } else
+      return null;
 
     // Parse id, name, address, type
-    return Location.create(data[1], data[2], data[3], data[0]);
+    return Location.create(id, name, "", type);
   }
 }
