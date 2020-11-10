@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import cities, { values } from './Cities'
 import { Card, Divider, Row, Col, Input, Select, Checkbox, Button, message, Space } from 'antd';
+import { f } from '../../../config/config_env';
 const { Option } = Select;
+
 
 function BusinessReg(props) {
 
@@ -90,8 +92,29 @@ function BusinessReg(props) {
         if (state.isCorrect == false) {
             warning();
         } else {
-            success();
             console.log(state)
+            f.firestore().collection('/sc_location').add({
+                province: state.province,
+                city: state.city,
+                district: state.District,
+                premise_type: state.premise_type,
+                postal_code: state.postal_code,
+                floor_no: state.floor_no,
+                unit_no: state.unit_no,
+                address: state.address,
+                fb_url: state.fb_url,
+                google_plc: state.google_plc,
+                name: state.name,
+                contact_no: state.contact_no,
+            })
+                .then((e) => {
+                    console.log("Document Created: ", e)
+                    success();
+                })
+                .catch((e) => {
+                    console.log("Error: ", e)
+                    error()
+                })
         }
     }
 
@@ -102,6 +125,10 @@ function BusinessReg(props) {
     const success = () => {
         message.success('You have successfully submit the details');
     };
+
+    const error = () => {
+        message.error('Oops, Registration Failed');
+      };
 
     return (
         <div>
