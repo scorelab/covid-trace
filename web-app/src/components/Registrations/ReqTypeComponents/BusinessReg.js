@@ -132,7 +132,7 @@ function BusinessReg(props) {
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "59vh", position: "sticky" }}>
+            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto",minHeight: "59vh", position: "sticky",marginBottom:'20px'}}>
                 <Row>
                     <Col span={24}>
                         <Input placeholder="Name" name="name" value={state.name} onChange={handleChangeInputs} />

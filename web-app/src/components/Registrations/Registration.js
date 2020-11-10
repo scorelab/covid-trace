@@ -47,10 +47,10 @@ function Registration(props) {
     }
     return (
         <div style={{ background: "#F2F2F2" }}>
-            <Layout style={{ height: "100vh" }}>
+            <Layout style={{ minHeight: '100vh' }}>
                 <Navbar />
                 <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Card title="Requesting For QR Code" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "25px", overflow: "auto", height: "185px", position: "sticky" }}>
+                    <Card title="Requesting For QR Code" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "25px",  minHeight: "185px", position: "sticky" }}>
                         <Row>
                             <Col span={12}><Text>Select Owner</Text></Col>
                             <Col span={12}><Input placeholder="Owner" /></Col>

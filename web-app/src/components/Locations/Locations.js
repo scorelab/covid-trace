@@ -69,10 +69,10 @@ const data = [
 function Locations(props) {
     return (
         <div style={{ background: "#F2F2F2" }}>
-            <Layout style={{ height: "100vh" }}>
+            <Layout style={{ minHeight: "100vh" }}>
                 <Navbar />
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card title="Locations" style={{ width: '1150px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "68px", overflow: "auto", height: "64vh", position: "sticky" }}>
+                    <Card title="Locations" style={{ width: '1000px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "50px", overflow: "auto", minHeight: "64vh",marginBottom:"150px", position: "sticky" }}>
                         <Table columns={columns} dataSource={data} />
                     </Card>
                 </Content>
