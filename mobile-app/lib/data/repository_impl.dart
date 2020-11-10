@@ -8,6 +8,7 @@ import 'package:slcovid_tracker/data/local/dao/location_dto.dart';
 import 'package:slcovid_tracker/data/local/user/user_repository.dart';
 import 'package:slcovid_tracker/data/repository.dart';
 import 'package:slcovid_tracker/data/verify/verify_repository.dart';
+import 'package:slcovid_tracker/models/infected.dart';
 import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/models/user.dart';
 
@@ -91,4 +92,28 @@ class RepositoryImpl extends Repository {
   @override
   Stream<List<Location>> checkedOutLocations() =>
       _locationDao.findCheckedOutLocations();
+
+  @override
+  Stream<List<Location>> getExposedLocations() =>
+      _locationDao.findExposedLocations();
+
+  @override
+  Future<List<Location>> getNonExposedLocations() =>
+      _locationDao.findNonExposedLocations();
+
+  @override
+  Future<Either<dynamic, Unit>> expose(Location location) async {
+    location.exposed = true;
+
+    await _locationDao
+        .updateLocation(location)
+        .catchError((error) => left(error));
+
+    return right(unit);
+  }
+
+  @override
+  Future<Either<dynamic, List<InfectedLocation>>> getInfectedLocations(
+          DateTime after) =>
+      _firebaseRepository.getInfectedLocations(after);
 }
