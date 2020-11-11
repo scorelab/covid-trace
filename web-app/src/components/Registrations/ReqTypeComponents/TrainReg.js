@@ -1,40 +1,95 @@
 import React, { useState } from 'react'
-import {  Card, Row, Col, Input, Checkbox, Button } from 'antd';
+import { Card, Row, Col, Input, Checkbox, Button,message } from 'antd';
+import { f } from '../../../config/config_env';
 
 function TrainReg(props) {
 
-    function onChange(e) {
-        console.log(`checked = ${e.target.checked}`);
+    const [state, setstate] = useState({
+        carriage_no: '',
+        location_id: '',
+        train_name: '',
+        train_no: '',
+        isCorrect: false,
+        location_id: 'locid' + Math.floor(Math.random() * 10000),
+    })
+
+
+    function handleChange(e) {
+        const value = e.target.value;
+        const name = e.target.name;
+        if (name == 'isCorrect') {
+            setstate({
+                ...state,
+                isCorrect: e.target.checked
+            })
+        } else {
+            setstate({
+                ...state,
+                [name]: value
+            })
+        }
     }
 
-    function handleChange(value) {
-        console.log(`selected ${value}`);
+    function submitDetails() {
+        if (state.isCorrect == false) {
+            warning();
+        } else {
+            console.log(state)
+            f.firestore().collection('/sc_train').add({
+                carriage_no: state.carriage_no,
+                location_id: state.location_id,
+                train_name: state.train_name,
+                train_no: state.train_no,
+                location_id: state.location_id,
+            })
+                .then((e) => {
+                    console.log("Document Created: ", e)
+                    success();
+                })
+                .catch((e) => {
+                    console.log("Error: ", e)
+                    error()
+                })
+        }
     }
+
+    const warning = () => {
+        message.warning('Please Check On the box');
+    };
+
+    const success = () => {
+        message.success('You have successfully submit the details');
+    };
+
+    const error = () => {
+        message.error('Oops, Registration Failed');
+    };
+
 
     return (
         <div>
             <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "260px", position: "sticky" }}>
                 <Row>
                     <Col span={24}>
-                        <Input placeholder="Train Name" />
+                        <Input placeholder="Train Name" name="train_name" onChange={handleChange} />
                     </Col>
                 </Row>
                 <Row justify="space-between" >
                     <Col sm={24} md={13}  >
-                        <Input placeholder="Train No" style={{ marginTop: '12px' }} />
+                        <Input placeholder="Train No" name="train_no" style={{ marginTop: '12px' }} onChange={handleChange} />
                     </Col>
                     <Col sm={24} md={1}  >
                     </Col>
                     <Col sm={24} md={10} >
-                        <Input placeholder="Carriage No" style={{ marginTop: '12px' }} />
+                        <Input placeholder="Carriage No" name="carriage_no" style={{ marginTop: '12px' }} onChange={handleChange} />
                     </Col>
                 </Row>
                 <Row justify="space-between" align="middle">
                     <Col sm={24} md={10}  >
-                        <Checkbox onChange={onChange} style={{ marginTop: "35px" }} >Confirm Your Details Is Correct</Checkbox>
+                        <Checkbox onChange={handleChange} style={{ marginTop: "35px" }} name="isCorrect" >Confirm Your Details Is Correct</Checkbox>
                     </Col>
                     <Col sm={24} md={10}   >
-                        <Button type="primary" style={{ marginTop: "35px", width: "100%" }} >Submit</Button>
+                        <Button type="primary" style={{ marginTop: "35px", width: "100%" }} onClick={submitDetails}>Submit</Button>
                     </Col>
                 </Row>
             </Card>
