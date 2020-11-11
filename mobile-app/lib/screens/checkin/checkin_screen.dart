@@ -54,6 +54,13 @@ class _CheckInScreenState extends State<CheckInScreen> {
               child: QRView(
                 key: qrKey,
                 onQRViewCreated: _onQRViewCreated,
+                overlay: QrScannerOverlayShape(
+                borderColor: Theme.of(context).primaryColor,
+                borderRadius: 10,
+                borderLength: 30,
+                borderWidth: 10,
+                cutOutSize: 300,
+              ),
               ),
             ),
             Expanded(
