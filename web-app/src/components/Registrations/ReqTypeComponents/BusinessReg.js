@@ -1,32 +1,68 @@
 import React, { useState } from 'react'
-import cities from './Cities'
-import { Card, Divider, Row, Col, Input, Select, Checkbox, Button } from 'antd';
+import cities, { values } from './Cities'
+import { Card, Divider, Row, Col, Input, Select, Checkbox, Button, message, Space } from 'antd';
+import { f } from '../../../config/config_env';
 const { Option } = Select;
 
 
 function BusinessReg(props) {
 
     const [state, setstate] = useState({
-        Province: null,
-        City: null,
+        province: null,
+        city: null,
         District: null,
-        isEnableCityDistrict: false,
         DistrictList: [],
-        CityList: []
+        CityList: [],
+        premise_type: "",
+        postal_code: "",
+        floor_no: "",
+        unit_no: "",
+        address: "",
+        fb_url: "",
+        google_plc: "",
+        name: "",
+        contact_no: "",
+        isCorrect: false
     })
 
-    console.log(cities[0])
-    function onChange(e) {
-        console.log(`checked = ${e.target.checked}`);
+    function handleChangePremiseType(value) {
+        setstate({
+            ...state,
+            premise_type: value
+        })
     }
 
-    function handleChange(value) {
-        console.log(`selected ${value}`);
+    function handleChangeCity(value) {
+        setstate({
+            ...state,
+            city: value
+        })
+    }
+
+    function handleChangeCity(value) {
+        setstate({
+            ...state,
+            city: value
+        })
+    }
+
+    function handleChangeInputs(e) {
+        const value = e.target.value;
+        const name = e.target.name;
+        if (name == 'isCorrect') {
+            setstate({
+                ...state,
+                isCorrect: e.target.checked
+            })
+        } else {
+            setstate({
+                ...state,
+                [name]: value
+            })
+        }
     }
 
     function handleChangeProvince(e) {
-        console.log(e)
-
         let tempDistrictList = []
         Object.keys(cities[0][e]).map(i => {
             tempDistrictList.push(i)
@@ -35,15 +71,13 @@ function BusinessReg(props) {
         setstate({
             ...state,
             DistrictList: tempDistrictList,
-            Province: e
+            province: e
         })
     }
 
     function handleChangeDistrict(e) {
-        console.log(e)
-       
         let tempCityList = []
-        cities[0][state.Province][e].map(i => {
+        cities[0][state.province][e].map(i => {
             tempCityList.push(i)
         })
 
@@ -54,24 +88,64 @@ function BusinessReg(props) {
         })
     }
 
+    function submitDetails() {
+        if (state.isCorrect == false) {
+            warning();
+        } else {
+            console.log(state)
+            f.firestore().collection('/sc_location').add({
+                province: state.province,
+                city: state.city,
+                district: state.District,
+                premise_type: state.premise_type,
+                postal_code: state.postal_code,
+                floor_no: state.floor_no,
+                unit_no: state.unit_no,
+                address: state.address,
+                fb_url: state.fb_url,
+                google_plc: state.google_plc,
+                name: state.name,
+                contact_no: state.contact_no,
+            })
+                .then((e) => {
+                    console.log("Document Created: ", e)
+                    success();
+                })
+                .catch((e) => {
+                    console.log("Error: ", e)
+                    error()
+                })
+        }
+    }
 
+    const warning = () => {
+        message.warning('Please Check On the box');
+    };
+
+    const success = () => {
+        message.success('You have successfully submit the details');
+    };
+
+    const error = () => {
+        message.error('Oops, Registration Failed');
+      };
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "59vh", position: "sticky" }}>
+            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto",minHeight: "59vh", position: "sticky",marginBottom:'20px'}}>
                 <Row>
                     <Col span={24}>
-                        <Input placeholder="Name" />
+                        <Input placeholder="Name" name="name" value={state.name} onChange={handleChangeInputs} />
                     </Col>
                 </Row>
                 <Row justify="space-between" >
                     <Col sm={24} md={13}  >
-                        <Input addonBefore="+94" placeholder="Contact No" style={{ marginTop: '12px' }} />
+                        <Input addonBefore="+94" placeholder="Contact No" style={{ marginTop: '12px' }} name="contact_no" value={state.contact_no} onChange={handleChangeInputs} />
                     </Col>
                     <Col sm={24} md={1}  >
                     </Col>
                     <Col sm={24} md={10} >
-                        <Select placeholder="Premise Type" style={{ width: "100%", marginTop: '12px' }} onChange={handleChange}>
+                        <Select placeholder="Premise Type" style={{ width: "100%", marginTop: '12px' }} name="premise_type" value={state.premise_type} onChange={handleChangePremiseType}>
                             <Option value="School">School</Option>
                             <Option value="Super Market">Super Market</Option>
                             <Option value="Grocery">Grocery</Option>
@@ -109,7 +183,7 @@ function BusinessReg(props) {
                     </Col>
                     <Col sm={24} md={1}></Col>
                     <Col sm={24} md={7} >
-                        <Select placeholder="City" style={{ width: "100%", marginTop: '12px' }} onChange={handleChange}>
+                        <Select placeholder="City" style={{ width: "100%", marginTop: '12px' }} name="city" onChange={handleChangeCity}>
 
                             {
                                 state.CityList.map(i => {
@@ -121,40 +195,40 @@ function BusinessReg(props) {
                 </Row>
                 <Row justify="space-between" >
                     <Col sm={24} md={7}  >
-                        <Input placeholder="Postal Code" style={{ marginTop: "12px" }} />
+                        <Input placeholder="Postal Code" name="postal_code" onChange={handleChangeInputs} style={{ marginTop: "12px" }} />
                     </Col>
                     <Col sm={24} md={1}  >
                     </Col>
                     <Col sm={24} md={7} >
-                        <Input placeholder="Floor No" style={{ marginTop: "12px" }} />
+                        <Input placeholder="Floor No" name="floor_no" onChange={handleChangeInputs} style={{ marginTop: "12px" }} />
                     </Col>
                     <Col sm={24} md={1}></Col>
                     <Col sm={24} md={7} >
-                        <Input placeholder="Unit No" style={{ marginTop: "12px" }} />
+                        <Input placeholder="Unit No" onChange={handleChangeInputs} name="unit_no" style={{ marginTop: "12px" }} />
                     </Col>
                 </Row>
                 <Row>
                     <Col span={24}>
-                        <Input placeholder="Address" style={{ marginTop: "12px" }} />
+                        <Input placeholder="Address" name="address" onChange={handleChangeInputs} style={{ marginTop: "12px" }} />
                     </Col>
                 </Row>
                 <Divider orientation="left"></Divider>
                 <Row>
                     <Col span={24}>
-                        <Input placeholder="FB Page URL" />
+                        <Input placeholder="FB Page URL" name="fb_url" onChange={handleChangeInputs} />
                     </Col>
                 </Row>
                 <Row>
                     <Col span={24}>
-                        <Input placeholder="Google Place" style={{ marginTop: "10px" }} />
+                        <Input placeholder="Google Place" name="google_plc" onChange={handleChangeInputs} style={{ marginTop: "10px" }} />
                     </Col>
                 </Row>
                 <Row justify="space-between" align="middle">
                     <Col sm={24} md={10}  >
-                        <Checkbox onChange={onChange} style={{ marginTop: "35px" }} >Confirm Your Details Is Correct</Checkbox>
+                        <Checkbox onChange={handleChangeInputs} name="isCorrect" style={{ marginTop: "35px" }} >Confirm Your Details Is Correct</Checkbox>
                     </Col>
                     <Col sm={24} md={10}   >
-                        <Button type="primary" style={{ marginTop: "35px", width: "100%" }} >Submit</Button>
+                        <Button type="primary" style={{ marginTop: "35px", width: "100%" }} onClick={submitDetails} >Submit</Button>
                     </Col>
                 </Row>
             </Card>

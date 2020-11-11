@@ -27,7 +27,7 @@ function SignIn(props) {
 
   return (
     <div style={{ background: '#F2F2F2' }}>
-      <Layout style={{ height: '100vh' }}>
+      <Layout style={{ minHeight: '100vh' }}>
         <Navbar />
         <Content
           style={{
