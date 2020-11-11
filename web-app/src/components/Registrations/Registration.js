@@ -4,8 +4,8 @@ import Navbar from '../UiElements/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import BusinessReg from './ReqTypeComponents/BusinessReg';
 import BusReg from './ReqTypeComponents/BusReg';
-import ThreeWheelReg from './ReqTypeComponents/ThreeWheelReg';
 import TrainReg from './ReqTypeComponents/TrainReg';
+import VehicleReg from './ReqTypeComponents/VehicleReg';
 const { Text } = Typography;
 const { Content } = Layout;
 const { Option } = Select;
@@ -36,8 +36,8 @@ function Registration(props) {
         case "Bus":
             component = <BusReg />;
             break;
-        case "Three Wheel":
-            component = <ThreeWheelReg />;
+        case "Vehicle":
+            component = <VehicleReg />;
             break;
         case "Train":
             component = <TrainReg />;
@@ -61,7 +61,7 @@ function Registration(props) {
                                 <Select placeholder="Request Type" style={{ width: "100%" }} onChange={changeRequestType}>
                                     <Option value="Business">Business</Option>
                                     <Option value="Bus">Bus</Option>
-                                    <Option value="Three Wheel">Three Wheel</Option>
+                                    <Option value="Vehicle">Vehicle</Option>
                                     <Option value="Train">Train</Option>
                                 </Select>
                             </Col>
