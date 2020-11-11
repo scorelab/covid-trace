@@ -110,20 +110,20 @@ class FirebaseRepositoryImpl extends FirebaseRepository {
     }
   }
 
-  @override
-  Future<Either<dynamic, List<InfectedLocation>>> getInfectedLocations(
-      DateTime after) async {
-    CollectionReference locations =
-        FirebaseFirestore.instance.collection('sc_infected_check_in_out');
+  // @override
+  // Future<Either<dynamic, List<InfectedLocation>>> getInfectedLocations(
+  //     DateTime after) async {
+  //   CollectionReference locations =
+  //       FirebaseFirestore.instance.collection('sc_infected_check_in_out');
 
-    var document = await locations
-        .where('upload_time', isGreaterThan: after)
-        .orderBy('upload_time', descending: true)
-        .get()
-        .catchError((error) => left(error));
+  //   var document = await locations
+  //       .where('upload_time', isGreaterThan: after)
+  //       .orderBy('upload_time', descending: true)
+  //       .get()
+  //       .catchError((error) => left(error));
 
-    return right(document.docs
-        .map((e) => InfectedLocation.fromFirebase(e.id, e.data()))
-        .toList());
-  }
+  //   return right(document.docs
+  //       .map((e) => InfectedLocation.fromFirebase(e.id, e.data()))
+  //       .toList());
+  // }
 }

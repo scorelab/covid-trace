@@ -8,16 +8,3 @@ abstract class ExposedState extends Equatable {
 }
 
 class Initializing extends ExposedState {}
-
-class Updating extends ExposedState {}
-
-class UpdateSuccess extends ExposedState {}
-
-class UpdateFailed extends ExposedState {
-  final dynamic error;
-
-  UpdateFailed({@required this.error});
-
-  @override
-  List<Object> get props => [error];
-}

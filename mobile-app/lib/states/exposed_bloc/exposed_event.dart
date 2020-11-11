@@ -6,5 +6,3 @@ abstract class ExposedEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
-
-class UpdateExposedEvent extends ExposedEvent {}

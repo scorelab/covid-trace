@@ -13,19 +13,9 @@ class PossibleExpo extends StatefulWidget {
 class _PossibleExpoState extends State<PossibleExpo> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        FlatButton(
-          onPressed: () {
-            BlocProvider.of<ExposedBloc>(context).add(UpdateExposedEvent());
-          },
-          child: Text("Check Exposed"),
-        ),
-        StreamBuilder(
-          stream: BlocProvider.of<ExposedBloc>(context).exposedLocations,
-          builder: _buildCheckedOut,
-        ),
-      ],
+    return StreamBuilder(
+      stream: BlocProvider.of<ExposedBloc>(context).exposedLocations,
+      builder: _buildCheckedOut,
     );
   }
 

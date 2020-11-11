@@ -111,9 +111,4 @@ class RepositoryImpl extends Repository {
 
     return right(unit);
   }
-
-  @override
-  Future<Either<dynamic, List<InfectedLocation>>> getInfectedLocations(
-          DateTime after) =>
-      _firebaseRepository.getInfectedLocations(after);
 }
