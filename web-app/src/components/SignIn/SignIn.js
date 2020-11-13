@@ -58,7 +58,6 @@ function SignIn(props) {
                 defaultValue=""
                 placeholder="Contact No"
                 style={{ marginBottom: '30px' }}
-                type="number"
                 onChange={onChangePhoneNumber}
                 value={phoneNumber}
               />
