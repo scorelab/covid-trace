@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:slcovid_tracker/routing/application.dart';
+import 'package:slcovid_tracker/routing/routes.dart';
 
 class PermissionScreen extends StatelessWidget {
   @override
@@ -85,10 +87,13 @@ class PermissionScreen extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
                   ),
-                  onPressed: () {},
+                  onPressed: () => _gotoMain(context),
                   color: Color(0xff1DE9B6),
                   textColor: Colors.white,
-                  child: Text("Allow", style: TextStyle(fontSize: 25)),
+                  child: Text(
+                    "Allow",
+                    style: TextStyle(fontSize: 25),
+                  ),
                 ),
               )
             ],
@@ -96,6 +101,10 @@ class PermissionScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _gotoMain(context) {
+    Application.router.navigateTo(context, Routes.main, clearStack: true);
   }
 }
 

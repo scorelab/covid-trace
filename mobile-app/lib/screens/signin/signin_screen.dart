@@ -59,9 +59,8 @@ class _SigninScreenState extends State<SigninScreen> {
             });
           }
           if (state is AuthFailed) {
-            
             //Getting the error Msh
-            String err=state.error.runtimeType.toString();
+            String err = state.error.runtimeType.toString();
             showDialog(
               context: context,
               builder: (context) => new AlertDialog(
@@ -70,9 +69,13 @@ class _SigninScreenState extends State<SigninScreen> {
                   style: TextStyle(fontSize: 25, color: Colors.white),
                 ),
                 backgroundColor: Theme.of(context).primaryColor,
-                content: err=="InvalidCredentials" ? Text("The username or password you have entered is invalid.", style: TextStyle(fontSize: 18, color: Colors.white)): Text("Phone number you are entering is already registered", style: TextStyle(fontSize: 18, color: Colors.white)),
-                  
-            
+                content: err == "InvalidCredentials"
+                    ? Text(
+                        "The username or password you have entered is invalid.",
+                        style: TextStyle(fontSize: 18, color: Colors.white))
+                    : Text(
+                        "Phone number you are entering is already registered",
+                        style: TextStyle(fontSize: 18, color: Colors.white)),
                 actions: <Widget>[
                   new FlatButton(
                     onPressed: () {
@@ -98,7 +101,7 @@ class _SigninScreenState extends State<SigninScreen> {
               _isLoading = false;
             });
             Application.router
-                .navigateTo(context, Routes.main, clearStack: true);
+                .navigateTo(context, Routes.permission, clearStack: true);
           }
         },
         cubit: Provider.of<AuthBloc>(context),
@@ -154,8 +157,6 @@ class _SigninScreenState extends State<SigninScreen> {
                                 onPressed: () {},
                               ),
                             ),
-
-                    
                           ),
                           Expanded(
                             flex: 1,
