@@ -1,9 +1,11 @@
 import { Button, Card, Input, Layout } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import BottomFooter from '../UiElements/BottomFooter';
-import Navbar from '../UiElements/Navbar';
+import Navbar from '../UiElements/Navbar/Navbar';
+import { useHistory } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const { Content } = Layout;
 
@@ -11,6 +13,13 @@ function SignIn(props) {
 
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
+  let history = useHistory();
+
+  useEffect(() => {
+    if (props.user) {
+      history.push("/organisations");
+    }
+  }, [props.user])
 
   function onChangePhoneNumber(e) {
     setPhoneNumber(e.target.value);
@@ -42,7 +51,7 @@ function SignIn(props) {
               width: 475,
               boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
               marginTop: '131px',
-              height: '300px',
+              height: '275px',
             }}
           >
             <div
@@ -58,7 +67,6 @@ function SignIn(props) {
                 defaultValue=""
                 placeholder="Contact No"
                 style={{ marginBottom: '30px' }}
-                type="number"
                 onChange={onChangePhoneNumber}
                 value={phoneNumber}
               />
@@ -70,15 +78,28 @@ function SignIn(props) {
                 onChange={onChangePassword}
                 value={password}
               />
-              <Button
-                type="primary"
-                style={{ marginLeft: '130px', marginRight: '130px' }}
-                onClick={signIn}
-              >
-                Sign In
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Button
+                  type="primary"
+                  style={{ marginRight: '20px',width:'140px' }}
+                  onClick={signIn}
+                >
+                  Sign In
+              
               </Button>
+              <Link to="/signUp">
+                <Button
+                  type="primary"
+                  style={{width:'140px' }}
+                >
+                  Sign Up
+              </Button>
+              </Link>
+              </div>
+
               {props.loading ? 'siginin..' : null}
               {props.error ? props.error : null}
+
             </div>
           </Card>
         </Content>
@@ -92,6 +113,7 @@ function SignIn(props) {
 const mapStateToProps = ({ auth }) => ({
   loading: auth.signin.loading,
   error: auth.signin.error,
+  user: auth.auth.user
 });
 
 const mapDispatchToProps = {

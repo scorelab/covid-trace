@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { Layout, Card, Row, Col, Input, Typography, Select } from 'antd';
-import Navbar from '../UiElements/Navbar';
+import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import BusinessReg from './ReqTypeComponents/BusinessReg';
 import BusReg from './ReqTypeComponents/BusReg';
 import TrainReg from './ReqTypeComponents/TrainReg';
 import VehicleReg from './ReqTypeComponents/VehicleReg';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 const { Text } = Typography;
 const { Content } = Layout;
 const { Option } = Select;
+
 
 function Registration(props) {
 
@@ -45,6 +48,9 @@ function Registration(props) {
         default:
             component = <div></div>;
     }
+
+    if(props.user==null)return <Redirect to='signIn' />
+    
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ minHeight: '100vh' }}>
@@ -75,6 +81,13 @@ function Registration(props) {
     )
 }
 
+const mapStateToProps = (state) => {
+    //console.log(state)
+    return ({
+        ...state,
+        user:state.auth.auth.user
+    })
+}
 
-export default Registration
+export default connect(mapStateToProps)(Registration)
 

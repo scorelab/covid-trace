@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout, Card, Input, Button } from 'antd';
-import Navbar from '../UiElements/Navbar';
+import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 const { Content } = Layout;
 
@@ -18,8 +18,7 @@ function SignUp(props) {
                             <Input defaultValue="" placeholder="Reenter Password" type="password" style={{ marginBottom: '10px' }} />
        
                             <div style={{display:'flex',flexDirection:'row',justifyContent:"center",paddingTop:'20px'}}> 
-                                <Button type="primary" style={{marginRight:"30px"}}>Sign In</Button>
-                                <Button type="primary" >Sign Up</Button>
+                                <Button type="primary" style={{width:'150px'}} >Sign Up</Button>
                             </div>
 
                         </div>

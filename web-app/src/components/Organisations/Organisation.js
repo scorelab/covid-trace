@@ -1,10 +1,15 @@
 import React from 'react'
 import { Layout, Card, Button, Row, Col } from 'antd';
-import Navbar from '../UiElements/Navbar';
+import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 const { Content } = Layout;
 
 function Organisation(props) {
+
+    if(props.user==null)return <Redirect to='signIn' />
+
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ minHeight: "100vh" }}>
@@ -58,5 +63,13 @@ function Organisation(props) {
     )
 }
 
-export default Organisation
+const mapStateToProps = (state) => {
+    //console.log(state)
+    return ({
+        ...state,
+        user:state.auth.auth.user
+    })
+}
+
+export default connect(mapStateToProps)(Organisation)
 

@@ -1,10 +1,13 @@
 import React from 'react'
 import { Layout, Card, Input, Button } from 'antd';
-import Navbar from '../UiElements/Navbar';
+import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 const { Content } = Layout;
 
 function AddOrganisation(props) {
+    if(props.user==null)return <Redirect to='signIn' />
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ height: "100vh" }}>
@@ -30,6 +33,14 @@ function AddOrganisation(props) {
     )
 }
 
+const mapStateToProps = (state) => {
+    //console.log(state)
+    return ({
+        ...state,
+        user:state.auth.auth.user
+    })
+}
 
-export default AddOrganisation
+
+export default connect(mapStateToProps)(AddOrganisation)
 

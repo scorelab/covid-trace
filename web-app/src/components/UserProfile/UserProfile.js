@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import { Layout, Card, Tabs} from 'antd';
-import Navbar from '../UiElements/Navbar';
+import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import Profile from './UserProfileTabs/Profile';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 const { TabPane } = Tabs;
 const { Content } = Layout;
 
 
 function UserProfile(props) {
+
+    if(props.user==null)return <Redirect to='signIn' />
+
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ minHeight: "100vh" }}>
@@ -33,6 +38,14 @@ function UserProfile(props) {
     )
 }
 
+const mapStateToProps = (state) => {
+    //console.log(state)
+    return ({
+        ...state,
+        user:state.auth.auth.user
+    })
+}
 
-export default UserProfile
+
+export default connect(mapStateToProps)(UserProfile)
 
