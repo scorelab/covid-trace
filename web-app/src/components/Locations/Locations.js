@@ -2,6 +2,8 @@ import React from 'react'
 import { Layout, Card, Button,Table, Tag, Space} from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 const { Content } = Layout;
 
 const columns = [
@@ -67,6 +69,9 @@ const data = [
   ];
 
 function Locations(props) {
+  
+  if(props.user==null)return <Redirect to='signIn' />
+
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ minHeight: "100vh" }}>
@@ -82,5 +87,14 @@ function Locations(props) {
     )
 }
 
-export default Locations
+const mapStateToProps = (state) => {
+  //console.log(state)
+  return ({
+      ...state,
+      user:state.auth.auth.user
+  })
+}
+
+
+export default connect(mapStateToProps)(Locations)
 

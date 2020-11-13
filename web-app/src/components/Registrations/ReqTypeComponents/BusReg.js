@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Card, Row, Col, Input, Checkbox, Button, message } from 'antd';
 import { registerBus } from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 
 function BusReg(props) {
 
@@ -84,6 +85,8 @@ function BusReg(props) {
         message.error('Oops, Registration Failed');
     };
 
+
+
     return (
         <div>
             <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
@@ -121,7 +124,7 @@ function BusReg(props) {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+    //console.log(state)
     return state
 }
 
