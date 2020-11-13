@@ -1,6 +1,6 @@
 import React from 'react'
-import enter from '../../assets/enter.png'
-import family from '../../assets/family.png'
+import enter from '../../../assets/enter.png'
+import family from '../../../assets/family.png'
 import { connect } from 'react-redux'
 import { Layout, Typography, Avatar, Button, Row, Col } from 'antd';
 import {UserOutlined,LogoutOutlined} from '@ant-design/icons';

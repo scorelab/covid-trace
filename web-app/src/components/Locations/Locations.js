@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout, Card, Button,Table, Tag, Space} from 'antd';
-import Navbar from '../UiElements/Navbar';
+import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 const { Content } = Layout;
 

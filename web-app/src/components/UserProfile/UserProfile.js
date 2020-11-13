@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Layout, Card, Tabs} from 'antd';
-import Navbar from '../UiElements/Navbar';
+import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import Profile from './UserProfileTabs/Profile';
 const { TabPane } = Tabs;
