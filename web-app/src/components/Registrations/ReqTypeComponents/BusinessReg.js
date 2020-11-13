@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
-import cities, { values } from './Cities'
-import { Card, Divider, Row, Col, Input, Select, Checkbox, Button, message, Space } from 'antd';
-import { f } from '../../../config/config_env';
+import React, { useState,useEffect } from 'react'
+import cities from './Cities'
+import { Card, Divider, Row, Col, Input, Select, Checkbox, Button, message } from 'antd';
+import {registerBusiness} from '../../../store/actions/registrationActions';
+import { connect } from 'react-redux'
 const { Option } = Select;
 
-
 function BusinessReg(props) {
+
+    useEffect(() => {
+        if (props.Registration.registrationError == true) {
+            warning();
+        } else if (props.Registration.registrationError == false) {
+            success();
+        }
+    }, [props.Registration.registrationError])
 
     const [state, setstate] = useState({
         province: null,
@@ -92,8 +100,7 @@ function BusinessReg(props) {
         if (state.isCorrect == false) {
             warning();
         } else {
-            console.log(state)
-            f.firestore().collection('/sc_location').add({
+            props.registerBusiness({
                 province: state.province,
                 city: state.city,
                 district: state.District,
@@ -107,14 +114,6 @@ function BusinessReg(props) {
                 name: state.name,
                 contact_no: state.contact_no,
             })
-                .then((e) => {
-                    console.log("Document Created: ", e)
-                    success();
-                })
-                .catch((e) => {
-                    console.log("Error: ", e)
-                    error()
-                })
         }
     }
 
@@ -132,7 +131,7 @@ function BusinessReg(props) {
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto",minHeight: "59vh", position: "sticky",marginBottom:'20px'}}>
+            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto",minHeight: "58vh", position: "sticky",marginBottom:'20px'}}>
                 <Row>
                     <Col span={24}>
                         <Input placeholder="Name" name="name" value={state.name} onChange={handleChangeInputs} />
@@ -225,16 +224,28 @@ function BusinessReg(props) {
                 </Row>
                 <Row justify="space-between" align="middle">
                     <Col sm={24} md={10}  >
-                        <Checkbox onChange={handleChangeInputs} name="isCorrect" style={{ marginTop: "35px" }} >Confirm Your Details Is Correct</Checkbox>
+                        <Checkbox onChange={handleChangeInputs} name="isCorrect" style={{ marginTop: "40px" }} >Confirm Your Details Is Correct</Checkbox>
                     </Col>
                     <Col sm={24} md={10}   >
-                        <Button type="primary" style={{ marginTop: "35px", width: "100%" }} onClick={submitDetails} >Submit</Button>
+                        <Button type="primary" style={{ marginTop: "40px", width: "100%" }} onClick={submitDetails} >Submit</Button>
                     </Col>
                 </Row>
+
             </Card>
         </div>
     )
 }
 
-export default BusinessReg
+const mapStateToProps = (state)=>{
+    console.log(state)
+    return state
+}
+
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        registerBusiness:(business)=>dispatch(registerBusiness(business))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(BusinessReg)
 
