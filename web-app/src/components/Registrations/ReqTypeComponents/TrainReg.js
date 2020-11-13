@@ -1,8 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Row, Col, Input, Checkbox, Button,message } from 'antd';
-import { f } from '../../../config/config_env';
+import { registerTrain } from '../../../store/actions/registrationActions';
+import { connect } from 'react-redux'
 
 function TrainReg(props) {
+
+    useEffect(() => {
+        if (props.Registration.registrationError == true) {
+            warning();
+        } else if (props.Registration.registrationError == false) {
+            success();
+        }
+    }, [props.Registration.registrationError])
 
     const [state, setstate] = useState({
         carriage_no: '',
@@ -12,7 +21,6 @@ function TrainReg(props) {
         isCorrect: false,
         location_id: 'locid' + Math.floor(Math.random() * 10000),
     })
-
 
     function handleChange(e) {
         const value = e.target.value;
@@ -35,7 +43,14 @@ function TrainReg(props) {
             warning();
         } else {
             console.log(state)
-            f.firestore().collection('/sc_train').add({
+            props.registerTrain({
+                carriage_no: state.carriage_no,
+                location_id: state.location_id,
+                train_name: state.train_name,
+                train_no: state.train_no,
+                location_id: state.location_id
+            })
+            /* f.firestore().collection('/sc_train').add({
                 carriage_no: state.carriage_no,
                 location_id: state.location_id,
                 train_name: state.train_name,
@@ -49,7 +64,7 @@ function TrainReg(props) {
                 .catch((e) => {
                     console.log("Error: ", e)
                     error()
-                })
+                }) */
         }
     }
 
@@ -97,5 +112,16 @@ function TrainReg(props) {
     )
 }
 
-export default TrainReg
+const mapStateToProps = (state) => {
+    console.log(state)
+    return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        registerTrain: (train) => dispatch(registerTrain(train))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TrainReg)
 

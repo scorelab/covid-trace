@@ -1,8 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Row, Col, Input, Checkbox, Button, message } from 'antd';
-import { f } from '../../../config/config_env';
+import { registerBus } from '../../../store/actions/registrationActions';
+import { connect } from 'react-redux'
 
 function BusReg(props) {
+
+    useEffect(() => {
+        if (props.Registration.registrationError == true) {
+            warning();
+        } else if (props.Registration.registrationError == false) {
+            success();
+        }
+    }, [props.Registration.registrationError])
 
     const [state, setstate] = useState({
         bus_no: '',
@@ -38,7 +47,14 @@ function BusReg(props) {
             warning();
         } else {
             console.log(state)
-            f.firestore().collection('/sc_bus').add({
+            props.registerBus({
+                bus_no: state.bus_no,
+                bus_route_no: state.bus_route_no,
+                contact_number: state.contact_number,
+                location_id: state.location_id,
+                name: state.name,
+            })
+            /* f.firestore().collection('/sc_bus').add({
                 bus_no: state.bus_no,
                 bus_route_no: state.bus_route_no,
                 contact_number: state.contact_number,
@@ -52,7 +68,7 @@ function BusReg(props) {
                 .catch((e) => {
                     console.log("Error: ", e)
                     error()
-                })
+                }) */
         }
     }
 
@@ -70,7 +86,7 @@ function BusReg(props) {
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "260px", position: "sticky" }}>
+            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
                 <Row justify="space-between" >
                     <Col sm={24} md={13}  >
                         <Input placeholder="Bus No" name="bus_no" onChange={handleChange} />
@@ -104,5 +120,16 @@ function BusReg(props) {
     )
 }
 
-export default BusReg
+const mapStateToProps = (state) => {
+    console.log(state)
+    return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        registerBus: (bus) => dispatch(registerBus(bus))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BusReg)
 
