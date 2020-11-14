@@ -2,8 +2,10 @@ import React from 'react'
 import { Layout, Card, Button, Row, Col } from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
-import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import {  compose } from 'redux'
 const { Content } = Layout;
 
 function Organisation(props) {
@@ -71,5 +73,10 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps)(Organisation)
+export default compose(
+    firestoreConnect(() => ['oc_org']), // sync todos collection from Firestore into redux
+    connect(mapStateToProps),
+)(Organisation)
+
+//export default connect(mapStateToProps)(Organisation)
 
