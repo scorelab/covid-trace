@@ -54,7 +54,7 @@ function Organisation(props) {
                     <Card title="Organisations" style={{ width: '1150px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "6.9vh", overflow: "auto", minHeight: "64vh", marginBottom: "80px", position: "sticky" }}>
                         <Row>
                             {
-                                state.orgList ? state.orgList.map((org) => {
+                                (props.orgData && props.orgWithUserData && state.orgList) ? state.orgList.map((org) => {
                                     return (
                                         <Col sm={24} md={12} lg={12} xl={8} justify="space-around" align="middle" key={org.orgId}>
                                             <Card size="small" title={org.Name} style={{ width: 300, boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>

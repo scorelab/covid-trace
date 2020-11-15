@@ -3,15 +3,20 @@ import cities from './Cities'
 import { Card, Divider, Row, Col, Input, Select, Checkbox, Button, message } from 'antd';
 import {registerBusiness} from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
+import { useHistory } from "react-router-dom";
 const { Option } = Select;
 
 function BusinessReg(props) {
+
+    let history = useHistory();
 
     useEffect(() => {
         if (props.Registration.registrationError == true) {
             warning();
         } else if (props.Registration.registrationError == false) {
             success();
+            props.reset();
+            history.push("/organisations");
         }
     }, [props.Registration.registrationError])
 
@@ -244,7 +249,8 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
     return {
-        registerBusiness:(business)=>dispatch(registerBusiness(business))
+        registerBusiness:(business)=>dispatch(registerBusiness(business)),
+        reset: () => dispatch({ type: 'RESET' })
     }
 }
 
