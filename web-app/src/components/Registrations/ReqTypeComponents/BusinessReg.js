@@ -113,6 +113,7 @@ function BusinessReg(props) {
                 google_plc: state.google_plc,
                 name: state.name,
                 contact_no: state.contact_no,
+                org:props.orgUserName
             })
         }
     }

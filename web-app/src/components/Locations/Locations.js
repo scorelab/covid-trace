@@ -3,10 +3,15 @@ import { Layout, Card, Button,Table, Tag, Space} from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 import { Redirect } from 'react-router-dom';
 const { Content } = Layout;
 
-const columns = [
+
+function Locations(props) {
+
+  const columns = [
     {
       title: 'Location',
       dataIndex: 'location',
@@ -68,7 +73,6 @@ const data = [
     },
   ];
 
-function Locations(props) {
   
   if(props.user==null)return <Redirect to='signIn' />
 
@@ -91,10 +95,17 @@ const mapStateToProps = (state) => {
   //console.log(state)
   return ({
       ...state,
-      user:state.auth.auth.user
+      user:state.auth.auth.user,
+      locationData: state.firestore.data.sc_location,
   })
 }
 
 
-export default connect(mapStateToProps)(Locations)
+//export default connect(mapStateToProps)(Locations)
 
+export default compose(
+  firestoreConnect([
+      { collection: 'sc_location' }
+  ]), // sync todos collection from Firestore into redux
+  connect(mapStateToProps),
+)(Locations)

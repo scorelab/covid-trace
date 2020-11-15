@@ -89,7 +89,7 @@ function Organisation(props) {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.firestore)
+    //console.log(state.firestore)
     return ({
         ...state,
         user: state.auth.auth.user,
