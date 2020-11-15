@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Card, Button, Row, Col, Spin,Typography } from 'antd';
+import { Layout, Card, Button, Row, Col, Spin, Typography } from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { useHistory } from "react-router-dom";
 const { Content } = Layout;
 const { Text, Link } = Typography
 
 function Organisation(props) {
 
+    let history = useHistory();
 
     const [state, setstate] = useState({
         orgList: []
@@ -38,6 +40,10 @@ function Organisation(props) {
         })
     }, [props.orgData, props.orgWithUserData])
 
+    function goToLocation(val){
+        history.push(`/locations/${val}`);
+    }
+
     if (props.user == null) return <Redirect to='signIn' />
 
     return (
@@ -52,15 +58,15 @@ function Organisation(props) {
                                     return (
                                         <Col sm={24} md={12} lg={12} xl={8} justify="space-around" align="middle" key={org.orgId}>
                                             <Card size="small" title={org.Name} style={{ width: 300, boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
-                                    <Row justify={"center"}>
-                                    <Text strong>UserName : </Text>
-                                    <Text> {org.UserName}</Text>
-                                    </Row>
-                                    <Row justify={"center"} style={{marginBottom:'20px',marginTop:'10px'}}>
-                                    <Text strong>WebSite : </Text>
-                                    <Text> {org.WebSite}</Text>
-                                    </Row>
-                                                <Button type="primary">Locations</Button>
+                                                <Row justify={"center"}>
+                                                    <Text strong>UserName : </Text>
+                                                    <Text> {org.UserName}</Text>
+                                                </Row>
+                                                <Row justify={"center"} style={{ marginBottom: '20px', marginTop: '10px' }}>
+                                                    <Text strong>WebSite : </Text>
+                                                    <Text> {org.WebSite}</Text>
+                                                </Row>
+                                                <Button type="primary" onClick={() => goToLocation(org.UserName)}>Locations</Button>
                                             </Card>
                                         </Col>
                                     )
