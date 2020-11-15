@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Layout, Card, Tabs} from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
@@ -10,6 +10,14 @@ const { Content } = Layout;
 
 function CompanyInfo(props) {
 
+    const [companyDetails, setCompanyDetails] = useState()
+
+    useEffect(()=>{
+        //console.log(props.history.location.state)
+        props.history.location.state && setCompanyDetails({
+            ...props.history.location.state 
+        })
+    },[props.history.location])
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ height: "100vh" }}>
@@ -18,7 +26,7 @@ function CompanyInfo(props) {
                     <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "61vh", position: "sticky" }}>
                         <Tabs tabPosition='left'>
                             <TabPane tab="Details" key="1">
-                                <CompanyInfoDetails />
+                                <CompanyInfoDetails companyDetails={companyDetails} />
                             </TabPane>
                             <TabPane tab="Tab 2" key="2">
                                 Content of Tab 2

@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Card, Row, Col, Input, Checkbox, Button,message } from 'antd';
 import { registerTrain } from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 function TrainReg(props) {
+
+    let history = useHistory();
 
     useEffect(() => {
         if (props.Registration.registrationError == true) {
             warning();
         } else if (props.Registration.registrationError == false) {
             success();
+            props.reset();
+            history.push("/organisations");
         }
     }, [props.Registration.registrationError])
 
@@ -119,7 +124,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        registerTrain: (train) => dispatch(registerTrain(train))
+        registerTrain: (train) => dispatch(registerTrain(train)),
+        reset: () => dispatch({ type: 'RESET' })
     }
 }
 

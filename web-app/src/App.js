@@ -7,6 +7,7 @@ import CompanyInfo from './components/CompanyInfo/CompanyInfo';
 import HomePage from './components/home/HomePage';
 import Locations from './components/Locations/Locations';
 import Organisation from './components/Organisations/Organisation';
+import QRpage from './components/QRcode/QRpage';
 import Registration from './components/Registrations/Registration';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
@@ -22,10 +23,11 @@ class App extends Component {
         <Route exact path="/signUp" component={SignUp} />
         <Route exact path="/organisations" component={Organisation} />
         <Route exact path="/addOrganisation" component={AddOrganisation} />
-        <Route exact path="/locations" component={Locations} />
+        <Route exact path="/locations/:UserName" component={Locations} />
         <Route exact path="/registration" component={Registration} />
-        <Route exact path="/companyInfo" component={CompanyInfo} />
+        <Route exact path="/companyInfo/:CompanyId" component={CompanyInfo} />
         <Route exact path="/userProfile" component={UserProfile} />
+        <Route exact path="/qrpage/:CompanyId" component={QRpage} />
       </Switch>
     );
   }

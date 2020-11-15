@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Card, Row, Col, Input, Checkbox, Button, message } from 'antd';
 import { registerBus } from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function BusReg(props) {
+
+    let history = useHistory();
 
     useEffect(() => {
         if (props.Registration.registrationError == true) {
             warning();
         } else if (props.Registration.registrationError == false) {
             success();
+            props.reset();
+            history.push("/organisations");
         }
     }, [props.Registration.registrationError])
 
@@ -130,7 +134,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        registerBus: (bus) => dispatch(registerBus(bus))
+        registerBus: (bus) => dispatch(registerBus(bus)),
+        reset: () => dispatch({ type: 'RESET' })
     }
 }
 
