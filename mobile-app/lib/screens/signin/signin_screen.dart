@@ -5,6 +5,7 @@ import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:slcovid_tracker/screens/permisson/permission_screen.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 import 'package:country_code_picker/country_code_picker.dart';
@@ -100,8 +101,11 @@ class _SigninScreenState extends State<SigninScreen> {
             setState(() {
               _isLoading = false;
             });
-            Application.router
-                .navigateTo(context, Routes.permission, clearStack: true);
+            Application.router.navigateTo(context, Routes.permission,
+                routeSettings: RouteSettings(
+                  arguments: PermissionScreenArgs(toVerify: false),
+                ),
+                clearStack: true);
           }
         },
         cubit: Provider.of<AuthBloc>(context),

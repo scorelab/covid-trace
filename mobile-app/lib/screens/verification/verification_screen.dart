@@ -91,7 +91,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
           }
           if (state is VerifySuccess) {
             Application.router
-                .navigateTo(context, Routes.permission, clearStack: true);
+                .navigateTo(context, Routes.main, clearStack: true);
           }
         },
         cubit: Provider.of<VerifyBloc>(context),
