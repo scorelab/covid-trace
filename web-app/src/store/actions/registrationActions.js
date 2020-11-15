@@ -1,4 +1,4 @@
-export const registerBusiness = (business) => {
+/* export const registerBusiness = (business) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
         console.log(business)
@@ -11,6 +11,31 @@ export const registerBusiness = (business) => {
         })
     }
 }
+ */
+export const registerBusiness = (business) => async (
+    dispatch,
+    getState,
+    { getFirebase, getFirestore }
+) => {
+    const firestore = getFirestore();
+    const businessLocation = firestore.collection('sc_location');
+    const requeststatus = firestore.collection('sc_request_status');
+    businessLocation.add({
+        ...business
+    }).then((docRef) => {
+        //console.log(docRef.id)
+        requeststatus.add({
+            org: business.org,
+            location:docRef.id,
+            Status:'pending'
+        }).then(() => {
+            dispatch({ type: 'REGISTRATION_SUCCESS', business });
+        })
+    }).catch((err) => {
+        dispatch({ type: 'REGISTRATION_ERROR', err });
+    })
+};
+
 
 export const registerBus = (bus) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
