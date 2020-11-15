@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Button, Typography, Divider, Row } from 'antd';
 import { CopyTwoTone } from '@ant-design/icons';
+import { Redirect, useParams,useHistory } from 'react-router-dom';
 const { Text, Title } = Typography;
 
 function CompanyInfoDetails(props) {
@@ -21,7 +22,17 @@ function CompanyInfoDetails(props) {
         unit_no: '',
     })
 
+    let history = useHistory();
+
+    function GoToQRPage(lang){
+        history.push({
+            pathname: `/qrpage/${companyDetails.location}`,
+            state: { companyDetails }
+          })
+    }
+
     useEffect(() => {
+        console.log(props.companyDetails)
         props.companyDetails && setCompanyDetails({
             ...props.companyDetails
         })
@@ -107,7 +118,7 @@ function CompanyInfoDetails(props) {
                     <CopyTwoTone />
                 </Col>
                 <Col sm={24} md={6}>
-                    <Button type="primary">Download QR</Button>
+                    <Button type="primary" onClick={()=>GoToQRPage('Sinhala')}>Download QR</Button>
                 </Col>
             </Row>
             <Row justify="space-around" style={{ marginTop: "1em" }}>
@@ -121,12 +132,12 @@ function CompanyInfoDetails(props) {
                     <CopyTwoTone />
                 </Col>
                 <Col sm={24} md={6}>
-                    <Button type="primary">Download QR</Button>
+                    <Button type="primary" onClick={()=>GoToQRPage('English')} >Download QR</Button>
                 </Col>
             </Row>
             <Row justify="space-around" style={{ marginTop: "1em" }}>
                 <Col sm={24} md={8}>
-                    <Text strong>English QR Code</Text>
+                    <Text strong>Tamil QR Code</Text>
                 </Col>
                 <Col sm={24} md={7}>
                     <Text type="secondary">http://traceapp.com/lIofRe</Text>
@@ -135,7 +146,7 @@ function CompanyInfoDetails(props) {
                     <CopyTwoTone />
                 </Col>
                 <Col sm={24} md={6}>
-                    <Button type="primary">Download QR</Button>
+                    <Button type="primary" onClick={()=>GoToQRPage('Tamil')}>Download QR</Button>
                 </Col>
             </Row>
         </div>
