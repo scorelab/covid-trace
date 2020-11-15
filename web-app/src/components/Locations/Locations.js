@@ -5,7 +5,7 @@ import BottomFooter from '../UiElements/BottomFooter';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams,useHistory } from 'react-router-dom';
 const { Content } = Layout;
 
 
@@ -13,13 +13,17 @@ function Locations(props) {
 
   let { UserName } = useParams();
 
+  let history = useHistory();
 
   const [state, setstate] = useState({
     orgList: []
   })
 
   function goToCompanyInfo(value) {
-    console.log(value)
+    history.push({
+      pathname: `/companyInfo/${value.location}`,
+      state: { ...value }
+    })
   }
 
   useEffect(() => {

@@ -24,7 +24,7 @@ class App extends Component {
         <Route exact path="/addOrganisation" component={AddOrganisation} />
         <Route exact path="/locations/:UserName" component={Locations} />
         <Route exact path="/registration" component={Registration} />
-        <Route exact path="/companyInfo" component={CompanyInfo} />
+        <Route exact path="/companyInfo/:CompanyId" component={CompanyInfo} />
         <Route exact path="/userProfile" component={UserProfile} />
       </Switch>
     );
