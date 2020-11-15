@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:slcovid_tracker/routing/application.dart';
+import 'package:slcovid_tracker/routing/routes.dart';
+
+class PermissionScreenArgs {
+  final bool toVerify;
+
+  PermissionScreenArgs({@required this.toVerify});
+}
 
 class PermissionScreen extends StatelessWidget {
+  final PermissionScreenArgs args;
+
+  const PermissionScreen({Key key, this.args}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
@@ -85,10 +97,13 @@ class PermissionScreen extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
                   ),
-                  onPressed: () {},
+                  onPressed: () => _gotoMain(context),
                   color: Color(0xff1DE9B6),
                   textColor: Colors.white,
-                  child: Text("Allow", style: TextStyle(fontSize: 25)),
+                  child: Text(
+                    "Allow",
+                    style: TextStyle(fontSize: 25),
+                  ),
                 ),
               )
             ],
@@ -96,6 +111,15 @@ class PermissionScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _gotoMain(context) {
+    if (args.toVerify) {
+      Application.router
+          .navigateTo(context, Routes.verification, clearStack: true);
+    } else {
+      Application.router.navigateTo(context, Routes.main, clearStack: true);
+    }
   }
 }
 

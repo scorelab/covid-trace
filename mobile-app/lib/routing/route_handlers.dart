@@ -45,7 +45,9 @@ var mainHandler = Handler(
 
 var permissionHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return PermissionScreen();
+  final args = context.arguments as PermissionScreenArgs;
+
+  return PermissionScreen(args: args);
 });
 
 var checkinHandler = Handler(
