@@ -30,7 +30,7 @@ class _UploadScreenState extends State<UploadScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Color(0xffd9d9d9),
         title: Center(
-            child: Text("Marked as Infector ", textAlign: TextAlign.center)),
+            child: Text("Marked As Infector ", textAlign: TextAlign.center)),
       ),
       body: Padding(
         padding: EdgeInsets.only(
@@ -50,11 +50,11 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                     _infected
                         ? Container(
-                            height: 80,
+                            height: 90,
                             width: screenWidth * 0.9,
                             decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
-                              color: Color(0xffff6465),
+                              color: Color(0xffff7e78),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
@@ -66,20 +66,14 @@ class _UploadScreenState extends State<UploadScreen> {
                                     height: 2,
                                   ),
                                   Text(
-                                    "You are infected with Covid-19 Type this code to upload your data for contact tracing",
+                                    "You are infected with Covid-19.\nType this code to upload your data for contact tracing",
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 16),
                                   ),
                                   Text(
                                     "$_code",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 17),
+                                        color: Colors.black, fontSize: 17),
                                   ),
                                 ],
                               ),

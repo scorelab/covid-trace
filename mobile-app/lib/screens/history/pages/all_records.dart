@@ -52,6 +52,9 @@ class _AllRecordsState extends State<AllRecords> {
           }
           return Card(
             color: Theme.of(context).accentColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0.0),
+            ),
             elevation: 2.0,
             child: ListTile(
               leading: CircleAvatar(

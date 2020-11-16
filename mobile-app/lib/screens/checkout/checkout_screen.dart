@@ -24,10 +24,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     var screenWidth = _mediaQueryData.size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: Colors.transparent,
-        title: Text("Safe Check Out"),
-        backgroundColor: Colors.grey[300],
+      appBar: new AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xffd9d9d9),
+        title: Text("Safe Out ", textAlign: TextAlign.center),
       ),
       body: Padding(
         padding: EdgeInsets.only(
@@ -43,14 +43,21 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    ListTile(
-                      leading: Icon(
-                        Icons.logout,
-                        size: 50,
-                        color: Colors.white,
-                      ),
-                      title: Text('Out',
-                          style: TextStyle(color: Colors.white, fontSize: 25)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('Out',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 25)),
+                      ],
                     ),
                     Card(
                       color: Colors.grey[200],
@@ -65,6 +72,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                   height: 50,
                                 ),
                                 Text(_format(_args.checkOut),
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
@@ -117,6 +125,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   String _format(DateTime end) {
     String day = DateFormat('yyyy-MM-dd').format(end);
     String endTime = DateFormat('jm').format(end);
-    return day + " to " + endTime;
+    return day + "\n" + endTime;
   }
 }

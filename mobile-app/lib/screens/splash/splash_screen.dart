@@ -57,11 +57,11 @@ class SplashScreen extends StatelessWidget {
                     children: [
                       // image2,
                       Text(
-                        "SAFE CHECK IN",
+                        "SAFE IN",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).primaryColor,
-                            fontSize: 25),
+                            fontSize: 35),
                       )
                     ],
                   ),

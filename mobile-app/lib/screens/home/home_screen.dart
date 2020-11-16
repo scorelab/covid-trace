@@ -41,7 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       title: 'You are ok',
                       col: Theme.of(context).primaryColor,
                       subtile:
-                          'Based on all your Safe Check-In records from the last 14 days.',
+                          'Based on all your Safe-In\n records from the last 14 days.',
+                      heightfactor: 80.0,
                     )
                   : _safedetails(
                       screenWidth: screenWidth,
@@ -49,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       col: Colors.red,
                       title: 'Alert',
                       subtile:
-                          "You're exposed to Covid-19 positive person, Don't worry. Please contact the authorities and self-quarantine.",
+                          "You're exposed to Covid-19 positive\n person, Don't worry. Please contact\n the authorities and self-quarantine.",
+                      heightfactor: 90.0,
                     ),
               StreamBuilder(
                   stream:
@@ -75,10 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               size: 30.0,
                             ),
                             Text(
-                              "Safe Check In",
+                              "Safe In",
                               textAlign: TextAlign.center,
                               style:
-                                  TextStyle(color: Colors.grey, fontSize: 14),
+                                  TextStyle(color: Colors.grey, fontSize: 16),
                             ),
                             SizedBox(
                               height: 30,
@@ -97,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color(0xff1DE9B6),
                                 textColor: Colors.white,
                                 child: Text(
-                                  "NEW CHECK IN",
+                                  "NEW SAFE IN",
                                 ),
                               ),
                             ),
@@ -133,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Last QR Check In',
+                'Last QR Safe In',
                 textAlign: TextAlign.left,
                 style: TextStyle(color: Colors.grey, fontSize: 20),
               ),
@@ -149,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 16),
               ),
               SizedBox(
-                height: 5,
+                height: 15,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -180,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Color(0xff1DE9B6),
                       textColor: Colors.white,
                       child: Text(
-                        "CHECK OUT",
+                        "SAFE OUT",
                       ),
                     ),
                   ),
@@ -231,6 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
 class _safedetails extends StatelessWidget {
   const _safedetails(
       {@required this.title,
+      @required this.heightfactor,
       @required this.screenWidth,
       @required this.subtile,
       @required this.icon,
@@ -241,34 +244,89 @@ class _safedetails extends StatelessWidget {
   final String subtile;
   final IconData icon;
   final Color col;
+  final double heightfactor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: heightfactor,
       margin:
           EdgeInsets.symmetric(horizontal: screenWidth * 0.1, vertical: 20.0),
-      child: ListTile(
-        tileColor: Color(0xffd9d9d9),
-        leading: Icon(
-          icon,
-          color: col,
-          size: 50.0,
-        ),
-        title: Text(
-          title,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-        subtitle: RichText(
-          text: TextSpan(
-            style: TextStyle(color: Colors.black87),
-            children: <TextSpan>[
-              TextSpan(text: subtile),
-            ],
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            offset: Offset(0, 4), // changes position of shadow
           ),
+        ],
+        shape: BoxShape.rectangle,
+        color: Color(0xffd9d9d9),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  icon,
+                  color: col,
+                  size: 50.0,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      subtile,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 15, color: Colors.black),
+                    ),
+                  ],
+                ),
+              ],
+            )
+          ],
         ),
-        enabled: false,
       ),
     );
+    // return Container(
+    //   margin:
+    //       EdgeInsets.symmetric(horizontal: screenWidth * 0.1, vertical: 20.0),
+    //   child: Center(
+    //     child: ListTile(
+    //       tileColor: Color(0xffd9d9d9),
+    //       leading: Icon(
+    //         icon,
+    //         color: col,
+    //         size: 50.0,
+    //       ),
+    //       title: Text(
+    //         title,
+    //         overflow: TextOverflow.ellipsis,
+    //         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+    //       ),
+    //       subtitle: RichText(
+    //         text: TextSpan(
+    //           style: TextStyle(color: Colors.black87),
+    //           children: <TextSpan>[
+    //             TextSpan(text: subtile),
+    //           ],
+    //         ),
+    //       ),
+    //       enabled: false,
+    //     ),
+    //   ),
+    // );
   }
 }

@@ -24,10 +24,10 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
     var screenWidth = _mediaQueryData.size.width;
     print(_location);
     return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: Colors.transparent,
-        title: Text("Safe Check In"),
-        backgroundColor: Colors.grey[300],
+      appBar: new AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xffd9d9d9),
+        title: Text("Safe In ", textAlign: TextAlign.center),
       ),
       body: Padding(
         padding: EdgeInsets.only(
@@ -43,23 +43,26 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    ListTile(
-                      leading: Icon(
-                        Icons.login_rounded,
-                        size: 50,
-                        color: Colors.white,
-                      ),
-                      title: Text('In',
-                          style: TextStyle(color: Colors.white, fontSize: 25)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.login_rounded,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('In',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 25)),
+                      ],
                     ),
                     Card(
                       color: Colors.grey[200],
                       child: Column(
-                        // mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          // ListTile(
-                          //   title: Text('Heart Shaker', style: TextStyle(color: Colors.black54),),
-                          // ),
                           Container(
                             width: screenWidth,
                             child: Column(
@@ -67,13 +70,17 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                                 Container(
                                   height: 50,
                                 ),
-                                Text(_format(_location.checkIn),
+                                Text(
+                                    _format(
+                                      _location.checkIn,
+                                    ),
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
                                         fontSize: 25)), //Date
                                 Container(
-                                  height: 10,
+                                  height: 5,
                                 ),
                                 Text(_location.name,
                                     style: TextStyle(
@@ -120,6 +127,6 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
   String _format(DateTime start) {
     String day = DateFormat('yyyy-MM-dd').format(start);
     String startTime = DateFormat('jm').format(start);
-    return day + " from " + startTime;
+    return day + "\n" + startTime;
   }
 }

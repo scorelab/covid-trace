@@ -86,11 +86,11 @@ class _SafeEntryBeforeCheckInScreenState
         },
         cubit: Provider.of<CheckInBloc>(context),
         child: Scaffold(
-          appBar: AppBar(
-            // backgroundColor: Colors.transparent,
-            title: Text("Safe Check In"),
-            backgroundColor: Colors.grey[300],
-          ),
+          appBar: new AppBar(
+             centerTitle: true,
+        backgroundColor: Color(0xffd9d9d9),
+        title: Text("Safe In ", textAlign: TextAlign.center),
+      ),
           body: _isInvalidUrl
               ? _buildInvalidUrlBody(context)
               : Padding(
@@ -103,7 +103,7 @@ class _SafeEntryBeforeCheckInScreenState
                       children: [
                         _fetching ? LinearProgressIndicator() : Container(),
                         Text(
-                          'Check in to :',
+                          'Safe In To :',
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -122,7 +122,7 @@ class _SafeEntryBeforeCheckInScreenState
                                 TextStyle(color: Colors.black54, fontSize: 17),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: 'By Check-In, I declare that:\n\n'),
+                                  text: 'By Safe-In, I declare that:\n\n'),
                               TextSpan(
                                   text:
                                       '- I have no close contact a confirmed Covid-19 case in last 14 days\n'),
@@ -155,7 +155,7 @@ class _SafeEntryBeforeCheckInScreenState
                                 ? CircularProgressIndicator(
                                     backgroundColor: Colors.white,
                                   )
-                                : Text("CHECK IN",
+                                : Text("SAFE IN",
                                     style: TextStyle(fontSize: 25)),
                           ),
                         ),
