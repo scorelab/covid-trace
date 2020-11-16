@@ -25,8 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(
-            top: screenHeight * 0.03),
+        padding: EdgeInsets.only(top: screenHeight * 0.03),
         child: Center(
           child: ListView(
             children: [
@@ -52,77 +51,75 @@ class _HomeScreenState extends State<HomeScreen> {
                       subtile:
                           "You're exposed to Covid-19 positive person, Don't worry. Please contact the authorities and self-quarantine.",
                     ),
-              Container(height: 5),
               StreamBuilder(
                   stream:
                       BlocProvider.of<CheckInBloc>(context).checkedInLocations,
                   builder: _buildCurrentCheckIn),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 24),
+                height: 70,
+                margin: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.1, vertical: 5.0),
                 child: Card(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Container(
-                        height: 8,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 1,
-                            child: Container(),
-                          ),
-                          Expanded(
-                            flex: 4,
-                            child: Icon(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 15, left: 10, right: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(
                               Icons.login_rounded,
                               color: Colors.red,
                               size: 30.0,
                             ),
-                          ),
-                          Expanded(
-                            flex: 8,
-                            child: Text(
+                            Text(
                               "Safe Check In",
                               textAlign: TextAlign.center,
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 14),
                             ),
-                          ),
-                          Expanded(
-                            flex: 14,
-                            child: ButtonTheme(
-                              minWidth: screenWidth * 0.38,
+                            SizedBox(
+                              height: 30,
+                              width: screenWidth * 0.4, // specific value
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0)),
-                                color: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                onPressed: () {
+                                  Navigator.pushNamed(context, Routes.checkin);
+                                  // Navigator.pushNamed(
+                                  //     context, Routes.safeentrybeforecheckin,
+                                  //     arguments: SafeEntryBeforeCheckInScreenArgs(
+                                  //         ("https://safecheckin.com/sc_bus|AXeyPFiEpYBGIfyasNGr|Namal Travels|NM-0001")));
+                                },
+                                color: Color(0xff1DE9B6),
                                 textColor: Colors.white,
                                 child: Text(
-                                  'NEW CHECK IN',
+                                  "NEW CHECK IN",
                                 ),
-
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, Routes.checkin);
-                                // Navigator.pushNamed(
-                                //     context, Routes.safeentrybeforecheckin,
-                                //     arguments: SafeEntryBeforeCheckInScreenArgs(
-                                //         ("https://safecheckin.com/sc_bus|AXeyPFiEpYBGIfyasNGr|Namal Travels|NM-0001")));
-                              },
+                              ),
                             ),
-                          ),
-                             ),
-                          Expanded(
-                            flex: 1,
-                            child: Container(),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        height: 8,
-                      ),
-                    ],
+                            // ButtonTheme(
+                            //   minWidth: screenWidth * 0.38,
+                            //   child: RaisedButton(
+                            //     shape: RoundedRectangleBorder(
+                            //         borderRadius: BorderRadius.circular(30.0)),
+                            //     color: Theme.of(context).primaryColor,
+                            //     textColor: Colors.white,
+                            //     child: Text(
+                            //       'NEW CHECK IN',
+                            //     ),
+                            //     onPressed: () {
+                            //       Navigator.pushNamed(context, Routes.checkin);
+                            //     },
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -137,21 +134,28 @@ class _HomeScreenState extends State<HomeScreen> {
     if (!snapshot.hasData || snapshot.data.length <= 0) {
       return _buildNotCheckedIn(context);
     }
-
     Location lastCheckIn = snapshot.data[0];
-
+    var _mediaQueryData = MediaQuery.of(context);
+    var screenWidth = _mediaQueryData.size.width;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+      height: 120,
+      margin:
+          EdgeInsets.symmetric(horizontal: screenWidth * 0.1, vertical: 2.0),
       child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              title: Text(
-                'Last QR check In',
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Last QR Check In',
+                textAlign: TextAlign.left,
                 style: TextStyle(color: Colors.grey, fontSize: 20),
               ),
-              subtitle: Text(
+              SizedBox(
+                height: 5,
+              ),
+              Text(
                 lastCheckIn.name,
                 //Location name should be replaced
                 style: TextStyle(
@@ -159,37 +163,89 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.bold,
                     fontSize: 16),
               ),
-            ),
-            ButtonBar(
-              alignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                ButtonTheme(
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    color: Colors.grey,
-                    textColor: Colors.white,
-                    child: Text(
-                      'VIEW PASS',
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    height: 30,
+                    width: screenWidth * 0.35, // specific value
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                      onPressed: () => _onViewPass(lastCheckIn),
+                      color: Colors.grey,
+                      textColor: Colors.white,
+                      child: Text(
+                        "VIEW PASS",
+                      ),
                     ),
-                    onPressed: () => _onViewPass(lastCheckIn),
                   ),
-                ),
-                ButtonTheme(
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    child: Text(
-                      'CHECK OUT',
+                  SizedBox(
+                    height: 30,
+                    width: screenWidth * 0.35, // specific value
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                      onPressed: () => _onCheckOut(lastCheckIn),
+                      color: Color(0xff1DE9B6),
+                      textColor: Colors.white,
+                      child: Text(
+                        "CHECK OUT",
+                      ),
                     ),
-                    onPressed: () => _onCheckOut(lastCheckIn),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              )
+              // ListTile(
+              //   title: Text(
+              //     'Last QR check In',
+              //     style: TextStyle(color: Colors.grey, fontSize: 20),
+              //   ),
+              //   subtitle: Text(
+              //     lastCheckIn.name,
+              //     //Location name should be replaced
+              //     style: TextStyle(
+              //         color: Colors.black,
+              //         fontWeight: FontWeight.bold,
+              //         fontSize: 16),
+              //   ),
+              // ),
+              // ButtonBar(
+              //   alignment: MainAxisAlignment.spaceEvenly,
+              //   children: <Widget>[
+              //     ButtonTheme(
+              //       child: RaisedButton(
+              //         shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(30.0)),
+              //         color: Colors.grey,
+              //         textColor: Colors.white,
+              //         child: Text(
+              //           'VIEW PASS',
+              //         ),
+              //         onPressed: () => _onViewPass(lastCheckIn),
+              //       ),
+              //     ),
+              //     ButtonTheme(
+              //       child: RaisedButton(
+              //         shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(30.0)),
+              //         color: Theme.of(context).primaryColor,
+              //         textColor: Colors.white,
+              //         child: Text(
+              //           'CHECK OUT',
+              //         ),
+              //         onPressed: () => _onCheckOut(lastCheckIn),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+            ],
+          ),
         ),
       ),
     );
@@ -212,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
             "Let's stand together",
@@ -220,10 +276,10 @@ class _HomeScreenState extends State<HomeScreen> {
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
           ),
-          Image(
-            image: assetImage2,
-            width: 64,
-          ),
+          // Image(
+          //   image: assetImage2,
+          //   width: 64,
+          // ),
         ],
       ),
     );

@@ -34,7 +34,7 @@ class _UploadScreenState extends State<UploadScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.only(
-            top: _infected ? screenHeight * 0.02 : screenHeight * 0.02,
+            top: _infected ? screenHeight * 0.03 : screenHeight * 0.03,
             left: 10,
             right: 10),
         child: Center(
@@ -50,7 +50,7 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                     _infected
                         ? Container(
-                            height: 100,
+                            height: 80,
                             width: screenWidth * 0.9,
                             decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
