@@ -17,6 +17,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
     var screenWidth = _mediaQueryData.size.width;
 
     return Scaffold(
+      
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Center(
@@ -67,53 +68,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     ),
                   ),
                 ),
-                // Expanded(
-                //   child: ButtonTheme(
-                //     minWidth: screenWidth * 0.47,
-                //     child: RaisedButton(
-                //       shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(30.0)),
-                //       color: _isAllRecords
-                //           ? Theme.of(context).primaryColor
-                //           : Colors.grey,
-                //       textColor: Colors.white,
-                //       child: Text(
-                //         'ALL RECORDS',
-                //       ),
-                //       onPressed: () {
-                // setState(() {
-                //   _isAllRecords = true;
-                // });
-                //       },
-                //     ),
-                //   ),
-                // ),
-                // Expanded(
-                //   child: ButtonTheme(
-                //     minWidth: screenWidth * 0.47,
-                //     child: RaisedButton(
-                //       shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(30.0)),
-                //       color: !_isAllRecords
-                //           ? Theme.of(context).primaryColor
-                //           : Colors.grey,
-                //       textColor: Colors.white,
-                //       child: Text(
-                //         'POSSIBLE EXPOSURES',
-                //       ),
-                //       onPressed: () {
-                //         setState(() {
-                //           _isAllRecords = false;
-                //         });
-                //       },
-                //     ),
-                //   ),
-                // ),
+             
               ],
             ),
           ),
           Divider(),
-          if (_isAllRecords) AllRecords() else PossibleExpo()
+          _isAllRecords ? AllRecords() : PossibleExpo(),
+       
         ],
       ),
     );

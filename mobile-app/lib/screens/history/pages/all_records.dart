@@ -24,27 +24,30 @@ class _AllRecordsState extends State<AllRecords> {
       return Container();
     }
 
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: snapshot.data.length,
-      itemBuilder: (BuildContext context, int index) {
-        Location location = snapshot.data[index];
-        print(location.type);
-        return Card(
-          color: Theme.of(context).accentColor,
-          elevation: 2.0,
-          child: ListTile(
-            leading: CircleAvatar(
-                backgroundColor: Colors.transparent,
-                backgroundImage: AssetImage('asset/images/car.png')),
-            title: Text(location.name, //data.name[index]
-                style: TextStyle(color: Colors.black, fontSize: 16)),
-            subtitle: Text(_genTimePeriod(location.checkIn, location.checkOut),
-                //data.time[index]
-                style: TextStyle(color: Colors.black54)),
-          ),
-        );
-      },
+    return Expanded(
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: snapshot.data.length,
+        itemBuilder: (BuildContext context, int index) {
+          Location location = snapshot.data[index];
+          print(location.type);
+          return Card(
+            color: Theme.of(context).accentColor,
+            elevation: 2.0,
+            child: ListTile(
+              leading: CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: AssetImage('asset/images/car.png')),
+              title: Text(location.name, //data.name[index]
+                  style: TextStyle(color: Colors.black, fontSize: 16)),
+              subtitle:
+                  Text(_genTimePeriod(location.checkIn, location.checkOut),
+                      //data.time[index]
+                      style: TextStyle(color: Colors.black54)),
+            ),
+          );
+        },
+      ),
     );
   }
 

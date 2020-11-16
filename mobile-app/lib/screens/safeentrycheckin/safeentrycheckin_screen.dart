@@ -67,7 +67,7 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                                 Container(
                                   height: 50,
                                 ),
-                                Text(_location.checkIn.toString(),
+                                Text(_format(_location.checkIn),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
@@ -117,11 +117,9 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
     );
   }
 
-  String _format(DateTime start, DateTime end) {
+  String _format(DateTime start) {
     String day = DateFormat('yyyy-MM-dd').format(start);
     String startTime = DateFormat('jm').format(start);
-    String endTime = DateFormat('jm').format(start);
-
-    return day + " from " + startTime + " to " + endTime;
+    return day + " from " + startTime ;
   }
 }
