@@ -26,51 +26,91 @@ class _HistoryScreenState extends State<HistoryScreen> {
       ),
       body: Column(
         children: [
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: ButtonTheme(
-                  minWidth: screenWidth * 0.47,
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                SizedBox(
+                  height: 30,
+                  width: screenWidth * 0.4, // specific value
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    color: _isAllRecords
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey,
-                    textColor: Colors.white,
-                    child: Text(
-                      'ALL RECORDS',
+                      borderRadius: BorderRadius.circular(18.0),
                     ),
                     onPressed: () {
                       setState(() {
                         _isAllRecords = true;
                       });
                     },
+                    color: _isAllRecords ? Color(0xff1DE9B6) : Colors.grey,
+                    textColor: Colors.white,
+                    child: Text("ALL RECORDS"),
                   ),
                 ),
-              ),
-              Expanded(
-                child: ButtonTheme(
-                  minWidth: screenWidth * 0.47,
+                SizedBox(
+                  height: 30,
+                  width: screenWidth * 0.45, // specific value
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    color: !_isAllRecords
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey,
-                    textColor: Colors.white,
-                    child: Text(
-                      'POSSIBLE EXPOSURES',
+                      borderRadius: BorderRadius.circular(18.0),
                     ),
                     onPressed: () {
                       setState(() {
                         _isAllRecords = false;
                       });
                     },
+                    color: !_isAllRecords ? Color(0xff1DE9B6) : Colors.grey,
+                    textColor: Colors.white,
+                    child: Text(
+                      "POSSIBLE EXPOSURES",
+                    ),
                   ),
                 ),
-              ),
-            ],
+                // Expanded(
+                //   child: ButtonTheme(
+                //     minWidth: screenWidth * 0.47,
+                //     child: RaisedButton(
+                //       shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(30.0)),
+                //       color: _isAllRecords
+                //           ? Theme.of(context).primaryColor
+                //           : Colors.grey,
+                //       textColor: Colors.white,
+                //       child: Text(
+                //         'ALL RECORDS',
+                //       ),
+                //       onPressed: () {
+                // setState(() {
+                //   _isAllRecords = true;
+                // });
+                //       },
+                //     ),
+                //   ),
+                // ),
+                // Expanded(
+                //   child: ButtonTheme(
+                //     minWidth: screenWidth * 0.47,
+                //     child: RaisedButton(
+                //       shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(30.0)),
+                //       color: !_isAllRecords
+                //           ? Theme.of(context).primaryColor
+                //           : Colors.grey,
+                //       textColor: Colors.white,
+                //       child: Text(
+                //         'POSSIBLE EXPOSURES',
+                //       ),
+                //       onPressed: () {
+                //         setState(() {
+                //           _isAllRecords = false;
+                //         });
+                //       },
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
           ),
           Divider(),
           if (_isAllRecords) AllRecords() else PossibleExpo()

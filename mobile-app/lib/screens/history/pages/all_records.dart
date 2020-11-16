@@ -29,17 +29,14 @@ class _AllRecordsState extends State<AllRecords> {
       itemCount: snapshot.data.length,
       itemBuilder: (BuildContext context, int index) {
         Location location = snapshot.data[index];
+        print(location.type);
         return Card(
           color: Theme.of(context).accentColor,
           elevation: 2.0,
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              child: Icon(
-                Icons.location_on_rounded,
-                color: Colors.grey,
-              ),
-            ),
+                backgroundColor: Colors.transparent,
+                backgroundImage: AssetImage('asset/images/car.png')),
             title: Text(location.name, //data.name[index]
                 style: TextStyle(color: Colors.black, fontSize: 16)),
             subtitle: Text(_genTimePeriod(location.checkIn, location.checkOut),
@@ -54,7 +51,7 @@ class _AllRecordsState extends State<AllRecords> {
   String _genTimePeriod(DateTime start, DateTime end) {
     String day = DateFormat('yyyy-MM-dd').format(start);
     String startTime = DateFormat('jm').format(start);
-    String endTime = DateFormat('jm').format(start);
+    String endTime = DateFormat('jm').format(end);
 
     return day + " from " + startTime + " to " + endTime;
   }

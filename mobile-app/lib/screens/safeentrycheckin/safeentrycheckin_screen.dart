@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:slcovid_tracker/models/location.dart';
 
 class SafeEntryCheckInScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
-
+    print(_location);
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.transparent,
@@ -94,27 +95,33 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
               Container(
                 height: 50,
               ),
-
-                            SizedBox(
-                      height: 50,
-                      width: screenWidth * 0.9, // specific value
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                        ),
-                        onPressed: () {
-                      Navigator.pop(context);
-                        },
-                        color: Color(0xff1DE9B6),
-                        textColor: Colors.white,
-                        child: Text("BACK TO HOME", style: TextStyle(fontSize: 25)),
-                      ),
-                    ),
-    
+              SizedBox(
+                height: 50,
+                width: screenWidth * 0.9, // specific value
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  color: Color(0xff1DE9B6),
+                  textColor: Colors.white,
+                  child: Text("BACK TO HOME", style: TextStyle(fontSize: 25)),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  String _format(DateTime start, DateTime end) {
+    String day = DateFormat('yyyy-MM-dd').format(start);
+    String startTime = DateFormat('jm').format(start);
+    String endTime = DateFormat('jm').format(start);
+
+    return day + " from " + startTime + " to " + endTime;
   }
 }
