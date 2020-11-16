@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/routing/application.dart';
 
@@ -21,7 +22,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
-   
+
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.transparent,
@@ -48,7 +49,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                         size: 50,
                         color: Colors.white,
                       ),
-                      title: Text('Check Out',
+                      title: Text('Out',
                           style: TextStyle(color: Colors.white, fontSize: 25)),
                     ),
                     Card(
@@ -56,9 +57,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       child: Column(
                         // mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          // ListTile(
-                          //   title: Text('Heart Shaker', style: TextStyle(color: Colors.black54),),
-                          // ),
                           Container(
                             width: screenWidth,
                             child: Column(
@@ -66,7 +64,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 Container(
                                   height: 50,
                                 ),
-                                Text(_args.checkOut.toString(),
+                                Text(_format(_args.checkOut),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
@@ -94,25 +92,31 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               Container(
                 height: 50,
               ),
-                    SizedBox(
-                      height: 50,
-                      width: screenWidth * 0.9, // specific value
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                        ),
-                        onPressed: () {
-                      Navigator.pop(context);
-                        },
-                        color: Color(0xff1DE9B6),
-                        textColor: Colors.white,
-                        child: Text("BACK TO HOME", style: TextStyle(fontSize: 25)),
-                      ),
-                    ),
+              SizedBox(
+                height: 50,
+                width: screenWidth * 0.9, // specific value
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  color: Color(0xff1DE9B6),
+                  textColor: Colors.white,
+                  child: Text("BACK TO HOME", style: TextStyle(fontSize: 25)),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  String _format(DateTime end) {
+    String day = DateFormat('yyyy-MM-dd').format(end);
+    String endTime = DateFormat('jm').format(end);
+    return day + " to " + endTime;
   }
 }

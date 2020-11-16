@@ -11,6 +11,11 @@ class AllRecords extends StatefulWidget {
 }
 
 class _AllRecordsState extends State<AllRecords> {
+  AssetImage lastimage;
+  AssetImage train = AssetImage('asset/images/train.png');
+  AssetImage car = AssetImage('asset/images/car.png');
+  AssetImage bus = AssetImage('asset/images/slflag.png');
+  AssetImage locationimage = AssetImage('asset/images/location.png');
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -30,14 +35,28 @@ class _AllRecordsState extends State<AllRecords> {
         itemCount: snapshot.data.length,
         itemBuilder: (BuildContext context, int index) {
           Location location = snapshot.data[index];
-          print(location.type);
+
+          switch (location.type) {
+            case "sc_bus":
+              lastimage = bus;
+              break;
+            case "sc_train":
+              lastimage = train;
+              break;
+            case "sc_vehicle":
+              lastimage = car;
+              break;
+            case "sc_location":
+              lastimage = locationimage;
+              break;
+          }
           return Card(
             color: Theme.of(context).accentColor,
             elevation: 2.0,
             child: ListTile(
               leading: CircleAvatar(
                   backgroundColor: Colors.transparent,
-                  backgroundImage: AssetImage('asset/images/car.png')),
+                  backgroundImage: lastimage),
               title: Text(location.name, //data.name[index]
                   style: TextStyle(color: Colors.black, fontSize: 16)),
               subtitle:

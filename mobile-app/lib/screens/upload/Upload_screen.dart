@@ -50,18 +50,11 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                     _infected
                         ? Container(
-                            height: 110,
+                            height: 100,
                             width: screenWidth * 0.9,
                             decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.3),
-                                  offset: Offset(
-                                      0, 4), // changes position of shadow
-                                ),
-                              ],
                               shape: BoxShape.rectangle,
-                              color: Color(0xffd9d9d9),
+                              color: Color(0xffff8170),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(left: 2.0),
@@ -73,20 +66,20 @@ class _UploadScreenState extends State<UploadScreen> {
                                     height: 2,
                                   ),
                                   Text(
-                                    "You are infected with Covid-19 Type\nthis code to upload your data for contact tracing",
+                                    "You are infected with Covid-19 Type this code to upload your data for contact tracing",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.red,
-                                        fontSize: 20),
+                                        color: Colors.black,
+                                        fontSize: 16),
                                   ),
                                   Text(
                                     "$_code",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.red,
-                                        fontSize: 20),
+                                        color: Colors.black,
+                                        fontSize: 17),
                                   ),
                                 ],
                               ),
@@ -199,7 +192,7 @@ class _UploadScreenState extends State<UploadScreen> {
                       width: screenWidth * 0.9, // specific value
                       child: RaisedButton(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
+                          borderRadius: BorderRadius.circular(0.0),
                         ),
                         onPressed: () {
                           setState(() {
