@@ -138,28 +138,26 @@ class _SafeEntryBeforeCheckInScreenState
                             ],
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.18, vertical: 30.0),
-                          child: ButtonTheme(
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Theme.of(context).primaryColor,
-                              textColor: Colors.white,
-                              child: _checking
+
+                            SizedBox(
+                      height: 50,
+                      width: screenWidth * 0.9, // specific value
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        onPressed: () {
+                      _onCheck();
+                        },
+                        color: Color(0xff1DE9B6),
+                        textColor: Colors.white,
+                        child: _checking
                                   ? CircularProgressIndicator(
                                       backgroundColor: Colors.white,
-                                    )
-                                  : Text(
-                                      'CHECK IN',
-                                    ),
-                              onPressed: () {
-                                _onCheck();
-                              },
-                            ),
-                          ),
-                        ),
+                                    ) : Text("CHECK IN", style: TextStyle(fontSize: 25)),
+                      ),
+                    ),
+                      
                       ],
                     ),
                   ),

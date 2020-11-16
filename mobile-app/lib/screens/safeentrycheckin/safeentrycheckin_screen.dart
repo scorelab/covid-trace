@@ -94,24 +94,23 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
               Container(
                 height: 50,
               ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.1, vertical: 30.0),
-                child: ButtonTheme(
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    child: Text(
-                      'BACK TO HOME',
-                    ),
-                    onPressed: () {
+
+                            SizedBox(
+                      height: 50,
+                      width: screenWidth * 0.9, // specific value
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        onPressed: () {
                       Navigator.pop(context);
-                    },
-                  ),
-                ),
-              ),
+                        },
+                        color: Color(0xff1DE9B6),
+                        textColor: Colors.white,
+                        child: Text("BACK TO HOME", style: TextStyle(fontSize: 25)),
+                      ),
+                    ),
+    
             ],
           ),
         ),

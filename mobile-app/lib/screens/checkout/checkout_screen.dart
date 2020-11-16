@@ -21,7 +21,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
-
+   
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.transparent,
@@ -74,7 +74,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 Container(
                                   height: 10,
                                 ),
-                                Text('University of Colombo',
+                                Text(_args.name.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
@@ -94,24 +94,21 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               Container(
                 height: 50,
               ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.1, vertical: 30.0),
-                child: ButtonTheme(
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    child: Text(
-                      'BACK TO HOME',
+                    SizedBox(
+                      height: 50,
+                      width: screenWidth * 0.9, // specific value
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        onPressed: () {
+                      Navigator.pop(context);
+                        },
+                        color: Color(0xff1DE9B6),
+                        textColor: Colors.white,
+                        child: Text("BACK TO HOME", style: TextStyle(fontSize: 25)),
+                      ),
                     ),
-                    onPressed: () {
-                      Application.router.pop(context);
-                    },
-                  ),
-                ),
-              ),
             ],
           ),
         ),
