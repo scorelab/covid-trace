@@ -1,4 +1,4 @@
-import { Button, Card, Input, Layout } from 'antd';
+import { Button, Card, Input, Layout,Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
@@ -98,7 +98,11 @@ function SignIn(props) {
               </Link>
               </div>
 
-              {props.loading ? 'siginin..' : null}
+              {props.loading ?
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+               <Spin />
+               </div>
+               : null}
               {props.error ? props.error : null}
 
             </div>

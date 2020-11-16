@@ -1,7 +1,10 @@
 import React from 'react'
 import { Button, Col } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
-import { Link,useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { connect } from 'react-redux'
+import {signOut} from '../../../store/actions/authActions';
+
 
 function SignedLinks(props) {
 
@@ -21,13 +24,20 @@ function SignedLinks(props) {
                 <Button type="primary" style={{ marginRight: '20px' }}>Organisations</Button>
             </Link>
             <UserOutlined style={{ fontSize: '30px', marginRight: '20px' }} onClick={() => goToPath('/userProfile')} />
-            <LogoutOutlined style={{ fontSize: '30px' }} />
+            <LogoutOutlined style={{ fontSize: '30px' }} onClick={props.signOut}/>
         </Col>
 
     )
 }
 
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signOut: () => dispatch(signOut())
+    }
+}
 
-export default SignedLinks
+
+export default connect(null,mapDispatchToProps)(SignedLinks)
+
 

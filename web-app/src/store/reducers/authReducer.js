@@ -52,7 +52,9 @@ export default (state = initialState, { type, payload }) => {
 
     case actions.SIGNIN_END:
       return signinEnd(state);
-
+    case actions.SIGNOUT_SUCCESS:
+      console.log("Sign Out Success")
+      return initialState
     default:
       return state;
   }
