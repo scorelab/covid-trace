@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    bool _safe = false;
+    bool _safe = true;
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
@@ -101,21 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            // ButtonTheme(
-                            //   minWidth: screenWidth * 0.38,
-                            //   child: RaisedButton(
-                            //     shape: RoundedRectangleBorder(
-                            //         borderRadius: BorderRadius.circular(30.0)),
-                            //     color: Theme.of(context).primaryColor,
-                            //     textColor: Colors.white,
-                            //     child: Text(
-                            //       'NEW CHECK IN',
-                            //     ),
-                            //     onPressed: () {
-                            //       Navigator.pushNamed(context, Routes.checkin);
-                            //     },
-                            //   ),
-                            // ),
                           ],
                         ),
                       ],
@@ -201,49 +186,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               )
-              // ListTile(
-              //   title: Text(
-              //     'Last QR check In',
-              //     style: TextStyle(color: Colors.grey, fontSize: 20),
-              //   ),
-              //   subtitle: Text(
-              //     lastCheckIn.name,
-              //     //Location name should be replaced
-              //     style: TextStyle(
-              //         color: Colors.black,
-              //         fontWeight: FontWeight.bold,
-              //         fontSize: 16),
-              //   ),
-              // ),
-              // ButtonBar(
-              //   alignment: MainAxisAlignment.spaceEvenly,
-              //   children: <Widget>[
-              //     ButtonTheme(
-              //       child: RaisedButton(
-              //         shape: RoundedRectangleBorder(
-              //             borderRadius: BorderRadius.circular(30.0)),
-              //         color: Colors.grey,
-              //         textColor: Colors.white,
-              //         child: Text(
-              //           'VIEW PASS',
-              //         ),
-              //         onPressed: () => _onViewPass(lastCheckIn),
-              //       ),
-              //     ),
-              //     ButtonTheme(
-              //       child: RaisedButton(
-              //         shape: RoundedRectangleBorder(
-              //             borderRadius: BorderRadius.circular(30.0)),
-              //         color: Theme.of(context).primaryColor,
-              //         textColor: Colors.white,
-              //         child: Text(
-              //           'CHECK OUT',
-              //         ),
-              //         onPressed: () => _onCheckOut(lastCheckIn),
-              //       ),
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),
