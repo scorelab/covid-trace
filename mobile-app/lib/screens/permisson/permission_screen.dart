@@ -92,17 +92,17 @@ class PermissionScreen extends StatelessWidget {
                 height: 15,
               ),
               SizedBox(
-                width: screenWidth * 0.7, // specific value
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  ),
+                  width: screenWidth * 0.9, // specific value
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0),
+                        ),
                   onPressed: () => _gotoMain(context),
                   color: Color(0xff1DE9B6),
                   textColor: Colors.white,
                   child: Text(
                     "Allow",
-                    style: TextStyle(fontSize: 25),
+                  
                   ),
                 ),
               )
