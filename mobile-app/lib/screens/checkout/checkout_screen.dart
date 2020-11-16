@@ -97,7 +97,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 width: screenWidth * 0.9, // specific value
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
+                    borderRadius: BorderRadius.circular(0.0),
                   ),
                   onPressed: () {
                     Navigator.pop(context);

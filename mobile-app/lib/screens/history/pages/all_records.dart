@@ -14,7 +14,7 @@ class _AllRecordsState extends State<AllRecords> {
   AssetImage lastimage;
   AssetImage train = AssetImage('asset/images/train.png');
   AssetImage car = AssetImage('asset/images/car.png');
-  AssetImage bus = AssetImage('asset/images/slflag.png');
+  AssetImage bus = AssetImage('asset/images/bus.png');
   AssetImage locationimage = AssetImage('asset/images/location.png');
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,7 @@ class _AllRecordsState extends State<AllRecords> {
             elevation: 2.0,
             child: ListTile(
               leading: CircleAvatar(
+                  maxRadius: 25,
                   backgroundColor: Colors.transparent,
                   backgroundImage: lastimage),
               title: Text(location.name, //data.name[index]

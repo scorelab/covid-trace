@@ -17,7 +17,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
     var screenWidth = _mediaQueryData.size.width;
 
     return Scaffold(
-      
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Center(
@@ -37,7 +36,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   width: screenWidth * 0.4, // specific value
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
+                      borderRadius: BorderRadius.circular(0.0),
                     ),
                     onPressed: () {
                       setState(() {
@@ -54,7 +53,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   width: screenWidth * 0.45, // specific value
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
+                      borderRadius: BorderRadius.circular(0.0),
                     ),
                     onPressed: () {
                       setState(() {
@@ -68,13 +67,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     ),
                   ),
                 ),
-             
               ],
             ),
           ),
           Divider(),
           _isAllRecords ? AllRecords() : PossibleExpo(),
-       
         ],
       ),
     );

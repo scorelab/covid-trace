@@ -100,7 +100,7 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                 width: screenWidth * 0.9, // specific value
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
+                    borderRadius: BorderRadius.circular(0.0),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -120,6 +120,6 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
   String _format(DateTime start) {
     String day = DateFormat('yyyy-MM-dd').format(start);
     String startTime = DateFormat('jm').format(start);
-    return day + " from " + startTime ;
+    return day + " from " + startTime;
   }
 }

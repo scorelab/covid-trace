@@ -75,7 +75,8 @@ class _SafeEntryBeforeCheckInScreenState
             setState(() {
               _checking = false;
             });
-            Navigator.pushReplacementNamed(context, Routes.safeentrycheckin, arguments: _location);
+            Navigator.pushReplacementNamed(context, Routes.safeentrycheckin,
+                arguments: _location);
           }
           if (state is CheckFailed) {
             setState(() {
@@ -138,26 +139,26 @@ class _SafeEntryBeforeCheckInScreenState
                             ],
                           ),
                         ),
-
-                            SizedBox(
-                      height: 50,
-                      width: screenWidth * 0.9, // specific value
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
+                        SizedBox(
+                          height: 50,
+                          width: screenWidth * 0.9, // specific value
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            onPressed: () {
+                              _onCheck();
+                            },
+                            color: Color(0xff1DE9B6),
+                            textColor: Colors.white,
+                            child: _checking
+                                ? CircularProgressIndicator(
+                                    backgroundColor: Colors.white,
+                                  )
+                                : Text("CHECK IN",
+                                    style: TextStyle(fontSize: 25)),
+                          ),
                         ),
-                        onPressed: () {
-                      _onCheck();
-                        },
-                        color: Color(0xff1DE9B6),
-                        textColor: Colors.white,
-                        child: _checking
-                                  ? CircularProgressIndicator(
-                                      backgroundColor: Colors.white,
-                                    ) : Text("CHECK IN", style: TextStyle(fontSize: 25)),
-                      ),
-                    ),
-                      
                       ],
                     ),
                   ),
@@ -193,8 +194,9 @@ class _SafeEntryBeforeCheckInScreenState
   }
 
   void _onCheck() {
-    if(_location != null){
-      BlocProvider.of<CheckInBloc>(context).add(CheckEvent(location: _location));
+    if (_location != null) {
+      BlocProvider.of<CheckInBloc>(context)
+          .add(CheckEvent(location: _location));
     }
   }
 }
