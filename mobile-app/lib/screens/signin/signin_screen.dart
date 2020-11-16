@@ -220,22 +220,22 @@ class _SigninScreenState extends State<SigninScreen> {
                       Container(
                         margin: EdgeInsets.symmetric(
                             horizontal: screenWidth * 0.18, vertical: 30.0),
-                        child: ButtonTheme(
+                        child: SizedBox(
                           height: 50,
+                          width: screenWidth * 0.9, // specific value
                           child: RaisedButton(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0)),
-                            color: Theme.of(context).primaryColor,
-                            textColor: Colors.white,
-                            child: Text(
-                              'Sign In',
-                              textScaleFactor: 1.5,
+                              borderRadius: BorderRadius.circular(0.0),
                             ),
                             onPressed: () {
                               if (_signinFormKey.currentState.validate()) {
                                 _signIn();
                               }
                             },
+                            color: Color(0xff1DE9B6),
+                            textColor: Colors.white,
+                            child:
+                                Text("Sign In", style: TextStyle(fontSize: 25)),
                           ),
                         ),
                       ),

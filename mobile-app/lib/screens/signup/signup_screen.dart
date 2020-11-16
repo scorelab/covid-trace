@@ -207,27 +207,26 @@ class _SignupScreenState extends State<SignupScreen> {
                     ))
                   else
                     Container(
-                      margin: EdgeInsets.symmetric(
-                          horizontal: screenWidth * 0.18, vertical: 15.0),
-                      child: ButtonTheme(
-                        height: 50,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          color: Theme.of(context).primaryColor,
-                          textColor: Colors.white,
-                          child: Text(
-                            'Sign Up',
-                            textScaleFactor: 1.5,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.18, vertical: 15.0),
+                        child: SizedBox(
+                          height: 50,
+                          width: screenWidth * 0.9, // specific value
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            onPressed: () {
+                              if (_signupFormKey.currentState.validate()) {
+                                _onSignUp();
+                              }
+                            },
+                            color: Color(0xff1DE9B6),
+                            textColor: Colors.white,
+                            child:
+                                Text("Sign Up", style: TextStyle(fontSize: 25)),
                           ),
-                          onPressed: () {
-                            if (_signupFormKey.currentState.validate()) {
-                              _onSignUp();
-                            }
-                          },
-                        ),
-                      ),
-                    ),
+                        )),
                   Container(
                     margin: EdgeInsets.symmetric(
                         horizontal: screenWidth * 0.1, vertical: 8.0),
