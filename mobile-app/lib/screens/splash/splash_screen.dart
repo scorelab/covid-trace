@@ -53,9 +53,9 @@ class SplashScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 10),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      image2,
+                      // image2,
                       Text(
                         "SAFE CHECK IN",
                         style: TextStyle(
@@ -80,7 +80,7 @@ class SplashScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "Voluntary Drive to Expose Potential Covid - 19 \nSpread",
+                  "Stay safe without being traced",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
