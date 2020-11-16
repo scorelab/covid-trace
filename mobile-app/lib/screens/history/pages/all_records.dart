@@ -75,7 +75,6 @@ class _AllRecordsState extends State<AllRecords> {
     String day = DateFormat('yyyy-MM-dd').format(start);
     String startTime = DateFormat('jm').format(start);
     String endTime = DateFormat('jm').format(end);
-
     return day + " from " + startTime + " to " + endTime;
   }
 }

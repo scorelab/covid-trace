@@ -54,10 +54,10 @@ class _UploadScreenState extends State<UploadScreen> {
                             width: screenWidth * 0.9,
                             decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
-                              color: Color(0xffff8170),
+                              color: Color(0xffff6465),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 2.0),
+                              padding: const EdgeInsets.all(5.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,7 +67,7 @@ class _UploadScreenState extends State<UploadScreen> {
                                   ),
                                   Text(
                                     "You are infected with Covid-19 Type this code to upload your data for contact tracing",
-                                    textAlign: TextAlign.left,
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
