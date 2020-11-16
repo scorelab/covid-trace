@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class UploadScreen extends StatefulWidget {
@@ -11,7 +10,7 @@ class _UploadScreenState extends State<UploadScreen> {
   var _uploadFormKey = GlobalKey<FormState>();
   bool hasError = false;
   String currentText = "";
- 
+
   @override
   Widget build(BuildContext context) {
     bool _infected = true;
@@ -173,8 +172,8 @@ class _UploadScreenState extends State<UploadScreen> {
                           }
                         },
                         pinTheme: PinTheme(
-                            inactiveColor: Colors.grey,
-                          inactiveFillColor:Colors.transparent,
+                          inactiveColor: Colors.grey,
+                          inactiveFillColor: Colors.transparent,
                           activeFillColor: Colors.transparent,
                           activeColor: Colors.black54,
                           shape: PinCodeFieldShape.box,
@@ -185,13 +184,11 @@ class _UploadScreenState extends State<UploadScreen> {
                         cursorColor: Colors.black,
                         textStyle: TextStyle(fontSize: 20, height: 1.6),
                         keyboardType: TextInputType.number,
-                 onCompleted: (value) {
-                        setState(() {
-                             currentText = value;
+                        onCompleted: (value) {
+                          setState(() {
+                            currentText = value;
                           });
-   
-  },
-                     
+                        },
                       ),
                     ),
                     SizedBox(
@@ -207,31 +204,39 @@ class _UploadScreenState extends State<UploadScreen> {
                         onPressed: () {
                           setState(() {
                             if (_uploadFormKey.currentState.validate()) {
-                              if(int.parse(currentText)!=_code && _infected==true){
-                               
-         showDialog(
-              context: context,
-              builder: (context) => new AlertDialog(
-                title: new Text(
-                  'Error Occured!',
-                  style: TextStyle(fontSize: 25, color: Colors.white),
-                ),
-                backgroundColor: Theme.of(context).primaryColor,
-                content:Text("The code you entered is invalid. Please check your information and try again", style: TextStyle(fontSize: 18, color: Colors.white)),
-                actions: <Widget>[
-                  new FlatButton(
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true)
-                          .pop(); // dismisses only the dialog and returns nothing
-                    },
-                    child: new Text(
-                      'OK',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            );
+                              if (int.parse(currentText) != _code &&
+                                  _infected == true) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => new AlertDialog(
+                                    title: new Text(
+                                      'Error Occured!',
+                                      style: TextStyle(
+                                          fontSize: 25, color: Colors.white),
+                                    ),
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
+                                    content: Text(
+                                        "The code you entered is invalid. Please check your information and try again",
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.white)),
+                                    actions: <Widget>[
+                                      new FlatButton(
+                                        onPressed: () {
+                                          Navigator.of(context,
+                                                  rootNavigator: true)
+                                              .pop(); // dismisses only the dialog and returns nothing
+                                        },
+                                        child: new Text(
+                                          'OK',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
                               }
                               //method
                             }

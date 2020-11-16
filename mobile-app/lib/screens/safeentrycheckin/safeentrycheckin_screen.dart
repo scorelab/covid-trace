@@ -8,7 +8,8 @@ class SafeEntryCheckInScreen extends StatefulWidget {
   const SafeEntryCheckInScreen({Key key, this.args}) : super(key: key);
 
   @override
-  _SafeEntryCheckInScreenState createState() => _SafeEntryCheckInScreenState(args);
+  _SafeEntryCheckInScreenState createState() =>
+      _SafeEntryCheckInScreenState(args);
 }
 
 class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
@@ -47,7 +48,7 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                         size: 50,
                         color: Colors.white,
                       ),
-                      title: Text('Check In',
+                      title: Text('In',
                           style: TextStyle(color: Colors.white, fontSize: 25)),
                     ),
                     Card(

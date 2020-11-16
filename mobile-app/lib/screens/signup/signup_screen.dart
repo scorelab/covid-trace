@@ -40,7 +40,6 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
-    var screenHeight = _mediaQueryData.size.height;
     AssetImage assetImage = AssetImage('asset/images/signup.png');
     Image image = Image(
       image: assetImage,
