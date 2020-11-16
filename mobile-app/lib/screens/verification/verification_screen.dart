@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
-import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:slcovid_tracker/models/user.dart';
 import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
@@ -142,10 +141,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   //Box Pin Code field as requested
                   Padding(
                     padding: EdgeInsets.only(
-                      top: screenHeight * 0.03,
-                      left: screenWidth * 0.07,
-                      right: screenWidth * 0.07
-                    ),
+                        top: screenHeight * 0.03,
+                        left: screenWidth * 0.07,
+                        right: screenWidth * 0.07),
                     child: Center(
                       child: PinCodeTextField(
                         appContext: context,
@@ -155,7 +153,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         ),
                         length: 6,
                         obscureText: false,
-
                         validator: (v) {
                           if (v.length < 6) {
                             return "6 digits required";
@@ -165,7 +162,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         },
                         pinTheme: PinTheme(
                           inactiveColor: Colors.grey,
-                          inactiveFillColor:Colors.transparent,
+                          inactiveFillColor: Colors.transparent,
                           activeFillColor: Colors.transparent,
                           activeColor: Colors.black54,
                           shape: PinCodeFieldShape.box,

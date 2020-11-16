@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:slcovid_tracker/models/location.dart';
 
 class SafeEntryCheckInScreen extends StatefulWidget {
@@ -8,7 +9,8 @@ class SafeEntryCheckInScreen extends StatefulWidget {
   const SafeEntryCheckInScreen({Key key, this.args}) : super(key: key);
 
   @override
-  _SafeEntryCheckInScreenState createState() => _SafeEntryCheckInScreenState(args);
+  _SafeEntryCheckInScreenState createState() =>
+      _SafeEntryCheckInScreenState(args);
 }
 
 class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
@@ -20,12 +22,12 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
-
+    print(_location);
     return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: Colors.transparent,
-        title: Text("Safe Check In"),
-        backgroundColor: Colors.grey[300],
+      appBar: new AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xffd9d9d9),
+        title: Text("Safe In ", textAlign: TextAlign.center),
       ),
       body: Padding(
         padding: EdgeInsets.only(
@@ -41,23 +43,26 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    ListTile(
-                      leading: Icon(
-                        Icons.login_rounded,
-                        size: 50,
-                        color: Colors.white,
-                      ),
-                      title: Text('Check In',
-                          style: TextStyle(color: Colors.white, fontSize: 25)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.login_rounded,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('In',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 25)),
+                      ],
                     ),
                     Card(
                       color: Colors.grey[200],
                       child: Column(
-                        // mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          // ListTile(
-                          //   title: Text('Heart Shaker', style: TextStyle(color: Colors.black54),),
-                          // ),
                           Container(
                             width: screenWidth,
                             child: Column(
@@ -65,13 +70,17 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
                                 Container(
                                   height: 50,
                                 ),
-                                Text(_location.checkIn.toString(),
+                                Text(
+                                    _format(
+                                      _location.checkIn,
+                                    ),
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black54,
                                         fontSize: 25)), //Date
                                 Container(
-                                  height: 10,
+                                  height: 5,
                                 ),
                                 Text(_location.name,
                                     style: TextStyle(
@@ -93,22 +102,19 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
               Container(
                 height: 50,
               ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.1, vertical: 30.0),
-                child: ButtonTheme(
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    child: Text(
-                      'BACK TO HOME',
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+              SizedBox(
+                height: 50,
+                width: screenWidth * 0.9, // specific value
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0.0),
                   ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  color: Color(0xff1DE9B6),
+                  textColor: Colors.white,
+                  child: Text("BACK TO HOME", style: TextStyle(fontSize: 25)),
                 ),
               ),
             ],
@@ -116,5 +122,11 @@ class _SafeEntryCheckInScreenState extends State<SafeEntryCheckInScreen> {
         ),
       ),
     );
+  }
+
+  String _format(DateTime start) {
+    String day = DateFormat('yyyy-MM-dd').format(start);
+    String startTime = DateFormat('jm').format(start);
+    return day + "\n" + startTime;
   }
 }

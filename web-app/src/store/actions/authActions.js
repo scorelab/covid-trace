@@ -49,3 +49,17 @@ export const signIn = (data, history) => async (
     dispatch({ type: actions.SIGNIN_END });
   }
 };
+
+export const signOut = (data, history) => async (
+  dispatch,
+  getState,
+  { getFirebase, getFirestore }
+) => {
+  const firebase = getFirebase();
+//console.log("First")
+ firebase.auth().signOut().then(()=>{
+   dispatch({type:actions.SIGNOUT_SUCCESS})
+ })
+ 
+};
+

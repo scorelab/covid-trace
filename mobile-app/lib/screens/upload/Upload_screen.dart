@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class UploadScreen extends StatefulWidget {
@@ -11,7 +10,7 @@ class _UploadScreenState extends State<UploadScreen> {
   var _uploadFormKey = GlobalKey<FormState>();
   bool hasError = false;
   String currentText = "";
- 
+
   @override
   Widget build(BuildContext context) {
     bool _infected = true;
@@ -31,11 +30,11 @@ class _UploadScreenState extends State<UploadScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Color(0xffd9d9d9),
         title: Center(
-            child: Text("Marked as Infector ", textAlign: TextAlign.center)),
+            child: Text("Marked As Infector ", textAlign: TextAlign.center)),
       ),
       body: Padding(
         padding: EdgeInsets.only(
-            top: _infected ? screenHeight * 0.02 : screenHeight * 0.02,
+            top: _infected ? screenHeight * 0.03 : screenHeight * 0.03,
             left: 10,
             right: 10),
         child: Center(
@@ -51,21 +50,14 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                     _infected
                         ? Container(
-                            height: 110,
+                            height: 90,
                             width: screenWidth * 0.9,
                             decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.3),
-                                  offset: Offset(
-                                      0, 4), // changes position of shadow
-                                ),
-                              ],
                               shape: BoxShape.rectangle,
-                              color: Color(0xffd9d9d9),
+                              color: Color(0xffff7e78),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 2.0),
+                              padding: const EdgeInsets.all(5.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,20 +66,14 @@ class _UploadScreenState extends State<UploadScreen> {
                                     height: 2,
                                   ),
                                   Text(
-                                    "You are infected with Covid-19 Type\nthis code to upload your data for contact tracing",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.red,
-                                        fontSize: 20),
+                                    "You are infected with Covid-19.\nType this code to upload your data for contact tracing",
+                                    textAlign: TextAlign.center,
                                   ),
                                   Text(
                                     "$_code",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.red,
-                                        fontSize: 20),
+                                        color: Colors.black, fontSize: 17),
                                   ),
                                 ],
                               ),
@@ -173,8 +159,8 @@ class _UploadScreenState extends State<UploadScreen> {
                           }
                         },
                         pinTheme: PinTheme(
-                            inactiveColor: Colors.grey,
-                          inactiveFillColor:Colors.transparent,
+                          inactiveColor: Colors.grey,
+                          inactiveFillColor: Colors.transparent,
                           activeFillColor: Colors.transparent,
                           activeColor: Colors.black54,
                           shape: PinCodeFieldShape.box,
@@ -185,13 +171,11 @@ class _UploadScreenState extends State<UploadScreen> {
                         cursorColor: Colors.black,
                         textStyle: TextStyle(fontSize: 20, height: 1.6),
                         keyboardType: TextInputType.number,
-                 onCompleted: (value) {
-                        setState(() {
-                             currentText = value;
+                        onCompleted: (value) {
+                          setState(() {
+                            currentText = value;
                           });
-   
-  },
-                     
+                        },
                       ),
                     ),
                     SizedBox(
@@ -202,36 +186,44 @@ class _UploadScreenState extends State<UploadScreen> {
                       width: screenWidth * 0.9, // specific value
                       child: RaisedButton(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
+                          borderRadius: BorderRadius.circular(0.0),
                         ),
                         onPressed: () {
                           setState(() {
                             if (_uploadFormKey.currentState.validate()) {
-                              if(int.parse(currentText)!=_code && _infected==true){
-                               
-         showDialog(
-              context: context,
-              builder: (context) => new AlertDialog(
-                title: new Text(
-                  'Error Occured!',
-                  style: TextStyle(fontSize: 25, color: Colors.white),
-                ),
-                backgroundColor: Theme.of(context).primaryColor,
-                content:Text("The code you entered is invalid. Please check your information and try again", style: TextStyle(fontSize: 18, color: Colors.white)),
-                actions: <Widget>[
-                  new FlatButton(
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true)
-                          .pop(); // dismisses only the dialog and returns nothing
-                    },
-                    child: new Text(
-                      'OK',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            );
+                              if (int.parse(currentText) != _code &&
+                                  _infected == true) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => new AlertDialog(
+                                    title: new Text(
+                                      'Error Occured!',
+                                      style: TextStyle(
+                                          fontSize: 25, color: Colors.white),
+                                    ),
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
+                                    content: Text(
+                                        "The code you entered is invalid. Please check your information and try again",
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.white)),
+                                    actions: <Widget>[
+                                      new FlatButton(
+                                        onPressed: () {
+                                          Navigator.of(context,
+                                                  rootNavigator: true)
+                                              .pop(); // dismisses only the dialog and returns nothing
+                                        },
+                                        child: new Text(
+                                          'OK',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
                               }
                               //method
                             }

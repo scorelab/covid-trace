@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:slcovid_tracker/data/dto/user_dto.dart';
 import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
+import 'package:slcovid_tracker/screens/permisson/permission_screen.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 import 'package:country_code_picker/country_code_picker.dart';
@@ -34,12 +35,11 @@ class _SignupScreenState extends State<SignupScreen> {
       _countryCode = "+94";
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
-    var screenHeight = _mediaQueryData.size.height;
     AssetImage assetImage = AssetImage('asset/images/signup.png');
     Image image = Image(
       image: assetImage,
@@ -67,189 +67,183 @@ class _SignupScreenState extends State<SignupScreen> {
           setState(() {
             _signingin = false;
           });
-          Application.router.navigateTo(context, Routes.verification);
+          Application.router.navigateTo(context, Routes.permission,
+              routeSettings: RouteSettings(
+                arguments: PermissionScreenArgs(toVerify: true),
+              ),
+              clearStack: true);
         }
       },
       cubit: Provider.of<AuthBloc>(context),
       child: Scaffold(
         body: Builder(
-          builder: (context) =>
-              Form(
-                key: _signupFormKey,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: ListView(
-                    children: <Widget>[
-                      Container(height: 25),
-                      Center(
-                        child: Text(
-                          "To get started we need following",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey,
-                              fontSize: 20),
-                        ),
-                      ),
-                      Center(
-                        child: Container(
-                          child: image,
-                        ),
-                      ),
-
-                      //Phone Number
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: screenWidth * 0.05, vertical: 8.0),
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(
-                              flex: 14,
-                              child: ButtonTheme(
-                                height: 55,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10)),
-                                  ),
-                                  color: Colors.grey[100],
-                                  textColor: Colors.white,
-                                  child: CountryCodePicker(
-                                    onChanged: _onCountryChange,
-                                    initialSelection: 'LK',
-                                    showCountryOnly: false,
-                                    showOnlyCountryWhenClosed: false,
-                                    alignLeft: false,
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-
-                              // ButtonTheme(
-                              //   height: _n,
-                              //   minWidth: 20,
-                              //   child: RaisedButton(
-                              //     shape: RoundedRectangleBorder(
-                              //       borderRadius: BorderRadius.only(
-                              //           topLeft: Radius.circular(10),
-                              //           bottomLeft: Radius.circular(10)),
-                              //     ),
-                              //     color: Colors.grey[200],
-                              //     textColor: Colors.black54,
-                              //     child: Text(
-                              //       '+94',
-                              //       textScaleFactor: 1.5,
-                              //     ),
-                              //     onPressed: () {},
-                              //   ),
-                              // ),
-                            ),
-
-                            Expanded(
-                              flex: 1,
-                              child: Container(),
-                            ),
-
-                            Expanded(
-                              flex: 21,
-                              child: Container(
-                                margin: EdgeInsets.symmetric(vertical: 8.0),
-                                child: TextFormField(
-                                  controller: _phoneNumberTEController,
-                                  validator: (String value) {
-                                    if (value.isEmpty) {
-                                      return "Phone number is required";
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                      labelText: 'Phone Number',
-                                      prefixIcon: Padding(
-                                        padding: EdgeInsets.only(top: 0),
-                                        // add padding to adjust icon
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(width: 0.4),
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(10),
-                                            bottomRight: Radius.circular(10)),
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(10),
-                                            bottomRight: Radius.circular(10)),
-                                      )),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      //NIC
-                      LabelTextFormField(
-                        labelText: "NIC",
-                        controller: _nicTEController,
-                      ),
-       LabelTextFormField(
-                      labelText: "Password",
-                      controller: _passwordTEController,
-                    
-                      isObscure: true,
+          builder: (context) => Form(
+            key: _signupFormKey,
+            child: Padding(
+              padding: EdgeInsets.only(left: 10.0, right: 10.0),
+              child: ListView(
+                children: <Widget>[
+                  Container(height: 25),
+                  Center(
+                    child: Text(
+                      "To get started we need following",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 20),
                     ),
-           
-                      //Login button
-                      if (_signingin)
-                        Center(
-                            child: CircularProgressIndicator(
-                              backgroundColor: Theme
-                                  .of(context)
-                                  .primaryColor,
-                            ))
-                      else
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.18, vertical: 15.0),
+                  ),
+                  Center(
+                    child: Container(
+                      child: image,
+                    ),
+                  ),
+
+                  //Phone Number
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05, vertical: 8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 14,
                           child: ButtonTheme(
-                            height: 50,
+                            height: 55,
                             child: RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Theme
-                                  .of(context)
-                                  .primaryColor,
-                              textColor: Colors.white,
-                              child: Text(
-                                'Sign Up',
-                                textScaleFactor: 1.5,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10)),
                               ),
-                              onPressed: () {
-                                if (_signupFormKey.currentState.validate()) {
-                                  _onSignUp();
+                              color: Colors.grey[100],
+                              textColor: Colors.white,
+                              child: CountryCodePicker(
+                                onChanged: _onCountryChange,
+                                initialSelection: 'LK',
+                                showCountryOnly: false,
+                                showOnlyCountryWhenClosed: false,
+                                alignLeft: false,
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+
+                          // ButtonTheme(
+                          //   height: _n,
+                          //   minWidth: 20,
+                          //   child: RaisedButton(
+                          //     shape: RoundedRectangleBorder(
+                          //       borderRadius: BorderRadius.only(
+                          //           topLeft: Radius.circular(10),
+                          //           bottomLeft: Radius.circular(10)),
+                          //     ),
+                          //     color: Colors.grey[200],
+                          //     textColor: Colors.black54,
+                          //     child: Text(
+                          //       '+94',
+                          //       textScaleFactor: 1.5,
+                          //     ),
+                          //     onPressed: () {},
+                          //   ),
+                          // ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(),
+                        ),
+                        Expanded(
+                          flex: 21,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(vertical: 8.0),
+                            child: TextFormField(
+                              controller: _phoneNumberTEController,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return "Phone number is required";
                                 }
+                                return null;
                               },
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                  labelText: 'Phone Number',
+                                  prefixIcon: Padding(
+                                    padding: EdgeInsets.only(top: 0),
+                                    // add padding to adjust icon
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(width: 0.4),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                  )),
                             ),
                           ),
                         ),
-                      Container(
+                      ],
+                    ),
+                  ),
+
+                  //NIC
+                  LabelTextFormField(
+                    labelText: "NIC",
+                    controller: _nicTEController,
+                  ),
+                  LabelTextFormField(
+                    labelText: "Password",
+                    controller: _passwordTEController,
+                    isObscure: true,
+                  ),
+
+                  //Login button
+                  if (_signingin)
+                    Center(
+                        child: CircularProgressIndicator(
+                      backgroundColor: Theme.of(context).primaryColor,
+                    ))
+                  else
+                    Container(
                         margin: EdgeInsets.symmetric(
-                            horizontal: screenWidth * 0.1, vertical: 8.0),
-                        child: GestureDetector(
-                          onTap: _signin,
-                          child: Center(
-                            child: Text(
-                              "Go back to Log In Screen",
-                              style: TextStyle(
-                                  fontSize: 18, color: Colors.grey),
+                            horizontal: screenWidth * 0.18, vertical: 15.0),
+                        child: SizedBox(
+                          height: 50,
+                          width: screenWidth * 0.9, // specific value
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0.0),
                             ),
+                            onPressed: () {
+                              if (_signupFormKey.currentState.validate()) {
+                                _onSignUp();
+                              }
+                            },
+                            color: Color(0xff1DE9B6),
+                            textColor: Colors.white,
+                            child:
+                                Text("Sign Up", style: TextStyle(fontSize: 25)),
                           ),
+                        )),
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.1, vertical: 8.0),
+                    child: GestureDetector(
+                      onTap: _signin,
+                      child: Center(
+                        child: Text(
+                          "Go back to Log In Screen",
+                          style: TextStyle(fontSize: 18, color: Colors.grey),
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
+            ),
+          ),
         ),
       ),
     );
@@ -271,7 +265,8 @@ class _SignupScreenState extends State<SignupScreen> {
     print(_countryCode + _phoneNumberTEController.text.toString());
     if (_signupFormKey.currentState.validate()) {
       final nic = _nicTEController.text.toString();
-      final phoneNumber = _countryCode + _phoneNumberTEController.text.toString();
+      final phoneNumber =
+          _countryCode + _phoneNumberTEController.text.toString();
       final password = _passwordTEController.text.toString();
 
       Provider.of<AuthBloc>(context, listen: false).add(SignUpEvent(

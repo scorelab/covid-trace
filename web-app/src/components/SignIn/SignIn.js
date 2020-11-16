@@ -1,4 +1,4 @@
-import { Button, Card, Input, Layout } from 'antd';
+import { Button, Card, Input, Layout,Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
@@ -11,7 +11,7 @@ const { Content } = Layout;
 
 function SignIn(props) {
 
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [contactNo, setContactNo] = useState('');
   const [password, setPassword] = useState('');
   let history = useHistory();
 
@@ -22,13 +22,14 @@ function SignIn(props) {
   }, [props.user])
 
   function onChangePhoneNumber(e) {
-    setPhoneNumber(e.target.value);
+    setContactNo(e.target.value);
   }
   function onChangePassword(e) {
     setPassword(e.target.value);
   }
 
   const signIn = () => {
+    const phoneNumber = "+94".concat(contactNo)
     props.logIn({ phoneNumber, password });
   };
 
@@ -68,7 +69,7 @@ function SignIn(props) {
                 placeholder="Contact No"
                 style={{ marginBottom: '30px' }}
                 onChange={onChangePhoneNumber}
-                value={phoneNumber}
+                value={contactNo}
               />
               <Input
                 defaultValue=""
@@ -97,7 +98,11 @@ function SignIn(props) {
               </Link>
               </div>
 
-              {props.loading ? 'siginin..' : null}
+              {props.loading ?
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+               <Spin />
+               </div>
+               : null}
               {props.error ? props.error : null}
 
             </div>

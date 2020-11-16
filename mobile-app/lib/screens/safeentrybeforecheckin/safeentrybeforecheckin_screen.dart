@@ -75,7 +75,8 @@ class _SafeEntryBeforeCheckInScreenState
             setState(() {
               _checking = false;
             });
-            Navigator.pushReplacementNamed(context, Routes.safeentrycheckin, arguments: _location);
+            Navigator.pushReplacementNamed(context, Routes.safeentrycheckin,
+                arguments: _location);
           }
           if (state is CheckFailed) {
             setState(() {
@@ -85,11 +86,11 @@ class _SafeEntryBeforeCheckInScreenState
         },
         cubit: Provider.of<CheckInBloc>(context),
         child: Scaffold(
-          appBar: AppBar(
-            // backgroundColor: Colors.transparent,
-            title: Text("Safe Check In"),
-            backgroundColor: Colors.grey[300],
-          ),
+          appBar: new AppBar(
+             centerTitle: true,
+        backgroundColor: Color(0xffd9d9d9),
+        title: Text("Safe In ", textAlign: TextAlign.center),
+      ),
           body: _isInvalidUrl
               ? _buildInvalidUrlBody(context)
               : Padding(
@@ -102,7 +103,7 @@ class _SafeEntryBeforeCheckInScreenState
                       children: [
                         _fetching ? LinearProgressIndicator() : Container(),
                         Text(
-                          'Check in to :',
+                          'Safe In To :',
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -121,7 +122,7 @@ class _SafeEntryBeforeCheckInScreenState
                                 TextStyle(color: Colors.black54, fontSize: 17),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: 'By Check-In, I declare that:\n\n'),
+                                  text: 'By Safe-In, I declare that:\n\n'),
                               TextSpan(
                                   text:
                                       '- I have no close contact a confirmed Covid-19 case in last 14 days\n'),
@@ -138,26 +139,24 @@ class _SafeEntryBeforeCheckInScreenState
                             ],
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.18, vertical: 30.0),
-                          child: ButtonTheme(
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Theme.of(context).primaryColor,
-                              textColor: Colors.white,
-                              child: _checking
-                                  ? CircularProgressIndicator(
-                                      backgroundColor: Colors.white,
-                                    )
-                                  : Text(
-                                      'CHECK IN',
-                                    ),
-                              onPressed: () {
-                                _onCheck();
-                              },
+                        SizedBox(
+                          height: 50,
+                          width: screenWidth * 0.9, // specific value
+                          child: RaisedButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0.0),
                             ),
+                            onPressed: () {
+                              _onCheck();
+                            },
+                            color: Color(0xff1DE9B6),
+                            textColor: Colors.white,
+                            child: _checking
+                                ? CircularProgressIndicator(
+                                    backgroundColor: Colors.white,
+                                  )
+                                : Text("SAFE IN",
+                                    style: TextStyle(fontSize: 25)),
                           ),
                         ),
                       ],
@@ -195,8 +194,9 @@ class _SafeEntryBeforeCheckInScreenState
   }
 
   void _onCheck() {
-    if(_location != null){
-      BlocProvider.of<CheckInBloc>(context).add(CheckEvent(location: _location));
+    if (_location != null) {
+      BlocProvider.of<CheckInBloc>(context)
+          .add(CheckEvent(location: _location));
     }
   }
 }

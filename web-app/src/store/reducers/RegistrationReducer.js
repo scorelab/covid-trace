@@ -1,6 +1,7 @@
 
 const initstate={
-    registrationError:null
+    registrationError:null,
+    orgRegError:null,
 }
 
 const RegistrationReducer = (state=initstate,action)=>{
@@ -17,10 +18,24 @@ const RegistrationReducer = (state=initstate,action)=>{
                 ...state,
                 registrationError:true
             }
-        default:
+        case 'ORG_REGISTRATION_SUCCESS':
+            console.log('Registration Is successfull',action)
+            return {
+                ...state,
+                orgRegError:false
+            }
+        case 'ORG_REGISTRATION_ERROR':
+            console.log('Error',action.err)
             return{
                 ...state,
-                registrationError:null
+                orgRegError:true
+            }
+        default:
+            //console.log("default")
+            return{
+                ...state,
+                orgRegError:null,
+                registrationError:null,
             }
     }
 } 

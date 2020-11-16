@@ -2,14 +2,19 @@ import React, { useState,useEffect } from 'react'
 import { Card, Row, Col, Input, Checkbox, Button, message } from 'antd';
 import { registerVehicle } from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 function VehicleReg(props) {
+
+    let history = useHistory();
 
     useEffect(() => {
         if (props.Registration.registrationError == true) {
             warning();
         } else if (props.Registration.registrationError == false) {
             success();
+            props.reset();
+            history.push("/organisations");
         }
     }, [props.Registration.registrationError])
 
@@ -115,7 +120,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        registerVehicle: (vehicle) => dispatch(registerVehicle(vehicle))
+        registerVehicle: (vehicle) => dispatch(registerVehicle(vehicle)),
+        reset: () => dispatch({ type: 'RESET' })
     }
 }
 

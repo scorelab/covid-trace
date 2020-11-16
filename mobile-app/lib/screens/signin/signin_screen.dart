@@ -5,6 +5,7 @@ import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:slcovid_tracker/screens/permisson/permission_screen.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 import 'package:slcovid_tracker/widgets/label_text_form_field.dart';
 import 'package:country_code_picker/country_code_picker.dart';
@@ -59,9 +60,8 @@ class _SigninScreenState extends State<SigninScreen> {
             });
           }
           if (state is AuthFailed) {
-            
             //Getting the error Msh
-            String err=state.error.runtimeType.toString();
+            String err = state.error.runtimeType.toString();
             showDialog(
               context: context,
               builder: (context) => new AlertDialog(
@@ -70,9 +70,13 @@ class _SigninScreenState extends State<SigninScreen> {
                   style: TextStyle(fontSize: 25, color: Colors.white),
                 ),
                 backgroundColor: Theme.of(context).primaryColor,
-                content: err=="InvalidCredentials" ? Text("The username or password you have entered is invalid.", style: TextStyle(fontSize: 18, color: Colors.white)): Text("Phone number you are entering is already registered", style: TextStyle(fontSize: 18, color: Colors.white)),
-                  
-            
+                content: err == "InvalidCredentials"
+                    ? Text(
+                        "The username or password you have entered is invalid.",
+                        style: TextStyle(fontSize: 18, color: Colors.white))
+                    : Text(
+                        "Phone number you are entering is already registered",
+                        style: TextStyle(fontSize: 18, color: Colors.white)),
                 actions: <Widget>[
                   new FlatButton(
                     onPressed: () {
@@ -97,8 +101,11 @@ class _SigninScreenState extends State<SigninScreen> {
             setState(() {
               _isLoading = false;
             });
-            Application.router
-                .navigateTo(context, Routes.main, clearStack: true);
+            Application.router.navigateTo(context, Routes.permission,
+                routeSettings: RouteSettings(
+                  arguments: PermissionScreenArgs(toVerify: false),
+                ),
+                clearStack: true);
           }
         },
         cubit: Provider.of<AuthBloc>(context),
@@ -154,8 +161,6 @@ class _SigninScreenState extends State<SigninScreen> {
                                 onPressed: () {},
                               ),
                             ),
-
-                    
                           ),
                           Expanded(
                             flex: 1,
@@ -215,22 +220,22 @@ class _SigninScreenState extends State<SigninScreen> {
                       Container(
                         margin: EdgeInsets.symmetric(
                             horizontal: screenWidth * 0.18, vertical: 30.0),
-                        child: ButtonTheme(
+                        child: SizedBox(
                           height: 50,
+                          width: screenWidth * 0.9, // specific value
                           child: RaisedButton(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0)),
-                            color: Theme.of(context).primaryColor,
-                            textColor: Colors.white,
-                            child: Text(
-                              'Sign In',
-                              textScaleFactor: 1.5,
+                              borderRadius: BorderRadius.circular(0.0),
                             ),
                             onPressed: () {
                               if (_signinFormKey.currentState.validate()) {
                                 _signIn();
                               }
                             },
+                            color: Color(0xff1DE9B6),
+                            textColor: Colors.white,
+                            child:
+                                Text("Sign In", style: TextStyle(fontSize: 25)),
                           ),
                         ),
                       ),
