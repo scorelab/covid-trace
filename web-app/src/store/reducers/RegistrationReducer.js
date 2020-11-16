@@ -31,7 +31,7 @@ const RegistrationReducer = (state=initstate,action)=>{
                 orgRegError:true
             }
         default:
-            console.log("default")
+            //console.log("default")
             return{
                 ...state,
                 orgRegError:null,

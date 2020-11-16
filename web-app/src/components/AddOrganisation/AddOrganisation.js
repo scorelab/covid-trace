@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { registerOrganisations } from '../../store/actions/registrationActions';
 import { useHistory } from "react-router-dom";
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 const { Content } = Layout;
 
 function AddOrganisation(props) {
@@ -13,7 +15,6 @@ function AddOrganisation(props) {
     let history = useHistory();
 
     useEffect(() => {
-    
          if (props.orgRegError) {
             error();
         } else if(props.orgRegError===false) {
@@ -21,13 +22,14 @@ function AddOrganisation(props) {
                 props.reset();
                 history.push("/organisations");
         } 
-    },[props.orgRegError])
+
+    },[props.orgRegError,props.orgData])
 
 
     const [state, setstate] = useState({
         Name: '',
         UserName: '',
-        WebSite: ''
+        WebSite: '',
     })
 
     function handleChange(e) {
@@ -42,19 +44,49 @@ function AddOrganisation(props) {
     }
 
     function handleSubmit() {
-        props.registerOrganisations({
-            ...state,
-            phoneNumber:props.user.phoneNumber
-        })
+
+        //console.log(state.UserName)
+        if(state.UserName!='' && state.Name!=''){
+            let isUserNameExist = false
+            console.log(1)
+            if(props.orgData) {
+                (Object.keys(props.orgData).map(i=>{
+                    if(props.orgData[i].UserName===state.UserName){
+                        errorUserExists();
+                        isUserNameExist=true;
+                    }
+                }))
+            } 
+            console.log(2)
+            //console.log(props.orgData)
+            if(isUserNameExist===false){
+                props.registerOrganisations({
+                    ...state,
+                    phoneNumber:props.user.phoneNumber
+                })
+            }
+        }else{
+            warning();
+        }
+       
+        
     }
 
     const error = () => {
         message.error('Error');
     };
 
+    const errorUserExists = () => {
+        message.error('Your org user name is already exist on the system,Please enter new username');
+    };
+
     const success = () => {
         message.success('Registration Completed');
     };
+
+    const warning = () => {
+        message.warning('Please Fill all the details');
+      };
 
 
     if (props.user == null) return <Redirect to='signIn' />
@@ -88,7 +120,8 @@ const mapStateToProps = (state,ownProps) => {
             ...state,
             user: state.auth.auth.user,
             orgRegError: state.Registration.orgRegError,
-            orgWithUserRegError: state.Registration.orgWithUserRegError
+            orgWithUserRegError: state.Registration.orgWithUserRegError,
+            orgData: state.firestore.data.sc_org
         })
 
 
@@ -101,5 +134,12 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddOrganisation)
+//export default connect(mapStateToProps, mapDispatchToProps)(AddOrganisation)
 
+export default compose(
+    firestoreConnect([
+        { collection: 'sc_org' },
+        //{ collection: 'sc_org_users' }
+    ]), // sync todos collection from Firestore into redux
+    connect(mapStateToProps,mapDispatchToProps),
+)(AddOrganisation)
