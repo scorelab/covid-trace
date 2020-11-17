@@ -56,10 +56,56 @@ export const signOut = (data, history) => async (
   { getFirebase, getFirestore }
 ) => {
   const firebase = getFirebase();
-//console.log("First")
- firebase.auth().signOut().then(()=>{
-   dispatch({type:actions.SIGNOUT_SUCCESS})
- })
- 
+  //console.log("First")
+  firebase.auth().signOut().then(() => {
+    dispatch({ type: actions.SIGNOUT_SUCCESS })
+  })
+
+};
+
+
+export const signUp = (data, history) => async (
+  dispatch,
+  getState,
+  { getFirebase, getFirestore }
+) => {
+
+  const firestore = getFirestore();
+  console.log(data.phoneNumber)
+  const users = firestore.collection('users');
+
+  dispatch({ type: actions.SIGN_UP_START })
+
+  const password = sha256(data.password);
+  const nic = sha256(data.nic);
+
+  const usersQs = await users
+    .where('phoneNumber', '==', data.phoneNumber ?? '')
+    .get()
+    .catch((e) => {
+      //dispatch({ type: actions.SIGNIN_FAIL });
+      //  dispatch({ type: actions.SIGNIN_END });
+    });
+
+  console.log(usersQs.docs[0])
+
+  if (usersQs.size > 0) {
+    dispatch({ type: actions.SIGN_UP_FAIL, payload: 'Phone is existing on the system, Pls enter another number' })
+    dispatch({ type: actions.SIGN_UP_END })
+  } else {
+    users.add({
+      nic,
+      numberVerified:true,
+      password,
+      phoneNumber:data.phoneNumber,
+      user_type:'test'
+    }).then((user) => {
+      dispatch({ type: actions.SIGN_UP_SUCCESS,payload:user });
+      dispatch({ type: actions.SIGN_UP_END}); 
+    }).catch((err) => {
+      dispatch({ type: actions.SIGN_UP_FAIL,payload:'error' });
+      dispatch({ type: actions.SIGNIN_END });
+    })
+  }
 };
 

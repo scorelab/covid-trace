@@ -1,10 +1,60 @@
-import React from 'react'
-import { Layout, Card, Input, Button } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Layout, Card, Input, Button, message,Spin } from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
+import { signUp } from '../../store/actions/authActions'
+import { connect } from 'react-redux'
+import { useHistory } from "react-router-dom";
 const { Content } = Layout;
 
 function SignUp(props) {
+
+    let history = useHistory();
+
+    useEffect(() => {
+        let secondaryError = true
+
+        if (props.user) {
+            message.destroy()
+            success()
+            history.push("/organisations");
+        }
+        if (props.error) {
+            message.destroy()
+            error(props.error);
+            message.destroy()
+        }
+
+    }, [props.user, props.error])
+
+    const [state, setstate] = useState({
+        phoneNumber: '',
+        nic: '',
+        password: '',
+        repeatPassword: '',
+        user_type: 'normal',
+        numberVerified: true
+    })
+
+    function submitDetails() {
+        props.signUp(state)
+    }
+
+    function handleChange(e) {
+        setstate({
+            ...state,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const success = () => {
+        message.success('This is a success message');
+    };
+
+    const error = (err) => {
+        message.error(err);
+    };
+
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ height: "100vh" }}>
@@ -12,23 +62,44 @@ function SignUp(props) {
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
                     <Card title="Welcome" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "131px", height: '330px' }}>
                         <div style={{ margin: "10px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-                            <Input addonBefore="+94" defaultValue="" placeholder="Contact No" style={{ marginBottom: '10px' }} type="number" />
-                            <Input defaultValue="" placeholder="NIC" addonAfter="V" style={{ marginBottom: '10px' }} type="text" />
-                            <Input defaultValue="" placeholder="Password" type="password" style={{ marginBottom: '10px' }} />
-                            <Input defaultValue="" placeholder="Reenter Password" type="password" style={{ marginBottom: '10px' }} />
-       
-                            <div style={{display:'flex',flexDirection:'row',justifyContent:"center",paddingTop:'20px'}}> 
-                                <Button type="primary" style={{width:'150px'}} >Sign Up</Button>
+                            <Input addonBefore="+94" defaultValue="" placeholder="Contact No" value={state.phoneNumber} name='phoneNumber' style={{ marginBottom: '10px' }} onChange={handleChange} />
+                            <Input defaultValue="" placeholder="NIC" style={{ marginBottom: '10px' }} name='nic' value={state.nic} type="text" onChange={handleChange} />
+                            <Input defaultValue="" placeholder="Password" type="password" style={{ marginBottom: '10px' }} value={state.password} name='password' onChange={handleChange} />
+                            <Input defaultValue="" placeholder="Reenter Password" type="password" style={{ marginBottom: '10px' }} value={state.repeatPassword} name='repeatPassword' onChange={handleChange} />
+                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center", paddingTop: '20px' }}>
+                                <Button type="primary" style={{ width: '150px' }} onClick={submitDetails}>Sign Up</Button>
                             </div>
-
                         </div>
+
+                        {props.loading ?
+                            <div style={{ display: 'flex', justifyContent: 'flex-start',marginTop:'-75px' }}>
+                                <Spin />
+                            </div>
+                            : null
+                        }
+
                     </Card>
                 </Content>
-                <BottomFooter />
+            <BottomFooter />
             </Layout>
-        </div>
+        </div >
     )
 }
 
-export default SignUp
+//export default SignUp
+
+const mapStateToProps = ({ auth }) => ({
+    loading: auth.signup.loading,
+    error: auth.signup.error,
+    user: auth.auth.user
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (data) => dispatch(signUp(data))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+
 
