@@ -43,8 +43,8 @@ function SignUp(props) {
                     if(state.phoneNumber.length===9){
                         props.signUp({
                             phoneNumber: "+94".concat(state.phoneNumber),
-                            nic: '',
-                            password: '',
+                            nic: state.nic,
+                            password: state.password,
                         })
                     }else{
                         error('Phone No Format Wrong')
