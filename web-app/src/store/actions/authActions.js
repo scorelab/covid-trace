@@ -98,7 +98,7 @@ export const signUp = (data, history) => async (
       numberVerified:true,
       password,
       phoneNumber:data.phoneNumber,
-      user_type:'test'
+      user_type:'normal'
     }).then((user) => {
       dispatch({ type: actions.SIGN_UP_SUCCESS,payload:user });
       dispatch({ type: actions.SIGN_UP_END}); 

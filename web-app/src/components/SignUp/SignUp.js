@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Card, Input, Button, message,Spin } from 'antd';
+import { Layout, Card, Input, Button, message, Spin } from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import { signUp } from '../../store/actions/authActions'
@@ -37,7 +37,27 @@ function SignUp(props) {
     })
 
     function submitDetails() {
-        props.signUp(state)
+        if (state.password && state.repeatPassword && state.nic && state.phoneNumber) {
+            if (state.password === state.repeatPassword) {
+                if(state.nic.length==9 || state.nic.length==11){
+                    if(state.phoneNumber.length===9){
+                        props.signUp({
+                            phoneNumber: "+94".concat(state.phoneNumber),
+                            nic: '',
+                            password: '',
+                        })
+                    }else{
+                        error('Phone No Format Wrong')
+                    }
+                }else{
+                    error('NIC Format Wrong')
+                }
+            } else {
+                error("Please Re enter password again")
+            }
+        } else {
+            error("Please Fill all these details")
+        }
     }
 
     function handleChange(e) {
@@ -48,7 +68,7 @@ function SignUp(props) {
     }
 
     const success = () => {
-        message.success('This is a success message');
+        message.success('You Have Registered Successfully');
     };
 
     const error = (err) => {
@@ -62,8 +82,8 @@ function SignUp(props) {
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
                     <Card title="Welcome" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "131px", height: '330px' }}>
                         <div style={{ margin: "10px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-                            <Input addonBefore="+94" defaultValue="" placeholder="Contact No" value={state.phoneNumber} name='phoneNumber' style={{ marginBottom: '10px' }} onChange={handleChange} />
-                            <Input defaultValue="" placeholder="NIC" style={{ marginBottom: '10px' }} name='nic' value={state.nic} type="text" onChange={handleChange} />
+                            <Input addonBefore="+94" defaultValue="" placeholder="Contact No" value={state.phoneNumber} name='phoneNumber' type="number" style={{ marginBottom: '10px' }} onChange={handleChange} />
+                            <Input defaultValue="" placeholder="NIC" style={{ marginBottom: '10px' }} name='nic' type="number" value={state.nic} onChange={handleChange} />
                             <Input defaultValue="" placeholder="Password" type="password" style={{ marginBottom: '10px' }} value={state.password} name='password' onChange={handleChange} />
                             <Input defaultValue="" placeholder="Reenter Password" type="password" style={{ marginBottom: '10px' }} value={state.repeatPassword} name='repeatPassword' onChange={handleChange} />
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center", paddingTop: '20px' }}>
@@ -72,7 +92,7 @@ function SignUp(props) {
                         </div>
 
                         {props.loading ?
-                            <div style={{ display: 'flex', justifyContent: 'flex-start',marginTop:'-75px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '-75px' }}>
                                 <Spin />
                             </div>
                             : null
@@ -80,7 +100,7 @@ function SignUp(props) {
 
                     </Card>
                 </Content>
-            <BottomFooter />
+                <BottomFooter />
             </Layout>
         </div >
     )
