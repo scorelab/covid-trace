@@ -1,18 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import QRCode from 'qrcode'
 //import safeCheckin from "./SafeCheckIn.png"
 //import {db} from "./firebase"
 import safeCheckin from '../../assets/enter.png'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { Button, Card, Typography } from 'antd';
+import { Button, Card, Typography, Row, Col, Avatar } from 'antd';
 import * as html2pdf from 'html2pdf.js';
+import enter from '../../assets/enter.png'
+import Scansteps from '../../assets/ScanSteps.svg'
 const { Title, Text } = Typography;
 function QRpage(props) {
 
 
 
   const baseURL = "https://safecheckin.com";
+  const Today = new Date();
+
+  const [state, setstate] = useState({
+    date:Today.getFullYear()+"/"+ Today.getMonth() + "/"+Today.getDay()
+  })
 
   useEffect(() => {
     console.log(props.history.location.state.companyDetails)
@@ -23,7 +30,7 @@ function QRpage(props) {
       const locationDetails = props.history.location.state.companyDetails
       generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: locationDetails.premise_type, doc_id: locationDetails.location, name: locationDetails.name }, image: { src: safeCheckin, size: 90 } })
     }
-
+   // console.log(state.date)
   }, [props.history.location.state.companyDetails])
 
   const generateQRCode = ({ canvasId = "", baseURL = "", qrData = { location_type: "", doc_id: "", name: "" }, qrOptions = { version: 20, errorCorrectionLevel: 'Q' }, image = { src: null, size: 90 } }) => {
@@ -65,7 +72,7 @@ function QRpage(props) {
   function downloadPdf() {
     var opt = {
       margin: 0.25,
-      filename: 'myfile.pdf',
+      filename: 'qrPageCover.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 3 },
       jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' }
@@ -76,7 +83,7 @@ function QRpage(props) {
 
   return (
     <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: "center", flexDirection: 'column' }}>
-      <Button type="primary" style={{ marginBottom: '20px' }} onClick={downloadPdf}>Download as PDF</Button>
+      <Button type="primary" style={{ marginBottom: '10px', marginTop: '20px' }} onClick={downloadPdf}>Download as PDF</Button>
       <Card id='qrCoverPage' bordered={false} style={{
         width: '730px',
         height: '1070px',
@@ -93,24 +100,59 @@ function QRpage(props) {
           boxSizing: 'border-box',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          //justifyContent: 'center',
           alignItems: 'center'
         }}>
-          <Card style={{
-            width: '100%',
-            height: '77px', background: 'rgba(29, 233, 182, 0.23)', display: 'flex', alignItems: 'center', justifyContent: 'center'
-          }}>
-            <Text strong style={{ textAlign: 'center' }}>Safe Check In & Check Out
-            Voluntary Drive to Expose Potential Covid-19 Spread
-            Stay Home & Stay Safe
-</Text>
-          </Card>
-          <Title level={4} style={{ textAlign: 'center' }}>Welcome</Title>
-          <Title level={4} style={{ textAlign: 'center', color: '#0069AC' }}>{props.history.location.state.companyDetails.name}</Title>
-          <canvas id="canvas" style={{ marginLeft: "70px" }}></canvas>
+          <Row style={{ marginTop: '25px' }}>
+            <Col span={24} style={{ display: 'flex', justifyContent: 'center' }}>
+              <Avatar size="large" src={enter} style={{ float: 'left', marginBottom: '10px', cursor: 'pointer' }} />
+              <Title level={1} style={{ textAlign: 'center' }}>Safe Check In</Title>
+            </Col>
+          </Row>
+          <Row style={{ marginTop: '11px', width: '700px' }}>
+
+            <Card style={{
+              width: '100%',
+              height: '77px', background: 'rgba(29, 233, 182, 0.23)', display: 'flex', alignItems: 'center', justifyContent: 'center'
+            }}>
+              <Col span={24} style={{ display: 'flex', justifyContent: 'center' }}>
+                <Text strong style={{ textAlign: 'center' }}>Safe Check In & Check Out
+                Voluntary Drive to Expose Potential Covid-19 Spread
+                </Text>
+              </Col>
+              <Col span={24} style={{ display: 'flex', justifyContent: 'center' }}>
+                <Text strong style={{ textAlign: 'center' }}>
+                  Stay safe without being traced
+                </Text>
+              </Col>
+
+            </Card>
+
+          </Row>
+
+          <Title level={1} style={{ textAlign: 'center', marginTop: '10px' }}>Welcome</Title>
+          <Title level={2} style={{ textAlign: 'center', color: '#0069AC',marginTop:'-15px' }}>{props.history.location.state.companyDetails.name}</Title>
+          <Row>
+            <Col span={24} style={{ display: 'flex', justifyContent: 'center',marginTop:'-17px' }}>
+              <div >
+                <canvas id="canvas" ></canvas>
+              </div>
+            </Col>
+          </Row>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Title level={4}>{props.history.location.state.companyDetails.address}</Title>
           </div>
+          <Row justify="center" style={{marginTop:'10px',borderBottom:'1px',borderColor:'black'}}>
+          <img src={Scansteps} width="550px" />
+          </Row>
+          <Row justify="center">
+          <Title level={3} style={{ textAlign: 'center', marginTop: '10px' }}>Thank You</Title>
+          </Row>
+          <Row style={{display:'flex',justifyContent:'flex-end'}}>
+          <Text  style={{ textAlign: 'end' ,marginBottom:'10px',marginLeft:'10px'}}>{state.date}</Text>
+          </Row>
+ 
+
         </Card>
       </Card>
 
