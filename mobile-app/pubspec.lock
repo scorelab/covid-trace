@@ -320,7 +320,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.0"
+    version: "6.1.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -533,7 +533,7 @@ packages:
       name: pin_code_fields
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0"
+    version: "6.0.1"
   pin_input_text_field:
     dependency: transitive
     description:
@@ -720,7 +720,7 @@ packages:
       name: sqlite3
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.7"
+    version: "0.1.8"
   stack_trace:
     dependency: transitive
     description:
@@ -818,7 +818,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.3"
+    version: "1.7.4"
   workmanager:
     dependency: "direct main"
     description:
