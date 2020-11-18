@@ -137,69 +137,51 @@ class _SigninScreenState extends State<SigninScreen> {
                     Container(
                       margin: EdgeInsets.symmetric(
                           horizontal: screenWidth * 0.05, vertical: 8.0),
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 14,
-                            child: ButtonTheme(
-                              height: 55,
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      bottomLeft: Radius.circular(10)),
-                                ),
-                                color: Colors.grey[100],
-                                textColor: Colors.white,
-                                child: CountryCodePicker(
-                                  onChanged: _onCountryChange,
-                                  initialSelection: 'LK',
-                                  showCountryOnly: false,
-                                  showOnlyCountryWhenClosed: false,
-                                  alignLeft: false,
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Container(),
-                          ),
-                          Expanded(
-                            flex: 21,
-                            child: Container(
-                              margin: EdgeInsets.symmetric(vertical: 8.0),
-                              child: TextFormField(
-                                controller: _numberController,
-                                validator: (String value) {
-                                  if (value.isEmpty) {
-                                    return "Phone number is required";
-                                  }
-                                  return null;
-                                },
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: 'Phone Number',
-                                    prefixIcon: Padding(
-                                      padding: EdgeInsets.only(top: 0),
-                                      // add padding to adjust icon
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 8.0),
+                        child: TextFormField(
+                          controller: _numberController,
+                          validator: (String value) {
+                            if (value.isEmpty) {
+                              return "Phone number is required";
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              labelText: 'Phone Number',
+                              prefixIcon: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 2.0, right: 10.0),
+                                  child: ButtonTheme(
+                                    height: 55,
+                                    child: RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10)),
+                                      ),
+                                      color: Colors.grey[100],
+                                      textColor: Colors.white,
+                                      child: CountryCodePicker(
+                                        onChanged: _onCountryChange,
+                                        initialSelection: 'LK',
+                                        showCountryOnly: false,
+                                        showOnlyCountryWhenClosed: false,
+                                        alignLeft: false,
+                                      ),
+                                      onPressed: () {},
                                     ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(width: 0.4),
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(10),
-                                          bottomRight: Radius.circular(10)),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(10),
-                                          bottomRight: Radius.circular(10)),
-                                    )),
+                                  ),
                               ),
-                            ),
-                          ),
-                        ],
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(width: 0.4),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              )),
+                        ),
                       ),
                     ),
 
