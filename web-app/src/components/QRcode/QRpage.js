@@ -18,7 +18,7 @@ function QRpage(props) {
   const Today = new Date();
 
   const [state, setstate] = useState({
-    date:Today.getFullYear()+"/"+ Today.getMonth() + "/"+Today.getDay()
+    date:Today.getFullYear()+"/"+ Today.getMonth() + "/"+Today.getDay(),
   })
 
   useEffect(() => {
@@ -28,7 +28,8 @@ function QRpage(props) {
     if (props.history.location.state.companyDetails) {
       console.log(props.history.location.state.companyDetails)
       const locationDetails = props.history.location.state.companyDetails
-      generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: locationDetails.premise_type, doc_id: locationDetails.location, name: locationDetails.name }, image: { src: safeCheckin, size: 90 } })
+      console.log(locationDetails.location_type)
+      generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: locationDetails.location_type, doc_id: locationDetails.location, name: locationDetails.name }, image: { src: safeCheckin, size: 90 } })
     }
    // console.log(state.date)
   }, [props.history.location.state.companyDetails])

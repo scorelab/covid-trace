@@ -22,7 +22,7 @@ function Locations(props) {
   function goToCompanyInfo(value) {
     history.push({
       pathname: `/companyInfo/${value.location}`,
-      state: { ...value }
+      state: { ...value,location_type:'sc_location' }
     })
   }
 
