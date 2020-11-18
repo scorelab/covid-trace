@@ -103,88 +103,50 @@ class _SignupScreenState extends State<SignupScreen> {
                   Container(
                     margin: EdgeInsets.symmetric(
                         horizontal: screenWidth * 0.05, vertical: 8.0),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 14,
-                          child: ButtonTheme(
-                            height: 55,
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10)),
-                              ),
-                              color: Colors.grey[100],
-                              textColor: Colors.white,
-                              child: CountryCodePicker(
-                                onChanged: _onCountryChange,
-                                initialSelection: 'LK',
-                                showCountryOnly: false,
-                                showOnlyCountryWhenClosed: false,
-                                alignLeft: false,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-
-                          // ButtonTheme(
-                          //   height: _n,
-                          //   minWidth: 20,
-                          //   child: RaisedButton(
-                          //     shape: RoundedRectangleBorder(
-                          //       borderRadius: BorderRadius.only(
-                          //           topLeft: Radius.circular(10),
-                          //           bottomLeft: Radius.circular(10)),
-                          //     ),
-                          //     color: Colors.grey[200],
-                          //     textColor: Colors.black54,
-                          //     child: Text(
-                          //       '+94',
-                          //       textScaleFactor: 1.5,
-                          //     ),
-                          //     onPressed: () {},
-                          //   ),
-                          // ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(),
-                        ),
-                        Expanded(
-                          flex: 21,
-                          child: Container(
-                            margin: EdgeInsets.symmetric(vertical: 8.0),
-                            child: TextFormField(
-                              controller: _phoneNumberTEController,
-                              validator: (String value) {
-                                if (value.isEmpty) {
-                                  return "Phone number is required";
-                                }
-                                return null;
-                              },
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  labelText: 'Phone Number',
-                                  prefixIcon: Padding(
-                                    padding: EdgeInsets.only(top: 0),
-                                    // add padding to adjust icon
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(width: 0.4),
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 8.0),
+                      child: TextFormField(
+                        controller: _phoneNumberTEController,
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return "Phone number is required";
+                          }
+                          return null;
+                        },
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            labelText: 'Phone Number',
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.only(left: 2.0, right: 10.0),
+                              child: ButtonTheme(
+                                height: 55,
+                                child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomRight: Radius.circular(10)),
+                                        topLeft: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10)),
                                   ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomRight: Radius.circular(10)),
-                                  )),
+                                  color: Colors.grey[100],
+                                  textColor: Colors.white,
+                                  child: CountryCodePicker(
+                                    onChanged: _onCountryChange,
+                                    initialSelection: 'LK',
+                                    showCountryOnly: false,
+                                    showOnlyCountryWhenClosed: false,
+                                    alignLeft: false,
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ],
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(width: 0.4),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            )),
+                      ),
                     ),
                   ),
 

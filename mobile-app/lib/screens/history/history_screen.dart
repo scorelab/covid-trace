@@ -27,13 +27,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 10, left: 5, right: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 SizedBox(
                   height: 30,
-                  width: screenWidth * 0.4, // specific value
+                  width: screenWidth * 0.44, // specific value
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0.0),
@@ -50,7 +50,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 ),
                 SizedBox(
                   height: 30,
-                  width: screenWidth * 0.45, // specific value
+                  width: screenWidth * 0.52, // specific value
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0.0),
