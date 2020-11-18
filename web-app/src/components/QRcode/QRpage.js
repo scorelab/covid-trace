@@ -5,9 +5,9 @@ import QRCode from 'qrcode'
 import safeCheckin from '../../assets/enter.png'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { Button } from 'antd';
+import { Button, Card, Typography } from 'antd';
 import * as html2pdf from 'html2pdf.js';
-
+const { Title, Text } = Typography;
 function QRpage(props) {
 
 
@@ -19,6 +19,7 @@ function QRpage(props) {
 
 
     if (props.history.location.state.companyDetails) {
+      console.log(props.history.location.state.companyDetails)
       const locationDetails = props.history.location.state.companyDetails
       generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: locationDetails.premise_type, doc_id: locationDetails.location, name: locationDetails.name }, image: { src: safeCheckin, size: 90 } })
     }
@@ -62,19 +63,61 @@ function QRpage(props) {
   if (props.user == null) return <Redirect to='/signIn' />
 
   function downloadPdf() {
-    var element = document.getElementById('canvas');
-    html2pdf(element);
+    var opt = {
+      margin: 1,
+      filename: 'myfile.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 3 },
+      jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' }
+    };
+    var element = document.getElementById('qrCoverPage');
+    html2pdf().from(element).set(opt).save();
   }
 
   return (
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: "center", flexDirection: 'column', marginTop: '-100px' }}>
-      <script src="html2pdf.bundle.min.js"></script>
-      <h1>QR Test</h1>
-      <Button type="primary" onClick={downloadPdf}>Primary Button</Button>
-      {/* <img src={this.url}/> */}
+    <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: "center", flexDirection: 'column' }}>
+      <Button type="primary" style={{ marginBottom: '20px' }} onClick={downloadPdf}>Download as PDF</Button>
+      <Card id='qrCoverPage' bordered={false} style={{
+        width: '590px',
+        height: '840px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
 
-      <canvas id="canvas"></canvas>
-    </div>
+        <Card style={{
+          width: '563px',
+          height: '816px',
+          border: '1px solid #000000',
+          boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <Card style={{
+            width: '561px',
+            height: '77px', background: 'rgba(29, 233, 182, 0.23)', display: 'flex', alignItems: 'center', justifyContent: 'center'
+          }}>
+            <Text strong style={{ textAlign: 'center' }}>Safe Check In & Check Out
+            Voluntary Drive to Expose Potential Covid-19 Spread
+            Stay Home & Stay Safe
+</Text>
+          </Card>
+          <Title level={4} style={{ textAlign: 'center' }}>Welcome</Title>
+          <Title level={4} style={{ textAlign: 'center', color: '#0069AC' }}>{props.history.location.state.companyDetails.name}</Title>
+          <canvas id="canvas" style={{ marginLeft: "70px" }}></canvas>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Title level={4}>{props.history.location.state.companyDetails.address}</Title>
+          </div>
+        </Card>
+      </Card>
+
+
+
+
+    </div >
   )
 }
 

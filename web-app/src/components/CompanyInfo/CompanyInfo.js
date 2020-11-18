@@ -20,10 +20,10 @@ function CompanyInfo(props) {
     },[props.history.location])
     return (
         <div style={{ background: "#F2F2F2" }}>
-            <Layout style={{ height: "100vh" }}>
+            <Layout style={{ minHeight: "100vh" }}>
                 <Navbar />
                 <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "61vh", position: "sticky" }}>
+                    <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px",  height: "598px", position: "sticky" }}>
                         <Tabs tabPosition='left'>
                             <TabPane tab="Details" key="1">
                                 <CompanyInfoDetails companyDetails={companyDetails} />
