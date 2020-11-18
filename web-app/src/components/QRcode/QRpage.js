@@ -64,7 +64,7 @@ function QRpage(props) {
 
   function downloadPdf() {
     var opt = {
-      margin: 1,
+      margin: 0.25,
       filename: 'myfile.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 3 },
@@ -78,8 +78,8 @@ function QRpage(props) {
     <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: "center", flexDirection: 'column' }}>
       <Button type="primary" style={{ marginBottom: '20px' }} onClick={downloadPdf}>Download as PDF</Button>
       <Card id='qrCoverPage' bordered={false} style={{
-        width: '590px',
-        height: '840px',
+        width: '730px',
+        height: '1070px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -87,8 +87,8 @@ function QRpage(props) {
       }}>
 
         <Card style={{
-          width: '563px',
-          height: '816px',
+          width: '703px',
+          height: '1043px',
           border: '1px solid #000000',
           boxSizing: 'border-box',
           display: 'flex',
@@ -97,7 +97,7 @@ function QRpage(props) {
           alignItems: 'center'
         }}>
           <Card style={{
-            width: '561px',
+            width: '100%',
             height: '77px', background: 'rgba(29, 233, 182, 0.23)', display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
             <Text strong style={{ textAlign: 'center' }}>Safe Check In & Check Out
