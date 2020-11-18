@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Layout, Card, Row, Col, Input, Typography, Select } from 'antd';
+import { Layout, Card, Row, Col, Alert, Typography, Select } from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import BusinessReg from './ReqTypeComponents/BusinessReg';
@@ -21,7 +21,7 @@ function Registration(props) {
 
     const [state, setstate] = useState({
         orgList: [],
-        org:'',
+        org: '',
     })
 
     useEffect(() => {
@@ -47,10 +47,12 @@ function Registration(props) {
         })
     }, [props.orgData, props.orgWithUserData])
 
+  
+
     function handleChange(value) {
         setstate({
             ...state,
-            org:value
+            org: value
         })
     }
 
@@ -64,23 +66,31 @@ function Registration(props) {
     }
 
     let component = null;
+    let alert = null
 
-    switch (requestType) {
-        case "Business":
-            component = <BusinessReg orgUserName={state.org}/>;
-            break;
-        case "Bus":
-            component = <BusReg orgUserName={state.org}/>;
-            break;
-        case "Vehicle":
-            component = <VehicleReg orgUserName={state.org}/>;
-            break;
-        case "Train":
-            component = <TrainReg orgUserName={state.org}/>;
-            break;
-        default:
-            component = <div></div>;
+    if ((state.org == '') && ((requestType=='Business')||(requestType=='Bus')||(requestType=='Vehicle')||(requestType=='Train'))) {
+        alert =  <Alert message="Please select organisation first" type="warning" showIcon closable style={{with:'80%',marginTop:'20px'}} />
+    
+    } else {
+        alert = null
+        switch (requestType) {
+            case "Business":
+                component = <BusinessReg orgUserName={state.org} />;
+                break;
+            case "Bus":
+                component = <BusReg orgUserName={state.org} />;
+                break;
+            case "Vehicle":
+                component = <VehicleReg orgUserName={state.org} />;
+                break;
+            case "Train":
+                component = <TrainReg orgUserName={state.org} />;
+                break;
+            default:
+                component = <div></div>;
+        }
     }
+
 
     if (props.user == null) return <Redirect to='signIn' />
 
@@ -96,7 +106,7 @@ function Registration(props) {
                                 <Select placeholder="Owner" style={{ width: "100%" }} onChange={handleChange}>
                                     {
                                         state.orgList && state.orgList.map(i => {
-                                            return(<Option value={i.UserName}>{i.Name}</Option>)
+                                            return (<Option value={i.UserName} key={i.orgId}>{i.Name}</Option>)
                                         })
                                     }
                                 </Select>
@@ -113,7 +123,9 @@ function Registration(props) {
                                     <Option value="Train">Train</Option>
                                 </Select>
                             </Col>
+                            
                         </Row>
+                        {alert}
                     </Card>
                     {component}
                 </Content>

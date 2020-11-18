@@ -3,6 +3,9 @@ import { Layout, Card, Tabs} from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import CompanyInfoDetails from './CompanyTabs/CompanyInfoDetails';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
+import { compose } from 'redux'
 const { TabPane } = Tabs;
 const { Content } = Layout;
 
@@ -13,17 +16,21 @@ function CompanyInfo(props) {
     const [companyDetails, setCompanyDetails] = useState()
 
     useEffect(()=>{
+        console.log(props.user)
         //console.log(props.history.location.state)
         props.history.location.state && setCompanyDetails({
             ...props.history.location.state 
         })
     },[props.history.location])
+
+    if(props.user==null)return <Redirect to='/signIn' />
+
     return (
         <div style={{ background: "#F2F2F2" }}>
-            <Layout style={{ height: "100vh" }}>
+            <Layout style={{ minHeight: "100vh" }}>
                 <Navbar />
                 <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "61vh", position: "sticky" }}>
+                    <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px",  height: "598px", position: "sticky" }}>
                         <Tabs tabPosition='left'>
                             <TabPane tab="Details" key="1">
                                 <CompanyInfoDetails companyDetails={companyDetails} />
@@ -44,5 +51,19 @@ function CompanyInfo(props) {
 }
 
 
-export default CompanyInfo
+const mapStateToProps = (state) => {
+    //console.log(state)
+    console.log(state)
+    return ({
+        ...state,
+        user:state.auth.auth.user
+    })
+}
 
+export default compose(
+    connect(mapStateToProps),
+)(CompanyInfo)
+
+//export default CompanyInfo
+
+//export default connect(mapStateToProps)(CompanyInfo)
