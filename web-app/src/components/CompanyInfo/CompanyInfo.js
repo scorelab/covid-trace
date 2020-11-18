@@ -3,6 +3,9 @@ import { Layout, Card, Tabs} from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import CompanyInfoDetails from './CompanyTabs/CompanyInfoDetails';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
+import { compose } from 'redux'
 const { TabPane } = Tabs;
 const { Content } = Layout;
 
@@ -13,11 +16,15 @@ function CompanyInfo(props) {
     const [companyDetails, setCompanyDetails] = useState()
 
     useEffect(()=>{
+        console.log(props.user)
         //console.log(props.history.location.state)
         props.history.location.state && setCompanyDetails({
             ...props.history.location.state 
         })
     },[props.history.location])
+
+    if(props.user==null)return <Redirect to='/signIn' />
+
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ minHeight: "100vh" }}>
@@ -44,5 +51,19 @@ function CompanyInfo(props) {
 }
 
 
-export default CompanyInfo
+const mapStateToProps = (state) => {
+    //console.log(state)
+    console.log(state)
+    return ({
+        ...state,
+        user:state.auth.auth.user
+    })
+}
 
+export default compose(
+    connect(mapStateToProps),
+)(CompanyInfo)
+
+//export default CompanyInfo
+
+//export default connect(mapStateToProps)(CompanyInfo)
