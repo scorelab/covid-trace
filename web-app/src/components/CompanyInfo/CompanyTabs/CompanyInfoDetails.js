@@ -34,8 +34,8 @@ function CompanyInfoDetails(props) {
 
     useEffect(() => {
         console.log(props.companyDetails)
-        props.companyDetails && setCompanyDetails({
-            ...props.companyDetails
+        props.data && setCompanyDetails({
+            ...props.data
         })
     }, [props.companyDetails])
     return (
