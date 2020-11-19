@@ -20,6 +20,7 @@ function CompanyInfoDetails(props) {
         premise_type: '',
         province: '',
         unit_no: '',
+        location_type:''
     })
 
     let history = useHistory();

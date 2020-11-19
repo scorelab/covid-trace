@@ -9,16 +9,18 @@ import { Button, Card, Typography, Row, Col, Avatar } from 'antd';
 import * as html2pdf from 'html2pdf.js';
 import enter from '../../assets/enter.png'
 import Scansteps from '../../assets/ScanSteps.svg'
+import logo from '../../assets/logo.png'
+import logoSvg from '../../assets/logoSvg.svg'
 const { Title, Text } = Typography;
 function QRpage(props) {
 
 
 
   const baseURL = "https://safecheckin.com";
-  const Today = new Date();
+  //const Today = new Date();
 
   const [state, setstate] = useState({
-    date:Today.getFullYear()+"/"+ Today.getMonth() + "/"+Today.getDay()
+    date:new Date().toISOString().slice(0,10)
   })
 
   useEffect(() => {
@@ -28,12 +30,13 @@ function QRpage(props) {
     if (props.history.location.state.companyDetails) {
       console.log(props.history.location.state.companyDetails)
       const locationDetails = props.history.location.state.companyDetails
-      generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: locationDetails.premise_type, doc_id: locationDetails.location, name: locationDetails.name }, image: { src: safeCheckin, size: 90 } })
+      console.log(locationDetails.location_type)
+      generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: locationDetails.location_type, doc_id: locationDetails.location, name: locationDetails.name }, image: { src: logoSvg, size: 70 } })
     }
    // console.log(state.date)
   }, [props.history.location.state.companyDetails])
 
-  const generateQRCode = ({ canvasId = "", baseURL = "", qrData = { location_type: "", doc_id: "", name: "" }, qrOptions = { version: 20, errorCorrectionLevel: 'Q' }, image = { src: null, size: 90 } }) => {
+  const generateQRCode = ({ canvasId = "", baseURL = "", qrData = { location_type: "", doc_id: "", name: "" }, qrOptions = { version: 16, errorCorrectionLevel: 'Q' }, image = { src: null, size: 90 } }) => {
 
     // Debug
     console.log({
@@ -106,7 +109,7 @@ function QRpage(props) {
           <Row style={{ marginTop: '25px' }}>
             <Col span={24} style={{ display: 'flex', justifyContent: 'center' }}>
               <Avatar size="large" src={enter} style={{ float: 'left', marginBottom: '10px', cursor: 'pointer' }} />
-              <Title level={1} style={{ textAlign: 'center' }}>Safe Check In</Title>
+              <Title level={1} style={{ textAlign: 'center' }}>Safe In</Title>
             </Col>
           </Row>
           <Row style={{ marginTop: '11px', width: '700px' }}>
@@ -116,7 +119,7 @@ function QRpage(props) {
               height: '77px', background: 'rgba(29, 233, 182, 0.23)', display: 'flex', alignItems: 'center', justifyContent: 'center'
             }}>
               <Col span={24} style={{ display: 'flex', justifyContent: 'center' }}>
-                <Text strong style={{ textAlign: 'center' }}>Safe Check In & Check Out
+                <Text strong style={{ textAlign: 'center' }}>Safe In & Safe Out
                 Voluntary Drive to Expose Potential Covid-19 Spread
                 </Text>
               </Col>
@@ -133,7 +136,7 @@ function QRpage(props) {
           <Title level={1} style={{ textAlign: 'center', marginTop: '10px' }}>Welcome</Title>
           <Title level={2} style={{ textAlign: 'center', color: '#0069AC',marginTop:'-15px' }}>{props.history.location.state.companyDetails.name}</Title>
           <Row>
-            <Col span={24} style={{ display: 'flex', justifyContent: 'center',marginTop:'-17px' }}>
+            <Col span={24} style={{ display: 'flex', justifyContent: 'center',marginTop:'-8px' }}>
               <div >
                 <canvas id="canvas" ></canvas>
               </div>
@@ -142,14 +145,14 @@ function QRpage(props) {
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Title level={4}>{props.history.location.state.companyDetails.address}</Title>
           </div>
-          <Row justify="center" style={{marginTop:'10px',borderBottom:'1px',borderColor:'black'}}>
-          <img src={Scansteps} width="550px" />
+          <Row justify="center" style={{marginTop:'40px',borderBottom:'1px',borderColor:'black'}}>
+          <img src={Scansteps} width="600px" />
           </Row>
           <Row justify="center">
           <Title level={3} style={{ textAlign: 'center', marginTop: '10px' }}>Thank You</Title>
           </Row>
           <Row style={{display:'flex',justifyContent:'flex-end'}}>
-          <Text  style={{ textAlign: 'end' ,marginBottom:'10px',marginLeft:'10px'}}>{state.date}</Text>
+          <Text  style={{ textAlign: 'end' ,marginBottom:'20px',marginRight:'10px'}}>{state.date}</Text>
           </Row>
  
 
