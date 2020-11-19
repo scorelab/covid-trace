@@ -226,9 +226,10 @@ class _$LocationDao extends LocationDao {
   }
 
   @override
-  Stream<List<Location>> findExposedLocations() {
+  Stream<List<Location>> findExposedLocations(DateTime checkOut) {
     return _queryAdapter.queryListStream(
-        'SELECT * FROM Location WHERE exposed = 1',
+        'SELECT * FROM Location WHERE exposed = 1 AND checkOut > ?',
+        arguments: <dynamic>[_dateTimeConverter.encode(checkOut)],
         queryableName: 'Location',
         isView: false,
         mapper: (Map<String, dynamic> row) => Location(

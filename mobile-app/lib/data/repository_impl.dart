@@ -94,8 +94,12 @@ class RepositoryImpl extends Repository {
       _locationDao.findCheckedOutLocations();
 
   @override
-  Stream<List<Location>> getExposedLocations() =>
-      _locationDao.findExposedLocations();
+  Stream<List<Location>> getExposedLocations() {
+    DateTime currentDate = DateTime.now();
+    currentDate.subtract(Duration(days: 14));
+
+    return _locationDao.findExposedLocations(currentDate);
+  }
 
   @override
   Future<List<Location>> getNonExposedLocations() =>

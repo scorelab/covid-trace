@@ -18,8 +18,8 @@ abstract class LocationDao {
   @Query('SELECT * FROM Location WHERE exposed = 0')
   Future<List<Location>> findNonExposedLocations();
 
-  @Query('SELECT * FROM Location WHERE exposed = 1')
-  Stream<List<Location>> findExposedLocations();
+  @Query('SELECT * FROM Location WHERE exposed = 1 AND checkOut > :checkOut')
+  Stream<List<Location>> findExposedLocations(DateTime checkOut);
 
   @insert
   Future<void> insertLocation(Location location);
