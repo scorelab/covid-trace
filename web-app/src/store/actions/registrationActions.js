@@ -36,20 +36,29 @@ export const registerBusiness = (business) => async (
     })
 };
 
-
-export const registerBus = (bus) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
-        const firestore = getFirestore();
-        console.log(bus)
-        firestore.collection('sc_bus').add({
-            ...bus
+export const registerBus = (bus) => async (
+    dispatch,
+    getState,
+    { getFirebase, getFirestore }
+) => {
+    const firestore = getFirestore();
+    const businessLocation = firestore.collection('sc_bus');
+    const requeststatus = firestore.collection('sc_request_status');
+    businessLocation.add({
+        ...bus
+    }).then((docRef) => {
+        //console.log(docRef.id)
+        requeststatus.add({
+            org: bus.org,
+            location:docRef.id,
+            Status:'pending'
         }).then(() => {
             dispatch({ type: 'REGISTRATION_SUCCESS', bus });
-        }).catch((err) => {
-            dispatch({ type: 'REGISTRATION_ERROR', err });
         })
-    }
-}
+    }).catch((err) => {
+        dispatch({ type: 'REGISTRATION_ERROR', err });
+    })
+};
 
 export const registerTrain = (train) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
