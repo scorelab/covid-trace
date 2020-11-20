@@ -52,6 +52,7 @@ function VehicleReg(props) {
                 location_id: state.location_id,
                 name: state.name,
                 vehicle_no: state.vehicle_no,
+                org:props.orgUserName
             })
             /* f.firestore().collection('/sc_vehicle').add({
                 contact_number:state.contact_number,

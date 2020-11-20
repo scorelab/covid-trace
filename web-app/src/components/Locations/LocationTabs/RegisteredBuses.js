@@ -10,7 +10,6 @@ const { Title } = Typography;
 
 function RegisteredBuses(props) {
 
-    let { UserName } = useParams();
 
     let history = useHistory();
 
@@ -26,13 +25,13 @@ function RegisteredBuses(props) {
     }
 
     useEffect(() => {
-        console.log(UserName)
-        let tempReqOrgList = [];
+        console.log("Buses")
+        let tempReqBusList = [];
 
         (props.locationReqestData && props.busData) && (Object.keys(props.locationReqestData).map(locReqId => {
              (Object.keys(props.busData).map(locationId => {
                 if (props.locationReqestData[locReqId].location === locationId) {
-                  tempReqOrgList.push({
+                    tempReqBusList.push({
                     ...props.locationReqestData[locReqId],
                     ...props.busData[locationId],
                     key: locReqId,
@@ -43,16 +42,12 @@ function RegisteredBuses(props) {
 
         }))
 
-        // console.log(tempOrgList)
-        /*   setstate({
-            orgList: tempOrgList
-          }) */
-        tempReqOrgList && setstate({
-            orgList: tempReqOrgList
+      setstate({
+            orgList: tempReqBusList
         })
 
 
-    }, [props.locationData, props.locationReqestData])
+    }, [props.busData, props.locationReqestData])
 
 
     const columns = [
@@ -123,7 +118,6 @@ const mapStateToProps = (state) => {
 
 export default compose(
     firestoreConnect([
-        { collection: 'sc_location' },
         { collection: 'sc_request_status' },
         { collection: 'sc_bus' },
     ]), // sync todos collection from Firestore into redux

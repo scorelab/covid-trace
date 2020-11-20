@@ -53,7 +53,8 @@ function TrainReg(props) {
                 location_id: state.location_id,
                 train_name: state.train_name,
                 train_no: state.train_no,
-                location_id: state.location_id
+                location_id: state.location_id,
+                org:props.orgUserName
             })
             /* f.firestore().collection('/sc_train').add({
                 carriage_no: state.carriage_no,
