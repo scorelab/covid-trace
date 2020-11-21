@@ -23,7 +23,7 @@ function BusInfoDetails(props) {
     function GoToQRPage(lang) {
         history.push({
             pathname: `/qrpage/${busDetails.location}`,
-            state: { busDetails }
+            state: { ...busDetails }
         })
     }
 

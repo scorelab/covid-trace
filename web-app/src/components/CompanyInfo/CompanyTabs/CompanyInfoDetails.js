@@ -28,7 +28,7 @@ function CompanyInfoDetails(props) {
     function GoToQRPage(lang){
         history.push({
             pathname: `/qrpage/${companyDetails.location}`,
-            state: { companyDetails }
+            state: { ...companyDetails }
           })
     }
 

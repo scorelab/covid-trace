@@ -22,7 +22,7 @@ function TrainInfoDetails(props) {
     function GoToQRPage(lang) {
         history.push({
             pathname: `/qrpage/${trainDetails.location}`,
-            state: { trainDetails }
+            state: { ...trainDetails }
         })
     }
 
