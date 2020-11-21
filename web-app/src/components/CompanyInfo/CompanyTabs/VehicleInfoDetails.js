@@ -36,7 +36,7 @@ function VehicleInfoDetails(props) {
 
     return (
         <div>
-            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Details</Title>
+            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Vehicle Details</Title>
             <Divider />
 
             <Row>

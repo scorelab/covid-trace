@@ -40,7 +40,7 @@ function CompanyInfoDetails(props) {
     }, [props.companyDetails])
     return (
         <div>
-            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Details</Title>
+            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Company Details</Title>
             <Divider />
 
             <Row>
