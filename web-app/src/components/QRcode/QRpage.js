@@ -36,7 +36,7 @@ function QRpage(props) {
       switch (props.history.location.state.location_type) {
         case 'sc_location':
           console.log('location selected')
-          Object.keys(props.locationData)
+          props.locationData && Object.keys(props.locationData)
             .map(i => {
               if (i === props.match.params.CompanyId) {  
                 setName(props.locationData[i].name)
@@ -47,7 +47,7 @@ function QRpage(props) {
   
         case 'sc_bus':
           console.log('bus selected')
-          Object.keys(props.busData)
+          props.busData && Object.keys(props.busData)
           .map(i => {
             if (i === props.match.params.CompanyId) {  
               setName(props.busData[i].bus_no)
@@ -58,7 +58,7 @@ function QRpage(props) {
         
         case 'sc_train':
           console.log('train selected')
-          Object.keys(props.trainData)
+          props.trainData && Object.keys(props.trainData)
           .map(i => {
             if (i === props.match.params.CompanyId) {  
               setName(props.trainData[i].train_name)
@@ -69,7 +69,7 @@ function QRpage(props) {
          
         case 'sc_vehicle':
           console.log('vehicle selected')
-          Object.keys(props.vehilceData)
+          props.vehilceData && Object.keys(props.vehilceData)
           .map(i => {
             if (i === props.match.params.CompanyId) {  
               setName(props.vehilceData[i].vehicle_no)
@@ -81,7 +81,7 @@ function QRpage(props) {
       }
     }
     // console.log(state.date)
-  }, [props.history.location.state.companyDetails])
+  }, [props.history.location.state])
 
   const generateQRCode = ({ canvasId = "", baseURL = "", qrData = { location_type: "", doc_id: "", name: "" }, qrOptions = { version: 16, errorCorrectionLevel: 'Q' }, image = { src: null, size: 90 } }) => {
 
