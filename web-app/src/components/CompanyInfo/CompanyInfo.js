@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { compose } from 'redux'
 import BusInfoDetails from './CompanyTabs/BusInfoDetails';
+import VehicleInfoDetails from './CompanyTabs/VehicleInfoDetails';
+import TrainInfoDetails from './CompanyTabs/TrainInfoDetails';
 const { TabPane } = Tabs;
 const { Content } = Layout;
 
@@ -41,6 +43,8 @@ function CompanyInfo(props) {
                                     {
                                         'sc_location': <CompanyInfoDetails data = {props.history.location.state}/>,
                                         'sc_bus': <BusInfoDetails data = {props.history.location.state}/>,
+                                        'sc_vehicle':<VehicleInfoDetails data = {props.history.location.state} />,
+                                        'sc_train':<TrainInfoDetails data = {props.history.location.state}/>
                                     }[props.history.location.state.location_type]
                                 }
                             </TabPane>
