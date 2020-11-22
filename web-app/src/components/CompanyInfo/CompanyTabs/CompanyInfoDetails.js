@@ -28,19 +28,19 @@ function CompanyInfoDetails(props) {
     function GoToQRPage(lang){
         history.push({
             pathname: `/qrpage/${companyDetails.location}`,
-            state: { companyDetails }
+            state: { ...companyDetails }
           })
     }
 
     useEffect(() => {
         console.log(props.companyDetails)
-        props.companyDetails && setCompanyDetails({
-            ...props.companyDetails
+        props.data && setCompanyDetails({
+            ...props.data
         })
     }, [props.companyDetails])
     return (
         <div>
-            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Details</Title>
+            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Company Details</Title>
             <Divider />
 
             <Row>
