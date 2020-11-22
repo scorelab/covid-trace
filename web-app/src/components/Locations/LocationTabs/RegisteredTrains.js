@@ -29,7 +29,8 @@ function RegisteredTrains(props) {
         let tempReqOrgList = [];
 
         (props.locationReqestData && props.trainData) && (Object.keys(props.locationReqestData).map(locReqId => {
-             (Object.keys(props.trainData).map(locationId => {
+            if (props.locationReqestData[locReqId].org === UserName) {  
+            (Object.keys(props.trainData).map(locationId => {
                 if (props.locationReqestData[locReqId].location === locationId) {
                   tempReqOrgList.push({
                     ...props.locationReqestData[locReqId],
@@ -39,7 +40,7 @@ function RegisteredTrains(props) {
                   //console.log(props.locationData[locationId])
                 }
               }))
-
+            }
         }))
 
         // console.log(tempOrgList)

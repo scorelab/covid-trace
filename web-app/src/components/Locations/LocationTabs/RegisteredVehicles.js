@@ -29,7 +29,8 @@ function RegisteredVehicles(props) {
         let tempReqOrgList = [];
 
         (props.locationReqestData && props.vehicleData) && (Object.keys(props.locationReqestData).map(locReqId => {
-             (Object.keys(props.vehicleData).map(locationId => {
+            if (props.locationReqestData[locReqId].org === UserName) {  
+            (Object.keys(props.vehicleData).map(locationId => {
                 if (props.locationReqestData[locReqId].location === locationId) {
                   tempReqOrgList.push({
                     ...props.locationReqestData[locReqId],
@@ -39,7 +40,7 @@ function RegisteredVehicles(props) {
                   //console.log(props.locationData[locationId])
                 }
               }))
-
+            }
         }))
 
         // console.log(tempOrgList)

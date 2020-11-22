@@ -13,6 +13,8 @@ function RegisteredBuses(props) {
 
     let history = useHistory();
 
+    let { UserName } = useParams();
+
     const [state, setstate] = useState({
         orgList: []
     })
@@ -29,7 +31,8 @@ function RegisteredBuses(props) {
         let tempReqBusList = [];
 
         (props.locationReqestData && props.busData) && (Object.keys(props.locationReqestData).map(locReqId => {
-             (Object.keys(props.busData).map(locationId => {
+            if (props.locationReqestData[locReqId].org === UserName) { 
+            (Object.keys(props.busData).map(locationId => {
                 if (props.locationReqestData[locReqId].location === locationId) {
                     tempReqBusList.push({
                     ...props.locationReqestData[locReqId],
@@ -39,7 +42,7 @@ function RegisteredBuses(props) {
                   //console.log(props.locationData[locationId])
                 }
               }))
-
+            }
         }))
 
       setstate({
