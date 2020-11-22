@@ -58,6 +58,7 @@ function BusReg(props) {
                 contact_number: state.contact_number,
                 location_id: state.location_id,
                 name: state.name,
+                org:props.orgUserName
             })
             /* f.firestore().collection('/sc_bus').add({
                 bus_no: state.bus_no,

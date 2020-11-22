@@ -5,7 +5,7 @@ import AddOrganisation from './components/AddOrganisation/AddOrganisation';
 import CompanyInfo from './components/CompanyInfo/CompanyInfo';
 //Higher Order Components
 import HomePage from './components/home/HomePage';
-import Locations from './components/Locations/Locations';
+import LocationIndex from './components/Locations/LocationIndex';
 import Organisation from './components/Organisations/Organisation';
 import QRpage from './components/QRcode/QRpage';
 import Registration from './components/Registrations/Registration';
@@ -23,7 +23,7 @@ class App extends Component {
         <Route exact path="/signUp" component={SignUp} />
         <Route exact path="/organisations" component={Organisation} />
         <Route exact path="/addOrganisation" component={AddOrganisation} />
-        <Route exact path="/locations/:UserName" component={Locations} />
+        <Route exact path="/locations/:UserName" component={LocationIndex} />
         <Route exact path="/registration" component={Registration} />
         <Route exact path="/companyInfo/:CompanyId" component={CompanyInfo} />
         <Route exact path="/userProfile" component={UserProfile} />

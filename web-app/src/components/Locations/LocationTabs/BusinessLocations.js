@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Layout, Card, Button, Table, Tag, Space } from 'antd';
-import Navbar from '../UiElements/Navbar/Navbar';
-import BottomFooter from '../UiElements/BottomFooter';
+import { Layout, Divider, Button, Table, Tag, Space } from 'antd';
+import { Typography } from 'antd';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { Redirect, useParams,useHistory } from 'react-router-dom';
-const { Content } = Layout;
+import { Redirect, useParams, useHistory } from 'react-router-dom';
+const { Title } = Typography;
 
 
-function Locations(props) {
+function BusinessLocations(props) {
 
   let { UserName } = useParams();
 
@@ -22,7 +21,7 @@ function Locations(props) {
   function goToCompanyInfo(value) {
     history.push({
       pathname: `/companyInfo/${value.location}`,
-      state: { ...value,location_type:'sc_location' }
+      state: { ...value, location_type: 'sc_location' }
     })
   }
 
@@ -120,17 +119,12 @@ function Locations(props) {
   if (props.user == null) return <Redirect to='/signIn' />
 
   return (
-    <div style={{ background: "#F2F2F2" }}>
-      <Layout style={{ minHeight: "100vh" }}>
-        <Navbar />
-        <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-          <Card title="Locations" style={{ width: '1000px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "50px", overflow: "auto", minHeight: "64vh", marginBottom: "150px", position: "sticky" }}>
-            <Table columns={columns} dataSource={state.orgList} />
-          </Card>
-        </Content>
-        <BottomFooter />
-      </Layout>
-    </div>
+    <React.Fragment>
+      <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Registered Businesses</Title>
+      <Divider />
+
+      <Table columns={columns} dataSource={state.orgList} />
+    </React.Fragment>
   )
 }
 
@@ -153,4 +147,4 @@ export default compose(
     { collection: 'sc_request_status' }
   ]), // sync todos collection from Firestore into redux
   connect(mapStateToProps),
-)(Locations)
+)(BusinessLocations)

@@ -36,21 +36,54 @@ export const registerBusiness = (business) => async (
     })
 };
 
-
-export const registerBus = (bus) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
-        const firestore = getFirestore();
-        console.log(bus)
-        firestore.collection('sc_bus').add({
-            ...bus
+export const registerBus = (bus) => async (
+    dispatch,
+    getState,
+    { getFirebase, getFirestore }
+) => {
+    const firestore = getFirestore();
+    const businessLocation = firestore.collection('sc_bus');
+    const requeststatus = firestore.collection('sc_request_status');
+    businessLocation.add({
+        ...bus
+    }).then((docRef) => {
+        //console.log(docRef.id)
+        requeststatus.add({
+            org: bus.org,
+            location:docRef.id,
+            Status:'pending'
         }).then(() => {
             dispatch({ type: 'REGISTRATION_SUCCESS', bus });
-        }).catch((err) => {
-            dispatch({ type: 'REGISTRATION_ERROR', err });
         })
-    }
-}
+    }).catch((err) => {
+        dispatch({ type: 'REGISTRATION_ERROR', err });
+    })
+};
 
+export const registerTrain = (train) => async (
+    dispatch,
+    getState,
+    { getFirebase, getFirestore }
+) => {
+    const firestore = getFirestore();
+    const businessLocation = firestore.collection('sc_train');
+    const requeststatus = firestore.collection('sc_request_status');
+    businessLocation.add({
+        ...train
+    }).then((docRef) => {
+        //console.log(docRef.id)
+        requeststatus.add({
+            org: train.org,
+            location:docRef.id,
+            Status:'pending'
+        }).then(() => {
+            dispatch({ type: 'REGISTRATION_SUCCESS', train });
+        })
+    }).catch((err) => {
+        dispatch({ type: 'REGISTRATION_ERROR', err });
+    })
+};
+/* 
 export const registerTrain = (train) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
@@ -64,8 +97,8 @@ export const registerTrain = (train) => {
         })
     }
 }
-
-export const registerVehicle = (vehicle) => {
+ */
+/* export const registerVehicle = (vehicle) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
         console.log(vehicle)
@@ -77,7 +110,31 @@ export const registerVehicle = (vehicle) => {
             dispatch({ type: 'REGISTRATION_ERROR', err });
         })
     }
-}
+} */
+
+export const registerVehicle = (vehicle) => async (
+    dispatch,
+    getState,
+    { getFirebase, getFirestore }
+) => {
+    const firestore = getFirestore();
+    const businessLocation = firestore.collection('sc_vehicle');
+    const requeststatus = firestore.collection('sc_request_status');
+    businessLocation.add({
+        ...vehicle
+    }).then((docRef) => {
+        //console.log(docRef.id)
+        requeststatus.add({
+            org: vehicle.org,
+            location:docRef.id,
+            Status:'pending'
+        }).then(() => {
+            dispatch({ type: 'REGISTRATION_SUCCESS', vehicle });
+        })
+    }).catch((err) => {
+        dispatch({ type: 'REGISTRATION_ERROR', err });
+    })
+};
 
 
 export const registerOrganisations = (org) => async (

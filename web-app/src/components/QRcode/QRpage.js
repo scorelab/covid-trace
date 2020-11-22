@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import QRCode from 'qrcode'
 //import safeCheckin from "./SafeCheckIn.png"
 //import {db} from "./firebase"
@@ -10,6 +10,8 @@ import * as html2pdf from 'html2pdf.js';
 import enter from '../../assets/enter.png'
 import Scansteps from '../../assets/ScanSteps.svg'
 import logo from '../../assets/logo.png'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 import logoSvg from '../../assets/logoSvg.svg'
 const { Title, Text } = Typography;
 function QRpage(props) {
@@ -19,22 +21,67 @@ function QRpage(props) {
   const baseURL = "https://safecheckin.com";
   //const Today = new Date();
 
-  const [state, setstate] = useState({
-    date:new Date().toISOString().slice(0,10)
+  const [date, setDate] = useState({
+    today: new Date().toISOString().slice(0, 10)
   })
 
+  const [name,setName] = useState('')
+  const [address,setAddress] = useState('')
+
   useEffect(() => {
-    console.log(props.history.location.state.companyDetails)
+    console.log(props.history.location.state)
 
 
-    if (props.history.location.state.companyDetails) {
-      console.log(props.history.location.state.companyDetails)
-      const locationDetails = props.history.location.state.companyDetails
-      console.log(locationDetails.location_type)
-      generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: locationDetails.location_type, doc_id: locationDetails.location, name: locationDetails.name }, image: { src: logoSvg, size: 70 } })
+    if (props.history.location.state) {
+      switch (props.history.location.state.location_type) {
+        case 'sc_location':
+          console.log('location selected')
+          props.locationData && Object.keys(props.locationData)
+            .map(i => {
+              if (i === props.match.params.CompanyId) {  
+                setName(props.locationData[i].name)
+                setAddress(props.locationData[i].address)
+                generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: 'sc_location', doc_id: i, name: props.locationData[i].name }, image: { src: logoSvg, size: 70 } });
+              }
+            })
+  
+        case 'sc_bus':
+          console.log('bus selected')
+          props.busData && Object.keys(props.busData)
+          .map(i => {
+            if (i === props.match.params.CompanyId) {  
+              setName(props.busData[i].bus_no)
+              setAddress('')
+              generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: 'sc_bus', doc_id: i, name: props.busData[i].bus_no }, image: { src: logoSvg, size: 70 } });
+            }
+          })
+        
+        case 'sc_train':
+          console.log('train selected')
+          props.trainData && Object.keys(props.trainData)
+          .map(i => {
+            if (i === props.match.params.CompanyId) {  
+              setName(props.trainData[i].train_name)
+              setAddress('')
+              generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: 'sc_train', doc_id: i, name: props.trainData[i].train_name }, image: { src: logoSvg, size: 70 } });
+            }
+          })
+         
+        case 'sc_vehicle':
+          console.log('vehicle selected')
+          props.vehilceData && Object.keys(props.vehilceData)
+          .map(i => {
+            if (i === props.match.params.CompanyId) {  
+              setName(props.vehilceData[i].vehicle_no)
+              setAddress('')
+              generateQRCode({ canvasId: "canvas", baseURL: baseURL, qrData: { location_type: 'sc_vehicle', doc_id: i, name: props.vehilceData[i].vehicle_no }, image: { src: logoSvg, size: 70 } });
+            }
+          })
+        default: <div></div>
+      }
     }
-   // console.log(state.date)
-  }, [props.history.location.state.companyDetails])
+    // console.log(state.date)
+  }, [props.history.location.state])
 
   const generateQRCode = ({ canvasId = "", baseURL = "", qrData = { location_type: "", doc_id: "", name: "" }, qrOptions = { version: 16, errorCorrectionLevel: 'Q' }, image = { src: null, size: 90 } }) => {
 
@@ -134,27 +181,27 @@ function QRpage(props) {
           </Row>
 
           <Title level={1} style={{ textAlign: 'center', marginTop: '10px' }}>Welcome</Title>
-          <Title level={2} style={{ textAlign: 'center', color: '#0069AC',marginTop:'-15px' }}>{props.history.location.state.companyDetails.name}</Title>
+          <Title level={2} style={{ textAlign: 'center', color: '#0069AC', marginTop: '-15px' }}>{name}</Title>
           <Row>
-            <Col span={24} style={{ display: 'flex', justifyContent: 'center',marginTop:'-8px' }}>
+            <Col span={24} style={{ display: 'flex', justifyContent: 'center', marginTop: '-8px' }}>
               <div >
                 <canvas id="canvas" ></canvas>
               </div>
             </Col>
           </Row>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Title level={4}>{props.history.location.state.companyDetails.address}</Title>
+            <Title level={4}>{address}</Title>
           </div>
-          <Row justify="center" style={{marginTop:'40px',borderBottom:'1px',borderColor:'black'}}>
-          <img src={Scansteps} width="600px" />
+          <Row justify="center" style={{ marginTop: '40px', borderBottom: '1px', borderColor: 'black' }}>
+            <img src={Scansteps} width="600px" />
           </Row>
           <Row justify="center">
-          <Title level={3} style={{ textAlign: 'center', marginTop: '10px' }}>Thank You</Title>
+            <Title level={3} style={{ textAlign: 'center', marginTop: '10px' }}>Thank You</Title>
           </Row>
-          <Row style={{display:'flex',justifyContent:'flex-end'}}>
-          <Text  style={{ textAlign: 'end' ,marginBottom:'20px',marginRight:'10px'}}>{state.date}</Text>
+          <Row style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Text style={{ textAlign: 'end', marginBottom: '20px', marginRight: '10px' }}>{date.today}</Text>
           </Row>
- 
+
 
         </Card>
       </Card>
@@ -171,9 +218,23 @@ const mapStateToProps = (state) => {
   //console.log(state)
   return ({
     ...state,
-    user: state.auth.auth.user
+    user: state.auth.auth.user,
+    locationData: state.firestore.data.sc_location,
+    vehilceData: state.firestore.data.sc_vehicle,
+    busData: state.firestore.data.sc_bus,
+    trainData: state.firestore.data.sc_train,
   })
 }
 
 
-export default connect(mapStateToProps)(QRpage)
+//export default connect(mapStateToProps)(QRpage)
+
+export default compose(
+  firestoreConnect([
+    { collection: 'sc_location' },
+    { collection: 'sc_vehicle' },
+    { collection: 'sc_bus' },
+    { collection: 'sc_train' },
+  ]), // sync todos collection from Firestore into redux
+  connect(mapStateToProps),
+)(QRpage)
