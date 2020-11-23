@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+// route guards
+import AuthRoute from './auth/AuthRoute';
+import PrivateRoute from './auth/PrivateRoute';
+import PublicRoute from './auth/PublicRoute';
 import AddOrganisation from './components/AddOrganisation/AddOrganisation';
 import CompanyInfo from './components/CompanyInfo/CompanyInfo';
 //Higher Order Components
 import HomePage from './components/home/HomePage';
 import LocationIndex from './components/Locations/LocationIndex';
+import NotFound from './components/NotFound/NotFound';
 import Organisation from './components/Organisations/Organisation';
 import QRpage from './components/QRcode/QRpage';
 import Registration from './components/Registrations/Registration';
@@ -18,16 +23,29 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/signIn" component={SignIn} />
-        <Route exact path="/signUp" component={SignUp} />
-        <Route exact path="/organisations" component={Organisation} />
-        <Route exact path="/addOrganisation" component={AddOrganisation} />
-        <Route exact path="/locations/:UserName" component={LocationIndex} />
-        <Route exact path="/registration" component={Registration} />
-        <Route exact path="/companyInfo/:CompanyId" component={CompanyInfo} />
-        <Route exact path="/userProfile" component={UserProfile} />
-        <Route exact path="/qrpage/:CompanyId" component={QRpage} />
+        <PublicRoute exact path="/" component={HomePage} />
+        <AuthRoute exact path="/signIn" component={SignIn} />
+        <AuthRoute exact path="/signUp" component={SignUp} />
+        <PrivateRoute exact path="/organizations" component={Organisation} />
+        <PrivateRoute
+          exact
+          path="/addOrganisation"
+          component={AddOrganisation}
+        />
+        <PrivateRoute
+          exact
+          path="/locations/:UserName"
+          component={LocationIndex}
+        />
+        <PrivateRoute exact path="/registration" component={Registration} />
+        <PrivateRoute
+          exact
+          path="/companyInfo/:CompanyId"
+          component={CompanyInfo}
+        />
+        <PrivateRoute exact path="/userProfile" component={UserProfile} />
+        <PrivateRoute exact path="/qrpage/:CompanyId" component={QRpage} />
+        <PublicRoute component={NotFound} />
       </Switch>
     );
   }
