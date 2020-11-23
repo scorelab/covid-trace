@@ -47,7 +47,8 @@ function BusReg(props) {
         }
     }
 
-    function submitDetails() {
+    function submitDetails(e) {
+        e.preventDefault();
         if (state.isCorrect == false) {
             warning();
         } else {
@@ -95,24 +96,25 @@ function BusReg(props) {
     return (
         <div>
             <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
+                <form onSubmit={submitDetails}>
                 <Row justify="space-between" >
                     <Col sm={24} md={13}  >
-                        <Input placeholder="Bus No" name="bus_no" onChange={handleChange} />
+                        <Input placeholder="Bus No" name="bus_no" onChange={handleChange} required/>
                     </Col>
                     <Col sm={24} md={1}  >
                     </Col>
                     <Col sm={24} md={10} >
-                        <Input placeholder="Bus Route No" name="bus_route_no" onChange={handleChange} />
+                        <Input placeholder="Bus Route No" name="bus_route_no" onChange={handleChange} required/>
                     </Col>
                 </Row>
                 <Row justify="space-between" >
                     <Col sm={24} md={13}  >
-                        <Input placeholder="Name" name="name" style={{ marginTop: '12px' }} onChange={handleChange} />
+                        <Input placeholder="Name" name="name" style={{ marginTop: '12px' }} onChange={handleChange} required/>
                     </Col>
                     <Col sm={24} md={1}  >
                     </Col>
                     <Col sm={24} md={10} >
-                        <Input addonBefore="+94" placeholder="Contact No" name="contact_number" onChange={handleChange} style={{ marginTop: '12px' }} />
+                        <Input addonBefore="+94" placeholder="Contact No" name="contact_number" onChange={handleChange} style={{ marginTop: '12px' }} required/>
                     </Col>
                 </Row>
                 <Row justify="space-between" align="middle">
@@ -120,9 +122,10 @@ function BusReg(props) {
                         <Checkbox onChange={handleChange} name="isCorrect" style={{ marginTop: "35px" }} >Confirm Your Details Is Correct</Checkbox>
                     </Col>
                     <Col sm={24} md={10}   >
-                        <Button type="primary" style={{ marginTop: "35px", width: "100%" }} onClick={submitDetails}>Submit</Button>
+                        <Button type="primary" style={{ marginTop: "35px", width: "100%" }} htmlType="submit">Submit</Button>
                     </Col>
                 </Row>
+                </form>
             </Card>
         </div>
     )
