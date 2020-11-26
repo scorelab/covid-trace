@@ -1,9 +1,21 @@
 /* Rectangle 1 */
-
-.header {
-    height: 77px;
-    background: rgba(29, 233, 182, 0.93) !important;
+.avator{
+    cursor: pointer;
+    margin-bottom: 10px;
 }
+.header{
+    display:flex !important;
+    justify-content: center !important;
+    background:rgba(29, 233, 182, 0.93) !important;
+    height: 50px !important;
+}
+
+@media screen and (max-width:960px){
+    .header{
+        height: 100px !important;
+    }
+}
+
 
 .center {
     display: flex;
@@ -17,12 +29,12 @@
 }
 
 .signUpbtn {
-    width: 212px;
-    height: 63px;
-    background: black;
-    color: white;
-    border-radius: 10px;
-    font-size: 24px;
+    width: 212px !important;
+    height: 63px !important;
+    background: black !important;
+    color: white !important;
+    border-radius: 10px !important;
+    font-size: 24px !important;
 }
 
 .whatIsSafeIn {
@@ -46,6 +58,7 @@
     justify-content: center;
     flex-direction: column;
 }
+
 
 .smallPointTitle {
     text-align: left;

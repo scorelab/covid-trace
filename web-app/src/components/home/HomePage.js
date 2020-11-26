@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Layout, Row, Col, Typography } from 'antd';
+import { Layout, Row, Col, Typography, Avatar,Button } from 'antd';
 import firstImage from '../../assets/homePageFirstImage.svg'
 import googlePlayBadge from '../../assets/googlePlayBadge.png'
 import homePageSecondImage from '../../assets/homePageSecondImage.png'
@@ -11,6 +11,7 @@ import step4 from '../../assets/step4.svg'
 import homePageThirdImage from '../../assets/homePageThirdImage.png'
 import githubLogo from '../../assets/githubLogo.png'
 import scoreLabLogo from '../../assets/scoreLabLogo.png'
+import enter from '../../assets/enter.png'
 import './homeStyles.css'
 const { Header, Footer, Sider, Content } = Layout;
 const { Title, Text } = Typography;
@@ -19,7 +20,17 @@ class HomePage extends Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Header className="header">Header</Header>
+        <Header  className='header' >
+          <Row style={{ width: '100%',padding:'0px 0px 10px 0px' }}>
+            <Col xs={24} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'start', marginLeft: '-30px' }}>
+              <Avatar size="large" src={enter} className='avator' style={{ marginBottom: '5px' }} />
+              <Title level={3} style={{ cursor: 'pointer', marginTop: '10px' }}> SAFE IN</Title>
+            </Col>
+            <Col xs={24} md={12} style={{display:'flex',justifyContent:'flex-end',alignItems:'center'}}>
+              <Button style={{borderRadius:'10px',width:'150px',fontSize:'16px',fontWeight:'bold'}}>SIGN IN</Button>
+            </Col>
+          </Row>
+        </Header>
         <Content style={{ background: 'white' }}>
           <Row style={{ marginTop: '70px' }}>
             <Col xs={24} md={24} lg={12} style={{ display: 'flex', justifyContent: 'center' }}>
@@ -30,7 +41,8 @@ class HomePage extends Component {
               <Title level={5} style={{ textAlign: 'center', maxWidth: '478px' }}>Join us today and help to stop the spread of COVID-19 through community-driven contact tracing</Title>
               <Row className='center'>
                 <img src={googlePlayBadge} className="firstImage"></img>
-                <button className="signUpbtn">Sign Me Up</button>
+                
+                <Button className="signUpbtn">Sign Me Up</Button>
               </Row>
             </Col>
           </Row>
@@ -92,7 +104,7 @@ class HomePage extends Component {
               <Row className="center">
                 <Title level={3} style={{ textAlign: 'center' }}>How Safe In COVID Tracker Benefits You </Title>
               </Row>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',marginTop:'20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
                 <Text className='benefitsPoints'>Get Notified If You are exposed to persons tested positive for Covid 19</Text>
                 <Text className='benefitsPoints'>Provide Your Details anywhere you visit effieciently and Contamination free</Text>
                 <Text className='benefitsPoints'>Save your data only in the registration you can use these data anywhere you visit</Text>
