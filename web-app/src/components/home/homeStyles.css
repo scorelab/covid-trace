@@ -1,0 +1,101 @@
+/* Rectangle 1 */
+
+.header {
+    height: 77px;
+    background: rgba(29, 233, 182, 0.93) !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.firstImage {
+    max-width: 300px;
+    object-fit: contain;
+}
+
+.signUpbtn {
+    width: 212px;
+    height: 63px;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    font-size: 24px;
+}
+
+.whatIsSafeIn {
+    width: 100%;
+    min-height: 387px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+    border-radius: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.smallPoints {
+    min-width: 100px;
+    max-width: 654px;
+    min-height: 170px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+    border-radius: 36px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.smallPointTitle {
+    text-align: left;
+    padding: 0px 5px 0px 5px
+}
+
+.smallPointContent {
+    text-align: justify;
+    max-width: 800px;
+    font-size: 16px;
+    padding: 0px 20px 0px 20px
+}
+
+.howSafe {
+    width: 293px;
+    height: 500px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+    border-radius: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.benefits {
+    width: 100%;
+    min-height: 300px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.benefitsPoints{
+    text-align: center;
+    font-size: 16px;
+}
+
+.Contribute{
+
+    width: 100%;
+    min-height: 210px;
+    
+    background: linear-gradient(0deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+  
+}
+
+.footer{
+    width: 100%;
+    height: 150px;
+    background:white !important;
+}
