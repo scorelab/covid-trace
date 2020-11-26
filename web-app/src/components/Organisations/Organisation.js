@@ -51,7 +51,7 @@ function Organisation(props) {
             <Layout style={{ minHeight: "100vh" }}>
                 <Navbar />
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card title="Organisations" style={{ width: '1150px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "6.9vh", overflow: "auto", minHeight: "627px", marginBottom: "80px", position: "sticky" }}>
+                    <Card title="Organizations" style={{ width: '1150px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "6.9vh", overflow: "auto", minHeight: "627px", marginBottom: "80px", position: "sticky" }}>
                         <Row>
                             {
                                 (props.orgData && props.orgWithUserData && state.orgList) ? state.orgList.map((org) => {
