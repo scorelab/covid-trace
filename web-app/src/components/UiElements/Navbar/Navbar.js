@@ -15,9 +15,13 @@ function Navbar(props) {
     let history = useHistory();
 
     function goToHome(){
-        history.push("/organizations");
+        if(user){
+            history.push("/organizations");
+        }else{
+            history.push("/");
+        }
     }
-
+    
     return (
         <div>
             <Header style={{ background: '#F9F9F9', boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.25)', height: '60px', paddingTop: "5px", paddingLeft: "20px", display: "flex", alignItems: 'center' }}>
