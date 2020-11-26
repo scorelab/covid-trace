@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Layout, Row, Col, Typography, Avatar,Button } from 'antd';
+import { Layout, Row, Col, Typography, Avatar, Button } from 'antd';
 import firstImage from '../../assets/homePageFirstImage.svg'
 import googlePlayBadge from '../../assets/googlePlayBadge.png'
 import homePageSecondImage from '../../assets/homePageSecondImage.png'
@@ -12,6 +12,7 @@ import homePageThirdImage from '../../assets/homePageThirdImage.png'
 import githubLogo from '../../assets/githubLogo.png'
 import scoreLabLogo from '../../assets/scoreLabLogo.png'
 import enter from '../../assets/enter.png'
+import { Link } from "react-router-dom";
 import './homeStyles.css'
 const { Header, Footer, Sider, Content } = Layout;
 const { Title, Text } = Typography;
@@ -20,14 +21,16 @@ class HomePage extends Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Header  className='header' >
-          <Row style={{ width: '100%',padding:'0px 0px 10px 0px' }}>
-            <Col xs={24} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'start'}}>
+        <Header className='header' >
+          <Row style={{ width: '100%', padding: '0px 0px 10px 0px' }}>
+            <Col xs={24} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'start' }}>
               <Avatar size="large" src={enter} className='avator' style={{ marginBottom: '5px' }} />
               <Title level={3} style={{ cursor: 'pointer', marginTop: '10px' }}> SAFE IN</Title>
             </Col>
-            <Col xs={24} md={12} style={{display:'flex',justifyContent:'flex-end',alignItems:'center'}}>
-              <Button className="loginBtn">SIGN IN</Button>
+            <Col xs={24} md={12} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+              <Link to='/signIn'>
+                <Button className="loginBtn">SIGN IN</Button>
+              </Link>
             </Col>
           </Row>
         </Header>
@@ -39,9 +42,11 @@ class HomePage extends Component {
             <Col xs={24} md={24} lg={12} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
               <Title level={2} style={{ textAlign: 'center', marginBottom: '-10px' }}>Stay Safe Without Being Traced</Title>
               <Title level={5} style={{ textAlign: 'center', maxWidth: '478px' }}>Join us today and help to stop the spread of COVID-19 through community-driven contact tracing</Title>
-              <Row style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+              <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <img src={googlePlayBadge} className="googlePlayImage" />
-                <Button className="signUpbtn">Sign Me Up</Button>
+                <Link to='/signup'>
+                  <Button className="signUpbtn">Sign Me Up</Button>
+                </Link>
               </Row>
             </Col>
           </Row>
@@ -149,7 +154,10 @@ class HomePage extends Component {
           <Row>
             <Col xs={24} md={24} lg={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }} >
               <Text style={{ fontSize: '20px', padding: '0px 10px 10px 0px', textAlign: "center", marginBottom: '10px' }}>Project By</Text>
-              <img src={scoreLabLogo} width='200px' style={{ objectFit: 'contain', margin: '-5px 0px 20px 0px',cursor:'pointer' }} />
+              <a href='https://scorelab.org/'>
+                <img src={scoreLabLogo} width='200px' style={{ objectFit: 'contain', margin: '-5px 0px 20px 0px', cursor: 'pointer' }} />
+              </a>
+
             </Col>
             <Col xs={24} md={24} lg={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
               {/*     <Text style={{ fontSize: '20px', padding: '0px 10px 10px 0px', textAlign: "center", marginBottom: '10px' }}>Contact Us</Text> */}

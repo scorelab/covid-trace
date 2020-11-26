@@ -24,7 +24,7 @@ function Navbar(props) {
                 <Row style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Col xs={24} sm={24} md={16} >
                         <Avatar size="large" src={enter} style={{ float: 'left', marginBottom: '10px',cursor:'pointer'}} onClick={goToHome}/>
-                        <Title level={3} style={{ marginTop: "10px", marginLeft: '-10px',cursor:'pointer' }} onClick={goToHome}> SAFE CHECK IN</Title>
+                        <Title level={3} style={{ marginTop: "10px", marginLeft: '-10px',cursor:'pointer' }} onClick={goToHome}> SAFE IN</Title>
                     </Col>
                     {
                         (user)?<SignedLinks />:null

@@ -8,13 +8,16 @@
 .header {
     display: flex !important;
     justify-content: center !important;
-    background: rgba(29, 233, 182, 0.93) !important;
-    height: 50px !important;
+    background:linear-gradient(90deg, rgba(29, 233, 182, 0.93) 14.64%, rgba(103, 229, 255, 0.93) 90.23%) !important;
+    height: 60px !important;
+    /* position: fixed !important;
+    width: 100%;
+    z-index: 10; */
 }
 
 @media screen and (max-width:960px) {
     .header {
-        height: 100px !important;
+        min-height: 110px !important;
     }
 }
 
@@ -34,6 +37,7 @@
     height: 55px;
     object-fit: cover;
     cursor: pointer;
+    margin-right: 5px;
 }
 
 .googlePlayImage:hover {
