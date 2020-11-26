@@ -15,7 +15,7 @@ function Navbar(props) {
     let history = useHistory();
 
     function goToHome(){
-        history.push("/organisations");
+        history.push("/organizations");
     }
 
     return (

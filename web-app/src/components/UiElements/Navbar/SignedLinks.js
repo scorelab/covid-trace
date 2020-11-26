@@ -21,7 +21,7 @@ function SignedLinks(props) {
                 <Button type="primary" style={{ marginRight: '20px' }} >Add Your Location</Button>
             </Link>
             <Link to="/addOrganisation">
-                <Button type="primary" style={{ marginRight: '20px' }}>Organisations</Button>
+                <Button type="primary" style={{ marginRight: '20px' }}>Organizations</Button>
             </Link>
             <UserOutlined style={{ fontSize: '30px', marginRight: '20px' }} onClick={() => goToPath('/userProfile')} />
             <LogoutOutlined style={{ fontSize: '30px' }} onClick={props.signOut}/>
