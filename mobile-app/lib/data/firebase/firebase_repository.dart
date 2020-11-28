@@ -10,4 +10,6 @@ abstract class FirebaseRepository {
   Future<Either<AuthFailure, User>> signIn(UserSignInRequest request);
   Future<Either<VerifyFailure, Unit>> verifyPhone(String userId);
   Future<Either<dynamic, Location>> getLocation(String type, String id);
+  Future<Either<dynamic, String>> getInfectedCode(String userId);
+  Future<Either<dynamic, Unit>> uploadData(User user, List<Location> locations);
 }

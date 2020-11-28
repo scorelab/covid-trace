@@ -16,11 +16,11 @@ void main() async {
     "1",
     "checkExposed",
     existingWorkPolicy: ExistingWorkPolicy.replace,
-    initialDelay: Duration(minutes: 30),
+    initialDelay: Duration(seconds: 30),
     constraints: Constraints(
       networkType: NetworkType.connected,
     ),
-    frequency: Duration(days: 1),
+    frequency: Duration(hours: 6),
   );
 
   runApp(CovidTrace());
