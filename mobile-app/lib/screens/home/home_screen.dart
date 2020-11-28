@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
+import 'package:slcovid_tracker/screens/safeentrybeforecheckin/safeentrybeforecheckin_screen.dart';
 import 'package:slcovid_tracker/states/checkin_bloc/checkin_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -90,11 +91,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(0.0),
                                 ),
                                 onPressed: () {
-                                  Navigator.pushNamed(context, Routes.checkin);
-                                  // Navigator.pushNamed(
-                                  //     context, Routes.safeentrybeforecheckin,
-                                  //     arguments: SafeEntryBeforeCheckInScreenArgs(
-                                  //         ("https://safecheckin.com/sc_bus|AXeyPFiEpYBGIfyasNGr|Namal Travels|NM-0001")));
+                                  // Navigator.pushNamed(context, Routes.checkin);
+                                  Navigator.pushNamed(
+                                      context, Routes.safeentrybeforecheckin,
+                                      arguments: SafeEntryBeforeCheckInScreenArgs(
+                                          ("https://safecheckin.com/sc_bus/AXeyPFiEpYBGIfyasNGr?name=Nimal")));
                                 },
                                 color: Color(0xff1DE9B6),
                                 textColor: Colors.white,

@@ -7,6 +7,7 @@ import 'package:slcovid_tracker/routing/application.dart';
 import 'package:slcovid_tracker/states/auth_bloc/auth_bloc.dart';
 import 'package:slcovid_tracker/states/checkin_bloc/checkin_bloc.dart';
 import 'package:slcovid_tracker/states/exposed_bloc/exposed_bloc.dart';
+import 'package:slcovid_tracker/states/upload_bloc/upload_bloc.dart';
 
 class CovidTrace extends StatelessWidget {
   CovidTrace() {
@@ -36,6 +37,9 @@ class CovidTrace extends StatelessWidget {
               ),
               BlocProvider<ExposedBloc>(
                 create: (BuildContext context) => getIt<ExposedBloc>(),
+              ),
+              BlocProvider<UploadBloc>(
+                create: (BuildContext context) => getIt<UploadBloc>(),
               ),
             ],
             child: MaterialApp(

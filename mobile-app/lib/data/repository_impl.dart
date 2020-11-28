@@ -96,9 +96,22 @@ class RepositoryImpl extends Repository {
   @override
   Stream<List<Location>> getExposedLocations() {
     DateTime currentDate = DateTime.now();
-    currentDate.subtract(Duration(days: 14));
+    currentDate = currentDate.subtract(Duration(days: 14));
 
     return _locationDao.findExposedLocations(currentDate);
+  }
+
+  @override
+  Future<Either<dynamic, List<Location>>> getExposedLocationsOnce() async {
+    DateTime currentDate = DateTime.now();
+    currentDate = currentDate.subtract(Duration(days: 14));
+
+    var locations = await _locationDao
+        .findExposedLocations(currentDate)
+        .first
+        .catchError((error) => left(error));
+
+    return right(locations);
   }
 
   @override
@@ -115,4 +128,13 @@ class RepositoryImpl extends Repository {
 
     return right(unit);
   }
+
+  @override
+  Future<Either<dynamic, String>> getInfectedCode(String userId) =>
+      _firebaseRepository.getInfectedCode(userId);
+
+  @override
+  Future<Either<dynamic, Unit>> uploadData(
+          User user, List<Location> locations) =>
+      _firebaseRepository.uploadData(user, locations);
 }

@@ -110,20 +110,50 @@ class FirebaseRepositoryImpl extends FirebaseRepository {
     }
   }
 
-  // @override
-  // Future<Either<dynamic, List<InfectedLocation>>> getInfectedLocations(
-  //     DateTime after) async {
-  //   CollectionReference locations =
-  //       FirebaseFirestore.instance.collection('sc_infected_check_in_out');
+  @override
+  Future<Either<dynamic, String>> getInfectedCode(String userId) async {
+    CollectionReference infected =
+        FirebaseFirestore.instance.collection('sc_infected_user');
 
-  //   var document = await locations
-  //       .where('upload_time', isGreaterThan: after)
-  //       .orderBy('upload_time', descending: true)
-  //       .get()
-  //       .catchError((error) => left(error));
+    var codeData =
+        await infected.doc(userId).get().catchError((err) => left(err));
 
-  //   return right(document.docs
-  //       .map((e) => InfectedLocation.fromFirebase(e.id, e.data()))
-  //       .toList());
-  // }
+    if (codeData.exists) {
+      return right(codeData.data()['code']);
+    } else {
+      return left("No code found");
+    }
+  }
+
+  @override
+  Future<Either<dynamic, Unit>> uploadData(
+      User user, List<Location> locations) async {
+    CollectionReference infected =
+        FirebaseFirestore.instance.collection('sc_infected_check_in_out');
+
+    DateTime lastDate = DateTime.now().subtract(Duration(days: 14));
+
+    var futures =
+        locations.where((e) => e.checkOut.isAfter(lastDate)).map((location) {
+      return {
+        'check_in_time': location.checkIn,
+        'check_out_time': location.checkOut,
+        'location_id': location.id,
+        'location_type': location.type,
+        'upload_time': FieldValue.serverTimestamp(),
+        'user_phone_number': user.phoneNumber,
+      };
+    }).map((mapped) => infected.add(mapped));
+
+    await Future.wait(futures).catchError((err) => left(err));
+
+    CollectionReference infectedUsers =
+        FirebaseFirestore.instance.collection('sc_infected_user');
+
+    await infectedUsers
+        .doc(user.id)
+        .update({'code': null}).catchError((err) => left(err));
+
+    return right(unit);
+  }
 }
