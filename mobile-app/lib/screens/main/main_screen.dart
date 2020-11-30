@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:slcovid_tracker/screens/history/history_screen.dart';
 import 'package:slcovid_tracker/screens/home/home_screen.dart';
 import 'package:slcovid_tracker/screens/profile/profile_screen.dart';
-import 'package:slcovid_tracker/screens/upload/Upload_screen.dart';
+import 'package:slcovid_tracker/screens/upload/upload_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override

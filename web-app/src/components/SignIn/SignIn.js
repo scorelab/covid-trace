@@ -1,4 +1,4 @@
-import { Button, Card, Input, Layout,Spin } from 'antd';
+import { Button, Card, Input, Layout,Spin,Alert,Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
@@ -28,7 +28,8 @@ function SignIn(props) {
     setPassword(e.target.value);
   }
 
-  const signIn = () => {
+  const signIn = (e) => {
+    e.preventDefault();
     const phoneNumber = "+94".concat(contactNo)
     props.logIn({ phoneNumber, password });
   };
@@ -52,60 +53,62 @@ function SignIn(props) {
               width: 475,
               boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
               marginTop: '131px',
-              height: '275px',
+              minheight: '250px',
+              maxHeight: '265px',
             }}
           >
-            <div
-              style={{
-                margin: '10px 0px 52px',
-                display: 'flex',
-                justifyContent: 'center',
-                flexDirection: 'column',
-              }}
-            >
-              <Input
-                addonBefore="+94"
-                defaultValue=""
-                placeholder="Contact No"
-                style={{ marginBottom: '30px' }}
-                onChange={onChangePhoneNumber}
-                value={contactNo}
-              />
-              <Input
-                defaultValue=""
-                placeholder="Password"
-                type="password"
-                style={{ marginBottom: '30px' }}
-                onChange={onChangePassword}
-                value={password}
-              />
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button
-                  type="primary"
-                  style={{ marginRight: '20px',width:'140px' }}
-                  onClick={signIn}
-                >
-                  Sign In
-              
-              </Button>
-              <Link to="/signUp">
-                <Button
-                  type="primary"
-                  style={{width:'140px' }}
-                >
-                  Sign Up
-              </Button>
-              </Link>
-              </div>
-
+            
+              <form onSubmit={signIn}>
+                <Row>
+                  <Input
+                    addonBefore="+94"
+                    defaultValue=""
+                    placeholder="Contact No"
+                    style={{ marginBottom: '10px' }}
+                    onChange={onChangePhoneNumber}
+                    value={contactNo}
+                    required
+                  />
+                </Row>
+                <Row>
+                  <Input
+                    defaultValue=""
+                    placeholder="Password"
+                    type="password"
+                    style={{ marginBottom: '20px' }}
+                    onChange={onChangePassword}
+                    value={password}
+                    required
+                  />
+                </Row>
+                <Row style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Button
+                      type="primary"
+                      style={{ marginRight: '20px',width:'140px' }}
+                      //onClick={signIn}
+                      htmlType="submit"
+                    >
+                      Sign In
+                  
+                  </Button>
+                  <Link to="/signUp">
+                    <Button
+                      type="primary"
+                      style={{width:'140px' }}
+                    >
+                      Sign Up
+                  </Button>
+                  </Link>
+                </Row>
+              </form>
+              <Row>
               {props.loading ?
               <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                <Spin />
                </div>
                : null}
-              {props.error ? props.error : null}
-
-            </div>
+              {props.error ? <Alert message={props.error} type="warning" showIcon closable style={{marginTop:'6px',width:'100%'}}/> : null}
+              </Row>
           </Card>
         </Content>
         <BottomFooter />

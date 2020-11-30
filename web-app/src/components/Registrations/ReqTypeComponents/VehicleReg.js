@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, Row, Col, Input, Checkbox, Button, message } from 'antd';
 import { registerVehicle } from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
@@ -42,7 +42,8 @@ function VehicleReg(props) {
         }
     }
 
-    function submitDetails() {
+    function submitDetails(e) {
+        e.preventDefault();
         if (state.isCorrect == false) {
             warning();
         } else {
@@ -52,7 +53,7 @@ function VehicleReg(props) {
                 location_id: state.location_id,
                 name: state.name,
                 vehicle_no: state.vehicle_no,
-                org:props.orgUserName
+                org: props.orgUserName
             })
             /* f.firestore().collection('/sc_vehicle').add({
                 contact_number:state.contact_number,
@@ -86,29 +87,31 @@ function VehicleReg(props) {
     return (
         <div>
             <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "260px", position: "sticky" }}>
-                <Row>
-                    <Col span={24}>
-                        <Input placeholder="Name" name="name" onChange={handleChange} />
-                    </Col>
-                </Row>
-                <Row justify="space-between" >
-                    <Col sm={24} md={13}  >
-                        <Input addonBefore="+94" placeholder="Contact No" name="contact_number" style={{ marginTop: '12px' }} onChange={handleChange} />
-                    </Col>
-                    <Col sm={24} md={1}  >
-                    </Col>
-                    <Col sm={24} md={10} >
-                        <Input placeholder="Vehical No" name="vehicle_no" style={{ marginTop: '12px' }} onChange={handleChange} />
-                    </Col>
-                </Row>
-                <Row justify="space-between" align="middle">
-                    <Col sm={24} md={10}  >
-                        <Checkbox onChange={handleChange} name="isCorrect" style={{ marginTop: "35px" }} >Confirm Your Details Is Correct</Checkbox>
-                    </Col>
-                    <Col sm={24} md={10}   >
-                        <Button type="primary" style={{ marginTop: "35px", width: "100%" }} onClick={submitDetails}>Submit</Button>
-                    </Col>
-                </Row>
+                <form onSubmit={submitDetails}>
+                    <Row>
+                        <Col span={24}>
+                            <Input placeholder="Name" name="name" onChange={handleChange} required/>
+                        </Col>
+                    </Row>
+                    <Row justify="space-between" >
+                        <Col sm={24} md={13}  >
+                            <Input addonBefore="+94" placeholder="Contact No" name="contact_number" style={{ marginTop: '12px' }} onChange={handleChange} required/>
+                        </Col>
+                        <Col sm={24} md={1}  >
+                        </Col>
+                        <Col sm={24} md={10} >
+                            <Input placeholder="Vehical No" name="vehicle_no" style={{ marginTop: '12px' }} onChange={handleChange} required/>
+                        </Col>
+                    </Row>
+                    <Row justify="space-between" align="middle">
+                        <Col sm={24} md={10}  >
+                            <Checkbox onChange={handleChange} name="isCorrect" style={{ marginTop: "35px" }} >Confirm Your Details Is Correct</Checkbox>
+                        </Col>
+                        <Col sm={24} md={10}   >
+                            <Button type="primary" style={{ marginTop: "35px", width: "100%" }} htmlType="submit">Submit</Button>
+                        </Col>
+                    </Row>
+                </form>
             </Card>
         </div>
     )

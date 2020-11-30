@@ -15,16 +15,20 @@ function Navbar(props) {
     let history = useHistory();
 
     function goToHome(){
-        history.push("/organisations");
+        if(user){
+            history.push("/organizations");
+        }else{
+            history.push("/");
+        }
     }
-
+    
     return (
         <div>
             <Header style={{ background: '#F9F9F9', boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.25)', height: '60px', paddingTop: "5px", paddingLeft: "20px", display: "flex", alignItems: 'center' }}>
                 <Row style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Col xs={24} sm={24} md={16} >
                         <Avatar size="large" src={enter} style={{ float: 'left', marginBottom: '10px',cursor:'pointer'}} onClick={goToHome}/>
-                        <Title level={3} style={{ marginTop: "10px", marginLeft: '-10px',cursor:'pointer' }} onClick={goToHome}> SAFE CHECK IN</Title>
+                        <Title level={3} style={{ marginTop: "10px", marginLeft: '-10px',cursor:'pointer' }} onClick={goToHome}> SAFE IN</Title>
                     </Col>
                     {
                         (user)?<SignedLinks />:null

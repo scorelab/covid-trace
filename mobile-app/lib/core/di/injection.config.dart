@@ -16,6 +16,7 @@ import '../../data/local/dao/location_dto.dart';
 import '../../data/local/database/database.dart';
 import '../../data/repository.dart';
 import '../../data/repository_impl.dart';
+import '../../states/upload_bloc/upload_bloc.dart';
 import '../../data/local/user/user_repository.dart';
 import '../../data/local/user/user_repository_impl.dart';
 import '../../states/verify_bloc/verify_bloc.dart';
@@ -43,6 +44,7 @@ Future<GetIt> $initGetIt(
         get<UserRepository>(),
         get<LocationDao>(),
       ));
+  gh.factory<UploadBloc>(() => UploadBloc(get<Repository>()));
   gh.factory<VerifyBloc>(() => VerifyBloc(get<Repository>()));
   gh.factory<AuthBloc>(() => AuthBloc(get<Repository>()));
   gh.factory<CheckInBloc>(() => CheckInBloc(get<Repository>()));
