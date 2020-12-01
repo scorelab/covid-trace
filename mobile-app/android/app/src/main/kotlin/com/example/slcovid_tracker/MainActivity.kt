@@ -1,4 +1,4 @@
-package com.example.slcovid_tracker
+package com.scorelab.slcovid_tracker
 
 import io.flutter.embedding.android.FlutterActivity
 
