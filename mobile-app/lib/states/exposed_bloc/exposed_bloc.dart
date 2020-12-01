@@ -23,4 +23,10 @@ class ExposedBloc extends Bloc<ExposedEvent, ExposedState> {
   Stream<List<Location>> get exposedLocations {
     return _repository.getExposedLocations();
   }
+
+  Stream<bool> get isExposed {
+    return _repository.getExposedLocations().map((event) {
+      return event != null && event.isNotEmpty;
+    });
+  }
 }
