@@ -5,6 +5,7 @@ import 'package:slcovid_tracker/models/location.dart';
 import 'package:slcovid_tracker/routing/routes.dart';
 import 'package:slcovid_tracker/screens/safeentrybeforecheckin/safeentrybeforecheckin_screen.dart';
 import 'package:slcovid_tracker/states/checkin_bloc/checkin_bloc.dart';
+import 'package:slcovid_tracker/states/exposed_bloc/exposed_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,7 +15,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    bool _safe = true;
     var _mediaQueryData = MediaQuery.of(context);
     var screenWidth = _mediaQueryData.size.width;
     var screenHeight = _mediaQueryData.size.height;
@@ -35,25 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: image,
                 ),
               ),
-              _safe
-                  ? _safedetails(
-                      screenWidth: screenWidth,
-                      icon: Icons.beenhere_outlined,
-                      title: 'You are ok',
-                      col: Theme.of(context).primaryColor,
-                      subtile:
-                          'Based on all your Safe-In\n records from the last 14 days.',
-                      heightfactor: 80.0,
-                    )
-                  : _safedetails(
-                      screenWidth: screenWidth,
-                      icon: Icons.warning,
-                      col: Colors.red,
-                      title: 'Alert',
-                      subtile:
-                          "You're exposed to Covid-19 positive\n person, Don't worry. Please contact\n the authorities and self-quarantine.",
-                      heightfactor: 90.0,
-                    ),
+              StreamBuilder(
+                  stream: BlocProvider.of<ExposedBloc>(context).isExposed,
+                  builder: _buildIsExposed),
               StreamBuilder(
                   stream:
                       BlocProvider.of<CheckInBloc>(context).checkedInLocations,
@@ -116,6 +100,27 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  Widget _buildIsExposed(context, AsyncSnapshot<bool> snapshot) {
+    if (snapshot.hasData && snapshot.data) {
+      return _safedetails(
+        icon: Icons.warning,
+        col: Colors.red,
+        title: 'Alert',
+        subtile:
+            "You're exposed to Covid-19 positive\n person, Don't worry. Please contact\n the authorities and self-quarantine.",
+        heightfactor: 90.0,
+      );
+    } else {
+      return _safedetails(
+        icon: Icons.beenhere_outlined,
+        title: 'You are ok',
+        col: Theme.of(context).primaryColor,
+        subtile: 'Based on all your Safe-In\n records from the last 14 days.',
+        heightfactor: 80.0,
+      );
+    }
   }
 
   Widget _buildCurrentCheckIn(context, AsyncSnapshot<List<Location>> snapshot) {
@@ -235,12 +240,10 @@ class _safedetails extends StatelessWidget {
   const _safedetails(
       {@required this.title,
       @required this.heightfactor,
-      @required this.screenWidth,
       @required this.subtile,
       @required this.icon,
       @required this.col});
 
-  final double screenWidth;
   final String title;
   final String subtile;
   final IconData icon;
@@ -250,9 +253,7 @@ class _safedetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: heightfactor,
-      margin:
-          EdgeInsets.symmetric(horizontal: screenWidth * 0.1, vertical: 20.0),
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 20.0),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -301,33 +302,5 @@ class _safedetails extends StatelessWidget {
         ),
       ),
     );
-    // return Container(
-    //   margin:
-    //       EdgeInsets.symmetric(horizontal: screenWidth * 0.1, vertical: 20.0),
-    //   child: Center(
-    //     child: ListTile(
-    //       tileColor: Color(0xffd9d9d9),
-    //       leading: Icon(
-    //         icon,
-    //         color: col,
-    //         size: 50.0,
-    //       ),
-    //       title: Text(
-    //         title,
-    //         overflow: TextOverflow.ellipsis,
-    //         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-    //       ),
-    //       subtitle: RichText(
-    //         text: TextSpan(
-    //           style: TextStyle(color: Colors.black87),
-    //           children: <TextSpan>[
-    //             TextSpan(text: subtile),
-    //           ],
-    //         ),
-    //       ),
-    //       enabled: false,
-    //     ),
-    //   ),
-    // );
   }
 }
