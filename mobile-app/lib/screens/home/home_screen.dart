@@ -91,11 +91,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(0.0),
                                 ),
                                 onPressed: () {
-                                  // Navigator.pushNamed(context, Routes.checkin);
-                                  Navigator.pushNamed(
-                                      context, Routes.safeentrybeforecheckin,
-                                      arguments: SafeEntryBeforeCheckInScreenArgs(
-                                          ("https://safecheckin.com/sc_bus/AXeyPFiEpYBGIfyasNGr?name=Nimal")));
+                                  Navigator.pushNamed(context, Routes.checkin);
+                                  // Navigator.pushNamed(
+                                  //     context, Routes.safeentrybeforecheckin,
+                                  //     arguments: SafeEntryBeforeCheckInScreenArgs(
+                                  //         ("https://safecheckin.com/sc_bus/AXeyPFiEpYBGIfyasNGr?name=Nimal")));
                                 },
                                 color: Color(0xff1DE9B6),
                                 textColor: Colors.white,
