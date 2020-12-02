@@ -192,7 +192,7 @@ function QRpage(props) {
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Title level={4}>{address}</Title>
           </div>
-          <Row justify="center" style={{ marginTop: '40px', borderBottom: '1px', borderColor: 'black' }}>
+          <Row justify="center" style={{ marginTop: '30px', borderBottom: '1px', borderColor: 'black' }}>
             <img src={Scansteps} width="600px" />
           </Row>
           <Row justify="center">

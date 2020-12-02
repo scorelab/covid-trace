@@ -17,7 +17,7 @@ function SignUp(props) {
         if (props.user) {
             message.destroy()
             success()
-            history.push("/organisations");
+            //history.push("/organizations");
         }
         if (props.error) {
             message.destroy()
