@@ -95,15 +95,22 @@ export const signUp = (data, history) => async (
   } else {
     users.add({
       nic,
-      numberVerified:true,
+      numberVerified: true,
       password,
-      phoneNumber:data.phoneNumber,
-      user_type:'normal'
-    }).then((user) => {
-      dispatch({ type: actions.SIGN_UP_SUCCESS,payload:user });
-      dispatch({ type: actions.SIGN_UP_END}); 
+      phoneNumber: data.phoneNumber,
+      user_type: 'normal'
+    }).then(() => {
+      dispatch({
+        type: actions.SIGN_UP_SUCCESS, payload: {
+          nic,
+          numberVerified: true,
+          phoneNumber: data.phoneNumber,
+          user_type: 'normal'
+        }
+      });
+      dispatch({ type: actions.SIGN_UP_END });
     }).catch((err) => {
-      dispatch({ type: actions.SIGN_UP_FAIL,payload:'error' });
+      dispatch({ type: actions.SIGN_UP_FAIL, payload: 'error' });
       dispatch({ type: actions.SIGNIN_END });
     })
   }
