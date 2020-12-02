@@ -5,6 +5,7 @@ import 'package:slcovid_tracker/workers/check_exposed_worker.dart';
 import 'package:workmanager/workmanager.dart';
 
 void main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
 

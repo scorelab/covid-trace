@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:979747229937:android:f1e0d3379a7a7cde291950",
+        "mobilesdk_app_id": "1:979747229937:android:01d663435da0fd6f291950",
         "android_client_info": {
-          "package_name": "com.example.slcovid_tracker"
+          "package_name": "com.scorelab.slcovid_tracker"
         }
       },
       "oauth_client": [
         {
-          "client_id": "979747229937-k88vf8pgm1sckkng0tu6agn9udemgnb1.apps.googleusercontent.com",
+          "client_id": "979747229937-7u19abv581ihgp43hip0rb1hku70vm1o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.slcovid_tracker",
+            "package_name": "com.scorelab.slcovid_tracker",
             "certificate_hash": "34374147639455b49cd7682707247cf89a1969d7"
           }
         },
