@@ -43,8 +43,8 @@ class CovidTrace extends StatelessWidget {
               ),
             ],
             child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: "Covid Trace",
+              // debugShowCheckedModeBanner: false,
+              title: "Safe In",
               onGenerateRoute: Application.router.generator,
               theme: ThemeData(
                 iconTheme: IconThemeData(color: Colors.tealAccent[400]),
