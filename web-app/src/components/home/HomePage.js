@@ -8,6 +8,13 @@ import step1 from '../../assets/step1.svg'
 import step2 from '../../assets/step2.svg'
 import step3 from '../../assets/step3.svg'
 import step4 from '../../assets/step4.svg'
+import RegStep1 from '../../assets/RegStep1.png'
+import RegStep2 from '../../assets/RegStep2.png'
+import RegStep3 from '../../assets/RegStep3.png'
+import RegStep4 from '../../assets/RegStep4.png'
+import RegStep5 from '../../assets/RegStep5.png'
+import RegStep6 from '../../assets/RegStep6.png'
+import RegStep7 from '../../assets/RegStep7.png'
 import homePageThirdImage from '../../assets/homePageThirdImage.png'
 import githubLogo from '../../assets/githubLogo.png'
 import scoreLabLogo from '../../assets/scoreLabLogo.png'
@@ -45,7 +52,7 @@ class HomePage extends Component {
               <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <img src={googlePlayBadge} className="googlePlayImage" />
                 <Link to='/signup'>
-                  <Button className="signUpbtn">Sign Me Up</Button>
+                  <Button className="signUpbtn">Sign Up</Button>
                 </Link>
               </Row>
             </Col>
@@ -79,7 +86,37 @@ class HomePage extends Component {
             </Col>
           </Row>
           <Row className='center'>
-            <Title level={2} style={{ textAlign: 'center', marginTop: '20px' }}>How SafeIn Covid Tracker Works</Title>
+            <Title level={2} style={{ textAlign: 'center', marginTop: '20px',marginBottom:'20px'}}>How To Register Your Company</Title>
+          </Row>
+          <Row className='center'>
+            <Col xs={24} md={12} lg={8} style={{display:'flex',justifyContent:'center'}}>
+              <img src={RegStep1} className='RegStep1'></img>
+            </Col>
+            <Col xs={24} md={12} lg={8} style={{display:'flex',justifyContent:'center'}}>
+              <img src={RegStep2} className='commonStep'></img>
+            </Col>
+            <Col xs={24} md={12} lg={8} style={{display:'flex',justifyContent:'center'}}>
+              <img src={RegStep3} className='commonStep'></img>
+            </Col>
+          </Row>
+          <Row className='center'>
+            <Col xs={24} md={12} lg={12} style={{display:'flex',justifyContent:'center'}}>
+              <img src={RegStep4} className='RegStep4'></img>
+            </Col>
+            <Col xs={24} md={12} lg={12} style={{display:'flex',justifyContent:'center'}}>
+              <img src={RegStep5} className='commonStep'></img>
+            </Col>
+          </Row>
+          <Row className='center' style={{marginBottom:'20px'}}>
+            <Col xs={24} md={12} lg={12} style={{display:'flex',justifyContent:'center'}}>
+              <img src={RegStep6} className='RegStep6'></img>
+            </Col>
+            <Col xs={24} md={12} lg={12} style={{display:'flex',justifyContent:'center'}}>
+              <img src={RegStep7}  className='RegStep6'></img>
+            </Col>
+          </Row>
+          <Row className='center'>
+            <Title level={2} style={{ textAlign: 'center', marginTop: '20px' }}>How Safe In Covid Tracker Works</Title>
           </Row>
           <Row>
             <Col xs={24} md={12} lg={6} style={{ display: 'flex', justifyContent: "center" }}>

@@ -8,16 +8,55 @@
 .header {
     display: flex !important;
     justify-content: center !important;
-    background:linear-gradient(90deg, rgba(29, 233, 182, 0.93) 14.64%, rgba(103, 229, 255, 0.93) 90.23%) !important;
+    background: linear-gradient(90deg, rgba(29, 233, 182, 0.93) 14.64%, rgba(103, 229, 255, 0.93) 90.23%) !important;
     height: 60px !important;
     /* position: fixed !important;
     width: 100%;
     z-index: 10; */
 }
 
+.RegStep1 {
+    max-height: 320px;
+    margin: 10px
+}
+
+.commonStep {
+    max-width: 400px;
+    margin: 10px
+}
+
+.RegStep4 {
+    max-height: 330px;
+    margin: 10px
+}
+
+.RegStep6 {
+    max-width: 400px;
+    margin: 10px
+}
+
 @media screen and (max-width:960px) {
     .header {
         min-height: 110px !important;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .RegStep1 {
+        max-width: 250px;
+        margin: 10px;
+    }
+    .commonStep {
+        max-width: 250px;
+        margin: 10px
+    }
+    .RegStep4 {
+        max-height: 210px;
+        margin: 10px
+    }
+    .RegStep6 {
+        max-width: 250px;
+        margin: 10px
     }
 }
 
@@ -76,10 +115,9 @@
     flex-direction: column;
 }
 
-.githublogo{
+.githublogo {
     cursor: pointer;
 }
-
 
 .smallPoints {
     margin-top: 10px;
