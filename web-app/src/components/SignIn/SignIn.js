@@ -17,7 +17,7 @@ function SignIn(props) {
 
   useEffect(() => {
     if (props.user) {
-      history.push("/organisations");
+      history.push("/organizations");
     }
   }, [props.user])
 

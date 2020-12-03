@@ -16,7 +16,7 @@ function BusinessReg(props) {
         } else if (props.Registration.registrationError == false) {
             success();
             props.reset();
-            history.push("/organisations");
+            history.push("/organizations");
         }
     }, [props.Registration.registrationError])
 

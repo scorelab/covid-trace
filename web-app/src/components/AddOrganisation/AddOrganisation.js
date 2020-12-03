@@ -20,7 +20,7 @@ function AddOrganisation(props) {
         } else if(props.orgRegError===false) {
                 success();
                 props.reset();
-                history.push("/organisations");
+                history.push("/organizations");
         } 
 
     },[props.orgRegError,props.orgData])
