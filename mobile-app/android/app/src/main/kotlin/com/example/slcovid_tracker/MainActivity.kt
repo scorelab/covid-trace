@@ -1,4 +1,4 @@
-package com.scorelab.slcovid_tracker
+package org.scorelab.safeIn
 
 import io.flutter.embedding.android.FlutterActivity
 
