@@ -6,7 +6,6 @@ import 'package:injectable/injectable.dart';
 import 'package:slcovid_tracker/core/failures/verify_failures.dart';
 import 'package:slcovid_tracker/data/verify/verify_repository.dart';
 import 'package:slcovid_tracker/models/user.dart';
-import 'package:sms/sms.dart';
 
 @Injectable(as: VerifyRepository)
 class VerifyRepositoryImpl extends VerifyRepository {
@@ -35,25 +34,25 @@ class VerifyRepositoryImpl extends VerifyRepository {
 
   Future<Either<VerifyFailure, String>> _sendOTP(String phoneNumber) async {
     final code = Random().nextInt(999999);
-    SmsSender sender = SmsSender();
-    await sender
-        .sendSms(SmsMessage(phoneNumber, "covid trace OPT: ${code}"))
-        .catchError((onError) {
-      left(OTPSendFailure());
-    });
+    // SmsSender sender = SmsSender();
+    // await sender
+    //     .sendSms(SmsMessage(phoneNumber, "covid trace OPT: ${code}"))
+    //     .catchError((onError) {
+    //   left(OTPSendFailure());
+    // });
     return right(code.toString());
   }
 
   Future<Either<VerifyFailure, String>> _listenOTP(String code) async {
-    SmsReceiver receiver = new SmsReceiver();
-    var result = await receiver.onSmsReceived
-        .timeout(Duration(seconds: 5), onTimeout: (EventSink sink) {
-          sink.close();
-        })
-        .singleWhere((sms) => sms.body.contains(code))
-        .catchError((onError) {
-          left(OTPReadFailure());
-        });
-    return right(result.body);
+    // SmsReceiver receiver = new SmsReceiver();
+    // var result = await receiver.onSmsReceived
+    //     .timeout(Duration(seconds: 5), onTimeout: (EventSink sink) {
+    //       sink.close();
+    //     })
+    //     .singleWhere((sms) => sms.body.contains(code))
+    //     .catchError((onError) {
+    //       left(OTPReadFailure());
+    //     });
+    return right("");
   }
 }
