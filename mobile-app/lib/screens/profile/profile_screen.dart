@@ -44,7 +44,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         label: "Phone Number",
                         value: _user != null ? "${_user.phoneNumber}" : "",
                         button: true,
-                        verfied: _user != null && _user.numberVerified,
                       ),
                     ],
                   ),
@@ -201,10 +200,9 @@ class _ProfileDetails extends StatelessWidget {
   final bool button;
   final IconData icon;
   final String value;
-  final bool verfied;
+  // final bool verfied;
 
-  const _ProfileDetails(
-      {this.icon, this.label, this.value, this.button, this.verfied});
+  const _ProfileDetails({this.icon, this.label, this.value, this.button});
 
   @override
   Widget build(BuildContext context) {
@@ -234,43 +232,22 @@ class _ProfileDetails extends StatelessWidget {
                     color: Colors.black,
                     fontSize: 18)),
             button
-                ? verfied
-                    ? Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: ButtonTheme(
-                          minWidth: 150.0,
-                          height: 50.0,
-                          child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            onPressed: null,
-                            disabledColor: Theme.of(context).primaryColor,
-                            disabledTextColor: Colors.white,
-                            child: Text("Verified",
-                                style: TextStyle(fontSize: 20)),
-                          ),
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: ButtonTheme(
+                      minWidth: 150.0,
+                      height: 50.0,
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
                         ),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: ButtonTheme(
-                          minWidth: 150.0,
-                          height: 50.0,
-                          child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            onPressed: () {
-                              _verifyPhone(context);
-                            },
-                            color: Colors.red,
-                            textColor: Colors.white,
-                            child: Text("Not Verified",
-                                style: TextStyle(fontSize: 20)),
-                          ),
-                        ),
-                      )
+                        onPressed: null,
+                        disabledColor: Theme.of(context).primaryColor,
+                        disabledTextColor: Colors.white,
+                        child: Text("Verified", style: TextStyle(fontSize: 20)),
+                      ),
+                    ),
+                  )
                 : SizedBox(),
           ],
         )
@@ -278,7 +255,7 @@ class _ProfileDetails extends StatelessWidget {
     );
   }
 
-  void _verifyPhone(context) {
-    Application.router.navigateTo(context, Routes.verification);
-  }
+  // void _verifyPhone(context) {
+  //   Application.router.navigateTo(context, Routes.verification);
+  // }
 }
