@@ -1,0 +1,202 @@
+/* Rectangle 1 */
+
+.avator {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.header {
+    display: flex !important;
+    justify-content: center !important;
+    background: linear-gradient(90deg, rgba(29, 233, 182, 0.93) 14.64%, rgba(103, 229, 255, 0.93) 90.23%) !important;
+    height: 60px !important;
+    /* position: fixed !important;
+    width: 100%;
+    z-index: 10; */
+}
+
+.background{
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+    min-height: 600px;
+}
+
+.RegStep1 {
+    max-height: 320px;
+    margin: 10px
+}
+
+.commonStep {
+    max-width: 400px;
+    margin: 10px
+}
+
+.RegStep4 {
+    max-height: 330px;
+    margin: 10px
+}
+
+.RegStep6 {
+    max-width: 400px;
+    margin: 10px
+}
+
+@media screen and (max-width:960px) {
+    .header {
+        min-height: 110px !important;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .RegStep1 {
+        max-width: 250px;
+        margin: 10px;
+    }
+    .commonStep {
+        max-width: 250px;
+        margin: 10px
+    }
+    .RegStep4 {
+        max-height: 210px;
+        margin: 10px
+    }
+    .RegStep6 {
+        max-width: 250px;
+        margin: 10px
+    }
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.downloadPageImage {
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.googlePlayImage {
+    max-width: 400px !important;
+    height: 55px;
+    object-fit: cover;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.googlePlayImage:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15) !important;
+    transition: 0.25s !important;
+}
+
+.hashcode:hover{
+    text-decoration: underline;
+}
+
+.loginBtn {
+    border-radius: 10px !important;
+    width: 150px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
+.downloadbtn {
+    width: 250px !important;
+    height: 55px !important;
+    background: black !important;
+    color: white !important;
+    border-radius: 10px !important;
+    font-size: 24px !important;
+}
+
+.signUpbtn:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15) !important;
+    transition: 0.25s !important;
+}
+
+.whatIsSafeIn {
+    width: 100%;
+    min-height: 387px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.githublogo {
+    cursor: pointer;
+}
+
+.smallPoints {
+    margin-top: 10px;
+    min-width: 100px;
+    max-width: 654px;
+    min-height: 170px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+    border-radius: 36px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.smallPoints:hover {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    transition: 0.25s;
+}
+
+.smallPointTitle {
+    text-align: left;
+    padding: 0px 5px 0px 5px
+}
+
+.smallPointContent {
+    text-align: justify;
+    max-width: 800px;
+    font-size: 16px;
+    padding: 0px 20px 0px 20px
+}
+
+.howSafe {
+    width: 293px;
+    height: 500px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+    border-radius: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.howSafe:hover {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    transition: 0.25s;
+}
+
+
+
+.benefits {
+    width: 100%;
+    min-height: 300px;
+    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.benefitsPoints {
+    text-align: center;
+    font-size: 16px;
+}
+
+.Contribute {
+    width: 100%;
+    min-height: 210px;
+    background: linear-gradient(0deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
+}
+
+.footer {
+    width: 100%;
+    height: 130px;
+    background: white !important;
+}
