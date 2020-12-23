@@ -41,7 +41,7 @@ function DownloadPage(props) {
                         Store yet, but you can download Safe In directly from us.
  Don’t worry, it’s completely secure and up to Google's high standards.</Title>
                         <Row justify="center" align="top" style={{ flexDirection: 'column', alignItems: 'center' }}>
-                            <a href="https://drive.google.com/file/d/18pW9hUQWIH3M_dGSNp1keHUezBv4PxR2/view?usp=sharing">
+                            <a href="https://drive.google.com/u/1/uc?id=1ofBKm0aIo8Wtdw7xSunMYi3nMlVnW2Od&export=download">
                                 <Button className={styles.downloadbtn} icon={<AndroidOutlined />}>Download Now</Button>
                             </a>
                             <Link to='/download/hashcode'>
