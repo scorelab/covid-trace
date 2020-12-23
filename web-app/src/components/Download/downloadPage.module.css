@@ -20,48 +20,32 @@
     min-height: 600px;
 }
 
-.RegStep1 {
-    max-height: 320px;
-    margin: 10px
-}
 
-.commonStep {
-    max-width: 400px;
-    margin: 10px
-}
-
-.RegStep4 {
-    max-height: 330px;
-    margin: 10px
-}
-
-.RegStep6 {
-    max-width: 400px;
-    margin: 10px
-}
 
 @media screen and (max-width:960px) {
     .header {
-        min-height: 110px !important;
+        min-height: 120px !important;
+    }
+
+    .loginBtn{
+        margin:10px;
     }
 }
 
 @media screen and (max-width:480px) {
-    .RegStep1 {
-        max-width: 250px;
-        margin: 10px;
+    .downloadPageImage{
+        height: 350px;
+        margin-bottom:-50px;
+
     }
-    .commonStep {
-        max-width: 250px;
-        margin: 10px
+
+    .hashcode{
+        margin: 30px;
     }
-    .RegStep4 {
-        max-height: 210px;
-        margin: 10px
-    }
-    .RegStep6 {
-        max-width: 250px;
-        margin: 10px
+
+    .info{
+        font-size: 16px;
+        margin:10px
     }
 }
 
@@ -114,86 +98,7 @@
     transition: 0.25s !important;
 }
 
-.whatIsSafeIn {
-    width: 100%;
-    min-height: 387px;
-    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 
-.githublogo {
-    cursor: pointer;
-}
-
-.smallPoints {
-    margin-top: 10px;
-    min-width: 100px;
-    max-width: 654px;
-    min-height: 170px;
-    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
-    border-radius: 36px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.smallPoints:hover {
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
-    transition: 0.25s;
-}
-
-.smallPointTitle {
-    text-align: left;
-    padding: 0px 5px 0px 5px
-}
-
-.smallPointContent {
-    text-align: justify;
-    max-width: 800px;
-    font-size: 16px;
-    padding: 0px 20px 0px 20px
-}
-
-.howSafe {
-    width: 293px;
-    height: 500px;
-    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
-    border-radius: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.howSafe:hover {
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
-    transition: 0.25s;
-}
-
-
-
-.benefits {
-    width: 100%;
-    min-height: 300px;
-    background: linear-gradient(180deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.benefitsPoints {
-    text-align: center;
-    font-size: 16px;
-}
-
-.Contribute {
-    width: 100%;
-    min-height: 210px;
-    background: linear-gradient(0deg, rgba(196, 196, 196, 0.02) 0%, rgba(29, 233, 182, 0.14) 100%);
-}
 
 .footer {
     width: 100%;

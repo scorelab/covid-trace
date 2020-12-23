@@ -37,7 +37,7 @@ function DownloadPage(props) {
                         <img src={downloadPageImage} className={styles.downloadPageImage}></img>
                     </Col>
                     <Col xs={24} md={24} lg={8} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <Title level={5} style={{ textAlign: 'center', maxWidth: '478px', marginTop: '60px' }}>Google doesn’t allow  volunetry driven contract tracing app in the Play
+                        <Title level={5} style={{ textAlign: 'center', maxWidth: '478px', marginTop: '60px' }} className={styles.info}>Google doesn’t allow  volunetry driven contract tracing app in the Play
                         Store yet, but you can download Safe In directly from us.
  Don’t worry, it’s completely secure and up to Google's high standards.</Title>
                         <Row justify="center" align="top" style={{ flexDirection: 'column', alignItems: 'center' }}>
