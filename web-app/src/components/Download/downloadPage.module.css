@@ -39,9 +39,6 @@
 
     }
 
-    .hashcode{
-        margin: 30px;
-    }
 
     .info{
         font-size: 16px;
@@ -73,9 +70,14 @@
     transition: 0.25s !important;
 }
 
-.hashcode:hover{
-    text-decoration: underline;
+.hashcodefont{
+    font-size: 10px;
+    margin:0px 5px 5px 5px
 }
+
+/* .hashcode:hover{
+    text-decoration: underline;
+} */
 
 .loginBtn {
     border-radius: 10px !important;
@@ -91,6 +93,7 @@
     color: white !important;
     border-radius: 10px !important;
     font-size: 24px !important;
+    margin-bottom: 10px;
 }
 
 .signUpbtn:hover {
