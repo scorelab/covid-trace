@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Layout, Row, Col, Typography, Avatar, Button } from 'antd';
+import { Layout, Row, Col, Typography, Avatar, Button, Space } from 'antd';
 import firstImage from '../../assets/homePageFirstImage.svg'
-import googlePlayBadge from '../../assets/googlePlayBadge.png'
 import homePageSecondImage from '../../assets/homePageSecondImage.png'
 import step1 from '../../assets/step1.svg'
 import step2 from '../../assets/step2.svg'
@@ -21,7 +20,7 @@ import scoreLabLogo from '../../assets/scoreLabLogo.png'
 import enter from '../../assets/enter.png'
 import { Link } from "react-router-dom";
 import './homeStyles.css'
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 const { Title, Text } = Typography;
 
 class HomePage extends Component {
@@ -50,10 +49,14 @@ class HomePage extends Component {
               <Title level={2} style={{ textAlign: 'center', marginBottom: '-10px' }}>Stay Safe Without Being Traced</Title>
               <Title level={5} style={{ textAlign: 'center', maxWidth: '478px' }}>Join us today and help to stop the spread of COVID-19 through community-driven contact tracing</Title>
               <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src={googlePlayBadge} className="googlePlayImage" />
-                <Link to='/signup'>
-                  <Button className="signUpbtn">Sign Up</Button>
-                </Link>
+                <Space>
+                  <Link to='/download'>
+                    <Button className="signUpbtn">Download</Button>
+                  </Link>
+                  <Link to='/signup'>
+                    <Button className="signUpbtn">Sign Up</Button>
+                  </Link>
+                </Space>
               </Row>
             </Col>
           </Row>
@@ -86,33 +89,33 @@ class HomePage extends Component {
             </Col>
           </Row>
           <Row className='center'>
-            <Title level={2} style={{ textAlign: 'center', marginTop: '20px',marginBottom:'20px'}}>How To Register Your Company</Title>
+            <Title level={2} style={{ textAlign: 'center', marginTop: '20px', marginBottom: '20px' }}>How To Register Your Company</Title>
           </Row>
           <Row className='center'>
-            <Col xs={24} md={12} lg={8} style={{display:'flex',justifyContent:'center'}}>
+            <Col xs={24} md={12} lg={8} style={{ display: 'flex', justifyContent: 'center' }}>
               <img src={RegStep1} className='RegStep1'></img>
             </Col>
-            <Col xs={24} md={12} lg={8} style={{display:'flex',justifyContent:'center'}}>
+            <Col xs={24} md={12} lg={8} style={{ display: 'flex', justifyContent: 'center' }}>
               <img src={RegStep2} className='commonStep'></img>
             </Col>
-            <Col xs={24} md={12} lg={8} style={{display:'flex',justifyContent:'center'}}>
+            <Col xs={24} md={12} lg={8} style={{ display: 'flex', justifyContent: 'center' }}>
               <img src={RegStep3} className='commonStep'></img>
             </Col>
           </Row>
           <Row className='center'>
-            <Col xs={24} md={12} lg={12} style={{display:'flex',justifyContent:'center'}}>
+            <Col xs={24} md={12} lg={12} style={{ display: 'flex', justifyContent: 'center' }}>
               <img src={RegStep4} className='RegStep4'></img>
             </Col>
-            <Col xs={24} md={12} lg={12} style={{display:'flex',justifyContent:'center'}}>
+            <Col xs={24} md={12} lg={12} style={{ display: 'flex', justifyContent: 'center' }}>
               <img src={RegStep5} className='commonStep'></img>
             </Col>
           </Row>
-          <Row className='center' style={{marginBottom:'20px'}}>
-            <Col xs={24} md={12} lg={12} style={{display:'flex',justifyContent:'center'}}>
+          <Row className='center' style={{ marginBottom: '20px' }}>
+            <Col xs={24} md={12} lg={12} style={{ display: 'flex', justifyContent: 'center' }}>
               <img src={RegStep6} className='RegStep6'></img>
             </Col>
-            <Col xs={24} md={12} lg={12} style={{display:'flex',justifyContent:'center'}}>
-              <img src={RegStep7}  className='RegStep6'></img>
+            <Col xs={24} md={12} lg={12} style={{ display: 'flex', justifyContent: 'center' }}>
+              <img src={RegStep7} className='RegStep6'></img>
             </Col>
           </Row>
           <Row className='center'>
@@ -199,7 +202,7 @@ class HomePage extends Component {
             <Col xs={24} md={24} lg={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
               {/*     <Text style={{ fontSize: '20px', padding: '0px 10px 10px 0px', textAlign: "center", marginBottom: '10px' }}>Contact Us</Text> */}
               <Title level={4}>Contact Us</Title>
-              {/*  <Text style={{ fontSize: '20px', padding: '0px 10px 10px 0px', textAlign: "center", marginBottom: '10px' }}>Report Vulnerability</Text> */}
+              <Text style={{ fontSize: '14px', marginTop: '-10px' }}>safe-in@scorelab.org</Text>
               <Title level={4}>Report Vulnerability</Title>
             </Col>
           </Row>

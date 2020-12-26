@@ -7,6 +7,7 @@ import PrivateRoute from './auth/PrivateRoute';
 import PublicRoute from './auth/PublicRoute';
 import AddOrganisation from './components/AddOrganisation/AddOrganisation';
 import CompanyInfo from './components/CompanyInfo/CompanyInfo';
+import DownloadPage from './components/Download/DownloadPage';
 //Higher Order Components
 import HomePage from './components/home/HomePage';
 import LocationIndex from './components/Locations/LocationIndex';
@@ -24,6 +25,7 @@ class App extends Component {
     return (
       <Switch>
         <PublicRoute exact path="/" component={HomePage} />
+        <PublicRoute exact path="/download" component={DownloadPage} />
         <AuthRoute exact path="/signIn" component={SignIn} />
         <AuthRoute exact path="/signUp" component={SignUp} />
         <PrivateRoute exact path="/organizations" component={Organisation} />
