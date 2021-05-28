@@ -40,6 +40,7 @@ class App extends Component {
           component={LocationIndex}
         />
         <PrivateRoute exact path="/registration" component={Registration} />
+        <PrivateRoute exact path="/registration/:UserName" component={Registration} />
         <PrivateRoute
           exact
           path="/companyInfo/:CompanyId"

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Layout, Row, Col, Typography, Avatar, Button, Space } from 'antd';
+import { Layout, Row, Col, Typography, Avatar, Button, Space, Tooltip } from 'antd';
 import firstImage from '../../assets/homePageFirstImage.svg'
 import homePageSecondImage from '../../assets/homePageSecondImage.png'
 import step1 from '../../assets/step1.svg'
@@ -14,6 +14,7 @@ import RegStep4 from '../../assets/RegStep4.png'
 import RegStep5 from '../../assets/RegStep5.png'
 import RegStep6 from '../../assets/RegStep6.png'
 import RegStep7 from '../../assets/RegStep7.png'
+import family from '../../assets/family.png'
 import homePageThirdImage from '../../assets/homePageThirdImage.png'
 import githubLogo from '../../assets/githubLogo.png'
 import scoreLabLogo from '../../assets/scoreLabLogo.png'
@@ -35,7 +36,14 @@ class HomePage extends Component {
             </Col>
             <Col xs={24} md={12} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
               <Link to='/signIn'>
-                <Button className="loginBtn">SIGN IN</Button>
+                <Tooltip placement="bottom" title="Log into your account!">
+                  <Button className="loginBtn" style = {{marginRight: '30px'}}>LOG IN</Button>
+                </Tooltip>
+              </Link>
+              <Link to='/signUp'>
+                <Tooltip placement="bottom" title="Create an account!">
+                  <Button className="loginBtn" style = {{ backgroundColor:'rgba(29, 233, 110, 0.93)'}}>REGISTER</Button>
+                </Tooltip>
               </Link>
             </Col>
           </Row>
@@ -51,10 +59,7 @@ class HomePage extends Component {
               <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Space>
                   <Link to='/download'>
-                    <Button className="signUpbtn">Download</Button>
-                  </Link>
-                  <Link to='/signup'>
-                    <Button className="signUpbtn">Sign Up</Button>
+                    <Button className="downbtn">Download mobile app</Button>
                   </Link>
                 </Space>
               </Row>

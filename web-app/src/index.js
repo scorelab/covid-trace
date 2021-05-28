@@ -5,17 +5,23 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from './store';
+//import store from './store';
+import Configstore from './store';
+import {PersistGate} from 'redux-persist/integration/react'
 
 const root = document.getElementById('root');
 // TODO: add spinner
 
+const {store,persistor} = Configstore;
+
 store.firebaseAuthIsReady.then(() => {
   ReactDOM.render(
     <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <App />
+        </Router>
+      </PersistGate>
     </Provider>,
     root
   );

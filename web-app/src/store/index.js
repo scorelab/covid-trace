@@ -1,9 +1,18 @@
+import {persistStore, persistReducer  } from "redux-persist";
 import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { getFirestore, reduxFirestore } from 'redux-firestore';
+import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk';
 import { f } from '../config/config_env';
 import rootReducer from './reducers';
+
+const persistConfig = {
+  key : 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // react-redux-firebase config
 const rrfConfig = {
@@ -19,7 +28,7 @@ const composeEnhancers =
     : compose;
 
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   composeEnhancers(
     reactReduxFirebase(f, rrfConfig),
     reduxFirestore(f),
@@ -27,4 +36,16 @@ const store = createStore(
   )
 );
 
-export default store;
+const persistor = persistStore(store);
+
+export default {store, persistor};
+// const store = createStore(
+//   rootReducer,
+//   composeEnhancers(
+//     reactReduxFirebase(f, rrfConfig),
+//     reduxFirestore(f),
+//     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore }))
+//   )
+// );
+
+//export default store;

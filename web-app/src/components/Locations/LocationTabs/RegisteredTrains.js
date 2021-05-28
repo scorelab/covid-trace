@@ -97,7 +97,7 @@ function RegisteredTrains(props) {
     
     return (
         <React.Fragment>
-        <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Registered Vehicles</Title>
+        <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Registered Trains</Title>
         <Divider />
 
         <Table columns={columns} dataSource={state.orgList} />

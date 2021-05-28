@@ -7,7 +7,7 @@ import BusReg from './ReqTypeComponents/BusReg';
 import TrainReg from './ReqTypeComponents/TrainReg';
 import VehicleReg from './ReqTypeComponents/VehicleReg';
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 const { Text } = Typography;
@@ -17,15 +17,19 @@ const { Option } = Select;
 
 function Registration(props) {
 
+    let { UserName } = useParams();
+
     const [requestType, setRequestType] = useState('')
 
     const [state, setstate] = useState({
         orgList: [],
-        org: '',
+        usernames: [],
+        org: UserName,
     })
 
     useEffect(() => {
         let tempOrgList = [];
+        let tempusernames = [];
         (props.orgData && props.orgWithUserData) && (Object.keys(props.orgWithUserData).map(orgIdUsr => {
             if (props.orgWithUserData[orgIdUsr].phoneNumber === props.user.phoneNumber) {
                 (Object.keys(props.orgData).map(orgId => {
@@ -34,16 +38,17 @@ function Registration(props) {
                             ...props.orgData[orgId],
                             orgId
                         })
+                        tempusernames.push(props.orgData[orgId].UserName);
                     }
                 }))
             }
 
-        }))
+        })) 
 
-        // console.log(tempOrgList)
         setstate({
             ...state,
-            orgList: tempOrgList
+            orgList: tempOrgList,
+            usernames: tempusernames
         })
     }, [props.orgData, props.orgWithUserData])
 
@@ -91,13 +96,52 @@ function Registration(props) {
         }
     }
 
-
     if (props.user == null) return <Redirect to='signIn' />
 
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ minHeight: '100vh' }}>
                 <Navbar />
+                {(UserName)?
+                    (state.usernames && state.usernames.includes(UserName))?
+                        <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <Card title="Requesting For QR Code" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "25px", minHeight: "185px", position: "sticky" }}>
+                                <Row>
+                                    <Col span={12}><Text>Select Owner</Text></Col>
+                                    <Col span={12}>
+                                    <Select defaultValue={UserName} placeholder="Owner" style={{ width: "100%" }} onChange={handleChange}>
+                                        {
+                                            state.orgList && state.orgList.map(i => {
+                                                return (<Option value={i.UserName} key={i.orgId}>{i.Name} ({i.UserName})</Option>)
+                                            })
+                                        }
+                                    </Select>
+                                    </Col>
+                                </Row>
+                                <Row style={{ marginTop: "12px" }}>
+                                    <Col span={12}><Text>Select Request Type</Text></Col>
+                                    <Col span={12}>
+                                        <Select placeholder="Request Type" style={{ width: "100%" }} onChange={changeRequestType}>
+                                            <Option value="Business">Business</Option>
+                                            <Option value="Bus">Bus</Option>
+                                            <Option value="Vehicle">Vehicle</Option>
+                                            <Option value="Train">Train</Option>
+                                        </Select>
+                                    </Col>
+                                </Row>
+                                {alert}
+                            </Card>
+                            {component}
+                        </Content>
+                    :<div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <p style={{marginBottom:'41%'}}>Organization username not valid!</p>
+                  </div>
+                :
                 <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Card title="Requesting For QR Code" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "25px", minHeight: "185px", position: "sticky" }}>
                         <Row>
@@ -106,12 +150,11 @@ function Registration(props) {
                                 <Select placeholder="Owner" style={{ width: "100%" }} onChange={handleChange}>
                                     {
                                         state.orgList && state.orgList.map(i => {
-                                            return (<Option value={i.UserName} key={i.orgId}>{i.Name}</Option>)
+                                            return (<Option value={i.UserName} key={i.orgId}>{i.Name} ({i.UserName})</Option>)
                                         })
                                     }
-                                </Select>
+                            </Select>
                             </Col>
-
                         </Row>
                         <Row style={{ marginTop: "12px" }}>
                             <Col span={12}><Text>Select Request Type</Text></Col>
@@ -123,12 +166,13 @@ function Registration(props) {
                                     <Option value="Train">Train</Option>
                                 </Select>
                             </Col>
-                            
                         </Row>
-                        {alert}
+                    {alert}
                     </Card>
                     {component}
-                </Content>
+                </Content>        
+                                }
+                            
                 <BottomFooter />
             </Layout>
         </div>
@@ -136,7 +180,7 @@ function Registration(props) {
 }
 
 const mapStateToProps = (state) => {
-    //console.log(state)
+    console.log(state)
     return ({
         ...state,
         user: state.auth.auth.user,

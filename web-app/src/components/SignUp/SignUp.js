@@ -78,16 +78,16 @@ function SignUp(props) {
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ height: "100vh" }}>
-                <Navbar />
+                <Navbar  direct="SignIn" dir_name="Log In"/>
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
                     <Card title="Welcome" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "131px", height: '330px' }}>
                         <div style={{ margin: "10px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-                            <Input addonBefore="+94" defaultValue="" placeholder="Contact No" value={state.phoneNumber} name='phoneNumber' type="number" style={{ marginBottom: '10px' }} onChange={handleChange} />
-                            <Input defaultValue="" placeholder="NIC" style={{ marginBottom: '10px' }} name='nic' type="number" value={state.nic} onChange={handleChange} />
-                            <Input defaultValue="" placeholder="Password" type="password" style={{ marginBottom: '10px' }} value={state.password} name='password' onChange={handleChange} />
-                            <Input defaultValue="" placeholder="Reenter Password" type="password" style={{ marginBottom: '10px' }} value={state.repeatPassword} name='repeatPassword' onChange={handleChange} />
+                            <Input addonBefore="+94" defaultValue="" placeholder="Contact No"  aria-label="Enter your 9 digit contact number" aria-required="true" value={state.phoneNumber} name='phoneNumber' type="number" style={{ marginBottom: '10px' }} onChange={handleChange} />
+                            <Input defaultValue="" placeholder="NIC" aria-label="Enter your 9 digit National Identity Card number" aria-required="true" style={{ marginBottom: '10px' }} name='nic' type="number" value={state.nic} onChange={handleChange} />
+                            <Input defaultValue="" placeholder="Password" aria-label="Enter a password" aria-required="true" type="password" style={{ marginBottom: '10px' }} value={state.password} name='password' onChange={handleChange} />
+                            <Input defaultValue="" placeholder="Reenter Password" aria-label="Reenter the password" aria-required="true" type="password" style={{ marginBottom: '10px' }} value={state.repeatPassword} name='repeatPassword' onChange={handleChange} />
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center", paddingTop: '20px' }}>
-                                <Button type="primary" style={{ width: '150px' }} onClick={submitDetails}>Sign Up</Button>
+                                <Button type="primary" style={{ width: '150px' }} onClick={submitDetails}>Register</Button>
                             </div>
                         </div>
 

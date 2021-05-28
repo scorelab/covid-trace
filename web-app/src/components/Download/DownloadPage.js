@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Typography, Avatar, Button } from 'antd';
+import { Layout, Row, Col, Typography, Avatar, Button, Tooltip } from 'antd';
 import scoreLabLogo from '../../assets/scoreLabLogo.png'
 import enter from '../../assets/enter.png'
 import { Link } from "react-router-dom";
@@ -23,8 +23,16 @@ function DownloadPage(props) {
                         </Link>
                     </Col>
                     <Col xs={24} md={12} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                        <Link to='/signUp'>
+                            <Tooltip placement="bottom" title="Create an account!">
+                                <Button className={styles.loginBtn}>SIGN UP</Button>
+                            </Tooltip>
+                        </Link>
+                        &nbsp;
                         <Link to='/signIn'>
-                            <Button className={styles.loginBtn}>SIGN IN</Button>
+                            <Tooltip placement="bottom" title="Log into your account!">
+                                <Button className="loginBtn">SIGN IN</Button>
+                            </Tooltip>
                         </Link>
                     </Col>
                 </Row>
