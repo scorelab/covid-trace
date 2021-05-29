@@ -26,7 +26,6 @@ function BusinessLocations(props) {
   }
 
   useEffect(() => {
-    console.log(UserName)
     let tempReqOrgList = [];
 
     (props.locationData && props.locationReqestData) && (Object.keys(props.locationReqestData).map(locReqId => {

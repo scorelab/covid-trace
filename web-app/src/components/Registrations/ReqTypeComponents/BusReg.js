@@ -95,36 +95,48 @@ function BusReg(props) {
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
+            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
                 <form onSubmit={submitDetails}>
                 <Row justify="space-between" >
-                    <Col sm={24} md={13}  >
-                        <Input placeholder="Bus No" name="bus_no" onChange={handleChange} required/>
+                    <Col sm={24} md={13}  > Bus Number
+                        <Input 
+                        aria-label="Enter the bus number"
+                        placeholder="Bus No" name="bus_no" onChange={handleChange} style={{ marginBottom: "10px", marginTop: "10px"  }} required/>
                     </Col>
-                    <Col sm={24} md={1}  >
-                    </Col>
-                    <Col sm={24} md={10} >
-                        <Input placeholder="Bus Route No" name="bus_route_no" onChange={handleChange} required/>
+                    <Col sm={24} md={10} > Bus Route Number
+                        <Input 
+                        aria-label="Enter bus route number"
+                        placeholder="Bus Route No" name="bus_route_no" onChange={handleChange} style={{ marginBottom: "10px", marginTop: "10px"  }} required/>
                     </Col>
                 </Row>
                 <Row justify="space-between" >
-                    <Col sm={24} md={13}  >
-                        <Input placeholder="Name" name="name" style={{ marginTop: '12px' }} onChange={handleChange} required/>
+                    <Col sm={24} md={10}  > Name
+                        <Input 
+                        aria-label="Enter your Name"
+                        placeholder="Name" name="name" style={{ marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
                     </Col>
-                    <Col sm={24} md={1}  >
-                    </Col>
-                    <Col sm={24} md={10} >
-                        <Input addonBefore="+94" placeholder="Contact No" name="contact_number" onChange={handleChange} style={{ marginTop: '12px' }} required/>
+                    <Col sm={24} md={10} > Contact Number
+                        <Input 
+                        aria-label="Enter your contact number"
+                        addonBefore="+94" placeholder="Contact No" name="contact_number" style={{ marginBottom: "10px", marginTop: "10px"  }}  onChange={handleChange} required/>
                     </Col>
                 </Row>
                 <Row justify="space-between" align="middle">
-                    <Col sm={24} md={10}  >
-                        <Checkbox onChange={handleChange} name="isCorrect" style={{ marginTop: "35px" }} >Confirm Your Details Is Correct</Checkbox>
-                    </Col>
-                    <Col sm={24} md={10}   >
-                        <Button type="primary" style={{ marginTop: "35px", width: "100%" }} htmlType="submit">Submit</Button>
-                    </Col>
-                </Row>
+                        <Col sm={24} md={25}  >
+                            <Checkbox 
+                            aria-label="Click here to declare that the above information is true and correct to the best of your knowledge"
+                            onChange={handleChange} name="isCorrect" style={{ marginTop: "10px" }} >I hereby declare that the above information is true and correct to the best of my knowledge.</Checkbox>
+                        </Col>
+                    </Row>
+                    <Row style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                        <Button
+                            type="primary"
+                            style={{ marginRight: '20px',width:'140px' }}
+                            htmlType="submit"
+                            >
+                            Submit
+                        </Button>
+                    </Row>
                 </form>
             </Card>
         </div>

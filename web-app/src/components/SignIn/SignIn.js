@@ -63,7 +63,7 @@ function SignIn(props) {
                 <Row>
                   Phone number
                   <Input
-                    aria-label={"Please enter your phone number in the +94 format without the +94 part"}
+                    aria-label={"Enter your phone number in the +94 format without the +94 part"}
                     addonBefore="+94"
                     defaultValue=""
                     placeholder="Contact No"
@@ -76,7 +76,7 @@ function SignIn(props) {
                 <Row>
                   Password
                   <Input
-                    aria-label="Please enter your password"
+                    aria-label="Enter your password"
                     defaultValue=""
                     placeholder="Password"
                     type="password"
@@ -88,7 +88,6 @@ function SignIn(props) {
                 </Row>
                 <Row style={{ display: 'flex', justifyContent: 'center', paddingBottom: '10px' }}>
                   <Button
-                      aria-label="Please click the button to Sign In"
                       type="primary"
                       style={{ marginRight: '20px',width:'140px' }}
                       //onClick={signIn}

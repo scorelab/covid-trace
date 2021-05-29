@@ -86,30 +86,42 @@ function VehicleReg(props) {
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", height: "260px", position: "sticky" }}>
+            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
                 <form onSubmit={submitDetails}>
                     <Row>
-                        <Col span={24}>
-                            <Input placeholder="Name" name="name" onChange={handleChange} required/>
+                        <Col span={24}> Name
+                            <Input 
+                            aria-label="Enter your Name"
+                            placeholder="Name" name="name" style={{marginBottom: "10px", marginTop: "10px"}}  onChange={handleChange} required/>
                         </Col>
                     </Row>
                     <Row justify="space-between" >
-                        <Col sm={24} md={13}  >
-                            <Input addonBefore="+94" placeholder="Contact No" name="contact_number" style={{ marginTop: '12px' }} onChange={handleChange} required/>
+                        <Col sm={24} md={13}  > Contact Number
+                            <Input 
+                            aria-label="Enter your contact number"
+                            addonBefore="+94" placeholder="Contact No" name="contact_number" style={{marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
                         </Col>
-                        <Col sm={24} md={1}  >
-                        </Col>
-                        <Col sm={24} md={10} >
-                            <Input placeholder="Vehical No" name="vehicle_no" style={{ marginTop: '12px' }} onChange={handleChange} required/>
+                        <Col sm={24} md={10} > Vehicle Number
+                            <Input 
+                            aria-label="Enter the vehicle number"
+                            placeholder="Vehical No" name="vehicle_no" style={{marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
                         </Col>
                     </Row>
                     <Row justify="space-between" align="middle">
-                        <Col sm={24} md={10}  >
-                            <Checkbox onChange={handleChange} name="isCorrect" style={{ marginTop: "35px" }} >Confirm Your Details Is Correct</Checkbox>
+                        <Col sm={24} md={25}  >
+                            <Checkbox 
+                            aria-label="Click here to declare that the above information is true and correct to the best of your knowledge"
+                            onChange={handleChange} name="isCorrect" style={{ marginTop: "10px" }} >I hereby declare that the above information is true and correct to the best of my knowledge.</Checkbox>
                         </Col>
-                        <Col sm={24} md={10}   >
-                            <Button type="primary" style={{ marginTop: "35px", width: "100%" }} htmlType="submit">Submit</Button>
-                        </Col>
+                    </Row>
+                    <Row style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                        <Button
+                            type="primary"
+                            style={{ marginRight: '20px',width:'140px' }}
+                            htmlType="submit"
+                            >
+                            Submit
+                        </Button>
                     </Row>
                 </form>
             </Card>
