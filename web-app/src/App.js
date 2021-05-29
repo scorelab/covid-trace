@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Switch } from 'react-router-dom';
 // route guards
@@ -20,38 +20,44 @@ import SignUp from './components/SignUp/SignUp';
 import UserProfile from './components/UserProfile/UserProfile';
 import './index.css';
 
-class App extends Component {
-  render() {
-    return (
-      <Switch>
-        <PublicRoute exact path="/" component={HomePage} />
-        <PublicRoute exact path="/download" component={DownloadPage} />
-        <AuthRoute exact path="/signIn" component={SignIn} />
-        <AuthRoute exact path="/signUp" component={SignUp} />
-        <PrivateRoute exact path="/organizations" component={Organisation} />
-        <PrivateRoute
-          exact
-          path="/addOrganisation"
-          component={AddOrganisation}
-        />
-        <PrivateRoute
-          exact
-          path="/locations/:UserName"
-          component={LocationIndex}
-        />
-        <PrivateRoute exact path="/registration" component={Registration} />
-        <PrivateRoute exact path="/registration/:UserName" component={Registration} />
-        <PrivateRoute
-          exact
-          path="/companyInfo/:CompanyId"
-          component={CompanyInfo}
-        />
-        <PrivateRoute exact path="/userProfile" component={UserProfile} />
-        <PrivateRoute exact path="/qrpage/:CompanyId" component={QRpage} />
-        <PublicRoute component={NotFound} />
-      </Switch>
-    );
-  }
+function App(props) {
+  useEffect(() => {
+    const common = document.createElement("script");
+    common.type = "text/javascript"
+    common.textContent = "function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 'google_translate_element');}"
+    common.async = true;
+    document.body.appendChild(common);
+  },[])
+  
+  return (
+    <Switch>
+      <PublicRoute exact path="/" component={HomePage} />
+      <PublicRoute exact path="/download" component={DownloadPage} />
+      <AuthRoute exact path="/signIn" component={SignIn} />
+      <AuthRoute exact path="/signUp" component={SignUp} />
+      <PrivateRoute exact path="/organizations" component={Organisation} />
+      <PrivateRoute
+        exact
+        path="/addOrganisation"
+        component={AddOrganisation}
+      />
+      <PrivateRoute
+        exact
+        path="/locations/:UserName"
+        component={LocationIndex}
+      />
+      <PrivateRoute exact path="/registration" component={Registration} />
+      <PrivateRoute exact path="/registration/:UserName" component={Registration} />
+      <PrivateRoute
+        exact
+        path="/companyInfo/:CompanyId"
+        component={CompanyInfo}
+      />
+      <PrivateRoute exact path="/userProfile" component={UserProfile} />
+      <PrivateRoute exact path="/qrpage/:CompanyId" component={QRpage} />
+      <PublicRoute component={NotFound} />
+    </Switch>
+  );
 }
 
 const mapStateToProps = ({ firebase, auth }) => ({

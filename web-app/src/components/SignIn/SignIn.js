@@ -45,7 +45,7 @@ function SignIn(props) {
             justifyContent: 'center',
           }}
         >
-          <div class="col d-flex justify-content-center">
+          <div className="col d-flex justify-content-center">
 
 
           <Card
