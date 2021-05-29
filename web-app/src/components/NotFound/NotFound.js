@@ -10,7 +10,7 @@ const NotFound = () => (
         justifyContent: 'center',
       }}
     >
-      <p>Page not found</p>
+      <p>Page Not Found</p>
     </div>
   </div>
 );
