@@ -87,7 +87,7 @@ function RegisteredVehicles(props) {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button size="small" onClick={() => goToCompanyInfo(record)} type="primary">Details</Button>
+                    <Button size="small" onClick={() => goToCompanyInfo(record)} type="primary" data-toggle="tooltip" data-placement="top" title="View details of private vehicle">Details</Button>
                 </Space>
             ),
         },

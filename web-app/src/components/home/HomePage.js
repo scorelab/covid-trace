@@ -42,15 +42,11 @@ function HomePage(props) {
             <Title level={3} style={{ cursor: 'pointer', marginTop: '10px' }}> SAFE IN</Title>
           </Col>
           <Col xs={24} md={12} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-            <Link to='/signIn'>
-              <Tooltip placement="bottom" title="Log into your account!">
-                <Button className="loginBtn" style={{ marginRight: '30px' }}>LOG IN</Button>
-              </Tooltip>
+            <Link to='/signIn' data-toggle="tooltip" data-placement="top" title="Log in to Safe In">
+                <Button className="loginBtn" style={{ marginRight: '30px' }} data-toggle="tooltip" data-placement="top" title="Log in to Safe In">LOG IN</Button>
             </Link>
-            <Link to='/signUp'>
-              <Tooltip placement="bottom" title="Create an account!">
-                <Button className="loginBtn" style={{ backgroundColor: 'rgba(29, 233, 110, 0.93)' }}>REGISTER</Button>
-              </Tooltip>
+            <Link to='/signUp' data-toggle="tooltip" data-placement="top" title="Sign up with Safe In">
+                <Button className="loginBtn" style={{ backgroundColor: 'rgba(29, 233, 110, 0.93)' }} data-toggle="tooltip" data-placement="top" title="Sign up with Safe In">REGISTER</Button>
             </Link>
           </Col>
         </Row>
@@ -77,7 +73,7 @@ function HomePage(props) {
             <Row style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Space>
                 <Link to='/download'>
-                  <Button className="downbtn">Download mobile app</Button>
+                  <Button className="downbtn" data-toggle="tooltip" data-placement="top" title="Download mobile app">Download mobile app</Button>
                 </Link>
               </Space>
             </Row>

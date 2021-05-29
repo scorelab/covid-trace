@@ -75,7 +75,7 @@ function TrainInfoDetails(props) {
                     <CopyTwoTone />
                 </Col>
                 <Col sm={24} md={6}>
-                    <Button type="primary" onClick={() => GoToQRPage('Sinhala')}>Download QR</Button>
+                    <Button type="primary" onClick={() => GoToQRPage('Sinhala')} data-toggle="tooltip" data-placement="top" title="Download QR Code">Download QR</Button>
                 </Col>
             </Row>
             <Row justify="space-around" style={{ marginTop: "1em" }}>
@@ -89,7 +89,7 @@ function TrainInfoDetails(props) {
                     <CopyTwoTone />
                 </Col>
                 <Col sm={24} md={6}>
-                    <Button type="primary" onClick={() => GoToQRPage('English')} >Download QR</Button>
+                    <Button type="primary" onClick={() => GoToQRPage('English')} data-toggle="tooltip" data-placement="top" title="Download QR Code">Download QR</Button>
                 </Col>
             </Row>
             <Row justify="space-around" style={{ marginTop: "1em" }}>
@@ -103,7 +103,7 @@ function TrainInfoDetails(props) {
                     <CopyTwoTone />
                 </Col>
                 <Col sm={24} md={6}>
-                    <Button type="primary" onClick={() => GoToQRPage('Tamil')}>Download QR</Button>
+                    <Button type="primary" onClick={() => GoToQRPage('Tamil')} data-toggle="tooltip" data-placement="top" title="Download QR Code">Download QR</Button>
                 </Col>
             </Row>
         </div>

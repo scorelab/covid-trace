@@ -37,8 +37,8 @@ function Navbar(props) {
             <Header style={{ background: '#F9F9F9', boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.25)', height: '60px', paddingTop: "5px", paddingLeft: "20px", display: "flex", alignItems: 'center' }}>
                 <Row style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
                     <Col xs={12} sm={12} md={16} >
-                        <Avatar size="large" src={enter} style={{ float: 'left', marginBottom: '10px', cursor: 'pointer' }} onClick={goToHome} alt="Safe-in Logo" />
-                        <Title level={3} style={{ marginTop: "10px", marginLeft: '-10px', cursor: 'pointer' }} onClick={goToHome}> SAFE IN</Title>
+                        <Avatar size="large" src={enter} style={{ float: 'left', marginBottom: '10px', cursor: 'pointer' }} onClick={goToHome} alt="Safe-in Logo" data-toggle="tooltip" data-placement="top" title="Go to Safe In - Home"/>
+                        <Title level={3} style={{ marginTop: "10px", marginLeft: '-10px', cursor: 'pointer' }} onClick={goToHome} data-toggle="tooltip" data-placement="top" title="Go to Safe In - Home"> SAFE IN</Title>
                     </Col>
                     {
                         (user) ? <SignedLinks /> :
