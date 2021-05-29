@@ -45,54 +45,63 @@ function SignIn(props) {
             justifyContent: 'center',
           }}
         >
+          <div class="col d-flex justify-content-center">
+
+
           <Card
-            title="Welcome"
+            title="Welcome" 
             style={{
               width: 475,
               boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-              marginTop: '131px',
+              marginTop: '90px',
               minheight: '250px',
-              maxHeight: '265px',
+              maxHeight: '400px',
+              textAlign: 'center'
             }}
-          >
-            
+          >   
               <form onSubmit={signIn}>
                 <Row>
+                  Phone number
                   <Input
+                    aria-label={"Please enter your phone number in the +94 format without the +94 part"}
                     addonBefore="+94"
                     defaultValue=""
                     placeholder="Contact No"
-                    aria-label="Enter your contact number" 
-                    aria-required="true"
-                    style={{ marginBottom: '10px' }}
+                    style={{ marginBottom: '10px', paddingTop: '5px' }}
                     onChange={onChangePhoneNumber}
                     value={contactNo}
                     required
                   />
                 </Row>
                 <Row>
+                  Password
                   <Input
+                    aria-label="Please enter your password"
                     defaultValue=""
                     placeholder="Password"
                     type="password"
-                    aria-label="Enter your password" 
-                    aria-required="true"
-                    style={{ marginBottom: '20px' }}
+                    style={{ marginBottom: '10px', paddingTop: '5px' }}
                     onChange={onChangePassword}
                     value={password}
                     required
                   />
                 </Row>
-                <Row style={{ display: 'flex', justifyContent: 'center' }}>
+                <Row style={{ display: 'flex', justifyContent: 'center', paddingBottom: '10px' }}>
                   <Button
+                      aria-label="Please click the button to Sign In"
                       type="primary"
                       style={{ marginRight: '20px',width:'140px' }}
                       //onClick={signIn}
                       htmlType="submit"
                     >
-                      Log In
-                  
+                      Sign In
                   </Button>
+                </Row>
+                <Row style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Link to="/signUp"
+                    aria-label="Haven't Sign Up yet? Click here to sign up">
+                    Haven't Sign Up yet? Click here to sign up
+                  </Link>
                 </Row>
               </form>
               <Row>
@@ -104,6 +113,7 @@ function SignIn(props) {
               {props.error ? <Alert message={props.error} type="warning" showIcon closable style={{marginTop:'6px',width:'100%'}}/> : null}
               </Row>
           </Card>
+          </div>
         </Content>
         <BottomFooter />
       </Layout>
