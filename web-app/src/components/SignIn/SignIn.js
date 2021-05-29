@@ -66,7 +66,7 @@ function SignIn(props) {
                     aria-label={"Please enter your phone number in the +94 format without the +94 part"}
                     addonBefore="+94"
                     defaultValue=""
-                    placeholder="Contact No"
+                    placeholder="Contact No."
                     style={{ marginBottom: '10px', paddingTop: '5px' }}
                     onChange={onChangePhoneNumber}
                     value={contactNo}
@@ -88,19 +88,19 @@ function SignIn(props) {
                 </Row>
                 <Row style={{ display: 'flex', justifyContent: 'center', paddingBottom: '10px' }}>
                   <Button
-                      aria-label="Please click the button to Sign In"
+                      aria-label="Please click the button to Log In"
                       type="primary"
                       style={{ marginRight: '20px',width:'140px' }}
                       //onClick={signIn}
                       htmlType="submit"
                     >
-                      Sign In
+                      Log In
                   </Button>
                 </Row>
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
                   <Link to="/signUp"
-                    aria-label="Haven't Sign Up yet? Click here to sign up">
-                    Haven't Sign Up yet? Click here to sign up
+                    aria-label="If you are new to Safe In, click here to register">
+                    New to Safe In? Click here to Register
                   </Link>
                 </Row>
               </form>
