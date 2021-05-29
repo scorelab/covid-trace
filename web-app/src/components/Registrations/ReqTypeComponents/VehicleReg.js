@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Row, Col, Input, Checkbox, Button, message } from 'antd';
+import { Card, Divider, Row, Col, Input, Checkbox, Button, message } from 'antd';
 import { registerVehicle } from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom";
@@ -86,25 +86,27 @@ function VehicleReg(props) {
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
+            <Card title="Private Vehicle Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
                 <form onSubmit={submitDetails}>
+                    <Divider orientation="left">Vehicle Details</Divider>
                     <Row>
-                        <Col span={24}> Name
+                        <Col span={24}> Vehicle Number
+                            <Input 
+                            aria-label="Enter the vehicle number"
+                            placeholder="Vehical No" name="vehicle_no" style={{marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
+                        </Col>
+                    </Row>
+                    <Divider orientation="left">Owner Details</Divider>
+                    <Row justify="space-between">
+                        <Col sm={24} md={13}> Name
                             <Input 
                             aria-label="Enter your Name"
                             placeholder="Name" name="name" style={{marginBottom: "10px", marginTop: "10px"}}  onChange={handleChange} required/>
                         </Col>
-                    </Row>
-                    <Row justify="space-between" >
-                        <Col sm={24} md={13}  > Contact Number
+                        <Col sm={24} md={10}  > Contact Number
                             <Input 
                             aria-label="Enter your contact number"
                             addonBefore="+94" placeholder="Contact No" name="contact_number" style={{marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
-                        </Col>
-                        <Col sm={24} md={10} > Vehicle Number
-                            <Input 
-                            aria-label="Enter the vehicle number"
-                            placeholder="Vehical No" name="vehicle_no" style={{marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
                         </Col>
                     </Row>
                     <Row justify="space-between" align="middle">
@@ -119,6 +121,7 @@ function VehicleReg(props) {
                             type="primary"
                             style={{ marginRight: '20px',width:'140px' }}
                             htmlType="submit"
+                            data-toggle="tooltip" data-placement="top" title="Submit QR request"
                             >
                             Submit
                         </Button>

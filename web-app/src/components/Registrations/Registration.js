@@ -123,8 +123,8 @@ function Registration(props) {
                                     <Col span={12}>
                                         <Select placeholder="Request Type" style={{ width: "100%" }} onChange={changeRequestType}>
                                             <Option value="Business">Business</Option>
+                                            <Option value="Vehicle">Private Vehicle</Option>
                                             <Option value="Bus">Bus</Option>
-                                            <Option value="Vehicle">Vehicle</Option>
                                             <Option value="Train">Train</Option>
                                         </Select>
                                     </Col>
@@ -139,7 +139,7 @@ function Registration(props) {
                       justifyContent: 'center',
                     }}
                   >
-                    <p style={{marginBottom:'41%'}}>Organization username not valid!</p>
+                    <p style={{marginBottom:'41%'}}>Invalide organization username!</p>
                   </div>
                 :
                 <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -161,8 +161,8 @@ function Registration(props) {
                             <Col span={12}>
                                 <Select placeholder="Request Type" style={{ width: "100%" }} onChange={changeRequestType}>
                                     <Option value="Business">Business</Option>
+                                    <Option value="Vehicle">Private Vehicle</Option>
                                     <Option value="Bus">Bus</Option>
-                                    <Option value="Vehicle">Vehicle</Option>
                                     <Option value="Train">Train</Option>
                                 </Select>
                             </Col>
