@@ -14,6 +14,8 @@ function Organisation(props) {
 
     let history = useHistory();
 
+    const [loaded, setLoaded] = useState(false);
+
     const [state, setstate] = useState({
         orgList: [],
         orgList_withLoc: []
@@ -23,6 +25,7 @@ function Organisation(props) {
         let tempOrgList = [];
         let temporgList_withLoc = [];
         (props.orgData && props.orgWithUserData) && (Object.keys(props.orgWithUserData).map(orgIdUsr => {
+            setLoaded(true)
             if (props.orgWithUserData[orgIdUsr].phoneNumber === props.user.phoneNumber) {
                 (Object.keys(props.orgData).map(orgId => {
                     if (props.orgData[orgId].UserName === props.orgWithUserData[orgIdUsr].org) {
@@ -37,10 +40,15 @@ function Organisation(props) {
         && (props.locationReqestData) && (Object.keys(props.locationReqestData).map(entryId => {
              temporgList_withLoc.push(props.locationReqestData[entryId].org)
         }))
-        console.log(state.orgList)
+
+
+        let timeout;
+        if (props.orgData == null) {
+            timeout = setTimeout(() => setLoaded(true), 3000);
+        }
         setstate({
             orgList: tempOrgList,
-            orgList_withLoc: temporgList_withLoc
+            orgList_withLoc: temporgList_withLoc,
         })
     }, [props.orgData, props.orgWithUserData, props.locationReqestData])
 
@@ -62,42 +70,38 @@ function Organisation(props) {
                     <Card title="Organizations" style={{ width: '1150px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "6.9vh", overflow: "auto", minHeight: "627px", marginBottom: "80px", position: "sticky" }}>
                         <Row>
                             {
-                                (state.orgList.length) ? 
-                                    (props.orgData && props.orgWithUserData) ? 
-                                    state.orgList.map((org) => {
-                                        return (
-                                            <Col sm={24} md={12} lg={12} xl={8} justify="space-around" align="middle" key={org.orgId}>
-                                                <Card size="small" title={org.Name} style={{ width: 300, boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
-                                                    <Row justify={"center"}>
-                                                        <Text strong>UserName : </Text>
-                                                        <Text> {org.UserName}</Text>
-                                                    </Row>
-                                                    <Row justify={"center"} style={{ marginBottom: '20px', marginTop: '10px' }}>
-                                                        <Text strong>WebSite : </Text>
-                                                        <Text> {org.WebSite}</Text>
-                                                    </Row>
-                                                    {(state.orgList_withLoc.includes(org.UserName)) ?
-                                                    (
-                                                    <div>
-                                                        <Button type="primary" onClick={() => goToLocation(org.UserName)}>Locations</Button>
-                                                        <br></br>
-                                                        <Button type="primary" onClick={() => goToOrg(org.UserName)} style={{ marginTop: '10px' }}>Add Your Location</Button>
-                                                    </div>
-                                                    ):
-                                                    (<div>
-                                                        <p>Go ahead and add locations to <b>{org.Name}</b></p>
-                                                        <Button type="primary" onClick={() => goToOrg(org.UserName)}>Add Your Location</Button>
-                                                    </div>)
-                                                    }
-                                                    
-                                                </Card>
-                                            </Col>
-                                        )
-                                })
-                                :
-                                <Row style={{ height: '59vh', width: '1150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <Spin size="large" />
-                                </Row>   
+                                (loaded)?
+                                    (props.orgData && props.orgWithUserData && state.orgList && state.orgList.length) ?  
+                                        state.orgList.map((org) => {
+                                            return (
+                                                <Col sm={24} md={12} lg={12} xl={8} justify="space-around" align="middle" key={org.orgId}>
+                                                    <Card size="small" title={org.Name} style={{ width: 300, boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
+                                                        <Row justify={"center"}>
+                                                            <Text strong>UserName : </Text>
+                                                            <Text> {org.UserName}</Text>
+                                                        </Row>
+                                                        <Row justify={"center"} style={{ marginBottom: '20px', marginTop: '10px' }}>
+                                                            <Text strong>WebSite : </Text>
+                                                            <Text> {org.WebSite}</Text>
+                                                        </Row>
+                                                        {(state.orgList_withLoc.includes(org.UserName)) ?
+                                                        (
+                                                        <div>
+                                                            <Button type="primary" onClick={() => goToLocation(org.UserName)}>Locations</Button>
+                                                            <br></br>
+                                                            <Button type="primary" onClick={() => goToOrg(org.UserName)} style={{ marginTop: '10px' }}>Add Your Location</Button>
+                                                        </div>
+                                                        ):
+                                                        (<div>
+                                                            <p>Go ahead and add locations to <b>{org.Name}</b></p>
+                                                            <Button type="primary" onClick={() => goToOrg(org.UserName)}>Add Your Location</Button>
+                                                        </div>)
+                                                        }
+                                                        
+                                                    </Card>
+                                                </Col>
+                                            )
+                                        })  
                                 :
                                 <Row style={{ height: '59vh', width: '1150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         <Col sm={24} md={12} lg={12} xl={8} justify="space-around" align="middle">
@@ -113,8 +117,10 @@ function Organisation(props) {
                                             </Card>
                                         </Col>
                                 </Row>
-                                 
-
+                                 :
+                                 <Row style={{ height: '59vh', width: '1150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                     <Spin size="large" />
+                                 </Row> 
                             }
 
                         </Row>
@@ -128,7 +134,6 @@ function Organisation(props) {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return ({
         ...state,
         user: state.auth.auth.user,
