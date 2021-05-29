@@ -49,7 +49,7 @@ function SignIn(props) {
 
 
           <Card
-            title="Welcome" 
+            title="Welcome to Safe In!" 
             style={{
               width: 475,
               boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
