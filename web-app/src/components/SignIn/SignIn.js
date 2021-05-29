@@ -92,13 +92,14 @@ function SignIn(props) {
                       style={{ marginRight: '20px',width:'140px' }}
                       //onClick={signIn}
                       htmlType="submit"
+                      data-toggle="tooltip" data-placement="top" title="Login to Safe In"
                     >
                       Log In
                   </Button>
                 </Row>
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
                   <Link to="/signUp"
-                    aria-label="If you are new to Safe In, click here to register">
+                    aria-label="If you are new to Safe In, click here to register" data-toggle="tooltip" data-placement="top" title="Register with Safe In">
                     New to Safe In? Click here to Register
                   </Link>
                 </Row>
