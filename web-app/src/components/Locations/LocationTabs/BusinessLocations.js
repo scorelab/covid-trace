@@ -119,7 +119,7 @@ function BusinessLocations(props) {
 
   return (
     <React.Fragment>
-      <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Registered Businesses</Title>
+      <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Registered Business Locations</Title>
       <Divider />
 
       <Table columns={columns} dataSource={state.orgList} />

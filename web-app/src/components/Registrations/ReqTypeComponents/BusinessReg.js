@@ -138,7 +138,7 @@ function BusinessReg(props) {
 
     return (
         <div>
-            <Card title="Business Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "58vh", position: "sticky", marginBottom: '20px' }}>
+            <Card title="Business Location Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "58vh", position: "sticky", marginBottom: '20px' }}>
                 <form onSubmit={submitDetails}>
                     <Divider orientation="left">Basic Details</Divider>
                     <Row>
@@ -259,9 +259,9 @@ function BusinessReg(props) {
                             type="primary"
                             style={{ marginRight: '20px',width:'140px' }}
                             htmlType="submit"
-                            data-toggle="tooltip" data-placement="top" title="Submit QR request"
+                            data-toggle="tooltip" data-placement="top" title="Add organization entity"
                             >
-                            Submit
+                            Add Entity
                         </Button>
                     </Row>
                 </form>

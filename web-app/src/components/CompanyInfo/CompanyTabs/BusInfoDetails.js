@@ -36,11 +36,11 @@ function BusInfoDetails(props) {
 
     return (
         <div>
-            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Bus Details</Title>
+            <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Bus Details</Title>
             <Divider />
 
             <Row>
-                <Col span={2}>
+                <Col span={4}>
                     <Text strong>Name :</Text>
                 </Col>
                 <Col span={5}>
@@ -48,7 +48,7 @@ function BusInfoDetails(props) {
                 </Col>
             </Row>
             <Row style={{ marginTop: "0.5em" }}>
-                <Col span={3}>
+                <Col span={4}>
                     <Text strong>Contact No :</Text>
                 </Col>
                 <Col span={5}>
@@ -56,7 +56,7 @@ function BusInfoDetails(props) {
                 </Col>
             </Row>
             <Row style={{ marginTop: "0.5em" }}>
-                <Col span={2}>
+                <Col span={4}>
                     <Text strong>Bus No :</Text>
                 </Col>
                 <Col span={5}>

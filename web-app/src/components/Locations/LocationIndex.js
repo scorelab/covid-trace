@@ -55,10 +55,10 @@ function LocationIndex(props) {
                     <Title level={5} style={{ textAlign: "center", marginBottom: "-10px",marginTop: "15px" }}>{orgName.name} ({orgName.username})</Title>
                 <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", height: "598px", position: "sticky" }}>
                     <Tabs tabPosition='left'>
-                        <TabPane tab="Businesses" key="1">
+                        <TabPane tab="Locations" key="1">
                             <BusinessLocations />
                         </TabPane>
-                        <TabPane tab="Vehicles" key="2">
+                        <TabPane tab="Private Vehicles" key="2">
                             <RegisteredVehicles />
                         </TabPane>
                         <TabPane tab="Buses" key="3">

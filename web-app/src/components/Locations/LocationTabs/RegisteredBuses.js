@@ -95,7 +95,7 @@ function RegisteredBuses(props) {
 
     return (
         <React.Fragment>
-            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Registered Buses</Title>
+            <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Registered Buses</Title>
             <Divider />
 
             <Table columns={columns} dataSource={state.orgList} />

@@ -121,9 +121,9 @@ function VehicleReg(props) {
                             type="primary"
                             style={{ marginRight: '20px',width:'140px' }}
                             htmlType="submit"
-                            data-toggle="tooltip" data-placement="top" title="Submit QR request"
+                            data-toggle="tooltip" data-placement="top" title="Add organization entity"
                             >
-                            Submit
+                            Add Entity
                         </Button>
                     </Row>
                 </form>

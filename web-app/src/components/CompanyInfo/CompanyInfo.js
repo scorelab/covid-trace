@@ -48,7 +48,7 @@ function CompanyInfo(props) {
                 <Navbar />
                 <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", height: "598px", position: "sticky" }}>
-                        <Button type="primary" onClick={() => goToLocation(props.history.location.state.org)} style={{ marginBottom:"20px",marginleft:"20px" }}><ArrowLeftOutlined />Back to Locations of {orgName} ({props.history.location.state.org})</Button>
+                        <Button type="primary" onClick={() => goToLocation(props.history.location.state.org)} style={{ marginBottom:"20px",marginleft:"20px" }}><ArrowLeftOutlined />Back to Entities of {orgName} ({props.history.location.state.org})</Button>
                         <Tabs tabPosition='left'>
                             <TabPane tab="Details" key="1">
                                 {

@@ -40,11 +40,11 @@ function CompanyInfoDetails(props) {
     }, [props.companyDetails])
     return (
         <div>
-            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Company Details</Title>
+            <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Business Location Details</Title>
             <Divider />
 
             <Row>
-                <Col span={2}>
+                <Col span={4}>
                     <Text strong>Name:</Text>
                 </Col>
                 <Col span={5}>
@@ -52,7 +52,7 @@ function CompanyInfoDetails(props) {
                 </Col>
             </Row>
             <Row style={{ marginTop: "0.5em" }}>
-                <Col span={3}>
+                <Col span={4}>
                     <Text strong>Contact No:</Text>
                 </Col>
                 <Col span={5}>
@@ -70,37 +70,49 @@ function CompanyInfoDetails(props) {
             <Row style={{ marginTop: "0.5em" }}>
                 <Text strong>Location</Text>
             </Row>
-            <Row justify="space-around" style={{ marginTop: "1em" }}>
-                <Col span={5}>
+            <Row justify="left" style={{ marginTop: "1em" }}>
+                <Col span={3}>
                     <Text strong style={{ marginRight: "1em" }}> Province: </Text>
+                </Col>
+                <Col span={3}>
                     <Text> {companyDetails.province} </Text>
                 </Col>
-                <Col span={5}>
+                <Col span={3}>
                     <Text strong style={{ marginRight: "1em" }}> District: </Text>
+                </Col>
+                <Col span={3}>
                     <Text> {companyDetails.district} </Text>
                 </Col>
-                <Col span={6}>
+                <Col span={3}>
                     <Text strong style={{ marginRight: "1em" }}> City: </Text>
+                </Col>
+                <Col span={4}>
                     <Text> {companyDetails.city} </Text>
                 </Col>
             </Row>
-            <Row justify="space-around" style={{ marginTop: "0.5em" }}>
-                <Col span={5}>
+            <Row justify="left" style={{ marginTop: "0.5em" }}>
+                <Col span={3}>
                     <Text strong style={{ marginRight: "1em" }}> Postal Code: </Text>
+                </Col>
+                <Col span={3}>
                     <Text> {companyDetails.postal_code} </Text>
                 </Col>
-                <Col span={5}>
+                <Col span={3}>
                     <Text strong style={{ marginRight: "1em" }}> Floor No: </Text>
+                </Col>
+                <Col span={3}>
                     <Text> {companyDetails.floor_no} </Text>
                 </Col>
-                <Col span={6}>
+                <Col span={4}>
                     <Text strong style={{ marginRight: "1em" }}> Unit No: </Text>
+                </Col>
+                <Col>
                     <Text> {companyDetails.unit_no} </Text>
                 </Col>
             </Row>
             <Row style={{ marginTop: "1em" }}>
-                <Col span={2}>
-                    <Text strong>fb URL:</Text>
+                <Col span={4}>
+                    <Text strong>Facebook URL:</Text>
                 </Col>
                 <Col span={18}>
                     <Text><a>{companyDetails.fb_url}</a></Text>
