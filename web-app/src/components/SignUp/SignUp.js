@@ -53,7 +53,7 @@ function SignUp(props) {
                     error('Invalid NIC Format. Please enter only the numeric part of your NIC number.')
                 }
             } else {
-                error("Your passowrds do not match. Please recheck your passwords.")
+                error("Your passwords do not match. Please recheck your passwords.")
             }
         } else {
             error("Please fill out the form to Register.")

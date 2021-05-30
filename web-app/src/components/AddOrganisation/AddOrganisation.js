@@ -85,7 +85,7 @@ function AddOrganisation(props) {
     };
 
     const warning = () => {
-        message.warning('Please fill out the form toadd your organization');
+        message.warning('Please fill out the form to add your organization');
       };
 
 

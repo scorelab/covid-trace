@@ -139,7 +139,7 @@ function Registration(props) {
                       justifyContent: 'center',
                     }}
                   >
-                    <p style={{marginBottom:'41%'}}>Invalide organization username!</p>
+                    <p style={{marginBottom:'41%'}}>Invalid organization username!</p>
                   </div>
                 :
                 <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
