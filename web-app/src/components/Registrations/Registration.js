@@ -101,7 +101,7 @@ function Registration(props) {
     return (
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ minHeight: '100vh' }}>
-                <Navbar />
+               <Navbar dimensions={props.dimensions} />
                 {(UserName)?
                     (state.usernames && state.usernames.includes(UserName))?
                         <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

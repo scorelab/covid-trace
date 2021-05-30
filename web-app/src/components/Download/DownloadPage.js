@@ -43,10 +43,10 @@ function DownloadPage(props) {
                 </Row>
                 <Row style={{ marginTop: '70px' }} justify="center" className={styles.background}>
                     <Col xs={24} md={24} lg={6} style={{ display: 'flex', justifyContent: 'center' }}>
-                        <img src={downloadPageImage} className={styles.downloadPageImage}></img>
+                        <img alt="Download Page" src={downloadPageImage} className={styles.downloadPageImage}></img>
                     </Col>
                     <Col xs={24} md={24} lg={9} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <Title level={5} style={{ textAlign: 'center', maxWidth: '700px', marginTop: '60px', marginBottom: '30px' }} className={styles.info}>Google doesn’t allow  volunetry driven contract tracing app in the Play
+                        <Title level={5} style={{ textAlign: 'center', maxWidth: '700px', marginTop: '60px', marginBottom: '30px' }} className={styles.info}>Google doesn’t allow  voluntary driven contract tracing app in the Play
                         Store yet, but you can download Safe In directly from us.
  Don’t worry, it’s completely secure and up to Google's high standards.</Title>
                         <Row justify="center" align="top" style={{ flexDirection: 'column', alignItems: 'center' }}>
@@ -71,7 +71,7 @@ function DownloadPage(props) {
                     <Col xs={24} md={24} lg={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }} >
                         <Text style={{ fontSize: '20px', padding: '0px 10px 10px 0px', textAlign: "center", marginBottom: '10px' }}>Project By</Text>
                         <a href='https://scorelab.org/'>
-                            <img src={scoreLabLogo} width='200px' style={{ objectFit: 'contain', margin: '-5px 0px 20px 0px', cursor: 'pointer' }} />
+                            <img src={scoreLabLogo} alt="ScoreLab Logo" width='200px' style={{ objectFit: 'contain', margin: '-5px 0px 20px 0px', cursor: 'pointer' }} />
                         </a>
 
                     </Col>

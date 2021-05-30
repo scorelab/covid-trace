@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Button, Typography, Divider, Row } from 'antd';
+import { Col, Button, Typography, Divider, Row, Popover } from 'antd';
 import { CopyTwoTone } from '@ant-design/icons';
 import { Redirect, useParams,useHistory } from 'react-router-dom';
 const { Text, Title } = Typography;
@@ -121,47 +121,92 @@ function CompanyInfoDetails(props) {
             <Divider />
             <Title level={5} style={{ textAlign: "center", marginTop: "-15px" }}>Get QR Code</Title>
             <Row justify="space-around" style={{ marginTop: "1em" }}>
-                <Col sm={24} md={8}>
-                    <Text strong>Sinhala QR Code</Text>
-                </Col>
-                <Col sm={24} md={7} >
-                    <Text type="secondary">http://traceapp.com/qWefeIG</Text>
-                </Col>
-                <Col sm={24} md={1}>
-                    <CopyTwoTone />
-                </Col>
-                <Col sm={24} md={6}>
-                    <Button type="primary" onClick={()=>GoToQRPage('Sinhala')} data-toggle="tooltip" data-placement="top" title="Download QR Code">Download QR</Button>
-                </Col>
-            </Row>
-            <Row justify="space-around" style={{ marginTop: "1em" }}>
-                <Col sm={24} md={8}>
-                    <Text strong>English QR Code</Text>
-                </Col>
-                <Col sm={24} md={7}>
-                    <Text type="secondary">http://traceapp.com/eRjUklt</Text>
-                </Col>
-                <Col sm={24} md={1}>
-                    <CopyTwoTone />
-                </Col>
-                <Col sm={24} md={6}>
-                    <Button type="primary" onClick={()=>GoToQRPage('English')} data-toggle="tooltip" data-placement="top" title="Download QR Code">Download QR</Button>
-                </Col>
-            </Row>
-            <Row justify="space-around" style={{ marginTop: "1em" }}>
-                <Col sm={24} md={8}>
-                    <Text strong>Tamil QR Code</Text>
-                </Col>
-                <Col sm={24} md={7}>
-                    <Text type="secondary">http://traceapp.com/lIofRe</Text>
-                </Col>
-                <Col sm={24} md={1}>
-                    <CopyTwoTone />
-                </Col>
-                <Col sm={24} md={6}>
-                    <Button type="primary" onClick={()=>GoToQRPage('Tamil')} data-toggle="tooltip" data-placement="top" title="Download QR Code">Download QR</Button>
-                </Col>
-            </Row>
+        <Col xs={0} sm={24} md={8}>
+          <Text strong>Sinhala QR Code</Text>
+        </Col>
+        <Col sm={24} md={7}>
+          <Text type="secondary">http://traceapp.com/qWefeIG</Text>
+        </Col>
+        <Col sm={24} md={1}>
+          <Popover
+            content="Text Copied"
+            trigger="click"
+            visible={props.copyPopoverState["sin"]}
+            onVisibleChange={props.getPopoverChangeFn("sin", 'http://traceapp.com/qWefeIG')}
+          >
+            <CopyTwoTone />
+          </Popover>
+        </Col>
+        <Col sm={24} md={6}>
+          <Button
+            type="primary"
+            onClick={() => GoToQRPage("Sinhala")}
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Download QR Code"
+          >
+            Download QR
+          </Button>
+        </Col>
+      </Row>
+      <Row justify="space-around" style={{ marginTop: "1em" }}>
+        <Col xs={0} sm={24} md={8}>
+          <Text strong>English QR Code</Text>
+        </Col>
+        <Col sm={24} md={7}>
+          <Text type="secondary">http://traceapp.com/eRjUklt</Text>
+        </Col>
+        <Col sm={24} md={1}>
+        <Popover
+            content="Text Copied"
+            trigger="click"
+            visible={props.copyPopoverState["eng"]}
+            onVisibleChange={props.getPopoverChangeFn("eng", 'http://traceapp.com/eRjUklt')}
+          >
+            <CopyTwoTone />
+          </Popover>
+        </Col>
+        <Col sm={24} md={6}>
+          <Button
+            type="primary"
+            onClick={() => GoToQRPage("English")}
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Download QR Code"
+          >
+            Download QR
+          </Button>
+        </Col>
+      </Row>
+      <Row justify="space-around" style={{ marginTop: "1em" }}>
+        <Col xs={0} sm={24} md={8}>
+          <Text strong>Tamil QR Code</Text>
+        </Col>
+        <Col sm={24} md={7}>
+          <Text type="secondary">http://traceapp.com/lIofRe</Text>
+        </Col>
+        <Col sm={24} md={1}>
+        <Popover
+            content="Text Copied"
+            trigger="click"
+            visible={props.copyPopoverState["tam"]}
+            onVisibleChange={props.getPopoverChangeFn("tam", "http://traceapp.com/lIofRe")}
+          >
+            <CopyTwoTone />
+          </Popover>
+        </Col>
+        <Col sm={24} md={6}>
+          <Button
+            type="primary"
+            onClick={() => GoToQRPage("Tamil")}
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Download QR Code"
+          >
+            Download QR
+          </Button>
+        </Col>
+      </Row>
         </div>
     )
 }

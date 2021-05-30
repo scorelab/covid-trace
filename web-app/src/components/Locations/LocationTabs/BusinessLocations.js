@@ -62,7 +62,7 @@ function BusinessLocations(props) {
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
-      render: text => <a>{text}</a>,
+      render: (text) => <span title={text} className="hide-long-text">{text}</span>,
     },
     {
       title: 'Approval Status',

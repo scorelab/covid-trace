@@ -60,7 +60,7 @@ function RegisteredVehicles(props) {
             title: 'Vehicle No',
             dataIndex: 'vehicle_no',
             key: 'vehicle_no',
-            render: text => <a>{text}</a>,
+            render: (text) => <span title={text} className="hide-long-text">{text}</span>,
         },
         {
             title: 'Approval Status',

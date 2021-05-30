@@ -13,6 +13,7 @@ import logo from '../../assets/logo.png'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import logoSvg from '../../assets/logoSvg.svg'
+import { withRouter } from 'react-router-dom';
 const { Title, Text } = Typography;
 function QRpage(props) {
 
@@ -237,4 +238,4 @@ export default compose(
     { collection: 'sc_train' },
   ]), // sync todos collection from Firestore into redux
   connect(mapStateToProps),
-)(QRpage)
+)(withRouter(QRpage))
