@@ -63,7 +63,7 @@ function RegisteredTrains(props) {
             render: (text) => <span title={text} className="hide-long-text">{text}</span>,
         },
         {
-            title: 'Approval Status',
+            title: 'Approval',
             key: 'Status',
             dataIndex: 'Status',
             render: approvalStatus => {

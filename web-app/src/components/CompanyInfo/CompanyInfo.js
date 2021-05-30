@@ -95,7 +95,7 @@ function CompanyInfo(props) {
             <Layout style={{ minHeight: "100vh" }}>
                <Navbar dimensions={props.dimensions} />
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", height: "598px", position: "sticky" }}>
+                    <Card style={{ width: '100%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", position: "sticky" }}>
                         <Button type="primary" onClick={() => goToLocation(props.history.location.state.org)} style={{ marginBottom:"20px",marginleft:"20px" }} data-toggle="tooltip" data-placement="top" title="Go back to organization entities"><ArrowLeftOutlined />Back to Entities of {orgName} ({props.history.location.state.org})</Button>
                         <Tabs tabPosition={props.dimensions.width > 576 ? 'left' : 'top'}>
                             <TabPane tab="Details" key="1">

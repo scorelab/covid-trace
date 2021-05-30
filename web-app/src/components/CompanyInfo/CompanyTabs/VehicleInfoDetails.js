@@ -18,17 +18,12 @@ function VehicleInfoDetails(props) {
 
   let history = useHistory();
 
-
-
-
   function GoToQRPage(lang) {
     history.push({
       pathname: `/qrpage/${vehicleDetails.location}`,
       state: { ...vehicleDetails },
     });
   }
-
-
 
   useEffect(() => {
     console.log(props.companyDetails);
@@ -46,26 +41,26 @@ function VehicleInfoDetails(props) {
       <Divider />
 
       <Row>
-        <Col span={4}>
+        <Col xs={8} md={4}>
           <Text strong>Name :</Text>
         </Col>
-        <Col span={5}>
+        <Col>
           <Text>{vehicleDetails.name}</Text>
         </Col>
       </Row>
       <Row style={{ marginTop: "0.5em" }}>
-        <Col span={4}>
+        <Col xs={8} md={4}>
           <Text strong>Contact No :</Text>
         </Col>
-        <Col span={5}>
+        <Col>
           <Text>{vehicleDetails.contact_number}</Text>
         </Col>
       </Row>
       <Row style={{ marginTop: "0.5em" }}>
-        <Col span={4}>
+        <Col  xs={8} md={4}>
           <Text strong>Vehicle No :</Text>
         </Col>
-        <Col span={5}>
+        <Col>
           <Text>{vehicleDetails.vehicle_no}</Text>
         </Col>
       </Row>
@@ -73,8 +68,11 @@ function VehicleInfoDetails(props) {
       <Title level={5} style={{ textAlign: "center", marginTop: "80px" }}>
         Get QR Code
       </Title>
-      <Row justify="space-around" style={{ marginTop: "1em" }}>
-        <Col xs={0} sm={24} md={8}>
+      <Row
+        justify="space-around"
+        style={{ textAlign: "center", marginTop: "1em" }}
+      >
+        <Col xs={24} sm={24} md={8}>
           <Text strong>Sinhala QR Code</Text>
         </Col>
         <Col sm={24} md={7}>
@@ -85,7 +83,10 @@ function VehicleInfoDetails(props) {
             content="Text Copied"
             trigger="click"
             visible={props.copyPopoverState["sin"]}
-            onVisibleChange={props.getPopoverChangeFn("sin", 'http://traceapp.com/qWefeIG')}
+            onVisibleChange={props.getPopoverChangeFn(
+              "sin",
+              "http://traceapp.com/qWefeIG"
+            )}
           >
             <CopyTwoTone />
           </Popover>
@@ -102,19 +103,25 @@ function VehicleInfoDetails(props) {
           </Button>
         </Col>
       </Row>
-      <Row justify="space-around" style={{ marginTop: "1em" }}>
-        <Col xs={0} sm={24} md={8}>
+      <Row
+        justify="space-around"
+        style={{ textAlign: "center", marginTop: "1em" }}
+      >
+        <Col xs={24} sm={24} md={8}>
           <Text strong>English QR Code</Text>
         </Col>
         <Col sm={24} md={7}>
           <Text type="secondary">http://traceapp.com/eRjUklt</Text>
         </Col>
         <Col sm={24} md={1}>
-        <Popover
+          <Popover
             content="Text Copied"
             trigger="click"
             visible={props.copyPopoverState["eng"]}
-            onVisibleChange={props.getPopoverChangeFn("eng", 'http://traceapp.com/eRjUklt')}
+            onVisibleChange={props.getPopoverChangeFn(
+              "eng",
+              "http://traceapp.com/eRjUklt"
+            )}
           >
             <CopyTwoTone />
           </Popover>
@@ -131,19 +138,25 @@ function VehicleInfoDetails(props) {
           </Button>
         </Col>
       </Row>
-      <Row justify="space-around" style={{ marginTop: "1em" }}>
-        <Col xs={0} sm={24} md={8}>
+      <Row
+        justify="space-around"
+        style={{ textAlign: "center", marginTop: "1em" }}
+      >
+        <Col xs={24} sm={24} md={8}>
           <Text strong>Tamil QR Code</Text>
         </Col>
         <Col sm={24} md={7}>
           <Text type="secondary">http://traceapp.com/lIofRe</Text>
         </Col>
         <Col sm={24} md={1}>
-        <Popover
+          <Popover
             content="Text Copied"
             trigger="click"
             visible={props.copyPopoverState["tam"]}
-            onVisibleChange={props.getPopoverChangeFn("tam", "http://traceapp.com/lIofRe")}
+            onVisibleChange={props.getPopoverChangeFn(
+              "tam",
+              "http://traceapp.com/lIofRe"
+            )}
           >
             <CopyTwoTone />
           </Popover>

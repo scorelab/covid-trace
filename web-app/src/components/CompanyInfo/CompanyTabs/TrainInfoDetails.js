@@ -1,71 +1,78 @@
-import React, { useEffect, useState } from 'react'
-import { Col, Button, Popover, Typography, Divider, Row } from 'antd';
-import { CopyTwoTone } from '@ant-design/icons';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Col, Button, Popover, Typography, Divider, Row } from "antd";
+import { CopyTwoTone } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
 const { Text, Title } = Typography;
 
 function TrainInfoDetails(props) {
+  const [trainDetails, setTrainDetails] = useState({
+    carriage_no: "",
+    key: "",
+    location: "",
+    location_id: "",
+    location_type: "",
+    org: "",
+    train_name: "",
+    train_no: "",
+  });
 
-    const [trainDetails, setTrainDetails] = useState({
-        carriage_no: "",
-        key: "",
-        location: "",
-        location_id: "",
-        location_type: "",
-        org: "",
-        train_name: "",
-        train_no: ""
-    })
+  let history = useHistory();
 
-    let history = useHistory();
+  function GoToQRPage(lang) {
+    history.push({
+      pathname: `/qrpage/${trainDetails.location}`,
+      state: { ...trainDetails },
+    });
+  }
 
-    function GoToQRPage(lang) {
-        history.push({
-            pathname: `/qrpage/${trainDetails.location}`,
-            state: { ...trainDetails }
-        })
-    }
+  useEffect(() => {
+    console.log(props.companyDetails);
+    props.data &&
+      setTrainDetails({
+        ...props.data,
+      });
+  }, [props.companyDetails]);
 
-    useEffect(() => {
-        console.log(props.companyDetails)
-        props.data && setTrainDetails({
-            ...props.data
-        })
-    }, [props.companyDetails])
+  return (
+    <div>
+      <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>
+        Train Details
+      </Title>
+      <Divider />
 
-    return (
-        <div>
-            <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Train Details</Title>
-            <Divider />
+      <Row>
+        <Col xs={8} md={4}>
+          <Text strong>Train Name :</Text>
+        </Col>
+        <Col>
+          <Text>{trainDetails.train_name}</Text>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: "0.5em" }}>
+        <Col xs={8} md={4}>
+          <Text strong>Train No :</Text>
+        </Col>
+        <Col>
+          <Text>{trainDetails.train_no}</Text>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: "0.5em" }}>
+        <Col xs={8} md={4}>
+          <Text strong>Carriage No :</Text>
+        </Col>
+        <Col>
+          <Text>{trainDetails.carriage_no}</Text>
+        </Col>
+      </Row>
 
-            <Row>
-                <Col span={4}>
-                    <Text strong>Train Name :</Text>
-                </Col>
-                <Col span={5}>
-                    <Text>{trainDetails.train_name}</Text>
-                </Col>
-            </Row>
-            <Row style={{ marginTop: "0.5em" }}>
-                <Col span={4}>
-                    <Text strong>Train No :</Text>
-                </Col>
-                <Col span={5}>
-                    <Text style={{marginLeft:'10px'}}>{trainDetails.train_no}</Text>
-                </Col>
-            </Row>
-            <Row style={{ marginTop: "0.5em" }}>
-                <Col span={4}>
-                    <Text strong>Carriage No :</Text>
-                </Col>
-                <Col span={5}>
-                    <Text>{trainDetails.carriage_no}</Text>
-                </Col>
-            </Row>
-
-            <Title level={5} style={{ textAlign: "center", marginTop: '80px' }}>Get QR Code</Title>
-            <Row justify="space-around" style={{ marginTop: "1em" }}>
-        <Col xs={0} sm={24} md={8}>
+      <Title level={5} style={{ textAlign: "center", marginTop: "80px" }}>
+        Get QR Code
+      </Title>
+      <Row
+        justify="space-around"
+        style={{ textAlign: "center", marginTop: "1em" }}
+      >
+        <Col xs={24} sm={24} md={8}>
           <Text strong>Sinhala QR Code</Text>
         </Col>
         <Col sm={24} md={7}>
@@ -76,7 +83,10 @@ function TrainInfoDetails(props) {
             content="Text Copied"
             trigger="click"
             visible={props.copyPopoverState["sin"]}
-            onVisibleChange={props.getPopoverChangeFn("sin", 'http://traceapp.com/qWefeIG')}
+            onVisibleChange={props.getPopoverChangeFn(
+              "sin",
+              "http://traceapp.com/qWefeIG"
+            )}
           >
             <CopyTwoTone />
           </Popover>
@@ -93,19 +103,25 @@ function TrainInfoDetails(props) {
           </Button>
         </Col>
       </Row>
-      <Row justify="space-around" style={{ marginTop: "1em" }}>
-        <Col xs={0} sm={24} md={8}>
+      <Row
+        justify="space-around"
+        style={{ textAlign: "center", marginTop: "1em" }}
+      >
+        <Col xs={24} sm={24} md={8}>
           <Text strong>English QR Code</Text>
         </Col>
         <Col sm={24} md={7}>
           <Text type="secondary">http://traceapp.com/eRjUklt</Text>
         </Col>
         <Col sm={24} md={1}>
-        <Popover
+          <Popover
             content="Text Copied"
             trigger="click"
             visible={props.copyPopoverState["eng"]}
-            onVisibleChange={props.getPopoverChangeFn("eng", 'http://traceapp.com/eRjUklt')}
+            onVisibleChange={props.getPopoverChangeFn(
+              "eng",
+              "http://traceapp.com/eRjUklt"
+            )}
           >
             <CopyTwoTone />
           </Popover>
@@ -122,19 +138,25 @@ function TrainInfoDetails(props) {
           </Button>
         </Col>
       </Row>
-      <Row justify="space-around" style={{ marginTop: "1em" }}>
-        <Col xs={0} sm={24} md={8}>
+      <Row
+        justify="space-around"
+        style={{ textAlign: "center", marginTop: "1em" }}
+      >
+        <Col xs={24} sm={24} md={8}>
           <Text strong>Tamil QR Code</Text>
         </Col>
         <Col sm={24} md={7}>
           <Text type="secondary">http://traceapp.com/lIofRe</Text>
         </Col>
         <Col sm={24} md={1}>
-        <Popover
+          <Popover
             content="Text Copied"
             trigger="click"
             visible={props.copyPopoverState["tam"]}
-            onVisibleChange={props.getPopoverChangeFn("tam", "http://traceapp.com/lIofRe")}
+            onVisibleChange={props.getPopoverChangeFn(
+              "tam",
+              "http://traceapp.com/lIofRe"
+            )}
           >
             <CopyTwoTone />
           </Popover>
@@ -151,9 +173,8 @@ function TrainInfoDetails(props) {
           </Button>
         </Col>
       </Row>
-        </div>
-    )
+    </div>
+  );
 }
 
-export default TrainInfoDetails
-
+export default TrainInfoDetails;
