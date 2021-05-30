@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Layout, Divider, Button, Table, Tag, Space } from 'antd';
+import { Layout, Divider, Button, Table, Tag, Space, Tooltip } from 'antd';
 import { Typography } from 'antd';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { InfoCircleOutlined } from '@ant-design/icons';
 const { Title } = Typography;
 
 function RegisteredTrains(props) {
@@ -85,11 +86,17 @@ function RegisteredTrains(props) {
         {
             title: '',
             key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <Button size="small" onClick={() => goToCompanyInfo(record)} type="primary" data-toggle="tooltip" data-placement="top" title="View details of train">Details</Button>
-                </Space>
-            ),
+            render: (text, record) => {
+
+                if (props.dimensions.width > 375) {
+                    return  (<Space size="middle">
+                    <Button size="small" onClick={() => goToCompanyInfo(record)} type="primary" data-toggle="tooltip" data-placement="top" title="View details of private vehicle">Details</Button>
+                </Space>);
+                }
+                return (<Tooltip title="View Details">
+                <Button onClick={() => goToCompanyInfo(record)} shape="circle" icon={<InfoCircleOutlined />} />
+              </Tooltip> );
+            },
         },
     ];
 

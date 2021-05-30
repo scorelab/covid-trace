@@ -21,3 +21,8 @@ code {
   width:50%;
   display:block;
 }
+@media print {
+  .hide-in-print {
+    display: none;
+  }
+}

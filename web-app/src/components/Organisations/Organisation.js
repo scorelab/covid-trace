@@ -74,8 +74,8 @@ function Organisation(props) {
                                     (props.orgData && props.orgWithUserData && state.orgList && state.orgList.length) ?  
                                         state.orgList.map((org) => {
                                             return (
-                                                <Col sm={24} md={12} lg={12} xl={8} justify="space-around" align="middle" key={org.orgId}>
-                                                    <Card size="small" title={org.Name} style={{ width: 300, boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
+                                                <Col xs={24} md={12} lg={12} xl={8} justify="space-around" align="middle" key={org.orgId}>
+                                                    <Card size="small" title={org.Name} style={{ width: '100%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
                                                         <Row justify={"center"}>
                                                             <Text strong>UserName : </Text>
                                                             <Text> {org.UserName}</Text>

@@ -89,8 +89,8 @@ function TrainReg(props) {
 
 
     return (
-        <div>
-            <Card title="Train Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
+ 
+            <Card title="Train Details" style={{ width: '100%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
             <form onSubmit={submitDetails}>
                 <Row>
                     <Col span={24}> Train Name
@@ -130,7 +130,7 @@ function TrainReg(props) {
                     </Row>
                 </form>
             </Card>
-        </div>
+   
     )
 }
 

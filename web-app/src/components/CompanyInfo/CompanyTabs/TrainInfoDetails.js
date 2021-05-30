@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Button, Popover, Typography, Divider, Row } from "antd";
+import { Col, Button, Popover, Typography, Divider, Row, Tooltip } from "antd";
 import { CopyTwoTone } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 const { Text, Title } = Typography;
@@ -65,9 +65,11 @@ function TrainInfoDetails(props) {
         </Col>
       </Row>
 
-      <Title level={5} style={{ textAlign: "center", marginTop: "80px" }}>
+
+      <Title level={5} style={{ textAlign: "left", marginTop: "80px" }}>
         Get QR Code
       </Title>
+      <Divider />
       <Row
         justify="space-around"
         style={{ textAlign: "center", marginTop: "1em" }}
@@ -75,10 +77,11 @@ function TrainInfoDetails(props) {
         <Col xs={24} sm={24} md={8}>
           <Text strong>Sinhala QR Code</Text>
         </Col>
-        <Col sm={24} md={7}>
+        <Col sm={24} lg={7}>
           <Text type="secondary">http://traceapp.com/qWefeIG</Text>
         </Col>
-        <Col sm={24} md={1}>
+        <Col sm={24} lg={1}>
+        <Tooltip title="Copy Sinhala QR Code Link">
           <Popover
             content="Text Copied"
             trigger="click"
@@ -89,9 +92,9 @@ function TrainInfoDetails(props) {
             )}
           >
             <CopyTwoTone />
-          </Popover>
+          </Popover>   </Tooltip>
         </Col>
-        <Col sm={24} md={6}>
+        <Col sm={24} lg={6}>
           <Button
             type="primary"
             onClick={() => GoToQRPage("Sinhala")}
@@ -107,13 +110,14 @@ function TrainInfoDetails(props) {
         justify="space-around"
         style={{ textAlign: "center", marginTop: "1em" }}
       >
-        <Col xs={24} sm={24} md={8}>
+        <Col xs={24} sm={24} lg={8}>
           <Text strong>English QR Code</Text>
         </Col>
-        <Col sm={24} md={7}>
+        <Col sm={24} lg={7}>
           <Text type="secondary">http://traceapp.com/eRjUklt</Text>
         </Col>
-        <Col sm={24} md={1}>
+        <Col sm={24} lg={1}>
+        <Tooltip title="Copy English QR Code Link">
           <Popover
             content="Text Copied"
             trigger="click"
@@ -124,9 +128,9 @@ function TrainInfoDetails(props) {
             )}
           >
             <CopyTwoTone />
-          </Popover>
+          </Popover>   </Tooltip>
         </Col>
-        <Col sm={24} md={6}>
+        <Col sm={24} lg={6}>
           <Button
             type="primary"
             onClick={() => GoToQRPage("English")}
@@ -142,13 +146,14 @@ function TrainInfoDetails(props) {
         justify="space-around"
         style={{ textAlign: "center", marginTop: "1em" }}
       >
-        <Col xs={24} sm={24} md={8}>
+        <Col xs={24} sm={24} lg={8}>
           <Text strong>Tamil QR Code</Text>
         </Col>
-        <Col sm={24} md={7}>
+        <Col sm={24} lg={7}>
           <Text type="secondary">http://traceapp.com/lIofRe</Text>
         </Col>
-        <Col sm={24} md={1}>
+        <Col sm={24} lg={1}>
+        <Tooltip title="Copy Tamil QR Code Link">
           <Popover
             content="Text Copied"
             trigger="click"
@@ -159,9 +164,9 @@ function TrainInfoDetails(props) {
             )}
           >
             <CopyTwoTone />
-          </Popover>
+          </Popover>   </Tooltip>
         </Col>
-        <Col sm={24} md={6}>
+        <Col sm={24} lg={6}>
           <Button
             type="primary"
             onClick={() => GoToQRPage("Tamil")}

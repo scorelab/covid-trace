@@ -17,9 +17,9 @@ function UserProfile(props) {
         <div style={{ background: "#F2F2F2" }}>
             <Layout style={{ minHeight: "100vh" }}>
                 <Navbar dimensions={props.dimensions} />
-                <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", height: "696px", marginBottom:"80px", position: "sticky" }}>
-                        <Tabs tabPosition='left'>
+                <Content style={{ padding: '0 20px', display: 'flex', justifyContent: 'center' }}>
+                    <Card style={{ width: '950px', minHeight: 'auto', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom:"80px", position: "sticky" }}>
+                        <Tabs tabPosition={ props.dimensions.width > '576' ? 'left' : 'top'}>
                             <TabPane tab="Profile" key="1" data-toggle="tooltip" data-placement="top" title="Go to Profile">
                                 <Profile />
                             </TabPane>

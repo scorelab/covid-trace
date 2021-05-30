@@ -57,13 +57,11 @@ function LocationIndex(props) {
       {orgName.name && orgName.username && orgName.phonenumber ? (
         <Content
           style={{
-            padding: "0 50px",
-            display: "flex",
-            alignItems: "center",
-            flexFlow: "column wrap",
+            padding: "0 20px"
           }}
         >
-          <Title
+            <Row>
+              <Col xs={24}><Title
             level={5}
             style={{
               textAlign: "center",
@@ -73,10 +71,14 @@ function LocationIndex(props) {
           >
             Locations and Vehicles for {orgName.name} ({orgName.username})
           </Title>
+          </Col>
+          </Row>
+
+          <Row  style={{display: "flex", justifyContent: "center"}}>
+          <Col xs={24} lg={18}>
           <Card
             style={{
               width: "100%",
-              minWidth: "auto",
               boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
               marginTop: "20px",
               position: "sticky",
@@ -92,7 +94,7 @@ function LocationIndex(props) {
                     data-placement="top"
                     title="View business locations"
                   >
-                    <BusinessLocations />
+                    <BusinessLocations dimensions={props.dimensions} />
                   </TabPane>
                   <TabPane
                     tab="Private Vehicles"
@@ -101,7 +103,7 @@ function LocationIndex(props) {
                     data-placement="top"
                     title="View private vehicles"
                   >
-                    <RegisteredVehicles />
+                    <RegisteredVehicles dimensions={props.dimensions} />
                   </TabPane>
                   <TabPane
                     tab="Buses"
@@ -110,7 +112,7 @@ function LocationIndex(props) {
                     data-placement="top"
                     title="View buses"
                   >
-                    <RegisteredBuses />
+                    <RegisteredBuses dimensions={props.dimensions} />
                   </TabPane>
                   <TabPane
                     tab="Trains"
@@ -119,12 +121,14 @@ function LocationIndex(props) {
                     data-placement="top"
                     title="View trains"
                   >
-                    <RegisteredTrains />
+                    <RegisteredTrains dimensions={props.dimensions} />
                   </TabPane>
                 </Tabs>
               </Col>
             </Row>
           </Card>
+          </Col>
+          </Row>
         </Content>
       ) : (
         <div

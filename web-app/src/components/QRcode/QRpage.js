@@ -134,7 +134,7 @@ function QRpage(props) {
 
   return (
     <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: "center", flexDirection: 'column' }}>
-      <Button type="primary" style={{ marginBottom: '10px', marginTop: '20px' }} onClick={downloadPdf} data-toggle="tooltip" data-placement="top" title="Download QR Code as PDF file">Download as PDF</Button>
+      <Button className="hide-in-print" type="primary" style={{ marginBottom: '10px', marginTop: '20px' }} onClick={downloadPdf} data-toggle="tooltip" data-placement="top" title="Download QR Code as PDF file">Download as PDF</Button>
       <Card id='qrCoverPage' bordered={false} style={{
         width: '730px',
         height: '1070px',
