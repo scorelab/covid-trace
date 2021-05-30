@@ -26,7 +26,6 @@ function BusinessLocations(props) {
   }
 
   useEffect(() => {
-    console.log(UserName)
     let tempReqOrgList = [];
 
     (props.locationData && props.locationReqestData) && (Object.keys(props.locationReqestData).map(locReqId => {
@@ -90,7 +89,7 @@ function BusinessLocations(props) {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <Button size="small" onClick={() => goToCompanyInfo(record)} type="primary">Details</Button>
+          <Button size="small" onClick={() => goToCompanyInfo(record)} type="primary" data-toggle="tooltip" data-placement="top" title="View details of business location">Details</Button>
         </Space>
       ),
     },
@@ -120,7 +119,7 @@ function BusinessLocations(props) {
 
   return (
     <React.Fragment>
-      <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Registered Businesses</Title>
+      <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Registered Business Locations</Title>
       <Divider />
 
       <Table columns={columns} dataSource={state.orgList} />

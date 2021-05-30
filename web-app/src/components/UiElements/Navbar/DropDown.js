@@ -26,12 +26,12 @@ function DropDown (props) {
                 Add Your Location
             </Link>
           </li>
-          <li onClick={() => goToPath('/userProfile')} >
+          <li onClick={() => goToPath('/userProfile')} data-toggle="tooltip" data-placement="top" title="View profile">
             <Link to="">
               <UserOutlined style={{ fontSize: '15px'}} /> My profile
             </Link>
           </li> 
-          <li onClick={props.signOut} >
+          <li onClick={props.signOut} data-toggle="tooltip" data-placement="top" title="Log out">
             <Link to="">
               <LogoutOutlined style={{ fontSize: '15px' }} /> Sign out
             </Link>

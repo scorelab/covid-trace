@@ -22,6 +22,12 @@ export const signIn = (data, history) => async (
 
   dispatch({ type: actions.SIGNIN_START });
 
+  if(data.phoneNumber.length!=12){
+    dispatch({ type: actions.SIGNIN_FAIL, payload: 'Invalid phone number' });
+    dispatch({ type: actions.SIGNIN_END });
+    return;
+  }
+
   const users = firestore.collection('users');
 
   const hashedPassword = sha256(data.password);

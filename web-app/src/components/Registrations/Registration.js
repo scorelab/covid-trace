@@ -105,7 +105,7 @@ function Registration(props) {
                 {(UserName)?
                     (state.usernames && state.usernames.includes(UserName))?
                         <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            <Card title="Requesting For QR Code" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "25px", minHeight: "185px", position: "sticky" }}>
+                            <Card title="Add Organization Entity" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "25px", minHeight: "185px", position: "sticky" }}>
                                 <Row>
                                     <Col span={12}><Text>Select Owner</Text></Col>
                                     <Col span={12}>
@@ -119,12 +119,12 @@ function Registration(props) {
                                     </Col>
                                 </Row>
                                 <Row style={{ marginTop: "12px" }}>
-                                    <Col span={12}><Text>Select Request Type</Text></Col>
+                                    <Col span={12}><Text>Select Entity Type</Text></Col>
                                     <Col span={12}>
-                                        <Select placeholder="Request Type" style={{ width: "100%" }} onChange={changeRequestType}>
-                                            <Option value="Business">Business</Option>
+                                        <Select placeholder="Entity Type" style={{ width: "100%" }} onChange={changeRequestType}>
+                                            <Option value="Business">Business Location</Option>
+                                            <Option value="Vehicle">Private Vehicle</Option>
                                             <Option value="Bus">Bus</Option>
-                                            <Option value="Vehicle">Vehicle</Option>
                                             <Option value="Train">Train</Option>
                                         </Select>
                                     </Col>
@@ -139,11 +139,11 @@ function Registration(props) {
                       justifyContent: 'center',
                     }}
                   >
-                    <p style={{marginBottom:'41%'}}>Organization username not valid!</p>
+                    <p style={{marginBottom:'41%'}}>Invalid organization username!</p>
                   </div>
                 :
                 <Content style={{ padding: '0 50px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Card title="Requesting For QR Code" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "25px", minHeight: "185px", position: "sticky" }}>
+                    <Card title="Add Organization Entity" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "25px", minHeight: "185px", position: "sticky" }}>
                         <Row>
                             <Col span={12}><Text>Select Owner</Text></Col>
                             <Col span={12}>
@@ -157,12 +157,12 @@ function Registration(props) {
                             </Col>
                         </Row>
                         <Row style={{ marginTop: "12px" }}>
-                            <Col span={12}><Text>Select Request Type</Text></Col>
+                            <Col span={12}><Text>Select Entity Type</Text></Col>
                             <Col span={12}>
-                                <Select placeholder="Request Type" style={{ width: "100%" }} onChange={changeRequestType}>
-                                    <Option value="Business">Business</Option>
+                                <Select placeholder="Entity Type" style={{ width: "100%" }} onChange={changeRequestType}>
+                                    <Option value="Business">Business Location</Option>
+                                    <Option value="Vehicle">Private Vehicle</Option>
                                     <Option value="Bus">Bus</Option>
-                                    <Option value="Vehicle">Vehicle</Option>
                                     <Option value="Train">Train</Option>
                                 </Select>
                             </Col>

@@ -133,26 +133,31 @@ function BusinessReg(props) {
     };
 
     const error = () => {
-        message.error('Oops, Registration Failed');
+        message.error('Registration Failed');
     };
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "58vh", position: "sticky", marginBottom: '20px' }}>
+            <Card title="Business Location Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "58vh", position: "sticky", marginBottom: '20px' }}>
                 <form onSubmit={submitDetails}>
+                    <Divider orientation="left">Basic Details</Divider>
                     <Row>
-                        <Col span={24}>
-                            <Input placeholder="Name" name="name" value={state.name} onChange={handleChangeInputs} required/>
+                        <Col span={24}> Name
+                            <Input 
+                            aria-label="Enter your Name"
+                            placeholder="Name" name="name" value={state.name} onChange={handleChangeInputs} style={{ marginBottom: "5px", marginTop: "5px" }}  required/>
                         </Col>
                     </Row>
                     <Row justify="space-between" >
-                        <Col sm={24} md={13}  >
-                            <Input addonBefore="+94" placeholder="Contact No" style={{ marginTop: '12px' }} name="contact_no" value={state.contact_no} onChange={handleChangeInputs} required />
+                        <Col sm={24} md={13}  > Contact Number
+                            <Input 
+                            aria-label="Enter your contact number"
+                            addonBefore="+94" placeholder="Contact No" style={{ marginBottom: "5px", marginTop: "5px" }} name="contact_no" value={state.contact_no} onChange={handleChangeInputs} required />
                         </Col>
                         <Col sm={24} md={1}  >
                         </Col>
-                        <Col sm={24} md={10} >
-                            <Select placeholder="Premise Type" style={{ width: "100%", marginTop: '12px' }} name="premise_type" value={state.premise_type} onChange={handleChangePremiseType} required>
+                        <Col sm={24} md={10} > Premise Type
+                            <Select placeholder="Premise Type" style={{ width: "100%", marginBottom: "5px", marginTop: "5px" }} name="premise_type" value={state.premise_type} onChange={handleChangePremiseType} required>
                                 <Option value="School">School</Option>
                                 <Option value="Super Market">Super Market</Option>
                                 <Option value="Grocery">Grocery</Option>
@@ -160,10 +165,10 @@ function BusinessReg(props) {
                             </Select>
                         </Col>
                     </Row>
-                    <Divider orientation="left">Location</Divider>
+                    <Divider orientation="left">Location Details</Divider>
                     <Row justify="space-between" >
-                        <Col sm={24} md={7}  >
-                            <Select placeholder="Province" style={{ width: "100%", marginTop: '12px' }} onChange={handleChangeProvince}>
+                        <Col sm={24} md={7}  > Province
+                            <Select placeholder="Province" style={{ width: "100%", marginBottom: "5px", marginTop: "5px" }} onChange={handleChangeProvince}>
                                 <Option value="Western">Western</Option>
                                 <Option value="Eastern">Eastern</Option>
                                 <Option value="Central">Central</Option>
@@ -177,8 +182,8 @@ function BusinessReg(props) {
                         </Col>
                         <Col sm={24} md={1}  >
                         </Col>
-                        <Col sm={24} md={7} >
-                            <Select placeholder="District" style={{ width: "100%", marginTop: '12px' }} onChange={handleChangeDistrict}>
+                        <Col sm={24} md={7} > District
+                            <Select placeholder="District" style={{ width: "100%",  marginBottom: "5px", marginTop: "5px" }} onChange={handleChangeDistrict}>
                                 {
 
                                     state.DistrictList.map(i => {
@@ -189,8 +194,8 @@ function BusinessReg(props) {
                             </Select>
                         </Col>
                         <Col sm={24} md={1}></Col>
-                        <Col sm={24} md={7} >
-                            <Select placeholder="City" style={{ width: "100%", marginTop: '12px' }} name="city" onChange={handleChangeCity}>
+                        <Col sm={24} md={7} >City
+                            <Select placeholder="City" style={{ width: "100%", marginBottom: "5px", marginTop: "5px" }} name="city" onChange={handleChangeCity}>
 
                                 {
                                     state.CityList.map(i => {
@@ -201,42 +206,63 @@ function BusinessReg(props) {
                         </Col>
                     </Row>
                     <Row justify="space-between" >
-                        <Col sm={24} md={7}  >
-                            <Input placeholder="Postal Code" name="postal_code" onChange={handleChangeInputs} style={{ marginTop: "12px" }}/>
+                        <Col sm={24} md={7}  > Postal Code
+                            <Input 
+                            aria-label="Enter the postal code"
+                            placeholder="Postal Code" name="postal_code" onChange={handleChangeInputs} style={{ marginBottom: "5px", marginTop: "5px" }}/>
                         </Col>
                         <Col sm={24} md={1}  >
                         </Col>
-                        <Col sm={24} md={7} >
-                            <Input placeholder="Floor No" name="floor_no" onChange={handleChangeInputs} style={{ marginTop: "12px" }} />
+                        <Col sm={24} md={7} > Floor Number
+                            <Input 
+                            aria-label="Enter the floor number"
+                            placeholder="Floor No" name="floor_no" onChange={handleChangeInputs} style={{ marginBottom: "5px", marginTop: "5px" }} />
                         </Col>
                         <Col sm={24} md={1}></Col>
-                        <Col sm={24} md={7} >
-                            <Input placeholder="Unit No" onChange={handleChangeInputs} name="unit_no" style={{ marginTop: "12px" }} />
+                        <Col sm={24} md={7} > Unit Number
+                            <Input 
+                            aria-label="Enter the unit number"
+                            placeholder="Unit No" onChange={handleChangeInputs} name="unit_no" style={{ marginBottom: "5px", marginTop: "5px" }} />
                         </Col>
                     </Row>
                     <Row>
-                        <Col span={24}>
-                            <Input placeholder="Address" name="address" onChange={handleChangeInputs} style={{ marginTop: "12px" }} required/>
+                        <Col span={24}> Address
+                            <Input 
+                            aria-label="Enter the address"
+                            placeholder="Address" name="address" onChange={handleChangeInputs} style={{ marginBottom: "5px", marginTop: "5px" }} required/>
                         </Col>
                     </Row>
-                    <Divider orientation="left"></Divider>
+                    <Divider orientation="left">Internet Details</Divider>
                     <Row>
-                        <Col span={24}>
-                            <Input placeholder="FB Page URL" name="fb_url" onChange={handleChangeInputs} />
+                        <Col span={24}> Facebook page URL
+                            <Input 
+                            aria-label="Enter the facebook page URL"
+                            placeholder="FB Page URL" name="fb_url" onChange={handleChangeInputs} style={{ marginBottom: "5px", marginTop: "5px" }} />
                         </Col>
                     </Row>
                     <Row>
-                        <Col span={24}>
-                            <Input placeholder="Google Place" name="google_plc" onChange={handleChangeInputs} style={{ marginTop: "10px" }} />
+                        <Col span={24}> Google Place
+                            <Input 
+                            aria-label="Enter the google place"
+                            placeholder="Google Place" name="google_plc" onChange={handleChangeInputs} style={{ marginTop: "5px" }} />
                         </Col>
                     </Row>
                     <Row justify="space-between" align="middle">
-                        <Col sm={24} md={10}  >
-                            <Checkbox onChange={handleChangeInputs} name="isCorrect" style={{ marginTop: "40px" }} >Confirm Your Details Is Correct</Checkbox>
+                        <Col sm={24} md={25}  >
+                            <Checkbox 
+                            aria-label="Click here to declare that the above information is true and correct to the best of your knowledge"
+                            onChange={handleChangeInputs} name="isCorrect" style={{ marginTop: "10px" }} >I hereby declare that the above information is true and correct to the best of my knowledge.</Checkbox>
                         </Col>
-                        <Col sm={24} md={10}   >
-                            <Button type="primary" style={{ marginTop: "40px", width: "100%" }} htmlType="submit">Submit</Button>
-                        </Col>
+                    </Row>
+                    <Row style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                        <Button
+                            type="primary"
+                            style={{ marginRight: '20px',width:'140px' }}
+                            htmlType="submit"
+                            data-toggle="tooltip" data-placement="top" title="Add organization entity"
+                            >
+                            Add Entity
+                        </Button>
                     </Row>
                 </form>
             </Card>

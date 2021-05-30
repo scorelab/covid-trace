@@ -54,13 +54,13 @@ function SignedLinks(props) {
         (dimensions.width > 615)?
         <Col xs={12} sm={12} md={8} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
             <Link to="/addOrganisation">
-                <Button type="primary" style={{ marginRight: '20px' }}>Add Organizations</Button>
+                <Button type="primary" style={{ marginRight: '20px' }} data-toggle="tooltip" data-placement="top" title="Add new organization">Add Organization</Button>
             </Link>
             <Link to="/registration">
-                <Button type="primary" style={{ marginRight: '20px' }} >Add Your Location</Button>
+                <Button type="primary" style={{ marginRight: '20px' }} data-toggle="tooltip" data-placement="top" title="Add an entity belonging to your organization">Add Entity</Button>
             </Link>
-            <UserOutlined style={{ fontSize: '30px', marginRight: '20px' }} onClick={() => goToPath('/userProfile')} />
-            <LogoutOutlined style={{ fontSize: '30px' }} onClick={props.signOut}/>
+            <UserOutlined style={{ fontSize: '30px', marginRight: '20px' }} onClick={() => goToPath('/userProfile')} data-toggle="tooltip" data-placement="top" title="View profile" />
+            <LogoutOutlined style={{ fontSize: '30px' }} onClick={props.signOut} data-toggle="tooltip" data-placement="top" title="Log out" />
         </Col>:
         <Col xs={12} sm={12} md={8} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
             <Button onClick={showDropDown} type="primary" style={{ marginRight: '20px' }} ref={ref_btn}>
