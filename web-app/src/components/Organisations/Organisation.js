@@ -60,7 +60,7 @@ function Organisation(props) {
         history.push(`/registration/${val}`);
     }
 
-    // if (props.user == null) return <Redirect to='signIn' />
+    if (props.user == null) return <Redirect to='signIn' />
 
     return (
         <div style={{ background: "#F2F2F2" }}>
