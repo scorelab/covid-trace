@@ -92,6 +92,9 @@
     padding: 0px !important;
 }
 
+.loginBtn:hover {
+    color: #40a9ff !important;
+}
 .signUpbtn {
     width: 180px !important;
     height: 55px !important;
