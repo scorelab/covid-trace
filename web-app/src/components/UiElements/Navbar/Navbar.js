@@ -41,7 +41,7 @@ function Navbar(props) {
                         <Title level={3} style={{ marginTop: "10px", marginLeft: '-10px', cursor: 'pointer' }} onClick={goToHome} data-toggle="tooltip" data-placement="top" title="Go to Safe In - Home"> SAFE IN</Title>
                     </Col>
                     {
-                        (user) ? <SignedLinks /> :
+                        (user) ? <SignedLinks dimensions={props.dimensions} /> :
                             <Col xs={12} sm={12} md={8} style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                                 <Link to={props.direct}>
                                     <Button

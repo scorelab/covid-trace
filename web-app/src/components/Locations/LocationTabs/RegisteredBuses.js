@@ -58,10 +58,10 @@ function RegisteredBuses(props) {
             title: 'Bus No',
             dataIndex: 'bus_no',
             key: 'bus_no',
-            render: text => <a>{text}</a>,
+            render: (text) => <span title={text} className="hide-long-text">{text}</span>,
         },
         {
-            title: 'Approval Status',
+            title: 'Approval',
             key: 'Status',
             dataIndex: 'Status',
             render: approvalStatus => {

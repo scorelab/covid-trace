@@ -60,10 +60,10 @@ function RegisteredTrains(props) {
             title: 'Train Name',
             dataIndex: 'train_name',
             key: 'train_name',
-            render: text => <a>{text}</a>,
+            render: (text) => <span title={text} className="hide-long-text">{text}</span>,
         },
         {
-            title: 'Approval Status',
+            title: 'Approval',
             key: 'Status',
             dataIndex: 'Status',
             render: approvalStatus => {
@@ -76,7 +76,7 @@ function RegisteredTrains(props) {
                     color = 'red'
                 }
                 return (
-                    <Tag color={color} key={approvalStatus}>
+                    <Tag style={{wordBreak:'break-all'}} color={color} key={approvalStatus}>
                         {approvalStatus.toUpperCase()}
                     </Tag>
                 );

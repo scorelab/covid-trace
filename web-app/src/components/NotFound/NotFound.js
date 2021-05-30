@@ -1,9 +1,9 @@
 import React from 'react';
 import Navbar from '../UiElements/Navbar/Navbar';
 
-const NotFound = () => (
+const NotFound = (props) => (
   <div>
-    <Navbar />
+   <Navbar dimensions={props.dimensions} />
     <div
       style={{
         display: 'flex',

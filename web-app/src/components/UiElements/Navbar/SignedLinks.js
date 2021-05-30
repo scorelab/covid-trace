@@ -13,10 +13,7 @@ function SignedLinks(props) {
     function goToPath(path) {
         history.push(path);
     }
-    const [dimensions, setDimensions] = React.useState({ 
-        height: window.innerHeight,
-        width: window.innerWidth
-      })
+
       
     const [dropdown, setDropdown] = useState(false);
     const ref_drop = useRef(null);
@@ -35,23 +32,15 @@ function SignedLinks(props) {
 
 
     useEffect(() => {
-        function handleResize() {
-          setDimensions({
-            height: window.innerHeight,
-            width: window.innerWidth
-          })
-        }
-        window.addEventListener('resize', handleResize)
         window.addEventListener('click', handleClickOutside);
         return _ => {
-            window.removeEventListener('resize', handleResize)
             window.removeEventListener('click', handleClickOutside);
         }
     })
 
 
     return (
-        (dimensions.width > 615)?
+        (props.dimensions.width > 615)?
         <Col xs={12} sm={12} md={8} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
             <Link to="/addOrganisation">
                 <Button type="primary" style={{ marginRight: '20px' }} data-toggle="tooltip" data-placement="top" title="Add new organization">Add Organization</Button>
