@@ -47,16 +47,16 @@ function SignUp(props) {
                             password: state.password,
                         })
                     }else{
-                        error('Phone No Format Wrong')
+                        error('Invalid phone number. Please enter your phone number without the Country Code and the Leading Zero.')
                     }
                 }else{
-                    error('NIC Format Wrong')
+                    error('Invalid NIC Format. Please enter only the numeric part of your NIC number.')
                 }
             } else {
-                error("Please Re enter password again")
+                error("Your passwords do not match. Please recheck your passwords.")
             }
         } else {
-            error("Please Fill all these details")
+            error("Please fill out the form to Register.")
         }
     }
 
@@ -68,7 +68,7 @@ function SignUp(props) {
     }
 
     const success = () => {
-        message.success('You Have Registered Successfully');
+        message.success('You Have Registered Successfully!');
     };
 
     const error = (err) => {
@@ -80,14 +80,26 @@ function SignUp(props) {
             <Layout style={{ height: "100vh" }}>
                 <Navbar  direct="SignIn" dir_name="Log In"/>
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card title="Welcome" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "131px", height: '330px' }}>
-                        <div style={{ margin: "10px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-                            <Input addonBefore="+94" defaultValue="" placeholder="Contact No"  aria-label="Enter your 9 digit contact number" aria-required="true" value={state.phoneNumber} name='phoneNumber' type="number" style={{ marginBottom: '10px' }} onChange={handleChange} />
-                            <Input defaultValue="" placeholder="NIC" aria-label="Enter your 9 digit National Identity Card number" aria-required="true" style={{ marginBottom: '10px' }} name='nic' type="number" value={state.nic} onChange={handleChange} />
-                            <Input defaultValue="" placeholder="Password" aria-label="Enter a password" aria-required="true" type="password" style={{ marginBottom: '10px' }} value={state.password} name='password' onChange={handleChange} />
-                            <Input defaultValue="" placeholder="Reenter Password" aria-label="Reenter the password" aria-required="true" type="password" style={{ marginBottom: '10px' }} value={state.repeatPassword} name='repeatPassword' onChange={handleChange} />
+                    <Card title="Welcome to Safe In!" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "51px", height: '430px', textAlign: 'center' }}>
+                        <div style={{ margin: "10px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column', textAlign: 'left' }}>
+                            <div>
+                                Phone Number
+                                <Input addonBefore="+94" defaultValue="" placeholder="Phone Number"  aria-label="Enter your 9 digit contact number" aria-required="true" value={state.phoneNumber} name='phoneNumber' type="number" style={{ marginBottom: '10px' }} onChange={handleChange} />
+                            </div>
+                            <div>
+                                NIC Number (Numeric Part Only)
+                                <Input defaultValue="" placeholder="National Identity Card Number" aria-label="Enter the numeric part of your National Identity Card number" aria-required="true" style={{ marginBottom: '10px' }} name='nic' type="number" value={state.nic} onChange={handleChange} />
+                            </div>
+                            <div>
+                                Password
+                                <Input defaultValue="" placeholder="Password" aria-label="Enter your password" aria-required="true" type="password" style={{ marginBottom: '10px' }} value={state.password} name='password' onChange={handleChange} />
+                            </div>
+                            <div>
+                                Re-Enter Password
+                                <Input defaultValue="" placeholder="Re-Enter Password" aria-label="Please re-enter your password" aria-required="true" type="password" style={{ marginBottom: '10px' }} value={state.repeatPassword} name='repeatPassword' onChange={handleChange} />
+                            </div>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center", paddingTop: '20px' }}>
-                                <Button type="primary" style={{ width: '150px' }} onClick={submitDetails}>Register</Button>
+                                <Button type="primary" style={{ width: '150px' }} onClick={submitDetails} data-toggle="tooltip" data-placement="top" title="Register with Safe In">Register</Button>
                             </div>
                         </div>
 

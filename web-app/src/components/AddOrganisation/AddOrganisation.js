@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Card, Input, Button, message } from 'antd';
+import { Layout, Card, Row, Col, Input, Button, message } from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import { connect } from 'react-redux'
@@ -85,7 +85,7 @@ function AddOrganisation(props) {
     };
 
     const warning = () => {
-        message.warning('Please Fill all the details');
+        message.warning('Please fill out the form to add your organization');
       };
 
 
@@ -95,15 +95,34 @@ function AddOrganisation(props) {
             <Layout style={{ height: "100vh" }}>
                 <Navbar />
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card title="Add New Organization" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "131px", height: '290px' }}>
+                    <Card title="Add New Organization" style={{ width: '674px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "25px", height: '290px' }}>
                         <div style={{ margin: "5px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-
-                            <Input defaultValue="" placeholder="Organisation Name" name="Name" style={{ marginBottom: '10px' }} onChange={handleChange} />
-                            <Input defaultValue="" placeholder="Organisation UserName" name="UserName" style={{ marginBottom: '10px' }} onChange={handleChange} />
-                            <Input defaultValue="" placeholder="Website URL" name="WebSite" style={{ marginBottom: '10px' }} onChange={handleChange} />
-
+                            <Row>
+                                <Col span={12}>
+                                    Name of the Organization
+                                </Col>
+                                <Col span={12}>
+                                    <Input defaultValue="" placeholder="Name of the Organization" aria-label="Enter the name of your organization" aria-required="true" name="Name" style={{ marginBottom: '10px' }} onChange={handleChange} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col span={12}>
+                                    Username of the Organization
+                                </Col>
+                                <Col span={12}>
+                                    <Input defaultValue="" placeholder="Username of the Organization" aria-label="Enter the username of your organization" aria-required="true" name="UserName" style={{ marginBottom: '10px' }} onChange={handleChange} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col span={12}>
+                                    Website URL
+                                </Col>
+                                <Col span={12}>
+                                    <Input defaultValue="" placeholder="Website URL" aria-label="Enter the URL to your organization website" aria-required="true" name="WebSite" style={{ marginBottom: '10px' }} onChange={handleChange} />
+                                </Col>
+                            </Row>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center", paddingTop: '10px' }}>
-                                <Button type="primary" style={{ width: "150px" }} onClick={handleSubmit}>Add</Button>
+                                <Button type="primary" style={{ width: "150px" }} onClick={handleSubmit} data-toggle="tooltip" data-placement="top" title="Add organization">Add Organization</Button>
                             </div>
 
                         </div>

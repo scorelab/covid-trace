@@ -5,7 +5,7 @@ const { Text, Title } = Typography;
 function Profile(props) {
     return (
         <div>
-            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Profile</Title>
+            <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Profile Data</Title>
                                 <Divider />
                                 <Row>
                                     <Col span={2}>

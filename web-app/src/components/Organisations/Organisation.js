@@ -87,14 +87,14 @@ function Organisation(props) {
                                                         {(state.orgList_withLoc.includes(org.UserName)) ?
                                                         (
                                                         <div>
-                                                            <Button type="primary" onClick={() => goToLocation(org.UserName)}>Locations</Button>
+                                                            <Button type="primary" onClick={() => goToLocation(org.UserName)} data-toggle="tooltip" data-placement="top" title="Go to entities">Entities</Button>
                                                             <br></br>
-                                                            <Button type="primary" onClick={() => goToOrg(org.UserName)} style={{ marginTop: '10px' }}>Add Your Location</Button>
+                                                            <Button type="primary" onClick={() => goToOrg(org.UserName)} style={{ marginTop: '10px' }} data-toggle="tooltip" data-placement="top" title="Add an entity belonging to your organization">Add Entity</Button>
                                                         </div>
                                                         ):
                                                         (<div>
-                                                            <p>Go ahead and add locations to <b>{org.Name}</b></p>
-                                                            <Button type="primary" onClick={() => goToOrg(org.UserName)}>Add Your Location</Button>
+                                                            <p>Go ahead and add entities to <b>{org.Name}!</b></p>
+                                                            <Button type="primary" onClick={() => goToOrg(org.UserName)} data-toggle="tooltip" data-placement="top" title="Add an entity belonging to your organization">Add Entity</Button>
                                                         </div>)
                                                         }
                                                         
@@ -105,12 +105,12 @@ function Organisation(props) {
                                 :
                                 <Row style={{ height: '59vh', width: '1150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         <Col sm={24} md={12} lg={12} xl={8} justify="space-around" align="middle">
-                                            <Card size="small" title="Welcome !" style={{ width: 300, boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
+                                            <Card size="small" title="Welcome!" style={{ width: 300, boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
                                                 <Row justify={"center"}>
                                                     <Text strong>Get started by adding an organization</Text>
                                                     <Text style={{marginTop: "10px"}}>
                                                         <Link to="/addOrganisation">
-                                                            <Button type="primary" >Add Organizations</Button>
+                                                            <Button type="primary" data-toggle="tooltip" data-placement="top" title="Add new organization">Add Organization</Button>
                                                         </Link>
                                                     </Text>
                                                 </Row>

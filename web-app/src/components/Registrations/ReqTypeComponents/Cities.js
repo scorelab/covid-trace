@@ -1,7 +1,7 @@
 
 let cities = {
     'Western': {
-        'colombo': [
+        'Colombo': [
             "Colombo 01 - Fort",
             "Colombo 02 - Slave Island &amp; Union Place",
             "Colombo 03 - Kollupitiya",

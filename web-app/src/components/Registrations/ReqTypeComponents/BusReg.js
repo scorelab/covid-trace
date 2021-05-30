@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Row, Col, Input, Checkbox, Button, message } from 'antd';
+import { Card, Divider, Row, Col, Input, Checkbox, Button, message } from 'antd';
 import { registerBus } from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom";
@@ -95,8 +95,9 @@ function BusReg(props) {
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
-                <form onSubmit={submitDetails}>
+            <Card title="Bus Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
+                <form onSubmit={submitDetails}>rfe
+                <Divider orientation="left">Bus Details</Divider>
                 <Row justify="space-between" >
                     <Col sm={24} md={13}  > Bus Number
                         <Input 
@@ -109,11 +110,12 @@ function BusReg(props) {
                         placeholder="Bus Route No" name="bus_route_no" onChange={handleChange} style={{ marginBottom: "10px", marginTop: "10px"  }} required/>
                     </Col>
                 </Row>
+                <Divider orientation="left">Owner Details</Divider>
                 <Row justify="space-between" >
-                    <Col sm={24} md={10}  > Name
+                    <Col sm={24} md={10}  > Owner's Name
                         <Input 
                         aria-label="Enter your Name"
-                        placeholder="Name" name="name" style={{ marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
+                        placeholder="Owner's Name" name="name" style={{ marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
                     </Col>
                     <Col sm={24} md={10} > Contact Number
                         <Input 
@@ -133,8 +135,9 @@ function BusReg(props) {
                             type="primary"
                             style={{ marginRight: '20px',width:'140px' }}
                             htmlType="submit"
+                            data-toggle="tooltip" data-placement="top" title="Add organization entity"
                             >
-                            Submit
+                            Add Entity
                         </Button>
                     </Row>
                 </form>

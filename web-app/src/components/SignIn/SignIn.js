@@ -49,7 +49,7 @@ function SignIn(props) {
 
 
           <Card
-            title="Welcome" 
+            title="Welcome to Safe In!" 
             style={{
               width: 475,
               boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -66,7 +66,7 @@ function SignIn(props) {
                     aria-label={"Enter your phone number in the +94 format without the +94 part"}
                     addonBefore="+94"
                     defaultValue=""
-                    placeholder="Contact No"
+                    placeholder="Contact No."
                     style={{ marginBottom: '10px', paddingTop: '5px' }}
                     onChange={onChangePhoneNumber}
                     value={contactNo}
@@ -92,14 +92,15 @@ function SignIn(props) {
                       style={{ marginRight: '20px',width:'140px' }}
                       //onClick={signIn}
                       htmlType="submit"
+                      data-toggle="tooltip" data-placement="top" title="Login to Safe In"
                     >
-                      Sign In
+                      Log In
                   </Button>
                 </Row>
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
                   <Link to="/signUp"
-                    aria-label="Haven't Sign Up yet? Click here to sign up">
-                    Haven't Sign Up yet? Click here to sign up
+                    aria-label="If you are new to Safe In, click here to register" data-toggle="tooltip" data-placement="top" title="Register with Safe In">
+                    New to Safe In? Click here to Register
                   </Link>
                 </Row>
               </form>

@@ -55,16 +55,16 @@ function LocationIndex(props) {
                     <Title level={5} style={{ textAlign: "center", marginBottom: "-10px",marginTop: "15px" }}>{orgName.name} ({orgName.username})</Title>
                 <Card style={{ width: '950px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", height: "598px", position: "sticky" }}>
                     <Tabs tabPosition='left'>
-                        <TabPane tab="Businesses" key="1">
+                        <TabPane tab="Locations" key="1" data-toggle="tooltip" data-placement="top" title="View business locations">
                             <BusinessLocations />
                         </TabPane>
-                        <TabPane tab="Vehicles" key="2">
+                        <TabPane tab="Private Vehicles" key="2" data-toggle="tooltip" data-placement="top" title="View private vehicles">
                             <RegisteredVehicles />
                         </TabPane>
-                        <TabPane tab="Buses" key="3">
+                        <TabPane tab="Buses" key="3" data-toggle="tooltip" data-placement="top" title="View buses">
                             <RegisteredBuses />
                         </TabPane>
-                        <TabPane tab="Trains" key="4">
+                        <TabPane tab="Trains" key="4" data-toggle="tooltip" data-placement="top" title="View trains">
                             <RegisteredTrains />
                         </TabPane>
                     </Tabs>

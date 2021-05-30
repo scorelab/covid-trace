@@ -35,11 +35,11 @@ function TrainInfoDetails(props) {
 
     return (
         <div>
-            <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Train Details</Title>
+            <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Train Details</Title>
             <Divider />
 
             <Row>
-                <Col span={3}>
+                <Col span={4}>
                     <Text strong>Train Name :</Text>
                 </Col>
                 <Col span={5}>
@@ -47,7 +47,7 @@ function TrainInfoDetails(props) {
                 </Col>
             </Row>
             <Row style={{ marginTop: "0.5em" }}>
-                <Col span={2}>
+                <Col span={4}>
                     <Text strong>Train No :</Text>
                 </Col>
                 <Col span={5}>
@@ -55,15 +55,13 @@ function TrainInfoDetails(props) {
                 </Col>
             </Row>
             <Row style={{ marginTop: "0.5em" }}>
-                <Col span={3}>
+                <Col span={4}>
                     <Text strong>Carriage No :</Text>
                 </Col>
                 <Col span={5}>
                     <Text>{trainDetails.carriage_no}</Text>
                 </Col>
             </Row>
-
-
 
             <Title level={5} style={{ textAlign: "center", marginTop: '80px' }}>Get QR Code</Title>
             <Row justify="space-around" style={{ marginTop: "1em" }}>
@@ -77,7 +75,7 @@ function TrainInfoDetails(props) {
                     <CopyTwoTone />
                 </Col>
                 <Col sm={24} md={6}>
-                    <Button type="primary" onClick={() => GoToQRPage('Sinhala')}>Download QR</Button>
+                    <Button type="primary" onClick={() => GoToQRPage('Sinhala')} data-toggle="tooltip" data-placement="top" title="Download QR Code">Download QR</Button>
                 </Col>
             </Row>
             <Row justify="space-around" style={{ marginTop: "1em" }}>
@@ -91,7 +89,7 @@ function TrainInfoDetails(props) {
                     <CopyTwoTone />
                 </Col>
                 <Col sm={24} md={6}>
-                    <Button type="primary" onClick={() => GoToQRPage('English')} >Download QR</Button>
+                    <Button type="primary" onClick={() => GoToQRPage('English')} data-toggle="tooltip" data-placement="top" title="Download QR Code">Download QR</Button>
                 </Col>
             </Row>
             <Row justify="space-around" style={{ marginTop: "1em" }}>
@@ -105,7 +103,7 @@ function TrainInfoDetails(props) {
                     <CopyTwoTone />
                 </Col>
                 <Col sm={24} md={6}>
-                    <Button type="primary" onClick={() => GoToQRPage('Tamil')}>Download QR</Button>
+                    <Button type="primary" onClick={() => GoToQRPage('Tamil')} data-toggle="tooltip" data-placement="top" title="Download QR Code">Download QR</Button>
                 </Col>
             </Row>
         </div>

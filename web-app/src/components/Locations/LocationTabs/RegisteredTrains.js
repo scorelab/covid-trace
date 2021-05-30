@@ -87,7 +87,7 @@ function RegisteredTrains(props) {
             key: 'action',
             render: (text, record) => (
                 <Space size="middle">
-                    <Button size="small" onClick={() => goToCompanyInfo(record)} type="primary">Details</Button>
+                    <Button size="small" onClick={() => goToCompanyInfo(record)} type="primary" data-toggle="tooltip" data-placement="top" title="View details of train">Details</Button>
                 </Space>
             ),
         },
@@ -97,7 +97,7 @@ function RegisteredTrains(props) {
     
     return (
         <React.Fragment>
-        <Title level={5} style={{ textAlign: "center", marginBottom: "-15px" }}>Registered Trains</Title>
+        <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Registered Trains</Title>
         <Divider />
 
         <Table columns={columns} dataSource={state.orgList} />

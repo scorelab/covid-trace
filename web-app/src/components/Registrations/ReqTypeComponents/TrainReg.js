@@ -90,7 +90,7 @@ function TrainReg(props) {
 
     return (
         <div>
-            <Card title="Fill these Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
+            <Card title="Train Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
             <form onSubmit={submitDetails}>
                 <Row>
                     <Col span={24}> Train Name
@@ -105,7 +105,7 @@ function TrainReg(props) {
                         aria-label="Enter train number"
                         placeholder="Train No" name="train_no" style={{  marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
                     </Col>
-                    <Col sm={24} md={10} > carriage Number
+                    <Col sm={24} md={10} > Carriage Number
                         <Input 
                         aria-label="Enter carriage number"
                         placeholder="Carriage No" name="carriage_no" style={{ marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
@@ -123,8 +123,9 @@ function TrainReg(props) {
                             type="primary"
                             style={{ marginRight: '20px',width:'140px' }}
                             htmlType="submit"
+                            data-toggle="tooltip" data-placement="top" title="Add organization entity"
                             >
-                            Submit
+                            Add Entity
                         </Button>
                     </Row>
                 </form>
