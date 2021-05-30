@@ -56,13 +56,13 @@ function Navbar(props) {
 
                 </Row>
             </Header>
-            <Header style={{ background: 'rgba(29, 233, 182, 0.23)', height: '40px', display: 'flex', alignItems: "center", paddingLeft: "20px" }}>
+            <Header style={{ background: 'rgba(29, 233, 182, 0.23)', height: '50px', display: 'flex', alignItems: "center", paddingLeft: "20px", lineHeight: "11px" }}>
                 <Row style={{ width: '100%', padding: '0px 0px 5px 0px' }}>
                     <Col xs={24} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'start' }}>
                         <Avatar size={30} src={family} style={{ float: 'left', marginTop: "2px" }} alt="picture of a family" />
                         <Text style={{ color: "#626262", marginLeft: "5px", marginTop: "2px" }}>Stay safe without being traced</Text>
                     </Col>
-                    <Col xs={24} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'start', paddingLeft: "25%" }}>
+                    <Col xs={24} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingLeft: "10%" }}>
                         <div id="google_translate_element"></div>
                     </Col>
                 </Row>

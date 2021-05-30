@@ -46,18 +46,18 @@ function HomePage(props) {
                 <Button className="loginBtn" style={{ marginRight: '30px' }} data-toggle="tooltip" data-placement="top" title="Log in to Safe In">LOG IN</Button>
             </Link>
             <Link to='/signUp' data-toggle="tooltip" data-placement="top" title="Sign up with Safe In">
-                <Button className="loginBtn" style={{ backgroundColor: 'rgba(29, 233, 110, 0.93)' }} data-toggle="tooltip" data-placement="top" title="Sign up with Safe In">REGISTER</Button>
+                <Button className="loginBtn" style={{ backgroundColor: 'rgba(29, 233, 110, 0.93)', color:"white", backgroundColor:"black" }} data-toggle="tooltip" data-placement="top" title="Sign up with Safe In">REGISTER</Button>
             </Link>
           </Col>
         </Row>
       </Header>
-      <Header style={{ background: 'rgba(29, 233, 182, 0.23)', height: '40px', display: 'flex', alignItems: "center", paddingLeft: "20px" }}>
+      <Header style={{ background: 'rgba(29, 233, 182, 0.23)', height: '50px', display: 'flex', alignItems: "center", paddingLeft: "20px", lineHeight:"11px" }}>
         <Row style={{ width: '100%', padding: '0px 0px 5px 0px' }}>
           <Col xs={24} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'start' }}>
             <Avatar size={30} src={family} style={{ float: 'left', marginTop: "2px" }} alt="picture of a family" />
             <Text style={{ color: "#626262", marginLeft: "5px", marginTop: "2px" }}>Stay safe without being traced</Text>
           </Col>
-          <Col xs={24} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: "25%", justifyContent: 'start' }}>
+          <Col xs={24} md={12} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: "10%", justifyContent: 'flex-end' }}>
             <div id="google_translate_element"></div>
           </Col>
         </Row>
