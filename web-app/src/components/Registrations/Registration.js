@@ -129,7 +129,7 @@ function Registration(props) {
               >
                 <Col xs={20} lg={12}>
                   <Card
-                    title={<Title strong>Add Organization Entity</Title>}
+                    title={<Title level={5} >Add Organization Entity</Title>}
                     style={{
                       width: "100%",
                       boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
@@ -214,7 +214,7 @@ function Registration(props) {
             >
               <Col xs={20} lg={12}>
                 <Card
-                  title="Add Organization Entity"
+                  title={<Title level={5} >Add Organization Entity</Title>}
                   style={{
                     width: "100%",
                     boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",

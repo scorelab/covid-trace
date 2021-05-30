@@ -8,7 +8,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Link, useHistory } from "react-router-dom";
 const { Content } = Layout;
-const { Text } = Typography
+const { Text, Title } = Typography
 
 function Organisation(props) {
 
@@ -67,7 +67,7 @@ function Organisation(props) {
             <Layout style={{ minHeight: "100vh" }}>
                <Navbar dimensions={props.dimensions} />
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card title="Organizations" style={{ width: '1150px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "6.9vh", overflow: "auto", minHeight: "627px", marginBottom: "80px", position: "sticky" }}>
+                    <Card title={<Title level={5}>Organizations</Title>} style={{ width: '1150px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "6.9vh", overflow: "auto", minHeight: "627px", marginBottom: "80px", position: "sticky" }}>
                         <Row>
                             {
                                 (loaded)?
@@ -75,7 +75,7 @@ function Organisation(props) {
                                         state.orgList.map((org) => {
                                             return (
                                                 <Col xs={24} md={12} lg={12} xl={8} justify="space-around" align="middle" key={org.orgId}>
-                                                    <Card size="small" title={org.Name} style={{ width: '100%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
+                                                    <Card size="small" title={<Text strong>{org.Name}</Text>} style={{ width: '95%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
                                                         <Row justify={"center"}>
                                                             <Text strong>UserName : </Text>
                                                             <Text> {org.UserName}</Text>
