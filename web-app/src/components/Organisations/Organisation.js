@@ -69,6 +69,7 @@ function Organisation(props) {
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
                     <Card title={<Title level={5}>Organizations</Title>} style={{ width: '1150px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "6.9vh", overflow: "auto", minHeight: "627px", marginBottom: "80px", position: "sticky" }}>
                         <Row>
+                        <Col>
                             {
                                 (loaded)?
                                     (props.orgData && props.orgWithUserData && state.orgList && state.orgList.length) ?  
@@ -103,9 +104,9 @@ function Organisation(props) {
                                             )
                                         })  
                                 :
-                                <Row style={{ height: '59vh', width: '1150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <Row style={{ height: '59vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         <Col sm={24} md={12} lg={12} xl={8} justify="space-around" align="middle">
-                                            <Card size="small" title="Welcome!" style={{ width: 300, boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
+                                            <Card size="small" title="Welcome!" style={{ width: "100%", boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
                                                 <Row justify={"center"}>
                                                     <Text strong>Get started by adding an organization</Text>
                                                     <Text style={{marginTop: "10px"}}>
@@ -122,7 +123,7 @@ function Organisation(props) {
                                      <Spin size="large" />
                                  </Row> 
                             }
-
+</Col>
                         </Row>
                     </Card>
 
