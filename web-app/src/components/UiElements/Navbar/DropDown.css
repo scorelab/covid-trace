@@ -8,7 +8,7 @@
     margin-top: 5px;
     z-index: 99 !important; 
     box-shadow: 5px 5px 5px grey;
-    background: #d6dce2;
+    background: #ffffff;
   }
   
   .dropdown-menu li {
@@ -18,7 +18,7 @@
   }
   
   .dropdown-menu li:hover {
-    background: #bcbcc5;
+    background: #e1f0fd;
   }
 
   
