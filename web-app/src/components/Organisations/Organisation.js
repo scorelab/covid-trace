@@ -24,7 +24,7 @@ function Organisation(props) {
     useEffect(() => {
         let tempOrgList = [];
         let temporgList_withLoc = [];
-        (props.orgData && props.orgWithUserData) && (Object.keys(props.orgWithUserData).map(orgIdUsr => {
+        (props.user && props.orgData && props.orgWithUserData) && (Object.keys(props.orgWithUserData).map(orgIdUsr => {
             setLoaded(true)
             if (props.orgWithUserData[orgIdUsr].phoneNumber === props.user.phoneNumber) {
                 (Object.keys(props.orgData).map(orgId => {
