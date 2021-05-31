@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Card, Input, Button, message, Spin } from 'antd';
+import { Layout, Card, Input, Button, message, Spin, Typography } from 'antd';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import { signUp } from '../../store/actions/authActions'
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom";
 const { Content } = Layout;
+
+const { Title } = Typography;
 
 function SignUp(props) {
 
@@ -80,8 +82,7 @@ function SignUp(props) {
             <Layout style={{ minHeight: "100vh" }}>
                 <Navbar dimensions={props.dimensions}  direct="SignIn" dir_name="Log In"/>
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-
-                    <Card title="Welcome to Safe In!" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "50px", marginBottom:'10px' , maxHeight: '400px', textAlign: 'center' }}>
+                    <Card title={<Title level={5}>Welcome to Safe In!</Title>}  style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "50px", marginBottom:'10px' , maxHeight: '400px', textAlign: 'center' }}>
                         <div style={{  display: 'flex', justifyContent: 'center', flexDirection: 'column', textAlign: 'left' }}>
 
                             <div>
@@ -105,8 +106,8 @@ function SignUp(props) {
                             </div>
                         </div>
 
-                        {props.loading ?
-                            <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '-75px' }}>
+                        { props.loading  ?
+                            <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '-25px' }}>
                                 <Spin />
                             </div>
                             : null

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Layout, Card, Button, Row, Col, Spin, Typography } from 'antd';
+import { ShopOutlined } from '@ant-design/icons';
 import Navbar from '../UiElements/Navbar/Navbar';
 import BottomFooter from '../UiElements/BottomFooter';
 import { Redirect } from 'react-router-dom';
@@ -67,8 +68,17 @@ function Organisation(props) {
             <Layout style={{ minHeight: "100vh" }}>
                <Navbar dimensions={props.dimensions} />
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card title={<Title level={5}>Organizations</Title>} style={{ width: '1150px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "6.9vh", overflow: "auto", minHeight: "627px", marginBottom: "80px", position: "sticky" }}>
+                <Row
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
+            >
+                <Col lg={22}>
+                <Card title={<Title level={5}>Organizations</Title>} style={{ boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "6.9vh", overflow: "auto", minHeight: "627px", marginBottom: "80px", position: "sticky" }}>
                         <Row>
+                        
                             {
                                 (loaded)?
                                     (props.orgData && props.orgWithUserData && state.orgList && state.orgList.length) ?  
@@ -103,16 +113,22 @@ function Organisation(props) {
                                             )
                                         })  
                                 :
-                                <Row style={{ height: '59vh', width: '1150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <Col sm={24} md={12} lg={12} xl={8} justify="space-around" align="middle">
-                                            <Card size="small" title="Welcome!" style={{ width: 300, boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
+                                <Row style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <Col sm={24} md={18} lg={18} xl={8} justify="space-around">
+                                            <Card size="small" title={<Title level={5}>Welcome!</Title>} style={{ width: "100%", minHeight:"25px", boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginBottom: "30px", borderRadius: "8px" }}>
                                                 <Row justify={"center"}>
-                                                    <Text strong>Get started by adding an organization</Text>
-                                                    <Text style={{marginTop: "10px"}}>
-                                                        <Link to="/addOrganisation">
-                                                            <Button type="primary" data-toggle="tooltip" data-placement="top" title="Add new organization">Add Organization</Button>
-                                                        </Link>
-                                                    </Text>
+                                                    
+                                                   
+                                                      
+                                                    <div style={{textAlign:"center", marginTop:"5px"}}>
+                                                        <ShopOutlined style={{display:'block'}} aria-label="Shop Icon" style={{fontSize:'72px'}} />
+                                                        <Text strong style={{display:'block'}}>Get started by adding an organization</Text>
+                                                        <Text style={{display:'block', marginTop: "15px"}}>
+                                                            <Link to="/addOrganisation">
+                                                                <Button type="primary" data-toggle="tooltip" data-placement="top" title="Add new organization">Add Organization</Button>
+                                                            </Link>
+                                                        </Text>
+                                                    </div>
                                                 </Row>
                                             </Card>
                                         </Col>
@@ -122,10 +138,10 @@ function Organisation(props) {
                                      <Spin size="large" />
                                  </Row> 
                             }
-
                         </Row>
                     </Card>
-
+                            </Col>
+                            </Row>
                 </Content>
                 <BottomFooter />
             </Layout>

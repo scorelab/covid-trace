@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import cities from './Cities'
-import { Card, Divider, Row, Col, Input, Select, Checkbox, Button, message } from 'antd';
+import { Card, Divider, Row, Col, Input, Select, Checkbox, Button, message, Typography } from 'antd';
 import { registerBusiness } from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom";
 const { Option } = Select;
 
+
+const { Title } = Typography;
 function BusinessReg(props) {
 
     let history = useHistory();
@@ -137,7 +139,7 @@ function BusinessReg(props) {
     };
 
     return (
-            <Card title="Business Location Details" style={{ width: '100%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "58vh", position: "sticky", marginBottom: '20px' }}>
+            <Card title={<Title level={5}>Business Location Details</Title>}  style={{ width: '100%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", overflow: "auto", minHeight: "58vh", position: "sticky", marginBottom: '20px' }}>
                 <form onSubmit={submitDetails}>
                     <Divider orientation="left">Basic Details</Divider>
                     <Row>
