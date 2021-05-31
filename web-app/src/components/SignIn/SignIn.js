@@ -1,4 +1,4 @@
-import { Button, Card, Input, Layout,Spin,Alert,Row } from 'antd';
+import { Button, Card, Input, Layout,Spin,Alert,Row, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { connect, connectAdvanced } from 'react-redux';
 import * as actions from '../../store/actions';
@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import {Link} from "react-router-dom";
 
 const { Content } = Layout;
+const { Title } = Typography;
 
 function SignIn(props) {
   const [contactNo, setContactNo] = useState('');
@@ -49,7 +50,7 @@ function SignIn(props) {
 
 
           <Card
-            title="Welcome to Safe In!" 
+            title={<Title level={5}>Welcome to Safe In!</Title>} 
             style={{
               width: 475,
               boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',

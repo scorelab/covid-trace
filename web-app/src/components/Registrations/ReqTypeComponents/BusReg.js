@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Divider, Row, Col, Input, Checkbox, Button, message } from 'antd';
+import { Card, Divider, Row, Col, Input, Checkbox, Button, message, Typography } from 'antd';
 import { registerBus } from '../../../store/actions/registrationActions';
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom";
+
+const { Title } = Typography;
 
 function BusReg(props) {
 
@@ -95,7 +97,7 @@ function BusReg(props) {
 
     return (
 
-            <Card title="Bus Details" style={{ width: '100%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
+            <Card title={<Title level={5}>Bus Details</Title>}  style={{ width: '100%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
                 <form onSubmit={submitDetails}>
                 <Divider orientation="left">Bus Details</Divider>
                 <Row justify="space-between" >
