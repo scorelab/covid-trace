@@ -105,7 +105,7 @@ function VehicleReg(props) {
                         <Col sm={24} md={10}  > Contact Number
                             <Input 
                             aria-label="Enter your contact number"
-                            addonBefore="+94" placeholder="Contact No" name="contact_number" style={{marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
+                            addonBefore="+94" placeholder="Contact No" type="tel" maxLength="9" name="contact_number" style={{marginBottom: "10px", marginTop: "10px"  }} onChange={handleChange} required/>
                         </Col>
                     </Row>
                     <Row justify="space-between" align="middle">

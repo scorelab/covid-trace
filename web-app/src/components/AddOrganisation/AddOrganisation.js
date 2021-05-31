@@ -96,7 +96,7 @@ function AddOrganisation(props) {
             <Layout style={{ minHeight: "100vh" }}>
                <Navbar dimensions={props.dimensions} />
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card title={<Title level={5}>Add New Organization</Title>} style={{ width: '674px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "25px", height: '290px' }}>
+                    <Card title={<Title level={5}>Add New Organization</Title>} style={{ width: '620px', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "25px", height: '290px' }}>
                         <div style={{ margin: "5px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
                             <Row>
                                 <Col span={12}>
