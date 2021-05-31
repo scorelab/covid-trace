@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Switch } from 'react-router-dom';
 // route guards
@@ -21,40 +21,46 @@ import UserProfile from './components/UserProfile/UserProfile';
 import './index.css';
 
 function App(props) {
+  // const [scriptAttached, setScriptAttached] = useState(true);
   useEffect(() => {
-    const common = document.createElement("script");
-    common.type = "text/javascript"
-    common.textContent = "function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 'google_translate_element');}"
-    common.async = true;
-    document.body.appendChild(common);
+    const scriptEl = document.createElement('script');
+    scriptEl.type = "text/javascript"
+    scriptEl.textContent = "function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 'google_translate_element');}"
+    scriptEl.async = true;
+    document.body.appendChild(scriptEl);
+    console.log('translation script added');
   },[])
+  const [dimensions, setDimensions] = React.useState({ 
+    height: window.innerHeight,
+    width: window.innerWidth
+  });
+  useEffect(() => {
+    function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth
+      })
+    }
+    window.addEventListener('resize', handleResize)
   
+    return _ => {
+        window.removeEventListener('resize', handleResize)
+    }
+})
   return (
     <Switch>
-      <PublicRoute exact path="/" component={HomePage} />
-      <PublicRoute exact path="/download" component={DownloadPage} />
-      <AuthRoute exact path="/signIn" component={SignIn} />
-      <AuthRoute exact path="/signUp" component={SignUp} />
-      <PrivateRoute exact path="/organizations" component={Organisation} />
-      <PrivateRoute
-        exact
-        path="/addOrganisation"
-        component={AddOrganisation}
-      />
-      <PrivateRoute
-        exact
-        path="/locations/:UserName"
-        component={LocationIndex}
-      />
-      <PrivateRoute exact path="/registration" component={Registration} />
-      <PrivateRoute exact path="/registration/:UserName" component={Registration} />
-      <PrivateRoute
-        exact
-        path="/companyInfo/:CompanyId"
-        component={CompanyInfo}
-      />
-      <PrivateRoute exact path="/userProfile" component={UserProfile} />
-      <PrivateRoute exact path="/qrpage/:CompanyId" component={QRpage} />
+      <PublicRoute exact path="/"><HomePage  dimensions={dimensions} /> </PublicRoute>
+      <PublicRoute exact path="/download"> <DownloadPage  dimensions={dimensions} /> </PublicRoute>
+      <AuthRoute exact path="/signIn"> <SignIn  dimensions={dimensions} /> </AuthRoute>
+      <AuthRoute exact path="/signUp"> <SignUp  dimensions={dimensions} /> </AuthRoute>
+      <PrivateRoute exact path="/organizations"> <Organisation  dimensions={dimensions} /> </PrivateRoute>
+      <PrivateRoute exact path="/addOrganisation"> <AddOrganisation dimensions={dimensions}/> </PrivateRoute>
+      <PrivateRoute exact path="/locations/:UserName"> <LocationIndex  dimensions={dimensions} /> </PrivateRoute>
+      <PrivateRoute exact path="/registration"> <Registration  dimensions={dimensions} /> </PrivateRoute>
+      <PrivateRoute exact path="/registration/:UserName"> <Registration  dimensions={dimensions} /> </PrivateRoute>
+      <PrivateRoute exact path="/companyInfo/:CompanyId"> <CompanyInfo  dimensions={dimensions} /> </PrivateRoute >
+      <PrivateRoute exact path="/userProfile"> <UserProfile  dimensions={dimensions} /> </PrivateRoute>
+      <PrivateRoute exact path="/qrpage/:CompanyId"> <QRpage  dimensions={dimensions} /> </PrivateRoute>
       <PublicRoute component={NotFound} />
     </Switch>
   );

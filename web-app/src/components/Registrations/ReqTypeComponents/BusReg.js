@@ -94,9 +94,9 @@ function BusReg(props) {
 
 
     return (
-        <div>
-            <Card title="Bus Details" style={{ width: '674px', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
-                <form onSubmit={submitDetails}>rfe
+
+            <Card title="Bus Details" style={{ width: '100%', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)', marginTop: "20px", marginBottom: "10px", overflow: "auto", minHeight: "260px", position: "sticky" }}>
+                <form onSubmit={submitDetails}>
                 <Divider orientation="left">Bus Details</Divider>
                 <Row justify="space-between" >
                     <Col sm={24} md={13}  > Bus Number
@@ -142,7 +142,6 @@ function BusReg(props) {
                     </Row>
                 </form>
             </Card>
-        </div>
     )
 }
 

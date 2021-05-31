@@ -8,26 +8,26 @@ function Profile(props) {
             <Title level={5} style={{ textAlign: "left", marginBottom: "-15px" }}>Profile Data</Title>
                                 <Divider />
                                 <Row>
-                                    <Col span={2}>
+                                    <Col xs={24} sm={4}>
                                         <Text strong>Name:</Text>
                                     </Col>
-                                    <Col span={5}>
+                                    <Col>
                                         <Text>Peter</Text>
                                     </Col>
                                 </Row>
                                 <Row style={{marginTop:"0.5em"}}>
-                                    <Col span={3}>
+                                    <Col xs={24} sm={4}>
                                         <Text strong>Contact No:</Text>
                                     </Col>
-                                    <Col span={5}>
+                                    <Col>
                                         <Text>0773454232</Text>
                                     </Col>
                                 </Row>
                                 <Row style={{marginTop:"0.5em"}}>
-                                    <Col span={2}>
+                                    <Col xs={24} sm={4}>
                                         <Text strong>Email:</Text>
                                     </Col>
-                                    <Col span={5}>
+                                    <Col>
                                         <Text>peterabc@gmail.com</Text>
                                     </Col>
                                 </Row>

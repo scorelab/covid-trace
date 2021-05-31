@@ -20,6 +20,7 @@ import githubLogo from '../../assets/githubLogo.png'
 import scoreLabLogo from '../../assets/scoreLabLogo.png'
 import enter from '../../assets/enter.png'
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import './homeStyles.css'
 const { Header, Footer, Content } = Layout;
 const { Title, Text } = Typography;

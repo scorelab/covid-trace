@@ -37,7 +37,7 @@ function SignIn(props) {
   return (
     <div style={{ background: '#F2F2F2' }}>
       <Layout style={{ minHeight: '100vh' }}>
-        <Navbar direct="SignUp" dir_name="Register"/>
+        <Navbar dimensions={props.dimensions} direct="SignUp" dir_name="Register"/>
         <Content
           style={{
             padding: '0 50px',
