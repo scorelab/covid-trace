@@ -73,7 +73,7 @@ function CompanyInfo(props) {
         });
       }
     useEffect(() => {
-        props.history.location.state && setCompanyDetails({
+        props.user && props.history.location.state && setCompanyDetails({
             ...props.history.location.state
         })||
         (props.orgData) && (Object.keys(props.orgData).map(orgId => {
