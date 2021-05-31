@@ -1,10 +1,5 @@
 # Covid Trace App
 
-
-Licence details and info about project will add later 
- 
-
-
 ## User Guide
 
 #### How to Setup
