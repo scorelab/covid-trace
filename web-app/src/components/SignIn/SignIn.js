@@ -45,9 +45,6 @@ function SignIn(props) {
             justifyContent: 'center',
           }}
         >
-          <div className="col d-flex justify-content-center">
-
-
           <Card
             title="Welcome to Safe In!" 
             style={{
@@ -56,7 +53,7 @@ function SignIn(props) {
               marginTop: '50px',
               marginBottom: '10px',
               minheight: '250px',
-              maxHeight: '400px',
+              maxHeight: '320px',
               textAlign: 'center'
             }}
           >   
@@ -115,7 +112,6 @@ function SignIn(props) {
               {props.error ? <Alert message={props.error} type="warning" showIcon closable style={{marginTop:'6px',width:'100%'}}/> : null}
               </Row>
           </Card>
-          </div>
         </Content>
         <BottomFooter />
       </Layout>
