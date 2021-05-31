@@ -77,28 +77,28 @@ function SignUp(props) {
 
     return (
         <div style={{ background: "#F2F2F2" }}>
-            <Layout style={{ height: "100vh" }}>
+            <Layout style={{ minHeight: "100vh" }}>
                 <Navbar dimensions={props.dimensions}  direct="SignIn" dir_name="Log In"/>
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card title="Welcome to Safe In!" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "51px", marginBottom: "10px", height: '430px', textAlign: 'center' }}>
-                        <div style={{ margin: "10px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column', textAlign: 'left' }}>
+                    <Card title="Welcome to Safe In!" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "50px", marginBottom:'10px' , maxHeight: '400px', textAlign: 'center' }}>
+                        <div style={{  display: 'flex', justifyContent: 'center', flexDirection: 'column', textAlign: 'left' }}>
                             <div>
                                 Phone Number
-                                <Input addonBefore="+94" defaultValue="" placeholder="Phone Number"  aria-label="Enter your 9 digit contact number" aria-required="true" value={state.phoneNumber} name='phoneNumber' type='tel' maxLength='9' style={{ marginBottom: '10px' }} onChange={handleChange} />
+                                <Input addonBefore="+94" defaultValue="" placeholder="Phone Number"  aria-label="Enter your 9 digit contact number" aria-required="true" value={state.phoneNumber} name='phoneNumber' type='tel' maxLength='9' style={{ marginBottom: '10px', marginTop: '5px'  }} onChange={handleChange} />
                             </div>
                             <div>
                                 NIC Number (Numeric Part Only)
-                                <Input defaultValue="" placeholder="National Identity Card Number" aria-label="Enter the numeric part of your National Identity Card number" aria-required="true" style={{ marginBottom: '10px' }} name='nic' value={state.nic} onChange={handleChange} />
+                                <Input defaultValue="" placeholder="National Identity Card Number" aria-label="Enter the numeric part of your National Identity Card number" aria-required="true" style={{ marginBottom: '10px', marginTop: '5px'  }} name='nic' value={state.nic} onChange={handleChange} />
                             </div>
                             <div>
                                 Password
-                                <Input defaultValue="" placeholder="Password" aria-label="Enter your password" aria-required="true" type="password" style={{ marginBottom: '10px' }} value={state.password} name='password' onChange={handleChange} />
+                                <Input defaultValue="" placeholder="Password" aria-label="Enter your password" aria-required="true" type="password" style={{ marginBottom: '10px', marginTop: '5px'  }} value={state.password} name='password' onChange={handleChange} />
                             </div>
                             <div>
                                 Re-Enter Password
-                                <Input defaultValue="" placeholder="Re-Enter Password" aria-label="Please re-enter your password" aria-required="true" type="password" style={{ marginBottom: '10px' }} value={state.repeatPassword} name='repeatPassword' onChange={handleChange} />
+                                <Input defaultValue="" placeholder="Re-Enter Password" aria-label="Please re-enter your password" aria-required="true" type="password" style={{ marginBottom: '10px', marginTop: '5px' }} value={state.repeatPassword} name='repeatPassword' onChange={handleChange} />
                             </div>
-                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center", paddingTop: '20px' }}>
+                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center"}}>
                                 <Button type="primary" style={{ width: '150px' }} onClick={submitDetails} data-toggle="tooltip" data-placement="top" title="Register with Safe In">Register</Button>
                             </div>
                         </div>
