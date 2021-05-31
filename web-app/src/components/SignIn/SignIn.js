@@ -59,15 +59,15 @@ function SignIn(props) {
           >   
               <form onSubmit={signIn}>
                 <Row>
-                  Phone number
+                  Phone Number
                   <Input
                     aria-label={"Enter your phone number in the +94 format without the +94 part"}
                     addonBefore="+94"
                     defaultValue=""
-                    placeholder="Contact No."
+                    placeholder="Phone Number"
                     type = "tel"
                     maxLength = "9"
-                    style={{ marginBottom: '10px', paddingTop: '5px' }}
+                    style={{ marginBottom: '10px', marginTop: '5px' }}
                     onChange={onChangePhoneNumber}
                     value={contactNo}
                     required
@@ -80,7 +80,7 @@ function SignIn(props) {
                     defaultValue=""
                     placeholder="Password"
                     type="password"
-                    style={{ marginBottom: '10px', paddingTop: '5px' }}
+                    style={{ marginBottom: '10px', marginTop: '5px' }}
                     onChange={onChangePassword}
                     value={password}
                     required
@@ -90,7 +90,6 @@ function SignIn(props) {
                   <Button
                       type="primary"
                       style={{ marginRight: '20px',width:'140px' }}
-                      //onClick={signIn}
                       htmlType="submit"
                       data-toggle="tooltip" data-placement="top" title="Login to Safe In"
                     >
