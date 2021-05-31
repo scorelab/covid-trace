@@ -55,7 +55,7 @@ function SignIn(props) {
               boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
               marginTop: '50px',
               marginBottom: '10px',
-              minheight: '250px',
+              minheight: '360px',
               maxHeight: '400px',
               textAlign: 'center'
             }}

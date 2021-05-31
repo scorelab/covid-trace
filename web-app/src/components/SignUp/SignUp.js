@@ -103,8 +103,8 @@ function SignUp(props) {
                             </div>
                         </div>
 
-                        {props.loading ?
-                            <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '-75px' }}>
+                        { props.loading  ?
+                            <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '-25px' }}>
                                 <Spin />
                             </div>
                             : null
