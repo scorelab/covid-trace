@@ -84,6 +84,7 @@ function SignUp(props) {
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
                     <Card title={<Title level={5}>Welcome to Safe In!</Title>}  style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "50px", marginBottom:'10px' , maxHeight: '400px', textAlign: 'center' }}>
                         <div style={{  display: 'flex', justifyContent: 'center', flexDirection: 'column', textAlign: 'left' }}>
+
                             <div>
                                 Phone Number
                                 <Input addonBefore="+94" defaultValue="" placeholder="Phone Number"  aria-label="Enter your 9 digit contact number" aria-required="true" value={state.phoneNumber} name='phoneNumber' type='tel' maxLength='9' style={{ marginBottom: '10px', marginTop: '5px'  }} onChange={handleChange} />
