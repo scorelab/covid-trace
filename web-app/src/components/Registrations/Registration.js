@@ -66,8 +66,39 @@ function Registration(props) {
         console.log(value)
     }
 
-    function onChange(e) {
-        console.log(`checked = ${e.target.checked}`);
+  if (
+    state.org == "" &&
+    (requestType == "Business" ||
+      requestType == "Bus" ||
+      requestType == "Vehicle" ||
+      requestType == "Train")
+  ) {
+    alert = (
+      <Alert
+        message="Please select organisation first"
+        type="warning"
+        showIcon
+        closable
+        style={{ width: "80%", marginTop: "20px" }}
+      />
+    );
+  } else {
+    alert = null;
+    switch (requestType) {
+      case "Business":
+        component = <BusinessReg orgUserName={state.org} />;
+        break;
+      case "Bus":
+        component = <BusReg orgUserName={state.org} />;
+        break;
+      case "Vehicle":
+        component = <VehicleReg orgUserName={state.org} />;
+        break;
+      case "Train":
+        component = <TrainReg orgUserName={state.org} />;
+        break;
+      default:
+        component = <div></div>;
     }
 
     let component = null;
