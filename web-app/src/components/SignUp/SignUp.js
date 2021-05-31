@@ -77,7 +77,7 @@ function SignUp(props) {
 
     return (
         <div style={{ background: "#F2F2F2" }}>
-            <Layout style={{ height: "100vh" }}>
+            <Layout style={{ minHeight: "100vh" }}>
                 <Navbar dimensions={props.dimensions}  direct="SignIn" dir_name="Log In"/>
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
                     <Card title="Welcome to Safe In!" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "51px", marginBottom: "10px", height: '430px', textAlign: 'center' }}>
