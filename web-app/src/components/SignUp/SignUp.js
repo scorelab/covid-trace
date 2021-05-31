@@ -77,11 +77,12 @@ function SignUp(props) {
 
     return (
         <div style={{ background: "#F2F2F2" }}>
-            <Layout style={{ height: "100vh" }}>
+            <Layout style={{ minHeight: "100vh" }}>
                 <Navbar dimensions={props.dimensions}  direct="SignIn" dir_name="Log In"/>
                 <Content style={{ padding: '0 50px', display: 'flex', justifyContent: 'center' }}>
-                    <Card title="Welcome to Safe In!" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', marginTop: "51px", marginBottom: "10px", height: '430px', textAlign: 'center' }}>
-                        <div style={{ margin: "10px 0px 52px", display: 'flex', justifyContent: 'center', flexDirection: 'column', textAlign: 'left' }}>
+                    <Card title="Welcome to Safe In!" style={{ width: 475, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+              maxHeight: '430px', marginTop: "51px", marginBottom: "10px", textAlign: 'center' }}>
+                        <div style={{ margin: "10px 0px 20px", display: 'flex', justifyContent: 'center', flexDirection: 'column', textAlign: 'left' }}>
                             <div>
                                 Phone Number
                                 <Input addonBefore="+94" defaultValue="" placeholder="Phone Number"  aria-label="Enter your 9 digit contact number" aria-required="true" value={state.phoneNumber} name='phoneNumber' type='tel' maxLength='9' style={{ marginBottom: '10px' }} onChange={handleChange} />
