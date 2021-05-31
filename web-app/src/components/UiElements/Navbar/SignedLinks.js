@@ -52,7 +52,7 @@ function SignedLinks(props) {
             <LogoutOutlined style={{ fontSize: '30px' }} onClick={props.signOut} data-toggle="tooltip" data-placement="top" title="Log out" />
         </Col>:
         <Col xs={12} sm={12} md={8} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-            <Button onClick={showDropDown} type="primary" style={{ marginRight: '20px' }} ref={ref_btn}>
+            <Button onClick={showDropDown} type="primary" style={{ marginRight: '20px' }} ref={ref_btn} data-toggle="tooltip" data-placement="top" title="View site menu">
                 Menu {(dropdown)?<CloseOutlined />:<MenuOutlined />}
             </Button> 
             {dropdown && <DropDown innerref={ref_drop}/>}
