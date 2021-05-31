@@ -88,7 +88,7 @@ function Registration(props) {
         type="warning"
         showIcon
         closable
-        style={{ with: "80%", marginTop: "20px" }}
+        style={{ width: "80%", marginTop: "20px" }}
       />
     );
   } else {

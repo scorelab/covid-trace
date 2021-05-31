@@ -53,7 +53,7 @@ function SignIn(props) {
             style={{
               width: 475,
               boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-              marginTop: '90px',
+              marginTop: '50px',
               minheight: '250px',
               maxHeight: '400px',
               textAlign: 'center'
@@ -67,6 +67,8 @@ function SignIn(props) {
                     addonBefore="+94"
                     defaultValue=""
                     placeholder="Contact No."
+                    type = "tel"
+                    maxLength = "9"
                     style={{ marginBottom: '10px', paddingTop: '5px' }}
                     onChange={onChangePhoneNumber}
                     value={contactNo}
