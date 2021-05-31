@@ -73,7 +73,7 @@ function CompanyInfo(props) {
         });
       }
     useEffect(() => {
-        props.history.location.state && setCompanyDetails({
+        props.user && (props.history.location.state && setCompanyDetails({
             ...props.history.location.state
         })||
         (props.orgData) && (Object.keys(props.orgData).map(orgId => {
@@ -81,7 +81,7 @@ function CompanyInfo(props) {
             if (props.orgData[orgId].UserName === props.history.location.state.org){
                 setOrgName(props.orgData[orgId].Name)
             }
-        }))
+        })))
     }, [props.history.location.state.location_type, props.orgData])
 
     if (props.user == null) return <Redirect to='/signIn' />

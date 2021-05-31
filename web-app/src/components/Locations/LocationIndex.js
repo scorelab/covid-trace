@@ -24,6 +24,7 @@ function LocationIndex(props) {
   });
 
   useEffect(() => {
+    props.user &&
     props.orgData &&
       props.orgWithUserData &&
       Object.keys(props.orgData).map((orgId) => {
@@ -49,7 +50,7 @@ function LocationIndex(props) {
   //console.log(phonenumber)
   // console.log(props.user.phoneNumber)
 
-  // if (orgName.phonenumber) return <Redirect to='/signIn' />
+  if (props.user == null) return <Redirect to='/signIn' />
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
